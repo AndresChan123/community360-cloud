@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     window.location.replace("/login");
   }
 
-  // Formateo Unicode sin romper acentos (evita "CóMics" o "MúSica")
   function formatearEtiqueta(texto) {
     if (!texto) return "-";
     const diccionario = {
@@ -53,7 +52,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       .join(" ");
   }
 
-  // Navegacion activa en menu lateral
   const navLinks = document.querySelectorAll(".sidebar-nav .nav-link");
   navLinks.forEach((link) => {
     link.addEventListener("click", () => {
@@ -62,7 +60,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   });
 
-  // Animacion de transicion numerica y destello en tarjeta KPI cuando cambia por WebSocket
   function actualizarKPI(elementId, cardId, nuevoValorNumero, formateador, animar = false) {
     const el = document.getElementById(elementId);
     const card = cardId ? document.getElementById(cardId) : null;
@@ -82,7 +79,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       card.classList.add("kpi-flash");
     }
 
-    const duracion = 650;
+    const duracion = 600;
     const inicio = performance.now();
     function frame(ahora) {
       const progreso = Math.min((ahora - inicio) / duracion, 1);
@@ -120,28 +117,35 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
 
-  // Paleta coherente basada en Indigo + colores semanticos
-  const PALETA_CATEGORIAS = [
-    "#6366f1",
-    "#3b82f6",
-    "#06b6d4",
-    "#8b5cf6",
-    "#a855f7",
-    "#10b981",
-    "#64748b",
+  // Paleta corporativa sobria
+  const PRIMARY = "#2457C5";
+  const PRIMARY_HOVER = "#1D49A6";
+  const GRID_COLOR = "#E3E8EF";
+  const AXIS_TEXT = "#5B6778";
+  const DARK_TEXT = "#1B2430";
+
+  // Paleta categorica apagada para la dona de canales
+  const PALETA_CANALES = [
+    "#2457C5",
+    "#1A9AA0",
+    "#7A5CC7",
+    "#E0A030",
+    "#C2547A",
+    "#64748B",
   ];
 
+  // Colores semanticos unificados
   const COLORES_ESTATUS = {
-    activo: "#10b981",     // Verde
-    en_riesgo: "#f59e0b",  // Ambar
-    inactivo: "#ef4444",   // Rojo
+    activo: "#1E8E5A",
+    en_riesgo: "#C77700",
+    inactivo: "#C0392B",
   };
 
-  Chart.defaults.color = "#94a3b8";
-  Chart.defaults.borderColor = "rgba(148, 163, 184, 0.07)";
+  Chart.defaults.color = AXIS_TEXT;
+  Chart.defaults.borderColor = GRID_COLOR;
   Chart.defaults.font.family = "'Inter', system-ui, sans-serif";
 
-  // Plugin 1: Mostrar el valor numerico al final de cada barra
+  // Plugin 1: Valor numerico al final de cada barra
   const barValueLabelsPlugin = {
     id: "barValueLabels",
     afterDatasetsDraw(chart) {
@@ -150,7 +154,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const isHorizontal = chart.config.options?.indexAxis === "y";
       ctx.save();
       ctx.font = "600 11px 'Inter', sans-serif";
-      ctx.fillStyle = "#cbd5e1";
+      ctx.fillStyle = DARK_TEXT;
 
       chart.data.datasets.forEach((dataset, i) => {
         const meta = chart.getDatasetMeta(i);
@@ -164,7 +168,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           } else {
             ctx.textAlign = "center";
             ctx.textBaseline = "bottom";
-            ctx.fillText(val.toLocaleString("es-MX"), bar.x, bar.y - 6);
+            ctx.fillText(val.toLocaleString("es-MX"), bar.x, bar.y - 5);
           }
         });
       });
@@ -172,7 +176,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     },
   };
 
-  // Plugin 2: Mostrar el total en el centro de las graficas de dona
+  // Plugin 2: Total en el centro de la dona
   const doughnutCenterTextPlugin = {
     id: "doughnutCenterText",
     afterDraw(chart) {
@@ -188,13 +192,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       ctx.save();
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      ctx.font = "800 20px 'Inter', sans-serif";
-      ctx.fillStyle = "#f8fafc";
+      ctx.font = "600 20px 'Inter', sans-serif";
+      ctx.fillStyle = DARK_TEXT;
       ctx.fillText(total.toLocaleString("es-MX"), centerX, centerY - 7);
 
       ctx.font = "500 11px 'Inter', sans-serif";
-      ctx.fillStyle = "#94a3b8";
-      ctx.fillText(centerLabel, centerX, centerY + 13);
+      ctx.fillStyle = AXIS_TEXT;
+      ctx.fillText(centerLabel, centerX, centerY + 12);
       ctx.restore();
     },
   };
@@ -206,7 +210,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       responsive: true,
       maintainAspectRatio: false,
       cutout: "68%",
-      animation: { duration: 600, easing: "easeOutQuart" },
+      animation: { duration: 500, easing: "easeOutQuart" },
       plugins: {
         centerLabel,
         legend: {
@@ -217,6 +221,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             usePointStyle: true,
             pointStyle: "circle",
             padding: 14,
+            color: DARK_TEXT,
             font: { size: 12, weight: "500" },
             generateLabels(chart) {
               const data = chart.data;
@@ -229,8 +234,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 return {
                   text: `${label} · ${pct}%`,
                   fillStyle: ds.backgroundColor[i],
-                  strokeStyle: ds.backgroundColor[i],
-                  fontColor: "#cbd5e1",
+                  strokeStyle: "#FFFFFF",
+                  fontColor: DARK_TEXT,
                   hidden: !chart.getDataVisibility(i),
                   index: i,
                 };
@@ -262,6 +267,21 @@ document.addEventListener("DOMContentLoaded", async () => {
     const ctx = document.getElementById(canvasId);
     if (!ctx) return;
     charts[key] = new Chart(ctx, config);
+  }
+
+  // Interpolacion secuencial entre #EAF1FB (234, 241, 251) y #1F4FA3 (31, 79, 163)
+  function calcularColorHeatmap(valor, min, max) {
+    const rango = Math.max(max - min, 1);
+    const t = Math.min(Math.max((valor - min) / rango, 0), 1);
+    const r = Math.round(234 + (31 - 234) * t);
+    const g = Math.round(241 + (79 - 241) * t);
+    const b = Math.round(251 + (163 - 251) * t);
+    const esOscuro = t >= 0.52;
+    return {
+      bg: `rgb(${r}, ${g}, ${b})`,
+      textColor: esOscuro ? "#FFFFFF" : "#1B2430",
+      subColor: esOscuro ? "rgba(255, 255, 255, 0.9)" : "#2457C5",
+    };
   }
 
   // =========================================================================
@@ -326,7 +346,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       esEventoWS
     );
 
-    // 1) Temas de conversacion (barras horizontales ordenadas de mayor a menor)
+    // 1) Temas de conversacion (TODAS las barras en --primary #2457C5)
     const temasEntries = Object.entries(metricas.por_tema || {}).sort((a, b) => b[1] - a[1]);
     crearOActualizarChart("wsTema", "chart-ws-tema", {
       type: "bar",
@@ -336,10 +356,10 @@ document.addEventListener("DOMContentLoaded", async () => {
           {
             label: "Interacciones",
             data: temasEntries.map(([, v]) => v),
-            backgroundColor: "#6366f1",
-            hoverBackgroundColor: "#818cf8",
-            borderRadius: 6,
-            maxBarThickness: 24,
+            backgroundColor: PRIMARY,
+            hoverBackgroundColor: PRIMARY_HOVER,
+            borderRadius: 4,
+            maxBarThickness: 22,
           },
         ],
       },
@@ -348,16 +368,16 @@ document.addEventListener("DOMContentLoaded", async () => {
         responsive: true,
         maintainAspectRatio: false,
         layout: { padding: { right: 36 } },
-        animation: { duration: 600, easing: "easeOutQuart" },
+        animation: { duration: 500, easing: "easeOutQuart" },
         plugins: { legend: { display: false } },
         scales: {
-          x: { grid: { color: "rgba(148, 163, 184, 0.06)" } },
-          y: { grid: { display: false } },
+          x: { grid: { color: GRID_COLOR }, ticks: { color: AXIS_TEXT } },
+          y: { grid: { display: false }, ticks: { color: AXIS_TEXT } },
         },
       },
     });
 
-    // 2) Canal digital (dona con total en el centro y porcentajes)
+    // 2) Dona de canales: paleta categorica apagada con borde blanco de 2px
     const canalEntries = Object.entries(metricas.por_canal || {}).sort((a, b) => b[1] - a[1]);
     crearOActualizarChart("wsCanal", "chart-ws-canal", {
       type: "doughnut",
@@ -366,16 +386,16 @@ document.addEventListener("DOMContentLoaded", async () => {
         datasets: [
           {
             data: canalEntries.map(([, v]) => v),
-            backgroundColor: PALETA_CATEGORIAS,
+            backgroundColor: PALETA_CANALES,
             borderWidth: 2,
-            borderColor: "#111827",
+            borderColor: "#FFFFFF",
           },
         ],
       },
       options: opcionesDona("Interacciones"),
     });
 
-    // 3) Formato de interaccion (barras horizontales con valor al final)
+    // 3) Formato de interaccion (barras en --primary #2457C5)
     const tipoEntries = Object.entries(metricas.por_tipo || {}).sort((a, b) => b[1] - a[1]);
     crearOActualizarChart("wsTipo", "chart-ws-tipo", {
       type: "bar",
@@ -385,10 +405,10 @@ document.addEventListener("DOMContentLoaded", async () => {
           {
             label: "Interacciones",
             data: tipoEntries.map(([, v]) => v),
-            backgroundColor: "#818cf8",
-            hoverBackgroundColor: "#a5b4fc",
-            borderRadius: 6,
-            maxBarThickness: 24,
+            backgroundColor: PRIMARY,
+            hoverBackgroundColor: PRIMARY_HOVER,
+            borderRadius: 4,
+            maxBarThickness: 22,
           },
         ],
       },
@@ -397,16 +417,16 @@ document.addEventListener("DOMContentLoaded", async () => {
         responsive: true,
         maintainAspectRatio: false,
         layout: { padding: { right: 36 } },
-        animation: { duration: 600, easing: "easeOutQuart" },
+        animation: { duration: 500, easing: "easeOutQuart" },
         plugins: { legend: { display: false } },
         scales: {
-          x: { grid: { color: "rgba(148, 163, 184, 0.06)" } },
-          y: { grid: { display: false } },
+          x: { grid: { color: GRID_COLOR }, ticks: { color: AXIS_TEXT } },
+          y: { grid: { display: false }, ticks: { color: AXIS_TEXT } },
         },
       },
     });
 
-    // 4) Balance de sentimiento (colores semanticos: verde, gris, rojo)
+    // 4) Balance de sentimiento (colores semanticos --ok, --neutral, --bad con borde blanco 2px)
     crearOActualizarChart("wsPolaridad", "chart-ws-polaridad", {
       type: "doughnut",
       data: {
@@ -414,29 +434,29 @@ document.addEventListener("DOMContentLoaded", async () => {
         datasets: [
           {
             data: [distSent.positivas || 0, distSent.neutras || 0, distSent.negativas || 0],
-            backgroundColor: ["#10b981", "#64748b", "#ef4444"],
+            backgroundColor: ["#1E8E5A", "#6B7280", "#C0392B"],
             borderWidth: 2,
-            borderColor: "#111827",
+            borderColor: "#FFFFFF",
           },
         ],
       },
       options: opcionesDona("Analizadas"),
     });
 
-    // 5) Mapa de calor geografico
+    // 5) Mapa de calor secuencial (#EAF1FB a #1F4FA3)
     const heatmapContainer = document.getElementById("heatmap-estados");
     const estadosEntries = Object.entries(metricas.mapa_calor_estado || {}).sort((a, b) => b[1] - a[1]);
-    const maxEstado = estadosEntries.length ? estadosEntries[0][1] : 1;
+    const valores = estadosEntries.map(([, c]) => c);
+    const maxEstado = valores.length ? Math.max(...valores) : 1;
+    const minEstado = valores.length ? Math.min(...valores) : 0;
 
     heatmapContainer.innerHTML = estadosEntries
       .map(([estado, conteo]) => {
-        const intensidad = Math.max(0.16, conteo / maxEstado);
-        const bg = `rgba(99, 102, 241, ${(intensidad * 0.42).toFixed(2)})`;
-        const border = `rgba(99, 102, 241, ${Math.min(0.85, intensidad + 0.22).toFixed(2)})`;
+        const col = calcularColorHeatmap(conteo, minEstado, maxEstado);
         return `
-          <div class="heatmap-cell" style="background:${bg}; border-color:${border};">
-            <div class="heatmap-state">${estado}</div>
-            <div class="heatmap-count">${conteo}</div>
+          <div class="heatmap-cell" style="background:${col.bg};">
+            <div class="heatmap-state" style="color:${col.textColor};">${estado}</div>
+            <div class="heatmap-count" style="color:${col.subColor};">${conteo}</div>
           </div>
         `;
       })
@@ -598,7 +618,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         data.auditoria_etl?.total_cuarentena_firestore || 793
       ).toLocaleString("es-MX");
 
-      // 1) Estado de retencion: orden y colores semanticos FIJOS (Activo = Verde, En riesgo = Ambar, Inactivo = Rojo)
+      // 1) Dona de estatus: colores semanticos unificados con borde blanco de 2px
       const ordenEstatus = ["activo", "en_riesgo", "inactivo"].filter(
         (k) => data.por_estatus && data.por_estatus[k] !== undefined
       );
@@ -609,16 +629,16 @@ document.addEventListener("DOMContentLoaded", async () => {
           datasets: [
             {
               data: ordenEstatus.map((k) => data.por_estatus[k]),
-              backgroundColor: ordenEstatus.map((k) => COLORES_ESTATUS[k] || "#64748b"),
+              backgroundColor: ordenEstatus.map((k) => COLORES_ESTATUS[k] || "#6B7280"),
               borderWidth: 2,
-              borderColor: "#111827",
+              borderColor: "#FFFFFF",
             },
           ],
         },
         options: opcionesDona("Miembros"),
       });
 
-      // 2) Intereses culturales: barras horizontales ordenadas de mayor a menor con valor al final
+      // 2) Intereses culturales: barras en --primary #2457C5
       const intEntries = Object.entries(data.por_interes || {}).sort((a, b) => b[1] - a[1]);
       crearOActualizarChart("restInteres", "chart-rest-interes", {
         type: "bar",
@@ -628,10 +648,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             {
               label: "Miembros",
               data: intEntries.map(([, v]) => v),
-              backgroundColor: "#6366f1",
-              hoverBackgroundColor: "#818cf8",
-              borderRadius: 6,
-              maxBarThickness: 22,
+              backgroundColor: PRIMARY,
+              hoverBackgroundColor: PRIMARY_HOVER,
+              borderRadius: 4,
+              maxBarThickness: 20,
             },
           ],
         },
@@ -640,16 +660,16 @@ document.addEventListener("DOMContentLoaded", async () => {
           responsive: true,
           maintainAspectRatio: false,
           layout: { padding: { right: 36 } },
-          animation: { duration: 600, easing: "easeOutQuart" },
+          animation: { duration: 500, easing: "easeOutQuart" },
           plugins: { legend: { display: false } },
           scales: {
-            x: { grid: { color: "rgba(148, 163, 184, 0.06)" } },
-            y: { grid: { display: false } },
+            x: { grid: { color: GRID_COLOR }, ticks: { color: AXIS_TEXT } },
+            y: { grid: { display: false }, ticks: { color: AXIS_TEXT } },
           },
         },
       });
 
-      // 3) Segmentos de edad
+      // 3) Segmentos de edad: barras en --primary #2457C5
       const edadEntries = Object.entries(data.por_rango_edad || {});
       crearOActualizarChart("restEdad", "chart-rest-edad", {
         type: "bar",
@@ -659,10 +679,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             {
               label: "Miembros",
               data: edadEntries.map(([, v]) => v),
-              backgroundColor: "#818cf8",
-              hoverBackgroundColor: "#a5b4fc",
-              borderRadius: 6,
-              maxBarThickness: 38,
+              backgroundColor: PRIMARY,
+              hoverBackgroundColor: PRIMARY_HOVER,
+              borderRadius: 4,
+              maxBarThickness: 36,
             },
           ],
         },
@@ -670,11 +690,11 @@ document.addEventListener("DOMContentLoaded", async () => {
           responsive: true,
           maintainAspectRatio: false,
           layout: { padding: { top: 20 } },
-          animation: { duration: 600, easing: "easeOutQuart" },
+          animation: { duration: 500, easing: "easeOutQuart" },
           plugins: { legend: { display: false } },
           scales: {
-            x: { grid: { display: false } },
-            y: { grid: { color: "rgba(148, 163, 184, 0.06)" } },
+            x: { grid: { display: false }, ticks: { color: AXIS_TEXT } },
+            y: { grid: { color: GRID_COLOR }, ticks: { color: AXIS_TEXT } },
           },
         },
       });
