@@ -1,0 +1,136 @@
+{
+  "info": {
+    "name": "Community 360 - API REST y Pruebas WebSockets (Fases 3 a 6)",
+    "description": "Colección para demostrar la autenticación (Fase 3), consultas históricas REST (Fase 4) y operaciones POST, PUT y DELETE que actualizan el dashboard en tiempo real vía WebSockets (Fases 5 y 6).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Autenticacion (Fase 3 - Usuario Docente)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const json = pm.response.json();",
+              "if (json && json.token) {",
+              "  pm.collectionVariables.set('token', json.token);",
+              "}"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/auth/login",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "auth", "login"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"usuario\": \"lizandro.reyes\",\n  \"password\": \"lizandr0_reye$\"\n}"
+        }
+      }
+    },
+    {
+      "name": "2. Prueba En Vivo 1 - POST Crear Interacción (WebSocket)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/interacciones",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "interacciones"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id_interaccion\": \"I0009001\",\n  \"id_usuario\": \"U000176\",\n  \"canal\": \"Discord\",\n  \"tipo\": \"mensaje\",\n  \"texto\": \"¡Confirmado el torneo comunitario y taller de ilustración digital este sábado!\",\n  \"tema\": \"eventos_convenciones\",\n  \"sentimiento\": 0.92,\n  \"idioma\": \"es\",\n  \"dispositivo\": \"Escritorio\",\n  \"reacciones_recibidas\": 25,\n  \"etiquetas\": [\"evento\", \"arte\", \"juegos\"]\n}"
+        }
+      }
+    },
+    {
+      "name": "3. Prueba En Vivo 2 - PUT Modificar Interacción (WebSocket)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/interacciones/I0009001",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "interacciones", "I0009001"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"canal\": \"Telegram\",\n  \"tipo\": \"comentario\",\n  \"texto\": \"Actualización: el torneo comunitario ahora tiene 45 inscritos confirmados.\",\n  \"tema\": \"videojuegos\",\n  \"sentimiento\": 0.98,\n  \"dispositivo\": \"Android\",\n  \"reacciones_recibidas\": 48,\n  \"etiquetas\": [\"evento\", \"juegos\", \"aviso\"]\n}"
+        }
+      }
+    },
+    {
+      "name": "4. Prueba En Vivo 3 - DELETE Eliminar Interacción (WebSocket)",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/interacciones/I0009001",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "interacciones", "I0009001"]
+        }
+      }
+    },
+    {
+      "name": "5. Consulta Histórica Resumen (CockroachDB + Firestore)",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/historico/resumen",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "historico", "resumen"]
+        }
+      }
+    },
+    {
+      "name": "6. Consulta Histórica Usuarios Sin Consentimiento (Privacidad)",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/historico/usuarios?consentimiento=false&limite=10",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "historico", "usuarios"],
+          "query": [
+            { "key": "consentimiento", "value": "false" },
+            { "key": "limite", "value": "10" }
+          ]
+        }
+      }
+    }
+  ]
+}
+

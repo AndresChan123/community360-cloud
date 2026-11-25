@@ -1,0 +1,1069 @@
+id_usuario,alias,fecha_ingreso,rango_edad,especie_fursona,interes_principal,plataforma_principal,es_artista,mensajes_30d,reacciones_30d,eventos_asistidos,comisiones_compradas,sentimiento_promedio,ultima_actividad,estatus,consentimiento_datos,id_ubicacion,latitud,longitud
+U000001,PixelZac83,2026-04-21,18-24,Reptil,Arte digital,Facebook,true,4,13,0,0,0.394,2026-10-04,en_riesgo,true,20,20.936000,-89.684300
+U000002,YukiInk45,2026-10-11,25-31,Perro,Streaming/Contenido,Facebook,false,817,2026,0,0,0.252,2026-11-01,activo,true,12,20.682400,-103.426000
+U000003,FlareKin64,2026-05-02,25-31,Conejo,Cómics,TikTok,false,0,0,0,0,-0.28,2026-05-02,inactivo,true,13,25.720900,-100.236000
+U000004,AshCh'a30,2026-04-06,25-31,Gato,Arte digital,Twitter/X,false,19,75,0,5,-0.022,2026-10-28,activo,false,,,
+U000005,BrunoInk2,2022-04-27,32-38,Perro,Música,Discord,false,3,7,0,0,-0.463,2026-10-24,en_riesgo,true,13,,
+U000006,LoboZac34,2024-07-29,25-31,Híbrido/Otro,Streaming/Contenido,Telegram,false,16,52,0,0,-0.021,2026-11-07,activo,true,20,20.892200,-89.700000
+U000007,MikaTail80,2022-05-28,25-31,Zorro,Videojuegos,Facebook,false,0,0,0,0,-0.13,2026-09-05,inactivo,true,8,19.791000,-90.514300
+U000008,AshFang65,2024-05-22,25-31,Perro,Convenciones,Facebook,false,2,4,2,1,0.138,2026-10-30,activo,true,9,,
+U000009,SolCh'a60,2025-02-07,25-31,Zorro,Convenciones,TikTok,false,7,16,0,0,0.671,2026-11-08,activo,true,12,20.724200,-103.357700
+U000010,AshZac28,2026-01-01,18-24,Gato,Videojuegos,Facebook,false,8,16,0,0,0.373,2026-11-07,activo,true,1,-34.600400,-58.335200
+U000011,SolZac68,2026-01-18,18-24,Dragón,Convenciones,Instagram,false,10,33,2,0,0.566,2026-10-27,activo,false,,,
+U000012,SolInk72,2025-11-11,18-24,Dragón,Escritura/Historias,Telegram,false,11,16,0,0,0.171,2026-10-26,activo,true,17,21.183400,-86.913000
+U000013,RexInk33,2022-07-13,25-31,Híbrido/Otro,Cómics,Facebook,false,12,37,0,0,-0.109,2026-11-06,activo,true,21,-12.032800,-77.015200
+U000014,OnixPelaje87,2026-05-18,39+,Husky,Música,Telegram,false,6,14,1,0,0.742,2026-10-07,en_riesgo,true,9,,
+U000015,TalaFox70,2026-09-08,18-24,Zorro,Arte tradicional,Telegram,true,48,188,0,2,-0.04,2026-10-18,en_riesgo,true,18,17.971500,-92.971700
+U000016,BrumaKin88,2025-01-11,32-38,Husky,Convenciones,Facebook,false,0,0,0,0,0.095,2026-07-25,inactivo,true,17,21.086100,-86.791400
+U000017,ZorriDash8,2025-06-22,32-38,Perro,Arte digital,Facebook,false,0,0,0,0,-0.01,2025-11-06,inactivo,false,,,
+U000018,ÁmbarFang25,2023-02-10,18-24,Conejo,Cómics,Telegram,false,4,5,0,0,0.144,2026-10-27,activo,false,,,
+U000019,SombraByte90,2025-02-24,18-24,Zorro,Videojuegos,Instagram,false,4,5,0,0,0.243,2026-10-23,en_riesgo,true,1,-34.585200,-58.334000
+U000020,YukiByte96,2025-05-09,18-24,Coyote,Convenciones,TikTok,false,0,0,0,0,0.352,2026-03-12,inactivo,true,12,20.613200,-103.425500
+U000021,KibaPaw48,2023-11-13,18-24,Husky,Videojuegos,Discord,false,0,0,0,0,-0.156,2026-08-17,inactivo,true,18,17.998900,-92.970500
+U000022,KuroPaw64,2025-12-21,25-31,Perro,Fursuit,TikTok,false,0,0,0,0,0.316,2026-01-30,inactivo,true,12,20.719000,-103.394800
+U000023,FlareSpark28,2023-02-02,18-24,Zorro,Escritura/Historias,Facebook,false,1,2,1,0,0.692,2026-09-25,en_riesgo,false,,,
+U000024,NeoKin92,2023-12-30,18-24,Zorro,Cómics,TikTok,false,0,0,0,0,0.172,2025-12-25,inactivo,true,13,25.599600,-100.326000
+U000025,FlarePelaje61,2026-04-08,18-24,Husky,Videojuegos,Discord,true,6,20,0,0,-0.054,2026-10-03,en_riesgo,true,20,,
+U000026,MikaMaya27,2025-04-02,25-31,Perro,Arte digital,Facebook,true,11,26,1,0,0.576,2026-11-02,activo,true,9,19.508100,-99.064300
+U000027,ZetaCh'a42,2026-03-21,25-31,Gato,Arte digital,Instagram,true,7,24,0,0,-0.31,2026-11-02,activo,true,16,20.648100,-100.353900
+U000028,ÁmbarPaw66,2026-10-03,32-38,Híbrido/Otro,Videojuegos,Telegram,false,3,11,0,0,-0.066,2026-10-05,en_riesgo,true,3,4.768900,-74.049100
+U000029,RuneZac68,2022-12-06,18-24,Husky,Arte tradicional,Instagram,false,2,5,0,0,0.506,2026-10-14,en_riesgo,true,9,19.506800,-99.093400
+U000030,BrumaWolf36,2026-01-07,18-24,Perro,Streaming/Contenido,Instagram,false,7,12,1,0,0.612,2026-11-08,activo,true,20,20.977400,-89.695400
+U000031,ZorriPelaje20,2026-06-18,18-24,Híbrido/Otro,Arte digital,Telegram,true,1,2,1,0,-0.08,2026-09-28,en_riesgo,true,13,25.723300,-100.362700
+U000032,RunePelaje59,2026-04-15,18-24,Conejo,Escritura/Historias,Instagram,false,9,33,0,0,0.424,2026-11-07,activo,false,,,
+U000033,RexByte83,2024-06-27,18-24,Híbrido/Otro,Convenciones,Telegram,false,8,26,0,0,-0.021,2026-11-02,activo,true,9,,
+U000034,MikaHowl59,2024-03-24,39+,Husky,Música,Telegram,true,4,10,0,0,0.319,2026-10-25,en_riesgo,true,20,,
+U000035,LunaPaw68,2026-07-21,25-31,Lobo,Videojuegos,Discord,false,4,6,0,0,0.221,2026-09-13,en_riesgo,true,20,21.009800,-89.688600
+U000036,LoboClaw40,2026-09-10,25-31,Dragón,Arte tradicional,Facebook,false,4,7,0,0,1.0,2026-11-08,activo,false,,,
+U000037,NovaSpark94,2022-04-29,18-24,Perro,Videojuegos,Telegram,false,6,17,0,0,0.491,2026-11-09,activo,true,20,20.924700,-89.687800
+U000038,RuneSpark1,2023-07-29,32-38,Dragón,Arte digital,Telegram,false,2,5,0,0,0.483,2026-10-10,en_riesgo,true,20,,
+U000039,LoboMaya66,2025-05-10,25-31,Gato,Arte digital,Instagram,false,7,12,1,2,0.37,2026-11-08,activo,true,4,40.452100,-3.692600
+U000040,LunaKin46,2023-06-28,18-24,Lobo,Cómics,Telegram,false,4,6,2,0,0.189,2026-11-05,activo,true,15,19.117400,-98.175100
+U000041,FlareZac32,2026-02-25,25-31,Coyote,Videojuegos,Telegram,false,8,31,0,0,-0.133,2026-10-29,activo,true,18,17.967000,-92.891200
+U000042,MikaFang77,2025-07-19,18-24,Híbrido/Otro,Música,Instagram,false,2,6,0,0,0.079,2026-10-07,en_riesgo,false,,,
+U000043,BrumaCh'a15,2022-07-25,18-24,Zorro,Arte digital,TikTok,true,0,0,0,0,0.794,2026-05-04,inactivo,true,15,19.031000,-98.269100
+U000044,BrunoInk58,2025-10-24,18-24,Lobo,Cómics,Facebook,false,1,3,0,0,0.626,2026-10-10,en_riesgo,true,19,19.228800,-96.103600
+U000045,CobreKin51,2023-05-20,39+,Coyote,Videojuegos,TikTok,false,7,14,0,0,0.039,2026-11-05,activo,true,16,20.617200,-100.450000
+U000046,ZorriWolf77,2024-11-06,25-31,Perro,Videojuegos,Discord,false,0,0,0,0,0.895,2025-10-23,inactivo,false,,,
+U000047,PixelArt2,2024-06-06,18-24,Lobo,Cómics,Telegram,false,14,50,0,0,-0.042,2026-09-21,en_riesgo,true,18,18.040200,-92.940300
+U000048,NovaSpark16,2024-08-06,18-24,Husky,Fursuit,Twitter/X,false,4,13,1,2,-0.017,2026-09-15,en_riesgo,true,20,20.990400,-89.684100
+U000049,ÁmbarDash77,2023-03-28,18-24,Híbrido/Otro,Arte digital,Facebook,true,0,0,0,0,0.698,2026-03-07,inactivo,false,,,
+U000050,ÁmbarHowl96,2022-10-05,25-31,Conejo,Arte digital,Facebook,true,0,0,1,1,0.539,2026-08-26,inactivo,true,20,20.931300,-89.571800
+U000051,RunePaw74,2025-12-06,18-24,Híbrido/Otro,Fursuit,TikTok,false,4,7,1,1,-0.035,2026-10-22,en_riesgo,true,18,18.028200,-92.870900
+U000052,KibaZac40,2026-09-02,25-31,Conejo,Fursuit,Discord,false,0,0,1,2,0.2,2026-09-07,inactivo,true,13,25.693500,-100.292000
+U000053,RuneMaya75,2023-12-22,18-24,Híbrido/Otro,Cómics,Discord,true,9,11,1,0,0.137,2026-10-27,activo,true,3,4.753100,-74.080900
+U000054,NovaByte8,2022-08-19,18-24,Husky,Arte digital,Discord,false,17,34,0,0,0.217,2026-10-16,en_riesgo,true,9,19.461200,-99.199300
+U000055,ZorriSpark5,2022-12-28,39+,Zorro,Streaming/Contenido,Facebook,false,2,4,0,0,0.545,2026-09-26,en_riesgo,true,3,,
+U000056,OnixPelaje62,2024-07-10,18-24,Gato,Música,Telegram,false,3,8,0,0,0.654,2026-10-07,en_riesgo,true,20,21.000400,-89.695000
+U000057,KuroFox47,2025-02-15,18-24,Coyote,Arte digital,Facebook,true,0,0,0,0,0.36,2026-08-17,inactivo,true,12,20.630300,-103.410800
+U000058,RexHowl61,2022-07-18,18-24,Husky,Música,Discord,false,65,119,1,1,0.452,2026-09-23,en_riesgo,true,9,19.398900,-99.167100
+U000059,BrunoTail34,2026-09-23,32-38,Lobo,Convenciones,Discord,false,2,7,0,0,0.613,2026-09-26,en_riesgo,false,,,
+U000060,CobreDash13,2023-08-14,32-38,Zorro,Streaming/Contenido,Discord,false,0,0,0,0,-0.108,2026-02-27,inactivo,true,9,19.360000,-99.105800
+U000061,PixelHowl52,2024-12-14,32-38,Híbrido/Otro,Cosplay,Telegram,false,11,27,3,0,0.816,2026-10-18,en_riesgo,true,17,,
+U000062,MikaByte36,2026-10-20,18-24,Gato,Videojuegos,Facebook,false,2,5,0,0,0.784,2026-10-20,en_riesgo,true,9,19.398200,-99.160800
+U000063,KuroSpark49,2026-04-05,18-24,Gato,Convenciones,Telegram,false,0,0,3,0,0.346,2026-08-06,inactivo,true,13,25.726900,-100.271700
+U000064,BrunoPelaje60,2026-03-25,25-31,Tigre,Arte digital,Facebook,true,24,81,0,0,-0.182,2026-09-26,en_riesgo,true,8,19.891700,-90.467800
+U000065,BrumaInk16,2025-09-03,18-24,Híbrido/Otro,Videojuegos,TikTok,false,0,0,0,0,0.798,2026-06-12,inactivo,false,,,
+U000066,KuroKin17,2023-09-07,18-24,Lobo,Fursuit,Telegram,true,1,1,0,0,-0.007,2026-10-07,en_riesgo,true,6,29.836800,-95.443100
+U000067,NeoTail57,2025-12-06,32-38,Reptil,Arte tradicional,Facebook,false,1,2,0,3,0.196,2026-10-22,en_riesgo,true,20,20.957300,-89.586300
+U000068,KuroPaw1,2023-04-07,18-24,Perro,Arte tradicional,Twitter/X,true,0,0,0,0,0.102,2026-05-28,inactivo,true,9,19.490100,-99.131200
+U000069,LunaPaw18,2024-06-02,32-38,Zorro,Arte digital,Telegram,false,8,25,0,3,0.478,2026-10-23,en_riesgo,true,9,19.431300,-99.092400
+U000070,ÁmbarTail66,2024-06-03,18-24,Perro,Cómics,Telegram,false,0,0,0,0,0.662,2026-09-09,inactivo,false,,,
+U000071,LunaPelaje51,2026-09-24,18-24,Gato,Arte tradicional,Discord,true,2,4,0,1,0.104,2026-09-24,en_riesgo,false,,,
+U000072,BrumaMoon49,2023-09-06,18-24,Tigre,Convenciones,Telegram,false,4,11,5,1,0.204,2026-10-14,en_riesgo,true,11,21.156900,-101.645600
+U000073,ZorriFang18,2024-05-07,25-31,Conejo,Videojuegos,Facebook,false,1,2,0,0,-0.013,2026-10-15,en_riesgo,false,,,
+U000074,TalaTail60,2026-07-03,32-38,Híbrido/Otro,Arte digital,Facebook,true,2,4,0,5,-0.1,2026-09-16,en_riesgo,true,9,19.425300,-99.059400
+U000075,PixelClaw13,2025-08-08,32-38,Zorro,Videojuegos,Telegram,false,1,1,1,0,0.121,2026-10-25,en_riesgo,false,,,
+U000076,YukiDash42,2022-04-29,18-24,Híbrido/Otro,Arte tradicional,Telegram,false,0,0,0,2,-0.075,2026-01-09,inactivo,true,15,18.971600,-98.176900
+U000077,KibaPaw54,2024-01-16,18-24,Perro,Cómics,TikTok,false,8,18,3,0,0.45,2026-11-03,activo,true,9,19.375000,-99.153300
+U000078,SombraClaw77,2025-06-12,25-31,Híbrido/Otro,Convenciones,Telegram,false,57,149,2,1,0.507,2026-11-03,activo,true,20,20.926300,-89.572100
+U000079,NovaZac86,2025-08-13,18-24,Ave,Arte tradicional,Telegram,false,3,6,0,5,0.01,2026-09-11,en_riesgo,true,9,19.391000,-99.089000
+U000080,NubeCh'a40,2023-08-18,18-24,Zorro,Música,Facebook,false,8,14,0,0,0.72,2026-11-03,activo,false,,,
+U000081,NeoPelaje7,2024-01-15,32-38,Perro,Fursuit,Twitter/X,false,2,5,0,3,0.27,2026-10-21,en_riesgo,true,4,40.385000,-3.734200
+U000082,OnixMoon4,2023-12-02,18-24,Dragón,Videojuegos,Telegram,false,37,96,0,0,-0.224,2026-10-30,activo,true,1,-34.614600,-58.411700
+U000083,MikaPelaje22,2026-01-31,25-31,Husky,Arte digital,Telegram,true,0,0,2,3,-0.086,2026-02-13,inactivo,true,7,32.537100,-117.115300
+U000084,ÁmbarFox12,2025-05-07,18-24,Gato,Convenciones,Facebook,false,6,18,1,0,0.011,2026-11-06,activo,true,20,20.934200,-89.657400
+U000085,YukiInk27,2023-02-25,18-24,Coyote,Arte tradicional,Twitter/X,true,7,27,0,1,0.097,2026-10-29,activo,true,13,25.686700,-100.284800
+U000086,FlareWolf27,2023-06-06,25-31,Gato,Arte digital,Facebook,false,13,34,0,0,0.728,2026-11-07,activo,true,20,20.917500,-89.609500
+U000087,BrumaClaw82,2025-11-08,32-38,Zorro,Videojuegos,Telegram,false,2,3,1,0,0.079,2026-10-19,en_riesgo,true,20,21.017500,-89.586700
+U000088,KuroFang48,2025-04-11,18-24,Zorro,Cosplay,Instagram,false,0,0,2,1,0.579,2026-03-13,inactivo,false,,,
+U000089,BrunoKin15,2026-09-30,18-24,Híbrido/Otro,Arte digital,Telegram,true,4,14,0,0,-0.259,2026-09-30,en_riesgo,true,20,21.014500,-89.551300
+U000090,FlareDash92,2026-06-22,18-24,Lobo,Fursuit,Instagram,false,0,0,1,5,-0.166,2026-06-22,inactivo,false,,,
+U000091,FlareWolf81,2025-04-09,18-24,Dragón,Convenciones,Facebook,false,18,52,0,1,0.175,2026-11-01,activo,true,12,20.690200,-103.395500
+U000092,SolPelaje68,2023-12-26,18-24,Husky,Streaming/Contenido,Telegram,false,0,0,0,0,0.486,2026-07-29,inactivo,true,12,20.673500,-103.373400
+U000093,SombraInk42,2026-10-13,25-31,Coyote,Cómics,Instagram,false,13,29,0,1,0.003,2026-11-07,activo,true,12,20.656300,-103.368300
+U000094,MikaPaw60,2025-04-12,18-24,Husky,Streaming/Contenido,TikTok,false,0,0,0,0,0.103,2026-10-13,en_riesgo,true,7,32.520700,-117.034000
+U000095,RunePaw30,2025-06-12,25-31,Tigre,Música,Discord,true,0,0,0,0,0.069,2026-08-09,inactivo,true,20,20.954500,-89.578400
+U000096,OnixKin15,2026-07-16,39+,Ave,Arte digital,Telegram,true,0,0,0,1,0.465,2026-07-16,inactivo,true,12,20.677700,-103.409500
+U000097,KibaMaya98,2025-04-16,18-24,Gato,Música,TikTok,false,5,11,0,0,-0.432,2026-10-18,en_riesgo,true,9,19.453600,-99.159400
+U000098,BrunoZac25,2026-07-05,18-24,Gato,Escritura/Historias,Telegram,false,5,12,0,1,0.432,2026-10-21,en_riesgo,true,12,20.732800,-103.388200
+U000099,PixelByte53,2025-05-15,39+,Perro,Arte digital,Facebook,true,6,12,0,1,-0.14,2026-11-04,activo,true,13,25.668700,-100.308900
+U000100,KuroFox15,2026-10-06,25-31,Zorro,Convenciones,Twitter/X,false,14,20,0,0,0.173,2026-11-06,activo,true,13,25.640300,-100.370200
+U000101,FlareByte64,2025-05-17,32-38,Gato,Cómics,Telegram,false,0,0,0,0,-0.45,2026-08-12,inactivo,true,20,21.040700,-89.556500
+U000102,OnixInk33,2026-05-12,18-24,Lobo,Cosplay,TikTok,false,0,0,0,0,0.992,2026-08-16,inactivo,true,9,19.398000,-99.176100
+U000103,NovaZac13,2025-05-21,18-24,Tigre,Escritura/Historias,Telegram,false,10,27,0,0,-0.697,2026-10-31,activo,true,1,-34.621800,-58.307800
+U000104,KibaPaw11,2026-02-24,18-24,Husky,Música,Telegram,false,6,22,0,0,0.422,2026-11-03,activo,true,20,,
+U000105,AshKin51,2024-02-12,18-24,Zorro,Videojuegos,Twitter/X,false,0,0,0,0,-0.278,2026-08-06,inactivo,true,19,19.244100,-96.138100
+U000106,PixelArt7,2026-08-08,25-31,Conejo,Arte digital,Telegram,true,8,27,2,1,0.716,2026-11-03,activo,true,15,19.095200,-98.185200
+U000107,AshMaya48,2023-12-23,25-31,Zorro,Convenciones,Twitter/X,false,23,89,1,0,0.49,2026-11-07,activo,true,16,20.609300,-100.439600
+U000108,KuroMaya6,2025-11-22,18-24,Perro,Arte tradicional,TikTok,true,12,43,0,0,-0.42,2026-10-29,activo,true,21,-12.079500,-77.036500
+U000109,CobreKin28,2025-12-16,25-31,Dragón,Convenciones,Discord,false,0,0,0,0,0.809,2026-07-10,inactivo,true,5,34.000800,-118.239900
+U000110,MikaClaw54,2023-09-21,25-31,Lobo,Fursuit,Facebook,false,4,8,1,2,0.377,2026-11-06,activo,true,13,25.615100,-100.375700
+U000111,TalaClaw10,2024-04-25,18-24,Zorro,Música,Telegram,false,0,0,0,1,0.778,2026-09-03,inactivo,true,5,34.056300,-118.227800
+U000112,NeoMaya61,2022-05-08,18-24,Zorro,Arte digital,Facebook,false,13,29,0,2,0.022,2026-10-28,activo,false,,,
+U000113,PixelArt64,2024-06-23,25-31,Zorro,Videojuegos,Facebook,false,7,10,0,0,-0.532,2026-11-01,activo,true,13,25.650600,-100.361100
+U000114,OnixInk13,2023-12-31,18-24,Perro,Fursuit,Instagram,false,7,21,1,0,-0.16,2026-10-27,activo,true,9,19.352200,-99.079400
+U000115,PixelArt28,2022-10-05,39+,Zorro,Videojuegos,Twitter/X,false,2,3,0,0,0.66,2026-10-29,activo,true,20,21.011000,-89.658100
+U000116,OnixArt54,2025-11-18,25-31,Ave,Fursuit,Telegram,false,13,40,0,2,0.306,2026-10-08,en_riesgo,true,19,19.139600,-96.130300
+U000117,LunaMoon50,2024-04-14,25-31,Lobo,Arte tradicional,Facebook,true,5,11,0,0,0.502,2026-11-08,activo,true,20,,
+U000118,NeoByte96,2026-08-06,25-31,Perro,Videojuegos,Twitter/X,false,24,71,0,0,0.369,2026-10-29,activo,true,9,,
+U000119,NeoCh'a71,2023-02-15,32-38,Dragón,Cosplay,Facebook,false,0,0,0,0,0.156,2025-10-09,inactivo,true,21,-12.062200,-77.043500
+U000120,SolWolf38,2024-08-29,39+,Lobo,Videojuegos,Facebook,false,0,0,0,0,0.38,2026-08-22,inactivo,true,9,19.444600,-99.146500
+U000121,FlareMoon15,2025-06-28,18-24,Coyote,Cosplay,Discord,true,3,4,1,0,0.809,2026-10-12,en_riesgo,true,9,19.461200,-99.189600
+U000122,MikaDash11,2026-07-07,32-38,Lobo,Videojuegos,TikTok,false,1,2,0,0,-0.195,2026-10-01,en_riesgo,true,16,20.635800,-100.408400
+U000123,RexPaw3,2023-08-30,32-38,Gato,Arte digital,Facebook,true,4,5,0,3,-0.241,2026-11-09,activo,true,13,25.720900,-100.317400
+U000124,KuroWolf89,2022-08-09,18-24,Husky,Videojuegos,Telegram,true,29,56,0,0,0.278,2026-10-29,activo,true,15,19.039900,-98.259800
+U000125,SombraCh'a83,2026-07-25,18-24,Ave,Arte digital,Telegram,true,4,5,0,1,0.407,2026-10-22,en_riesgo,true,14,,
+U000126,RexPaw24,2026-08-29,25-31,Dragón,Arte digital,Facebook,true,0,0,0,0,0.087,2026-08-29,inactivo,false,,,
+U000127,ÁmbarWolf12,2023-08-11,18-24,Híbrido/Otro,Cómics,TikTok,false,8,24,0,0,-0.303,2026-11-04,activo,true,14,17.111500,-96.792900
+U000128,SombraArt83,2022-12-27,39+,Reptil,Arte digital,Telegram,false,9,25,0,0,0.751,2026-11-08,activo,true,5,34.129700,-118.271800
+U000129,TalaCh'a94,2024-08-30,32-38,Perro,Arte digital,Discord,false,9,25,0,0,0.919,2026-10-05,en_riesgo,true,8,19.821900,-90.601600
+U000130,SolPaw15,2024-05-20,39+,Tigre,Videojuegos,Twitter/X,false,7,25,0,0,0.131,2026-11-04,activo,true,1,-34.543800,-58.351500
+U000131,SombraInk37,2024-02-06,39+,Perro,Videojuegos,Instagram,false,24,84,0,0,0.857,2026-11-04,activo,true,1,-34.523800,-58.424700
+U000132,SolFox63,2022-04-02,18-24,Reptil,Convenciones,Facebook,false,0,0,0,0,-0.113,2025-11-26,inactivo,true,3,4.640000,-74.066200
+U000133,KuroTail75,2025-12-30,18-24,Zorro,Fursuit,Facebook,true,0,0,0,0,0.057,2026-05-28,inactivo,true,18,17.985800,-92.937400
+U000134,BrumaWolf8,2022-11-04,25-31,Gato,Arte digital,Twitter/X,true,4,12,0,1,0.473,2026-10-02,en_riesgo,true,9,,
+U000135,NeoTail58,2022-12-19,18-24,Conejo,Videojuegos,TikTok,false,1,3,0,0,-0.102,2026-10-20,en_riesgo,true,1,-34.665300,-58.368100
+U000136,ZorriInk5,2025-05-11,25-31,Reptil,Arte digital,Twitter/X,true,0,0,0,3,-0.254,2026-08-19,inactivo,true,13,25.705900,-100.264600
+U000137,LoboCh'a74,2025-02-25,18-24,Perro,Música,TikTok,false,4,13,0,0,0.571,2026-11-08,activo,false,,,
+U000138,LunaKin32,2022-05-08,25-31,Perro,Arte tradicional,Telegram,true,0,0,1,1,-0.313,2026-08-27,inactivo,true,16,,
+U000139,SolDash74,2024-05-08,39+,Gato,Streaming/Contenido,TikTok,false,7,11,0,0,0.801,2026-10-30,activo,false,,,
+U000140,MikaSpark31,2023-10-16,18-24,Híbrido/Otro,Cómics,TikTok,false,0,0,0,0,0.345,2026-08-18,inactivo,false,,,
+U000141,YukiDash1,2024-01-14,25-31,Husky,Arte digital,TikTok,true,2,6,0,3,-0.103,2026-10-13,en_riesgo,true,13,25.620600,-100.238400
+U000142,AshCh'a44,2026-01-11,25-31,Zorro,Cómics,Facebook,true,0,0,3,0,0.518,2026-08-29,inactivo,true,9,19.461900,-99.148600
+U000143,ÁmbarPaw6,2026-05-26,39+,Híbrido/Otro,Arte digital,Telegram,true,2,6,0,0,0.293,2026-10-04,en_riesgo,true,12,20.620100,-103.376800
+U000144,AshSpark80,2025-11-10,18-24,Perro,Arte digital,Telegram,true,0,0,0,0,-0.062,2026-10-25,en_riesgo,true,19,,
+U000145,ZetaPelaje13,2023-07-10,18-24,Perro,Convenciones,Telegram,false,8,23,1,0,0.845,2026-10-12,en_riesgo,true,9,19.417100,-99.062300
+U000146,PixelPelaje35,2025-05-22,32-38,Husky,Arte digital,Telegram,true,4,9,1,1,0.163,2026-10-29,activo,true,17,21.202900,-86.781200
+U000147,BrunoArt50,2026-01-18,18-24,Gato,Cómics,TikTok,false,16,29,0,0,0.126,2026-11-06,activo,true,9,19.412500,-99.096600
+U000148,RuneInk10,2025-04-19,25-31,Reptil,Arte digital,Telegram,true,3,4,0,0,0.556,2026-10-31,activo,true,20,20.986100,-89.695400
+U000149,BrunoWolf42,2024-09-27,32-38,Perro,Fursuit,TikTok,false,4,7,0,3,0.272,2026-10-19,en_riesgo,true,17,,
+U000150,SolInk42,2023-06-27,25-31,Zorro,Arte digital,Instagram,true,7,15,1,0,0.084,2026-11-01,activo,true,19,19.218800,-96.164900
+U000151,CobreFox10,2025-11-03,18-24,Perro,Arte digital,Telegram,true,6,21,0,3,0.057,2026-10-15,en_riesgo,false,,,
+U000152,RuneKin34,2026-10-08,18-24,Lobo,Música,Facebook,false,33,82,0,0,0.441,2026-11-08,activo,true,18,18.006000,-92.916300
+U000153,NubeKin52,2026-07-24,18-24,Gato,Streaming/Contenido,Instagram,false,3,5,0,0,0.304,2026-10-22,en_riesgo,true,13,25.616700,-100.325100
+U000154,NeoInk8,2025-09-22,18-24,Híbrido/Otro,Streaming/Contenido,Telegram,false,9,35,2,0,0.414,2026-10-07,en_riesgo,false,,,
+U000155,LoboWolf28,2023-03-27,25-31,Híbrido/Otro,Convenciones,Discord,true,2,3,3,0,-0.52,2026-09-18,en_riesgo,true,10,28.591800,-106.132600
+U000156,LoboSpark82,2025-05-06,18-24,Zorro,Cómics,TikTok,true,3,6,0,0,0.372,2026-09-22,en_riesgo,true,14,17.100700,-96.745900
+U000157,AshArt74,2022-11-29,25-31,Conejo,Arte tradicional,Facebook,true,9,17,0,0,-0.21,2026-09-23,en_riesgo,true,17,21.167900,-86.911100
+U000158,NovaInk87,2023-03-16,25-31,Gato,Arte tradicional,TikTok,true,6,16,0,2,0.015,2026-10-16,en_riesgo,true,16,20.543500,-100.442900
+U000159,RuneMoon62,2022-06-03,18-24,Zorro,Arte digital,Telegram,true,17,29,1,3,0.388,2026-11-05,activo,true,17,21.116100,-86.868100
+U000160,TalaDash34,2024-11-09,18-24,Zorro,Escritura/Historias,TikTok,true,10,16,0,0,0.303,2026-11-05,activo,false,,,
+U000161,RuneDash1,2023-12-04,18-24,Husky,Arte tradicional,Facebook,true,0,0,0,0,0.042,2026-07-10,inactivo,true,12,20.700100,-103.307100
+U000162,NovaZac19,2023-05-17,25-31,Gato,Escritura/Historias,Instagram,false,0,0,1,0,0.126,2026-05-06,inactivo,true,14,17.128300,-96.754200
+U000163,RuneDash21,2023-06-26,25-31,Perro,Arte digital,Discord,true,12,32,0,0,0.362,2026-11-08,activo,true,20,20.986200,-89.574600
+U000164,BrunoPaw92,2023-05-31,25-31,Zorro,Arte digital,Telegram,true,2,4,0,2,0.728,2026-10-20,en_riesgo,true,9,19.484300,-99.167800
+U000165,YukiWolf53,2024-03-10,18-24,Lobo,Arte digital,Telegram,true,2,7,0,0,0.825,2026-10-06,en_riesgo,true,6,29.688400,-95.327800
+U000166,SolInk46,2023-08-24,18-24,Dragón,Convenciones,Facebook,false,16,62,0,0,0.001,2026-11-01,activo,true,20,20.953500,-89.559500
+U000167,YukiDash81,2026-11-04,18-24,Tigre,Videojuegos,Twitter/X,false,8,26,0,0,0.43,2026-11-04,activo,true,9,,
+U000168,PixelArt84,2023-01-29,18-24,Husky,Streaming/Contenido,TikTok,false,1,3,0,0,0.517,2026-09-27,en_riesgo,true,13,25.676600,-100.247400
+U000169,MikaFang21,2022-03-29,18-24,Híbrido/Otro,Convenciones,Telegram,false,277,726,6,0,0.542,2026-10-23,en_riesgo,true,19,19.169500,-96.149200
+U000170,NeoMoon96,2023-05-12,39+,Zorro,Cosplay,Telegram,false,5,10,0,0,0.014,2026-10-29,activo,true,17,,
+U000171,MikaFox32,2022-06-15,18-24,Híbrido/Otro,Videojuegos,Facebook,false,10,30,4,0,1.0,2026-10-24,en_riesgo,true,9,,
+U000172,LunaFang49,2025-11-27,32-38,Zorro,Cosplay,Facebook,false,5,16,2,0,0.612,2026-10-02,en_riesgo,true,3,4.752000,-74.022900
+U000173,BrunoWolf67,2024-12-06,18-24,Lobo,Cómics,Telegram,false,3,4,0,0,-0.234,2026-09-21,en_riesgo,true,9,,
+U000174,NubeZac44,2026-09-25,25-31,Conejo,Cosplay,Twitter/X,false,12,45,2,0,0.635,2026-11-02,activo,true,20,21.028000,-89.591400
+U000175,BrunoTail39,2024-05-22,25-31,Perro,Cómics,Facebook,false,1,3,0,0,-0.137,2026-10-20,en_riesgo,true,18,17.996000,-92.983600
+U000176,LoboPaw93,2025-01-18,18-24,Perro,Streaming/Contenido,Telegram,false,42,66,0,0,0.603,2026-11-07,activo,true,21,,
+U000177,NovaHowl34,2024-01-30,39+,Dragón,Música,Instagram,false,0,0,0,0,0.081,2026-07-06,inactivo,true,16,20.650200,-100.337300
+U000178,TalaByte33,2026-05-29,25-31,Reptil,Música,Instagram,false,2,4,0,0,0.336,2026-10-19,en_riesgo,true,12,20.734800,-103.320100
+U000179,RexFox22,2023-01-09,32-38,Zorro,Arte digital,TikTok,true,2,2,0,0,0.36,2026-10-22,en_riesgo,true,13,25.664300,-100.331900
+U000180,OnixPaw4,2025-12-31,18-24,Reptil,Streaming/Contenido,Telegram,true,2,7,0,0,0.051,2026-09-20,en_riesgo,true,18,,
+U000181,RunePaw68,2024-08-11,18-24,Lobo,Fursuit,Twitter/X,false,3,5,0,0,0.706,2026-10-08,en_riesgo,true,20,21.014800,-89.669000
+U000182,AshFang78,2026-04-02,39+,Ave,Arte tradicional,Instagram,true,2,4,0,0,0.286,2026-10-30,activo,true,9,19.381100,-99.135000
+U000183,NeoClaw70,2023-12-05,18-24,Husky,Música,Facebook,false,1,3,0,1,-0.486,2026-09-27,en_riesgo,false,,,
+U000184,ZetaPelaje66,2026-05-21,25-31,Zorro,Cómics,Telegram,false,0,0,0,0,0.42,2026-07-19,inactivo,true,12,20.725300,-103.283400
+U000185,CobreCh'a36,2022-10-02,25-31,Husky,Arte tradicional,Telegram,true,0,0,0,5,-0.053,2026-07-31,inactivo,true,20,21.002600,-89.609200
+U000186,RexDash46,2023-01-14,39+,Perro,Convenciones,Instagram,false,6,19,0,0,0.338,2026-11-08,activo,true,17,,
+U000187,AshKin42,2026-05-20,18-24,Perro,Streaming/Contenido,Telegram,false,24,62,0,0,0.12,2026-09-14,en_riesgo,true,18,,
+U000188,YukiWolf36,2026-07-17,18-24,Zorro,Videojuegos,Discord,false,0,0,0,0,0.479,2026-07-17,inactivo,false,,,
+U000189,PixelHowl88,2026-01-22,32-38,Gato,Videojuegos,Telegram,false,3,10,0,0,-0.38,2026-10-11,en_riesgo,true,13,,
+U000190,NovaHowl45,2026-05-27,18-24,Perro,Fursuit,Twitter/X,false,3,4,6,2,0.364,2026-10-05,en_riesgo,true,19,19.196900,-96.138900
+U000191,KibaFang59,2025-08-27,25-31,Híbrido/Otro,Arte digital,Facebook,false,3,11,0,0,0.886,2026-11-09,activo,true,12,20.684300,-103.301200
+U000192,YukiKin58,2023-10-12,25-31,Lobo,Escritura/Historias,Telegram,false,8,23,0,1,0.019,2026-10-24,en_riesgo,true,13,25.707000,-100.299100
+U000193,NovaPaw81,2024-01-18,18-24,Ave,Arte digital,TikTok,true,3,6,5,2,0.477,2026-10-08,en_riesgo,true,16,20.549700,-100.424800
+U000194,LunaByte4,2026-05-26,18-24,Lobo,Arte tradicional,Instagram,true,8,20,1,2,0.772,2026-11-01,activo,false,,,
+U000195,OnixClaw27,2025-03-03,25-31,Gato,Arte tradicional,Facebook,true,1,2,0,2,-0.491,2026-09-14,en_riesgo,true,12,20.632900,-103.350400
+U000196,YukiInk15,2024-12-07,32-38,Lobo,Streaming/Contenido,Discord,false,10,22,0,0,0.172,2026-11-06,activo,false,,,
+U000197,OnixDash57,2023-03-12,25-31,Gato,Cómics,Facebook,false,8,14,1,0,0.156,2026-11-02,activo,false,,,
+U000198,NeoByte74,2026-05-08,18-24,Zorro,Videojuegos,Facebook,false,2,4,0,0,0.216,2026-10-24,en_riesgo,true,13,25.730400,-100.355500
+U000199,CobreMoon18,2026-02-05,25-31,Perro,Escritura/Historias,Twitter/X,false,6,13,2,0,0.12,2026-10-30,activo,true,20,21.021700,-89.589000
+U000200,RuneHowl32,2025-07-26,18-24,Husky,Streaming/Contenido,Telegram,false,0,0,1,0,0.213,2026-07-22,inactivo,true,3,4.762200,-74.032100
+U000201,SombraInk8,2024-09-02,32-38,Reptil,Videojuegos,TikTok,false,2,4,0,0,0.233,2026-10-05,en_riesgo,true,17,21.204700,-86.854000
+U000202,SolHowl46,2025-07-02,18-24,Híbrido/Otro,Arte digital,Facebook,false,3,11,0,1,0.384,2026-10-24,en_riesgo,true,20,20.911000,-89.608400
+U000203,AshKin66,2023-08-21,18-24,Zorro,Arte digital,TikTok,true,1,1,0,2,0.273,2026-10-12,en_riesgo,false,,,
+U000204,RexPaw19,2022-02-08,25-31,Perro,Arte digital,Facebook,false,8,20,2,0,0.589,2026-10-24,en_riesgo,true,6,29.838300,-95.363500
+U000205,LoboInk7,2022-03-24,18-24,Lobo,Música,Telegram,false,2,5,0,0,0.292,2026-10-08,en_riesgo,false,,,
+U000206,YukiInk71,2026-06-22,25-31,Conejo,Música,TikTok,false,8,17,0,0,-0.136,2026-10-31,activo,true,18,18.040100,-92.961500
+U000207,CobreMaya34,2022-07-23,18-24,Coyote,Videojuegos,Facebook,false,3,8,3,0,1.0,2026-11-03,activo,false,,,
+U000208,NeoByte77,2023-10-12,25-31,Perro,Arte digital,Facebook,true,18,37,0,0,0.894,2026-11-03,activo,true,13,,
+U000209,ZetaCh'a94,2026-05-02,18-24,Tigre,Arte tradicional,Telegram,false,3,6,0,0,0.41,2026-09-21,en_riesgo,false,,,
+U000210,YukiTail94,2022-04-03,18-24,Coyote,Streaming/Contenido,Telegram,false,39,104,0,1,-0.248,2026-11-07,activo,true,11,21.068000,-101.736200
+U000211,LunaClaw53,2025-07-28,39+,Lobo,Streaming/Contenido,Telegram,false,12,24,0,1,-0.234,2026-10-06,en_riesgo,false,,,
+U000212,CobreByte85,2026-02-20,18-24,Tigre,Streaming/Contenido,Telegram,false,0,0,0,0,1.0,2026-09-02,inactivo,true,19,19.186100,-96.192100
+U000213,RuneHowl50,2025-05-18,18-24,Zorro,Fursuit,TikTok,false,15,56,1,0,-0.067,2026-11-08,activo,true,15,,
+U000214,LoboCh'a36,2022-04-20,18-24,Coyote,Arte digital,Twitter/X,true,0,0,1,0,0.278,2026-08-04,inactivo,true,3,4.669300,-74.037900
+U000215,BrunoMaya88,2025-10-08,18-24,Gato,Fursuit,Instagram,false,4,9,0,3,0.229,2026-10-23,en_riesgo,true,11,21.066100,-101.644300
+U000216,CobreZac53,2022-08-01,32-38,Coyote,Arte digital,Twitter/X,true,0,0,0,5,0.975,2026-05-10,inactivo,true,9,19.464500,-99.180100
+U000217,FlarePaw84,2023-07-09,32-38,Ave,Videojuegos,Telegram,false,0,0,0,0,0.229,2026-09-19,en_riesgo,false,,,
+U000218,BrumaCh'a91,2026-09-22,25-31,Tigre,Escritura/Historias,Facebook,false,2,6,1,0,0.207,2026-10-23,en_riesgo,false,,,
+U000219,TalaKin37,2026-02-10,18-24,Híbrido/Otro,Fursuit,Telegram,true,3,9,0,1,0.04,2026-10-19,en_riesgo,true,12,20.630900,-103.350200
+U000220,SombraZac56,2022-08-21,25-31,Dragón,Arte digital,Discord,false,3,11,0,5,0.26,2026-10-20,en_riesgo,true,9,19.476700,-99.193600
+U000221,NovaFang5,2025-12-08,18-24,Lobo,Cómics,Instagram,false,0,0,0,0,0.738,2026-10-15,en_riesgo,false,,,
+U000222,YukiDash35,2026-10-25,18-24,Híbrido/Otro,Música,Facebook,false,2,7,0,0,0.253,2026-10-25,en_riesgo,true,20,21.030100,-89.597400
+U000223,ZorriArt90,2023-05-27,32-38,Zorro,Fursuit,Facebook,false,11,16,1,1,0.645,2026-11-05,activo,true,9,19.434300,-99.193700
+U000224,LunaCh'a30,2025-07-10,18-24,Coyote,Convenciones,Telegram,false,6,16,0,0,0.095,2026-10-30,activo,true,5,34.004800,-118.300500
+U000225,ZorriDash36,2022-05-06,18-24,Lobo,Escritura/Historias,Telegram,false,8,26,0,0,0.875,2026-10-19,en_riesgo,true,9,19.361100,-99.093900
+U000226,CobreMaya90,2025-09-22,25-31,Ave,Videojuegos,Telegram,false,0,0,3,0,0.015,2026-08-12,inactivo,true,3,,
+U000227,NeoTail98,2025-07-19,32-38,Gato,Arte digital,Instagram,true,4,11,6,5,0.37,2026-11-04,activo,true,20,20.933000,-89.696100
+U000228,SolMaya3,2025-12-26,25-31,Dragón,Arte digital,Twitter/X,true,5,6,0,0,1.0,2026-09-25,en_riesgo,false,,,
+U000229,CobreCh'a18,2026-01-08,25-31,Dragón,Arte digital,Telegram,true,1,1,0,1,-0.269,2026-10-20,en_riesgo,true,20,21.037100,-89.639400
+U000230,YukiTail87,2023-05-07,18-24,Perro,Arte digital,Instagram,false,1,2,0,0,0.526,2026-10-20,en_riesgo,true,9,19.429400,-99.053500
+U000231,ZorriZac54,2022-06-20,32-38,Zorro,Cómics,Instagram,false,11,30,0,0,0.275,2026-11-09,activo,true,11,21.148300,-101.602200
+U000232,LunaTail58,2022-07-19,32-38,Lobo,Videojuegos,Discord,false,0,0,0,0,0.031,2026-01-16,inactivo,false,,,
+U000233,FlareMaya76,2024-12-21,25-31,Zorro,Arte digital,TikTok,false,2,6,0,0,0.679,2026-10-23,en_riesgo,true,6,29.782800,-95.386000
+U000234,OnixArt65,2025-08-17,18-24,Husky,Streaming/Contenido,TikTok,false,12,45,0,1,-0.654,2026-10-22,en_riesgo,true,20,20.892400,-89.571600
+U000235,AshPaw69,2025-12-18,18-24,Reptil,Convenciones,Telegram,false,11,22,1,0,0.557,2026-11-06,activo,true,19,,
+U000236,KibaFox80,2022-07-21,25-31,Husky,Fursuit,Telegram,false,4,6,2,0,-0.247,2026-10-22,en_riesgo,true,18,18.055300,-92.971400
+U000237,MikaWolf89,2022-08-20,18-24,Híbrido/Otro,Arte tradicional,Telegram,true,2,3,0,2,1.0,2026-10-07,en_riesgo,true,13,25.737800,-100.258800
+U000238,NubeArt3,2022-09-18,18-24,Husky,Música,TikTok,false,7,25,0,0,0.719,2026-09-27,en_riesgo,true,17,21.179900,-86.908400
+U000239,KibaCh'a59,2023-06-08,18-24,Lobo,Música,Instagram,false,2,6,0,0,0.487,2026-09-18,en_riesgo,true,21,-12.123600,-76.982000
+U000240,BrunoByte64,2024-02-04,25-31,Perro,Arte digital,Telegram,false,13,20,0,5,0.493,2026-10-27,activo,true,1,-34.649700,-58.447600
+U000241,FlareArt30,2026-05-08,18-24,Zorro,Arte digital,Facebook,true,1,1,0,5,0.557,2026-09-30,en_riesgo,true,18,18.013800,-92.888100
+U000242,LunaWolf93,2025-07-18,18-24,Perro,Arte tradicional,Facebook,true,2,5,1,2,0.714,2026-09-13,en_riesgo,false,,,
+U000243,OnixInk1,2024-10-11,25-31,Zorro,Arte digital,Telegram,true,2,3,0,2,0.19,2026-10-26,activo,true,14,17.030500,-96.649300
+U000244,MikaZac45,2022-12-04,18-24,Lobo,Convenciones,Twitter/X,false,21,73,0,0,0.686,2026-11-06,activo,false,,,
+U000245,NeoMaya35,2024-04-14,39+,Perro,Convenciones,TikTok,true,8,9,0,0,0.302,2026-11-01,activo,false,,,
+U000246,NeoClaw16,2025-09-22,39+,Híbrido/Otro,Videojuegos,Facebook,true,2,2,0,0,-0.058,2026-10-16,en_riesgo,true,11,21.057700,-101.682300
+U000247,TalaArt74,2022-11-02,39+,Husky,Arte digital,Telegram,true,6,10,0,0,-0.023,2026-11-07,activo,true,9,19.408900,-99.164300
+U000248,ZorriZac87,2022-03-26,32-38,Dragón,Escritura/Historias,Facebook,false,0,0,0,0,0.352,2026-08-17,inactivo,true,12,20.651500,-103.270700
+U000249,NovaPelaje44,2025-10-12,25-31,Gato,Streaming/Contenido,Discord,false,9,34,0,0,0.538,2026-11-07,activo,true,17,21.205200,-86.772300
+U000250,KibaPaw85,2025-03-20,18-24,Husky,Arte digital,Twitter/X,false,0,0,0,2,0.126,2026-07-11,inactivo,true,13,25.718400,-100.327900
+U000251,YukiWolf62,2022-05-06,18-24,Tigre,Videojuegos,Telegram,false,2,6,0,0,-0.193,2026-10-13,en_riesgo,true,14,17.056300,-96.698600
+U000252,BrunoHowl5,2026-08-28,18-24,Híbrido/Otro,Streaming/Contenido,Instagram,false,37,72,0,0,-0.228,2026-10-27,activo,true,21,-12.097900,-77.035600
+U000253,TalaFang22,2023-06-09,25-31,Perro,Cosplay,TikTok,false,3,8,0,0,0.549,2026-10-11,en_riesgo,true,8,19.797100,-90.468800
+U000254,NeoKin26,2022-04-20,25-31,Perro,Fursuit,TikTok,false,5,12,3,0,0.883,2026-10-31,activo,false,,,
+U000255,BrumaZac49,2026-03-11,25-31,Perro,Convenciones,Facebook,false,17,42,0,0,0.817,2026-11-02,activo,true,9,19.441500,-99.194100
+U000256,OnixDash54,2023-01-30,39+,Tigre,Fursuit,Instagram,false,0,0,2,3,0.007,2026-06-29,inactivo,true,9,19.378700,-99.083100
+U000257,ZetaByte92,2024-10-10,25-31,Ave,Fursuit,Telegram,false,55,206,0,0,0.586,2026-11-04,activo,true,7,32.488900,-117.096700
+U000258,KibaHowl18,2023-08-31,25-31,Zorro,Música,Telegram,false,11,36,6,0,0.083,2026-11-05,activo,true,13,25.743400,-100.319600
+U000259,LoboKin46,2023-06-20,18-24,Híbrido/Otro,Cómics,Twitter/X,false,10,24,0,0,-0.003,2026-10-13,en_riesgo,true,12,20.716400,-103.321000
+U000260,BrunoArt65,2024-12-22,25-31,Husky,Cómics,Telegram,false,3,8,0,0,0.187,2026-11-08,activo,false,,,
+U000261,MikaZac56,2023-10-05,25-31,Lobo,Videojuegos,Facebook,false,24,81,0,0,0.654,2026-10-31,activo,true,4,40.461500,-3.718300
+U000262,TalaHowl94,2026-08-05,18-24,Lobo,Escritura/Historias,Facebook,false,0,0,0,0,0.175,2026-08-19,inactivo,true,20,20.909200,-89.689000
+U000263,NubeByte65,2025-09-28,18-24,Zorro,Videojuegos,Discord,false,14,24,0,0,0.28,2026-09-29,en_riesgo,true,17,,
+U000264,ÁmbarSpark58,2026-07-10,18-24,Dragón,Fursuit,Telegram,false,9,34,0,3,0.556,2026-11-03,activo,true,12,20.705500,-103.402800
+U000265,RunePaw60,2026-05-21,18-24,Zorro,Escritura/Historias,Telegram,false,5,18,0,0,0.306,2026-11-06,activo,true,20,20.910400,-89.656300
+U000266,ÁmbarMoon40,2022-07-05,25-31,Zorro,Fursuit,Telegram,false,10,33,0,0,0.493,2026-10-28,activo,true,17,21.132900,-86.832100
+U000267,NeoPelaje17,2025-12-04,18-24,Husky,Arte digital,Telegram,false,8,10,0,2,0.167,2026-10-29,activo,true,3,4.726400,-74.144000
+U000268,MikaMaya20,2024-07-24,18-24,Perro,Convenciones,Instagram,false,0,0,2,0,0.64,2026-03-08,inactivo,true,13,25.695400,-100.357400
+U000269,ZorriZac65,2025-05-26,25-31,Tigre,Escritura/Historias,Instagram,false,2,4,0,0,0.369,2026-10-05,en_riesgo,true,12,20.724700,-103.381600
+U000270,SolPaw65,2024-10-01,18-24,Ave,Streaming/Contenido,Discord,false,0,0,0,0,-0.306,2026-09-15,en_riesgo,true,2,-33.387900,-70.627400
+U000271,LoboClaw60,2025-03-20,25-31,Tigre,Arte digital,Telegram,false,0,0,0,1,0.304,2026-08-08,inactivo,true,8,19.848000,-90.542000
+U000272,FlareWolf45,2023-11-27,25-31,Lobo,Convenciones,Telegram,false,3,7,0,0,-0.113,2026-10-27,activo,true,5,33.984900,-118.192200
+U000273,NubeMoon76,2022-04-18,18-24,Reptil,Cosplay,Twitter/X,true,0,0,0,0,-0.101,2026-08-22,inactivo,true,17,21.211300,-86.848500
+U000274,SombraMoon75,2026-01-16,18-24,Perro,Arte digital,Instagram,true,12,18,1,1,0.475,2026-11-04,activo,true,8,19.836400,-90.587300
+U000275,YukiMaya13,2026-02-02,18-24,Híbrido/Otro,Escritura/Historias,Instagram,false,0,0,0,0,0.601,2026-09-05,inactivo,true,9,19.493400,-99.194200
+U000276,NovaPaw97,2023-02-24,25-31,Reptil,Videojuegos,Facebook,false,10,20,0,0,-0.17,2026-11-07,activo,true,2,-33.430400,-70.685800
+U000277,LoboClaw13,2025-10-12,18-24,Zorro,Streaming/Contenido,TikTok,false,0,0,1,0,-0.062,2026-01-14,inactivo,true,12,,
+U000278,SolArt87,2025-09-25,18-24,Tigre,Videojuegos,Telegram,false,11,20,0,0,0.248,2026-11-09,activo,true,12,20.632500,-103.380200
+U000279,KuroClaw47,2025-04-09,18-24,Híbrido/Otro,Videojuegos,Instagram,false,0,0,0,0,0.564,2026-09-08,inactivo,true,9,19.481400,-99.084200
+U000280,YukiHowl65,2024-04-08,18-24,Coyote,Arte digital,TikTok,true,1,1,0,1,0.547,2026-10-19,en_riesgo,true,9,19.402600,-99.056200
+U000281,PixelSpark21,2024-07-27,18-24,Ave,Arte tradicional,Instagram,true,28,93,0,3,0.166,2026-10-30,activo,true,12,20.741200,-103.375100
+U000282,KuroMoon29,2026-05-04,25-31,Dragón,Videojuegos,Facebook,false,19,41,0,0,0.002,2026-10-29,activo,true,13,25.624300,-100.338600
+U000283,MikaByte22,2026-06-06,39+,Husky,Videojuegos,Discord,false,16,35,0,1,0.097,2026-11-09,activo,false,,,
+U000284,ZorriArt55,2024-09-30,25-31,Zorro,Cosplay,Instagram,false,0,0,1,0,0.162,2026-10-18,en_riesgo,true,15,18.989200,-98.120300
+U000285,RexSpark35,2023-03-06,25-31,Lobo,Arte digital,Instagram,true,14,42,0,0,-0.094,2026-11-08,activo,true,9,19.472300,-99.133400
+U000286,BrunoDash74,2024-02-07,32-38,Coyote,Streaming/Contenido,Instagram,false,0,0,0,1,0.261,2026-09-05,inactivo,true,3,4.761900,-74.008900
+U000287,LunaCh'a14,2022-08-19,18-24,Reptil,Arte digital,Twitter/X,true,9,20,2,2,0.235,2026-10-31,activo,false,,,
+U000288,TalaArt44,2025-02-05,18-24,Ave,Videojuegos,Facebook,false,0,0,1,0,0.057,2026-09-01,inactivo,true,15,19.090800,-98.172000
+U000289,AshPaw19,2023-11-26,18-24,Perro,Convenciones,Twitter/X,false,0,0,0,0,0.299,2026-01-05,inactivo,false,,,
+U000290,ZetaFox41,2024-01-04,32-38,Dragón,Videojuegos,Telegram,false,6,16,0,1,0.071,2026-11-06,activo,true,9,19.413200,-99.184700
+U000291,RexHowl18,2026-10-03,25-31,Conejo,Videojuegos,Telegram,false,3,8,0,0,-0.753,2026-10-03,en_riesgo,true,7,,
+U000292,KuroPelaje69,2024-04-28,18-24,Zorro,Arte digital,Telegram,true,31,43,0,0,0.345,2026-10-15,en_riesgo,false,,,
+U000293,AshFox60,2022-10-07,25-31,Coyote,Convenciones,Twitter/X,false,3,9,0,1,0.52,2026-10-04,en_riesgo,true,9,19.503600,-99.185600
+U000294,MikaTail54,2024-05-03,25-31,Lobo,Fursuit,Twitter/X,false,0,0,2,5,0.094,2026-07-02,inactivo,true,9,19.489600,-99.162800
+U000295,FlareFang18,2023-01-28,18-24,Perro,Cómics,Telegram,false,3,11,0,0,0.025,2026-10-30,activo,true,12,20.676300,-103.383500
+U000296,SolDash25,2024-05-02,18-24,Zorro,Streaming/Contenido,TikTok,false,8,13,0,0,0.433,2026-10-31,activo,true,16,20.589800,-100.349500
+U000297,MikaPelaje64,2022-12-25,25-31,Híbrido/Otro,Cómics,Twitter/X,false,0,0,0,0,0.07,2026-10-22,en_riesgo,true,13,25.729800,-100.312700
+U000298,AshCh'a66,2025-07-22,39+,Zorro,Arte tradicional,Telegram,false,12,35,0,0,0.146,2026-11-09,activo,true,20,21.016800,-89.634000
+U000299,MikaKin24,2023-11-27,18-24,Perro,Fursuit,Telegram,false,0,0,1,0,-0.152,2026-09-04,inactivo,true,18,17.986700,-92.877200
+U000300,NovaKin33,2022-01-21,32-38,Husky,Convenciones,Telegram,false,8,25,0,0,-0.112,2026-11-03,activo,true,9,,
+U000301,SolClaw26,2024-05-10,18-24,Zorro,Cómics,Telegram,false,6,22,0,0,-0.131,2026-10-25,en_riesgo,true,9,19.473800,-99.107700
+U000302,FlareWolf95,2026-10-28,18-24,Lobo,Música,Discord,false,3,5,0,0,0.243,2026-10-28,activo,true,13,25.641000,-100.337300
+U000303,FlareCh'a67,2025-11-24,18-24,Lobo,Escritura/Historias,Telegram,false,0,0,0,0,0.513,2026-07-21,inactivo,true,16,20.661400,-100.460200
+U000304,KibaPaw12,2024-07-04,25-31,Perro,Música,Facebook,false,19,68,0,0,0.263,2026-11-08,activo,true,9,19.390300,-99.197400
+U000305,OnixDash28,2026-04-11,18-24,Coyote,Música,Facebook,false,2,2,0,0,0.052,2026-11-01,activo,true,16,20.644600,-100.398700
+U000306,ZetaMaya53,2025-06-01,18-24,Híbrido/Otro,Cosplay,Facebook,false,2,2,4,0,0.727,2026-10-13,en_riesgo,true,12,20.601500,-103.284200
+U000307,OnixClaw3,2024-06-16,18-24,Husky,Arte tradicional,Telegram,true,0,0,0,3,0.134,2026-04-28,inactivo,true,21,-12.018400,-77.042400
+U000308,PixelSpark54,2026-11-02,18-24,Gato,Convenciones,Telegram,false,17,67,0,0,0.048,2026-11-05,activo,true,9,19.445700,-99.098700
+U000309,NeoPaw22,2023-09-18,18-24,Tigre,Música,Facebook,false,0,0,0,0,-0.116,2026-09-01,inactivo,true,9,19.406700,-99.079400
+U000310,NovaDash65,2025-11-23,18-24,Gato,Convenciones,TikTok,false,15,47,2,0,-0.026,2026-10-28,activo,false,,,
+U000311,CobreByte38,2023-11-07,25-31,Ave,Escritura/Historias,Telegram,true,4,5,0,0,0.206,2026-11-05,activo,true,12,20.721000,-103.369600
+U000312,ZorriPelaje32,2023-04-28,32-38,Dragón,Convenciones,TikTok,false,0,0,1,0,0.348,2026-06-25,inactivo,true,12,20.635700,-103.280200
+U000313,ÁmbarDash85,2026-04-25,18-24,Conejo,Música,Instagram,false,7,15,0,0,0.215,2026-11-08,activo,true,9,19.439300,-99.104300
+U000314,NovaZac52,2024-10-26,25-31,Conejo,Videojuegos,TikTok,false,0,0,0,0,0.334,2026-01-15,inactivo,true,7,32.575400,-117.051100
+U000315,YukiFox47,2026-01-26,18-24,Coyote,Videojuegos,TikTok,false,2,5,0,0,0.348,2026-11-09,activo,true,18,18.025200,-92.969800
+U000316,TalaClaw97,2024-07-08,18-24,Dragón,Cómics,TikTok,false,5,12,0,0,0.022,2026-10-12,en_riesgo,true,15,18.961600,-98.246100
+U000317,BrumaCh'a63,2022-05-24,32-38,Husky,Arte digital,Twitter/X,true,0,0,0,2,0.281,2026-09-08,inactivo,true,7,32.470700,-116.988800
+U000318,YukiHowl45,2025-12-01,39+,Perro,Arte tradicional,Instagram,false,2,4,2,0,0.31,2026-10-22,en_riesgo,true,9,19.407900,-99.081700
+U000319,NubeFang59,2026-05-14,18-24,Gato,Cómics,Telegram,false,5,7,0,0,0.665,2026-10-18,en_riesgo,true,4,40.342900,-3.665700
+U000320,MikaCh'a78,2026-02-23,18-24,Reptil,Arte digital,Instagram,true,3,5,0,2,-0.268,2026-10-26,activo,false,,,
+U000321,CobreFox28,2025-06-23,25-31,Perro,Videojuegos,Facebook,false,10,38,0,0,0.03,2026-10-17,en_riesgo,true,20,20.970100,-89.626500
+U000322,KuroClaw39,2023-10-05,18-24,Ave,Cosplay,Telegram,false,1,2,1,0,-0.156,2026-09-20,en_riesgo,true,20,20.994700,-89.661200
+U000323,FlareFang70,2023-08-14,18-24,Dragón,Arte digital,Twitter/X,true,17,27,0,3,0.346,2026-11-08,activo,true,20,20.974800,-89.633800
+U000324,SolMoon45,2024-08-21,39+,Gato,Cosplay,Instagram,false,8,31,1,0,-0.065,2026-10-17,en_riesgo,true,19,19.140000,-96.103900
+U000325,BrumaFang99,2026-08-10,18-24,Gato,Streaming/Contenido,Telegram,false,2,6,0,0,0.981,2026-10-25,en_riesgo,false,,,
+U000326,LunaTail13,2022-09-06,18-24,Zorro,Escritura/Historias,Facebook,false,0,0,0,0,-0.289,2026-08-15,inactivo,true,13,25.693600,-100.342400
+U000327,BrunoPelaje17,2024-07-09,18-24,Husky,Convenciones,Telegram,false,8,30,0,0,0.027,2026-11-07,activo,true,4,40.491900,-3.728000
+U000328,LunaClaw40,2023-04-14,32-38,Híbrido/Otro,Cosplay,TikTok,false,0,0,0,0,-0.053,2026-08-14,inactivo,true,1,-34.553200,-58.321000
+U000329,SolZac54,2022-07-05,32-38,Tigre,Videojuegos,Facebook,false,48,100,0,0,0.283,2026-11-09,activo,true,20,20.950300,-89.615300
+U000330,AshHowl12,2025-04-06,39+,Híbrido/Otro,Videojuegos,Facebook,false,0,0,0,0,0.466,2026-10-21,en_riesgo,true,16,20.596700,-100.372000
+U000331,LunaClaw92,2024-05-04,18-24,Zorro,Escritura/Historias,Facebook,false,3,5,0,0,0.2,2026-10-07,en_riesgo,true,13,25.632900,-100.314600
+U000332,ÁmbarPelaje34,2022-01-01,32-38,Gato,Convenciones,Telegram,false,3,8,4,0,0.602,2026-11-04,activo,false,,,
+U000333,FlareTail54,2025-10-28,32-38,Perro,Streaming/Contenido,Twitter/X,false,10,35,0,0,-0.406,2026-10-26,activo,true,7,32.494000,-116.972700
+U000334,RuneKin52,2025-09-10,25-31,Conejo,Fursuit,Telegram,false,1,2,1,2,0.019,2026-10-23,en_riesgo,true,8,19.798100,-90.509400
+U000335,NovaKin49,2022-03-01,18-24,Híbrido/Otro,Cómics,Facebook,false,8,28,0,0,0.254,2026-10-28,activo,true,15,,
+U000336,RuneMaya19,2024-07-16,25-31,Perro,Videojuegos,Facebook,false,0,0,0,0,0.206,2026-01-06,inactivo,true,12,20.596800,-103.392400
+U000337,KuroHowl68,2025-01-25,18-24,Perro,Música,Facebook,false,0,0,0,0,0.293,2026-04-13,inactivo,true,20,20.922800,-89.541800
+U000338,RexPelaje3,2023-08-11,25-31,Gato,Streaming/Contenido,TikTok,true,0,0,0,0,0.675,2026-09-05,inactivo,true,17,21.094900,-86.918400
+U000339,KibaByte49,2024-04-18,18-24,Lobo,Arte tradicional,Facebook,false,2,6,1,5,-0.209,2026-10-24,en_riesgo,true,13,25.652700,-100.275600
+U000340,KuroMoon32,2026-03-11,18-24,Lobo,Arte tradicional,Telegram,true,4,13,0,0,0.805,2026-10-25,en_riesgo,true,13,25.690300,-100.256300
+U000341,PixelFang92,2025-11-28,32-38,Coyote,Escritura/Historias,Twitter/X,false,1,1,0,0,0.598,2026-09-26,en_riesgo,true,12,20.645000,-103.295400
+U000342,NovaMaya88,2022-02-25,18-24,Lobo,Convenciones,Telegram,false,0,0,0,0,0.299,2026-08-11,inactivo,true,9,19.492000,-99.152500
+U000343,ZetaTail19,2025-06-17,18-24,Perro,Música,TikTok,false,3,6,5,0,-0.238,2026-10-17,en_riesgo,true,13,25.637900,-100.255200
+U000344,LunaByte6,2024-08-18,25-31,Híbrido/Otro,Streaming/Contenido,Instagram,false,0,0,0,0,-0.215,2026-03-07,inactivo,true,21,-12.004000,-77.041400
+U000345,BrumaDash99,2026-02-20,18-24,Coyote,Videojuegos,TikTok,false,1,2,0,0,0.63,2026-10-02,en_riesgo,true,7,32.497000,-116.977600
+U000346,NubePaw80,2023-12-17,18-24,Lobo,Videojuegos,Telegram,false,0,0,0,0,0.62,2026-08-21,inactivo,true,15,19.094300,-98.265600
+U000347,CobreClaw51,2022-08-08,18-24,Conejo,Fursuit,Telegram,false,0,0,4,0,0.568,2026-07-16,inactivo,true,14,17.000100,-96.757300
+U000348,ZorriArt7,2024-04-14,25-31,Zorro,Videojuegos,Telegram,false,2,3,0,0,0.857,2026-10-19,en_riesgo,true,7,,
+U000349,LunaInk69,2026-06-30,18-24,Conejo,Cómics,Facebook,false,0,0,0,0,0.362,2026-06-30,inactivo,true,12,20.631300,-103.322200
+U000350,NubePelaje88,2022-06-22,25-31,Reptil,Escritura/Historias,Telegram,false,8,20,1,0,0.884,2026-11-05,activo,true,20,21.028200,-89.540600
+U000351,OnixWolf8,2022-11-06,18-24,Reptil,Escritura/Historias,Facebook,false,0,0,0,0,-0.075,2026-08-10,inactivo,true,4,40.373500,-3.650800
+U000352,ÁmbarTail24,2023-02-13,18-24,Dragón,Streaming/Contenido,Facebook,false,2,6,1,0,0.129,2026-10-29,activo,true,5,33.999800,-118.246400
+U000353,ZorriFang8,2025-11-30,39+,Perro,Videojuegos,Telegram,false,0,0,0,1,-0.056,2026-03-16,inactivo,true,20,20.909400,-89.560800
+U000354,RuneCh'a63,2026-01-15,18-24,Gato,Arte tradicional,Facebook,true,0,0,0,1,0.61,2026-01-15,inactivo,true,16,20.528300,-100.434900
+U000355,KuroFox35,2026-02-14,25-31,Conejo,Streaming/Contenido,Telegram,false,0,0,0,0,0.03,2026-09-01,inactivo,false,,,
+U000356,BrumaFang22,2022-07-21,25-31,Gato,Cómics,Telegram,true,9,17,0,0,0.071,2026-10-30,activo,false,,,
+U000357,AshKin94,2023-06-29,18-24,Coyote,Arte digital,Discord,true,0,0,0,2,-0.141,2026-09-04,inactivo,true,8,,
+U000358,BrumaFang34,2025-07-11,25-31,Husky,Escritura/Historias,Facebook,false,13,29,0,1,0.508,2026-11-06,activo,true,10,28.595300,-106.143200
+U000359,BrunoKin93,2024-10-30,25-31,Gato,Videojuegos,Facebook,false,1,1,0,0,0.573,2026-10-11,en_riesgo,true,20,20.983900,-89.680000
+U000360,PixelClaw88,2025-08-22,25-31,Husky,Música,TikTok,false,4,12,0,0,0.646,2026-11-09,activo,false,,,
+U000361,SolHowl56,2023-04-09,18-24,Perro,Videojuegos,Telegram,false,9,27,0,0,0.63,2026-10-12,en_riesgo,true,13,25.609200,-100.291100
+U000362,RuneArt6,2026-01-30,25-31,Zorro,Escritura/Historias,Telegram,false,3,4,0,0,0.374,2026-10-17,en_riesgo,true,8,19.856500,-90.450300
+U000363,OnixCh'a45,2023-04-24,25-31,Gato,Arte digital,Instagram,true,2,4,0,0,-0.411,2026-10-09,en_riesgo,true,9,19.442200,-99.175700
+U000364,NubeDash36,2022-07-12,25-31,Zorro,Cosplay,Telegram,false,3,8,1,0,0.317,2026-09-17,en_riesgo,true,7,32.480500,-117.075000
+U000365,ZorriArt77,2026-01-11,25-31,Conejo,Videojuegos,Telegram,false,0,0,0,0,0.373,2026-06-05,inactivo,true,11,21.081400,-101.617000
+U000366,SolKin99,2024-08-24,32-38,Híbrido/Otro,Arte tradicional,Twitter/X,true,9,26,0,1,0.266,2026-09-19,en_riesgo,true,9,19.386100,-99.085000
+U000367,ÁmbarTail43,2025-01-11,18-24,Lobo,Arte digital,Instagram,true,2,5,0,0,-0.133,2026-11-01,activo,true,11,21.105700,-101.631100
+U000368,RuneWolf5,2026-10-23,18-24,Husky,Videojuegos,Instagram,false,29,63,0,0,0.155,2026-10-23,en_riesgo,true,5,34.048100,-118.293500
+U000369,KuroCh'a8,2023-07-14,18-24,Tigre,Cómics,Telegram,false,0,0,0,0,0.284,2026-07-04,inactivo,false,,,
+U000370,SombraByte79,2025-04-10,39+,Perro,Arte digital,TikTok,true,0,0,0,0,0.465,2026-05-13,inactivo,true,8,19.838100,-90.561600
+U000371,OnixHowl69,2023-02-11,18-24,Lobo,Arte digital,TikTok,true,2,6,1,1,-0.687,2026-10-26,activo,false,,,
+U000372,CobreArt30,2023-04-22,18-24,Zorro,Fursuit,Telegram,false,9,32,1,5,0.573,2026-11-08,activo,false,,,
+U000373,ZetaDash32,2023-09-29,18-24,Perro,Arte digital,Telegram,false,2,6,0,1,0.591,2026-11-04,activo,true,8,19.849400,-90.462700
+U000374,ÁmbarKin3,2022-12-17,18-24,Ave,Videojuegos,Telegram,false,0,0,0,0,0.427,2026-09-01,inactivo,false,,,
+U000375,NovaMoon14,2026-07-14,39+,Coyote,Videojuegos,TikTok,false,18,26,0,1,0.481,2026-11-03,activo,true,9,19.484800,-99.121300
+U000376,BrumaInk54,2024-11-01,25-31,Reptil,Cosplay,TikTok,false,4,6,0,0,0.473,2026-11-01,activo,true,13,25.688200,-100.237100
+U000377,TalaCh'a73,2023-08-12,18-24,Lobo,Escritura/Historias,Instagram,false,3,7,0,0,0.196,2026-09-30,en_riesgo,false,,,
+U000378,YukiPelaje77,2026-05-09,18-24,Coyote,Convenciones,Telegram,false,0,0,3,0,0.08,2026-05-09,inactivo,true,5,34.005100,-118.203800
+U000379,TalaCh'a19,2024-11-14,39+,Zorro,Arte digital,Telegram,true,0,0,0,5,-0.268,2025-11-01,inactivo,false,,,
+U000380,CobreInk46,2022-10-19,25-31,Dragón,Videojuegos,Facebook,false,12,27,0,0,-0.468,2026-11-08,activo,true,13,25.628300,-100.366200
+U000381,KuroSpark32,2024-11-01,25-31,Zorro,Arte tradicional,Twitter/X,true,9,31,0,3,0.782,2026-10-27,activo,false,,,
+U000382,SolInk32,2026-02-28,18-24,Husky,Cómics,Telegram,false,10,38,0,0,0.435,2026-11-07,activo,true,12,20.733300,-103.350100
+U000383,NovaSpark26,2024-02-10,32-38,Perro,Escritura/Historias,TikTok,false,3,6,0,0,0.175,2026-10-22,en_riesgo,true,15,19.015400,-98.251700
+U000384,KuroMaya32,2023-11-09,32-38,Coyote,Videojuegos,TikTok,true,3,3,2,1,0.218,2026-11-09,activo,true,13,25.672500,-100.357300
+U000385,KibaClaw22,2025-03-02,32-38,Híbrido/Otro,Fursuit,TikTok,true,4,8,2,0,0.272,2026-11-02,activo,true,17,,
+U000386,AshByte31,2025-05-19,18-24,Conejo,Cosplay,Instagram,false,11,25,1,0,0.697,2026-11-07,activo,true,13,25.664500,-100.261100
+U000387,NeoPaw59,2026-04-03,18-24,Lobo,Arte digital,TikTok,true,6,20,0,5,-0.768,2026-10-28,activo,true,7,32.585900,-116.981500
+U000388,ÁmbarArt55,2025-06-10,18-24,Zorro,Fursuit,Instagram,false,0,0,2,5,-0.029,2026-04-05,inactivo,true,7,32.462700,-117.057900
+U000389,CobreKin72,2025-12-01,39+,Híbrido/Otro,Arte digital,Discord,false,0,0,0,0,0.237,2026-08-26,inactivo,true,3,4.749600,-74.012300
+U000390,NeoMoon97,2026-10-09,18-24,Perro,Arte digital,Telegram,false,2,4,0,5,0.306,2026-10-28,activo,true,11,21.197100,-101.642500
+U000391,BrumaByte89,2026-10-10,18-24,Zorro,Fursuit,Facebook,false,4,7,0,0,0.052,2026-10-24,en_riesgo,true,9,19.488600,-99.070500
+U000392,RuneHowl14,2024-03-08,39+,Perro,Streaming/Contenido,Telegram,false,2,6,0,0,-0.245,2026-11-05,activo,false,,,
+U000393,YukiDash47,2023-06-18,18-24,Dragón,Arte digital,Facebook,true,0,0,0,0,0.026,2026-08-11,inactivo,false,,,
+U000394,NeoTail75,2025-08-23,18-24,Zorro,Arte tradicional,TikTok,true,4,8,0,5,-0.227,2026-10-14,en_riesgo,false,,,
+U000395,NubePelaje79,2023-07-18,18-24,Zorro,Arte digital,Twitter/X,true,3,8,0,5,0.707,2026-10-31,activo,true,13,25.603400,-100.259300
+U000396,SolMoon14,2026-05-13,32-38,Ave,Streaming/Contenido,Discord,false,6,18,5,0,0.769,2026-10-18,en_riesgo,false,,,
+U000397,NubeMaya62,2023-12-19,32-38,Gato,Streaming/Contenido,Facebook,false,0,0,0,0,0.568,2026-07-12,inactivo,true,17,21.206900,-86.803500
+U000398,NovaMaya6,2026-08-26,18-24,Gato,Convenciones,Discord,false,0,0,0,0,0.013,2026-10-06,en_riesgo,false,,,
+U000399,SolCh'a45,2023-09-12,25-31,Perro,Convenciones,TikTok,false,2,3,1,0,0.507,2026-09-30,en_riesgo,true,7,,
+U000400,LunaZac85,2024-08-08,18-24,Dragón,Videojuegos,Telegram,false,4,15,0,0,0.112,2026-10-25,en_riesgo,true,9,19.379400,-99.156500
+U000401,ZetaPelaje99,2023-02-12,32-38,Reptil,Música,Telegram,false,3,8,0,0,0.362,2026-11-07,activo,true,20,20.942700,-89.671300
+U000402,ZetaSpark68,2026-05-14,25-31,Husky,Streaming/Contenido,Facebook,false,0,0,0,0,0.384,2026-06-01,inactivo,true,2,,
+U000403,BrunoFox32,2023-07-21,18-24,Husky,Convenciones,Facebook,false,0,0,1,0,0.669,2025-10-31,inactivo,true,12,20.695700,-103.302200
+U000404,ÁmbarArt67,2024-10-25,18-24,Lobo,Convenciones,TikTok,false,0,0,3,0,0.23,2026-08-25,inactivo,false,,,
+U000405,AshWolf67,2026-05-11,25-31,Conejo,Videojuegos,Discord,false,12,17,0,0,0.026,2026-10-26,activo,true,9,19.441000,-99.099400
+U000406,CobreFox24,2026-07-01,39+,Tigre,Videojuegos,Discord,false,1,2,0,0,0.527,2026-10-19,en_riesgo,true,20,21.025100,-89.594600
+U000407,TalaZac82,2025-09-27,25-31,Conejo,Cosplay,TikTok,false,6,15,0,1,-0.002,2026-11-06,activo,true,15,19.060500,-98.160800
+U000408,NeoMaya3,2026-09-01,39+,Ave,Cómics,Instagram,false,4,13,0,1,0.166,2026-10-30,activo,true,20,20.908100,-89.667400
+U000409,AshWolf54,2023-07-12,32-38,Híbrido/Otro,Arte tradicional,Telegram,true,4,12,0,3,0.548,2026-10-25,en_riesgo,true,10,28.704900,-106.095700
+U000410,SombraByte34,2024-11-04,18-24,Gato,Convenciones,Instagram,false,30,47,2,0,-0.319,2026-11-02,activo,false,,,
+U000411,AshDash99,2026-07-02,39+,Gato,Arte tradicional,Discord,false,12,36,0,1,0.242,2026-11-02,activo,true,12,20.733200,-103.334000
+U000412,PixelWolf43,2025-02-09,25-31,Gato,Videojuegos,Facebook,false,5,18,0,0,0.361,2026-09-15,en_riesgo,true,9,19.453600,-99.104100
+U000413,BrunoSpark24,2023-09-28,18-24,Lobo,Fursuit,Facebook,false,4,11,1,0,0.19,2026-09-25,en_riesgo,false,,,
+U000414,NeoTail53,2024-12-08,18-24,Híbrido/Otro,Streaming/Contenido,Discord,false,3,8,0,0,0.059,2026-11-05,activo,false,,,
+U000415,FlareKin89,2025-03-27,25-31,Zorro,Escritura/Historias,Telegram,false,1,1,0,0,0.672,2026-09-15,en_riesgo,true,20,,
+U000416,NeoCh'a80,2026-07-11,25-31,Husky,Arte tradicional,Discord,true,0,0,0,0,-0.052,2026-07-11,inactivo,true,15,19.107000,-98.181500
+U000417,FlareArt38,2024-06-29,25-31,Zorro,Convenciones,Facebook,false,1,2,0,0,-0.045,2026-09-30,en_riesgo,false,,,
+U000418,AshZac61,2026-04-01,18-24,Lobo,Cosplay,Instagram,false,0,0,2,0,0.768,2026-04-01,inactivo,true,20,21.050000,-89.640100
+U000419,ZorriZac44,2022-08-20,25-31,Coyote,Streaming/Contenido,Facebook,false,2,4,0,0,0.362,2026-10-15,en_riesgo,true,9,19.412700,-99.091300
+U000420,KuroWolf25,2025-04-25,18-24,Zorro,Arte digital,Discord,true,3,9,0,0,0.568,2026-11-01,activo,true,16,20.662400,-100.375300
+U000421,OnixArt5,2023-11-03,25-31,Dragón,Cómics,Facebook,false,0,0,0,0,0.415,2026-09-06,inactivo,true,3,4.782400,-73.997000
+U000422,BrunoHowl74,2026-03-24,25-31,Zorro,Arte tradicional,Facebook,true,0,0,0,1,0.329,2026-08-30,inactivo,true,12,20.659400,-103.395400
+U000423,LoboPaw71,2025-12-02,18-24,Husky,Streaming/Contenido,TikTok,true,0,0,0,0,0.289,2026-08-17,inactivo,true,17,21.116800,-86.870800
+U000424,KuroCh'a50,2024-01-20,18-24,Perro,Arte digital,Facebook,true,0,0,0,5,-0.166,2026-06-29,inactivo,true,9,19.488500,-99.175200
+U000425,ZorriTail59,2026-09-08,18-24,Zorro,Videojuegos,Discord,false,4,13,0,0,0.614,2026-10-17,en_riesgo,true,19,19.233500,-96.116900
+U000426,ZetaMoon23,2022-07-27,25-31,Híbrido/Otro,Arte tradicional,Twitter/X,true,0,0,0,2,0.184,2026-03-03,inactivo,true,9,19.464300,-99.067800
+U000427,OnixPelaje27,2025-07-20,18-24,Híbrido/Otro,Escritura/Historias,Telegram,false,0,0,0,0,0.242,2026-10-09,en_riesgo,false,,,
+U000428,MikaCh'a77,2026-05-09,18-24,Perro,Videojuegos,Telegram,false,5,9,0,0,-0.252,2026-10-25,en_riesgo,true,9,19.506400,-99.147800
+U000429,NeoCh'a19,2026-02-10,25-31,Zorro,Arte digital,Facebook,false,44,152,0,0,0.389,2026-11-09,activo,true,15,,
+U000430,NeoMaya9,2025-12-23,18-24,Conejo,Convenciones,Telegram,false,4,4,3,0,0.496,2026-10-27,activo,true,3,,
+U000431,BrumaClaw87,2024-07-09,18-24,Coyote,Arte digital,Telegram,true,0,0,0,0,0.25,2026-10-16,en_riesgo,true,9,19.395500,-99.182400
+U000432,SolPaw44,2024-09-24,18-24,Lobo,Escritura/Historias,TikTok,false,4,8,0,0,-0.092,2026-10-09,en_riesgo,true,9,,
+U000433,YukiTail63,2023-06-06,25-31,Coyote,Streaming/Contenido,Twitter/X,false,0,0,0,0,0.462,2026-09-29,en_riesgo,true,3,4.639800,-74.133200
+U000434,BrunoArt44,2026-02-26,25-31,Coyote,Streaming/Contenido,Facebook,false,2,7,5,0,0.089,2026-10-25,en_riesgo,false,,,
+U000435,ÁmbarKin42,2023-12-19,18-24,Perro,Streaming/Contenido,Telegram,false,0,0,1,0,0.673,2026-08-01,inactivo,true,4,40.461800,-3.741900
+U000436,SombraFox18,2025-11-02,18-24,Perro,Arte digital,Twitter/X,true,21,77,0,3,-0.134,2026-10-26,activo,true,20,20.962000,-89.601700
+U000437,SombraTail79,2025-08-22,18-24,Conejo,Cosplay,TikTok,false,2,2,1,0,0.274,2026-09-28,en_riesgo,true,12,20.597600,-103.324800
+U000438,TalaFang62,2025-12-05,32-38,Coyote,Streaming/Contenido,Instagram,false,3,4,1,0,0.104,2026-10-15,en_riesgo,true,5,34.065500,-118.171800
+U000439,CobreInk44,2023-04-11,18-24,Híbrido/Otro,Arte digital,Telegram,true,4,13,0,3,0.725,2026-10-10,en_riesgo,true,14,,
+U000440,NubeDash18,2024-06-08,32-38,Perro,Escritura/Historias,Telegram,false,5,8,0,0,-0.042,2026-10-21,en_riesgo,true,9,19.503900,-99.062400
+U000441,AshFang51,2026-04-12,25-31,Reptil,Videojuegos,Telegram,false,1,2,1,0,0.256,2026-10-15,en_riesgo,true,9,19.362400,-99.188000
+U000442,FlareKin52,2026-03-03,25-31,Conejo,Arte digital,Twitter/X,true,6,17,0,0,0.1,2026-10-31,activo,true,9,19.361500,-99.054500
+U000443,ZorriSpark99,2025-04-02,25-31,Ave,Streaming/Contenido,Telegram,false,4,7,0,0,0.359,2026-10-09,en_riesgo,true,20,20.993300,-89.581900
+U000444,AshDash18,2025-05-29,32-38,Lobo,Videojuegos,TikTok,false,3,8,0,0,-0.074,2026-10-15,en_riesgo,true,2,-33.447100,-70.621200
+U000445,KibaZac84,2022-11-11,18-24,Coyote,Arte digital,Facebook,true,0,0,0,0,-0.075,2026-10-13,en_riesgo,true,15,18.965400,-98.134100
+U000446,RuneFang27,2024-08-03,32-38,Perro,Streaming/Contenido,Twitter/X,false,3,8,0,0,0.228,2026-10-05,en_riesgo,false,,,
+U000447,LoboKin89,2025-02-04,25-31,Híbrido/Otro,Arte tradicional,Instagram,true,4,5,0,0,0.28,2026-09-10,en_riesgo,true,12,20.662000,-103.277000
+U000448,FlarePelaje65,2026-01-14,18-24,Conejo,Escritura/Historias,Twitter/X,false,4,14,0,0,-0.597,2026-10-21,en_riesgo,true,9,19.471600,-99.093400
+U000449,NovaPelaje66,2022-05-02,25-31,Tigre,Videojuegos,Telegram,false,0,0,0,0,0.255,2025-12-10,inactivo,true,2,-33.410900,-70.685700
+U000450,CobreFang99,2025-02-09,25-31,Zorro,Videojuegos,Telegram,false,0,0,0,0,0.305,2026-06-26,inactivo,true,14,17.067700,-96.731100
+U000451,FlareMaya3,2025-01-14,18-24,Lobo,Streaming/Contenido,Twitter/X,false,3,9,0,0,-0.035,2026-10-06,en_riesgo,true,16,20.533400,-100.462600
+U000452,AshHowl85,2025-03-04,18-24,Zorro,Cosplay,Facebook,false,2,6,1,0,-0.004,2026-10-18,en_riesgo,true,21,-12.101400,-77.025000
+U000453,NeoWolf48,2026-09-03,18-24,Ave,Cómics,Twitter/X,false,32,58,0,0,0.353,2026-10-06,en_riesgo,true,14,,
+U000454,ZorriArt76,2022-07-23,18-24,Ave,Fursuit,Facebook,true,1,2,0,3,0.534,2026-10-20,en_riesgo,true,18,17.977400,-92.992700
+U000455,AshTail99,2026-03-12,25-31,Coyote,Arte digital,Twitter/X,false,4,10,0,1,0.331,2026-09-14,en_riesgo,true,13,25.639900,-100.258100
+U000456,LoboFox9,2023-09-08,25-31,Dragón,Arte tradicional,Telegram,true,21,55,0,2,0.475,2026-10-30,activo,true,17,,
+U000457,CobreHowl31,2025-03-31,32-38,Perro,Convenciones,Telegram,false,2,6,0,0,0.151,2026-10-23,en_riesgo,true,12,,
+U000458,ZetaKin20,2025-11-19,25-31,Husky,Convenciones,Telegram,false,5,14,0,0,-0.296,2026-10-28,activo,true,20,20.982600,-89.555700
+U000459,TalaHowl41,2022-10-18,25-31,Híbrido/Otro,Streaming/Contenido,Instagram,false,4,10,0,1,0.362,2026-10-16,en_riesgo,true,11,21.171700,-101.631500
+U000460,LunaByte96,2025-05-25,18-24,Zorro,Música,Telegram,false,28,78,0,0,0.223,2026-10-03,en_riesgo,true,15,19.064500,-98.259800
+U000461,RuneByte24,2026-05-10,18-24,Perro,Arte tradicional,Telegram,true,3,9,0,0,0.507,2026-10-14,en_riesgo,true,9,19.453400,-99.208700
+U000462,NeoTail29,2025-04-30,25-31,Zorro,Fursuit,Facebook,false,0,0,3,1,0.432,2025-11-22,inactivo,true,9,19.400500,-99.187700
+U000463,PixelPaw54,2022-05-23,18-24,Husky,Música,Instagram,false,1,2,1,0,0.583,2026-09-19,en_riesgo,false,,,
+U000464,CobreCh'a42,2023-09-05,25-31,Husky,Música,TikTok,false,0,0,0,0,0.432,2026-09-04,inactivo,true,12,20.623100,-103.299900
+U000465,LoboClaw12,2026-09-24,18-24,Husky,Fursuit,Telegram,false,8,15,0,1,0.216,2026-11-06,activo,false,,,
+U000466,RunePaw71,2024-06-30,25-31,Híbrido/Otro,Convenciones,Instagram,false,6,14,5,0,0.382,2026-10-11,en_riesgo,true,17,21.108700,-86.906600
+U000467,SombraByte19,2025-07-07,18-24,Dragón,Streaming/Contenido,Telegram,false,0,0,0,0,0.203,2026-09-06,inactivo,true,12,20.731700,-103.317000
+U000468,LunaClaw59,2024-02-03,18-24,Tigre,Convenciones,Facebook,false,6,14,0,0,0.192,2026-11-02,activo,true,1,-34.589200,-58.409800
+U000469,LunaTail73,2023-06-27,18-24,Híbrido/Otro,Escritura/Historias,Facebook,false,4,6,0,0,-0.12,2026-10-21,en_riesgo,true,9,19.436700,-99.073300
+U000470,NubeFang33,2026-05-05,18-24,Conejo,Cómics,TikTok,false,3,7,0,0,-0.04,2026-11-02,activo,true,1,-34.608200,-58.393500
+U000471,RexFang40,2026-06-12,18-24,Dragón,Fursuit,Facebook,false,35,75,1,3,0.453,2026-10-28,activo,true,9,19.508700,-99.165200
+U000472,TalaMaya95,2026-06-28,39+,Perro,Streaming/Contenido,Facebook,false,3,7,0,0,0.364,2026-10-23,en_riesgo,true,12,20.705700,-103.418200
+U000473,TalaSpark42,2023-02-21,18-24,Husky,Escritura/Historias,Instagram,false,4,12,0,0,0.177,2026-10-18,en_riesgo,true,18,18.026400,-92.943000
+U000474,LunaInk39,2024-03-14,18-24,Híbrido/Otro,Convenciones,Telegram,false,13,45,1,0,0.198,2026-11-08,activo,true,18,17.934200,-92.991900
+U000475,NubeDash32,2024-08-25,39+,Perro,Streaming/Contenido,Discord,false,5,10,0,0,-0.018,2026-10-23,en_riesgo,true,13,25.717200,-100.364700
+U000476,TalaArt93,2025-02-14,25-31,Ave,Cosplay,Telegram,false,2,5,0,1,-0.341,2026-10-31,activo,true,7,32.513300,-117.024000
+U000477,PixelPaw20,2023-07-08,18-24,Coyote,Cómics,Facebook,false,25,57,0,0,0.064,2026-10-30,activo,true,11,21.108200,-101.719800
+U000478,ÁmbarHowl87,2026-04-24,25-31,Gato,Arte tradicional,TikTok,true,2,3,0,0,0.421,2026-10-10,en_riesgo,true,3,4.648700,-74.043700
+U000479,NovaClaw36,2024-06-04,25-31,Gato,Cosplay,TikTok,false,2,3,0,0,0.174,2026-10-25,en_riesgo,true,14,17.116700,-96.750500
+U000480,MikaInk6,2025-02-19,25-31,Husky,Cómics,Instagram,true,6,18,0,0,0.508,2026-10-11,en_riesgo,true,9,19.358900,-99.117400
+U000481,NeoCh'a21,2023-08-31,18-24,Lobo,Arte tradicional,Facebook,true,0,0,0,1,-0.339,2026-09-08,inactivo,true,8,19.821300,-90.470400
+U000482,BrunoDash93,2023-11-23,18-24,Zorro,Videojuegos,Instagram,false,0,0,0,1,0.593,2025-12-25,inactivo,false,,,
+U000483,KibaMoon44,2026-06-27,25-31,Husky,Convenciones,Instagram,false,311,600,0,0,0.215,2026-09-20,en_riesgo,true,13,25.748500,-100.282900
+U000484,FlarePelaje89,2023-07-10,32-38,Perro,Convenciones,Telegram,false,7,9,2,0,-0.107,2026-11-03,activo,true,9,19.454500,-99.063200
+U000485,TalaMaya62,2022-08-19,18-24,Híbrido/Otro,Fursuit,TikTok,false,0,0,0,0,0.367,2026-04-14,inactivo,true,9,19.477000,-99.116000
+U000486,LunaSpark1,2025-05-17,18-24,Zorro,Escritura/Historias,Facebook,false,41,107,0,1,-0.096,2026-11-08,activo,true,20,20.936700,-89.572600
+U000487,RexMaya75,2023-09-17,32-38,Conejo,Arte digital,Instagram,true,13,27,0,5,0.547,2026-10-30,activo,true,7,32.462500,-117.051400
+U000488,BrunoZac35,2024-06-13,18-24,Dragón,Arte digital,Instagram,false,0,0,0,0,0.154,2026-02-27,inactivo,true,13,25.604800,-100.343800
+U000489,NubeClaw94,2025-08-12,25-31,Lobo,Fursuit,Discord,false,9,13,1,2,0.538,2026-10-28,activo,true,11,21.083400,-101.705600
+U000490,OnixSpark22,2024-09-23,18-24,Lobo,Convenciones,Telegram,false,3,6,3,0,0.35,2026-11-07,activo,true,9,,
+U000491,OnixZac50,2026-01-20,18-24,Lobo,Convenciones,Facebook,false,0,0,0,1,0.343,2026-07-28,inactivo,true,11,21.131500,-101.628600
+U000492,LoboTail49,2025-11-21,18-24,Zorro,Escritura/Historias,Instagram,false,0,0,3,1,0.391,2026-03-10,inactivo,false,,,
+U000493,CobreClaw90,2024-02-23,18-24,Tigre,Música,Telegram,false,1,1,0,0,0.349,2026-09-19,en_riesgo,true,15,19.034400,-98.194100
+U000494,LoboHowl10,2023-08-24,25-31,Lobo,Videojuegos,Telegram,false,1,1,0,0,0.237,2026-10-23,en_riesgo,true,1,-34.650700,-58.455500
+U000495,SolCh'a75,2026-07-13,18-24,Lobo,Arte digital,Telegram,true,127,406,0,1,0.469,2026-11-02,activo,true,12,20.745700,-103.310300
+U000496,KibaSpark10,2024-07-31,25-31,Lobo,Videojuegos,Facebook,false,19,40,0,1,0.883,2026-11-09,activo,true,18,18.054000,-92.988000
+U000497,AshWolf31,2023-02-21,25-31,Perro,Videojuegos,Facebook,false,0,0,0,0,0.083,2026-02-04,inactivo,true,12,20.638000,-103.398900
+U000498,ZetaArt15,2023-11-03,25-31,Lobo,Arte tradicional,Telegram,true,2,3,0,5,0.304,2026-10-04,en_riesgo,true,20,21.004100,-89.638100
+U000499,BrunoHowl71,2026-08-05,25-31,Ave,Convenciones,Telegram,true,0,0,1,0,0.8,2026-08-18,inactivo,true,16,20.612000,-100.444700
+U000500,ZetaKin77,2024-01-18,18-24,Zorro,Streaming/Contenido,Telegram,false,3,11,0,0,0.373,2026-10-13,en_riesgo,true,12,20.687100,-103.422700
+U000501,ZorriClaw73,2023-01-02,25-31,Gato,Fursuit,Telegram,false,6,15,1,2,-0.169,2026-11-05,activo,true,9,19.486600,-99.098500
+U000502,YukiMaya34,2024-07-04,18-24,Ave,Arte tradicional,Instagram,true,1,1,0,5,-0.232,2026-09-30,en_riesgo,true,18,17.929800,-92.938100
+U000503,RuneCh'a86,2022-08-29,39+,Perro,Streaming/Contenido,Facebook,false,5,10,1,0,0.525,2026-11-01,activo,true,20,21.037200,-89.546800
+U000504,TalaPelaje66,2025-03-12,25-31,Lobo,Escritura/Historias,Discord,false,6,9,0,0,0.128,2026-10-21,en_riesgo,false,,,
+U000505,ÁmbarClaw56,2023-05-07,32-38,Perro,Convenciones,Twitter/X,false,21,63,0,0,0.391,2026-10-30,activo,true,1,-34.618500,-58.395800
+U000506,RuneMaya7,2024-04-25,25-31,Zorro,Escritura/Historias,Telegram,false,1,2,0,0,0.19,2026-09-18,en_riesgo,true,9,19.372500,-99.202500
+U000507,OnixCh'a14,2024-05-05,25-31,Zorro,Fursuit,TikTok,false,37,95,0,2,0.114,2026-10-30,activo,true,17,21.214600,-86.864500
+U000508,OnixFang26,2025-02-25,32-38,Lobo,Arte digital,Telegram,false,7,26,2,0,0.166,2026-10-29,activo,true,5,34.028300,-118.310000
+U000509,NovaFox23,2025-08-21,18-24,Zorro,Cómics,Facebook,false,2,7,0,0,0.264,2026-10-25,en_riesgo,true,9,19.439000,-99.050200
+U000510,SolSpark8,2023-11-13,25-31,Lobo,Arte digital,Facebook,true,5,6,0,0,0.486,2026-11-08,activo,true,18,18.008000,-92.967100
+U000511,YukiClaw11,2025-06-12,18-24,Gato,Música,Telegram,false,7,24,2,0,0.669,2026-10-29,activo,true,21,-11.990000,-77.051700
+U000512,AshClaw23,2024-04-18,18-24,Perro,Arte digital,Instagram,false,0,0,0,0,0.562,2026-06-07,inactivo,false,,,
+U000513,OnixFox57,2024-10-29,25-31,Dragón,Streaming/Contenido,Facebook,false,9,11,0,0,0.573,2026-10-27,activo,true,13,25.738700,-100.232100
+U000514,BrunoInk89,2023-03-15,18-24,Dragón,Arte digital,TikTok,true,1,2,0,0,0.211,2026-10-20,en_riesgo,true,16,20.597800,-100.440000
+U000515,FlareWolf36,2024-09-18,18-24,Gato,Convenciones,Facebook,false,3,8,0,0,0.311,2026-11-04,activo,false,,,
+U000516,RexMoon22,2023-04-07,18-24,Conejo,Arte tradicional,Instagram,true,19,31,0,1,0.188,2026-10-26,activo,true,4,40.362800,-3.685500
+U000517,LoboFox71,2026-05-02,25-31,Coyote,Arte digital,Facebook,true,13,29,0,3,-0.266,2026-11-05,activo,true,15,19.117900,-98.193300
+U000518,ÁmbarArt3,2023-12-13,18-24,Tigre,Arte digital,Telegram,false,1,3,0,2,0.138,2026-09-19,en_riesgo,true,20,21.042400,-89.600000
+U000519,ÁmbarZac4,2024-05-27,18-24,Gato,Videojuegos,Telegram,true,2,4,0,0,0.426,2026-10-23,en_riesgo,true,13,25.700300,-100.351600
+U000520,SolMaya13,2025-08-03,25-31,Conejo,Videojuegos,Telegram,false,0,0,0,0,0.289,2026-01-18,inactivo,true,13,25.658800,-100.231200
+U000521,CobreHowl11,2023-05-07,32-38,Gato,Arte digital,Telegram,true,13,45,0,0,0.32,2026-10-14,en_riesgo,true,7,,
+U000522,ZorriClaw41,2023-08-26,18-24,Dragón,Arte digital,Telegram,false,5,7,0,3,0.363,2026-10-28,activo,true,11,21.174200,-101.720500
+U000523,NeoFox68,2025-06-29,32-38,Perro,Cómics,Instagram,false,16,23,3,0,0.415,2026-11-02,activo,true,21,-12.034000,-76.989100
+U000524,SolMoon53,2024-02-16,25-31,Conejo,Cosplay,Telegram,false,2,4,1,0,0.264,2026-09-24,en_riesgo,true,20,20.955900,-89.693400
+U000525,NubeWolf52,2023-07-14,25-31,Híbrido/Otro,Arte tradicional,Twitter/X,true,1,2,0,0,0.978,2026-10-16,en_riesgo,true,12,20.595200,-103.419200
+U000526,NubeTail93,2024-04-03,18-24,Perro,Fursuit,Facebook,false,3,4,0,0,-0.058,2026-10-03,en_riesgo,true,9,,
+U000527,KuroMaya45,2024-04-08,25-31,Zorro,Convenciones,Telegram,false,0,0,0,0,0.28,2026-07-24,inactivo,true,9,,
+U000528,ÁmbarInk3,2023-07-26,18-24,Gato,Escritura/Historias,Facebook,false,4,12,1,0,0.598,2026-10-11,en_riesgo,true,11,21.060200,-101.628200
+U000529,SolWolf69,2023-10-20,25-31,Perro,Cosplay,Facebook,false,10,23,2,0,0.221,2026-10-31,activo,true,9,19.376100,-99.098100
+U000530,KuroCh'a56,2022-12-16,18-24,Lobo,Videojuegos,Discord,false,3,11,0,0,0.813,2026-10-25,en_riesgo,false,,,
+U000531,NubeZac45,2024-05-25,18-24,Híbrido/Otro,Cómics,Twitter/X,false,0,0,0,0,0.344,2026-10-24,en_riesgo,true,2,-33.506200,-70.741700
+U000532,RuneCh'a77,2026-04-22,25-31,Híbrido/Otro,Fursuit,Telegram,false,0,0,0,2,0.455,2026-08-17,inactivo,true,7,32.502000,-117.031900
+U000533,TalaHowl74,2022-11-24,18-24,Perro,Fursuit,Telegram,false,14,37,2,0,0.052,2026-10-30,activo,true,5,33.991500,-118.307100
+U000534,RexFox71,2023-04-14,18-24,Zorro,Streaming/Contenido,Telegram,false,3,10,0,0,-0.032,2026-09-11,en_riesgo,true,9,19.392300,-99.138500
+U000535,CobreTail28,2024-05-31,18-24,Zorro,Música,Telegram,false,17,49,0,0,0.12,2026-10-30,activo,false,,,
+U000536,RexDash61,2024-09-25,18-24,Husky,Escritura/Historias,TikTok,false,7,20,0,0,0.593,2026-11-09,activo,true,20,20.995000,-89.678200
+U000537,CobreClaw73,2023-04-25,25-31,Híbrido/Otro,Arte digital,Telegram,true,42,144,0,0,-0.322,2026-10-31,activo,true,16,20.580000,-100.356900
+U000538,FlareArt6,2024-07-10,18-24,Zorro,Música,TikTok,false,9,21,0,1,0.706,2026-11-01,activo,true,1,-34.527900,-58.324700
+U000539,ZetaPelaje73,2022-09-14,32-38,Dragón,Streaming/Contenido,Facebook,false,0,0,0,1,0.25,2026-09-05,inactivo,true,5,34.082400,-118.286700
+U000540,OnixMoon38,2025-09-15,25-31,Gato,Arte digital,TikTok,true,4,10,0,5,-0.096,2026-10-19,en_riesgo,false,,,
+U000541,BrumaDash88,2026-06-27,18-24,Tigre,Cómics,Twitter/X,false,1,2,0,0,0.401,2026-10-05,en_riesgo,true,13,25.747200,-100.366400
+U000542,NeoArt36,2023-10-12,18-24,Husky,Arte tradicional,Telegram,true,0,0,0,1,0.409,2026-04-02,inactivo,false,,,
+U000543,BrumaArt37,2025-11-15,18-24,Zorro,Videojuegos,Facebook,false,30,46,0,0,0.867,2026-10-27,activo,true,19,,
+U000544,PixelInk4,2024-07-20,18-24,Gato,Escritura/Historias,Discord,false,7,9,0,0,0.697,2026-10-29,activo,true,18,,
+U000545,KibaPelaje51,2025-03-08,32-38,Reptil,Streaming/Contenido,Facebook,false,0,0,0,0,0.216,2026-02-01,inactivo,true,16,20.658800,-100.448800
+U000546,RexTail75,2024-09-27,32-38,Lobo,Videojuegos,Facebook,false,0,0,0,0,0.451,2025-10-16,inactivo,true,13,25.668200,-100.298000
+U000547,ÁmbarZac78,2022-03-18,18-24,Dragón,Arte digital,Telegram,true,0,0,0,0,-0.086,2025-11-20,inactivo,true,9,19.509600,-99.196900
+U000548,CobreDash91,2025-07-09,18-24,Híbrido/Otro,Arte digital,Telegram,true,2,2,0,5,0.711,2026-10-09,en_riesgo,false,,,
+U000549,FlareKin41,2026-07-01,39+,Híbrido/Otro,Convenciones,Discord,false,0,0,4,0,0.008,2026-07-01,inactivo,true,20,20.914800,-89.670500
+U000550,AshByte61,2023-07-17,25-31,Gato,Música,TikTok,false,2,3,2,0,0.477,2026-10-18,en_riesgo,true,9,19.480100,-99.090600
+U000551,ZetaFox20,2023-07-12,25-31,Coyote,Cómics,Facebook,false,4,14,0,0,0.539,2026-10-14,en_riesgo,true,9,19.401900,-99.132500
+U000552,YukiPelaje89,2024-12-25,18-24,Zorro,Videojuegos,Facebook,false,9,24,0,0,0.879,2026-10-12,en_riesgo,true,20,20.999600,-89.556900
+U000553,BrunoFang85,2025-02-03,18-24,Ave,Cómics,TikTok,false,29,54,0,0,-0.076,2026-10-26,activo,true,6,29.729400,-95.445000
+U000554,NeoMoon11,2023-08-20,25-31,Perro,Cómics,Instagram,false,19,27,1,0,-0.392,2026-09-15,en_riesgo,true,9,19.392200,-99.177000
+U000555,RexFox44,2025-12-08,25-31,Lobo,Escritura/Historias,TikTok,false,0,0,0,0,0.051,2026-08-24,inactivo,true,20,,
+U000556,PixelHowl2,2023-02-09,32-38,Híbrido/Otro,Escritura/Historias,Instagram,false,0,0,0,0,0.285,2026-03-25,inactivo,true,15,19.107200,-98.131800
+U000557,ZorriWolf43,2023-12-06,32-38,Dragón,Cómics,Discord,false,4,12,0,0,0.452,2026-11-05,activo,true,9,19.468900,-99.155100
+U000558,BrumaInk87,2025-09-19,18-24,Lobo,Convenciones,TikTok,false,11,41,0,0,0.254,2026-10-28,activo,true,17,21.227000,-86.830000
+U000559,NubeKin64,2023-09-27,39+,Gato,Cómics,Telegram,false,0,0,0,0,-0.242,2026-05-06,inactivo,true,13,25.671000,-100.330700
+U000560,SombraFang76,2022-10-31,18-24,Híbrido/Otro,Cómics,Facebook,false,0,0,0,0,0.35,2026-08-02,inactivo,true,6,29.786100,-95.314000
+U000561,KibaByte66,2024-10-17,25-31,Lobo,Arte tradicional,Discord,true,15,42,0,0,0.736,2026-11-09,activo,true,20,20.980100,-89.675000
+U000562,KuroFang83,2025-04-01,18-24,Dragón,Arte digital,Discord,true,0,0,0,2,0.424,2026-04-20,inactivo,true,18,17.973200,-92.884800
+U000563,KibaTail19,2025-04-06,25-31,Lobo,Escritura/Historias,Telegram,false,0,0,0,0,-0.255,2026-08-11,inactivo,true,20,20.914600,-89.582900
+U000564,AshByte47,2024-01-19,25-31,Híbrido/Otro,Cosplay,Instagram,false,8,21,2,0,0.375,2026-11-08,activo,true,9,19.459200,-99.137400
+U000565,CobreMoon85,2026-05-19,32-38,Perro,Arte digital,Discord,true,3,4,0,0,-0.144,2026-09-30,en_riesgo,true,11,21.072300,-101.616600
+U000566,FlareInk93,2025-11-26,18-24,Gato,Streaming/Contenido,Instagram,false,4,7,0,0,0.275,2026-11-06,activo,true,11,21.092600,-101.683100
+U000567,PixelHowl41,2025-10-31,18-24,Dragón,Streaming/Contenido,Telegram,false,10,20,0,0,0.368,2026-11-03,activo,true,17,21.160500,-86.797400
+U000568,LunaClaw2,2026-10-06,18-24,Lobo,Videojuegos,Facebook,false,7,10,0,0,0.725,2026-10-27,activo,true,9,19.350300,-99.164300
+U000569,ZetaCh'a53,2024-01-31,18-24,Conejo,Cómics,Facebook,false,3,8,0,0,0.12,2026-09-10,en_riesgo,true,12,,
+U000570,NovaHowl4,2023-04-30,25-31,Conejo,Streaming/Contenido,Telegram,false,0,0,3,0,0.562,2025-11-13,inactivo,true,9,19.383900,-99.165600
+U000571,AshTail60,2024-05-25,18-24,Zorro,Videojuegos,Instagram,false,4,15,0,0,-0.337,2026-11-01,activo,true,18,,
+U000572,RexTail84,2022-07-28,18-24,Zorro,Fursuit,Facebook,false,4,8,0,2,0.362,2026-11-04,activo,true,9,19.365300,-99.195100
+U000573,BrumaMoon34,2023-10-15,18-24,Gato,Convenciones,Discord,false,2,7,2,0,0.601,2026-11-05,activo,true,9,19.373100,-99.173800
+U000574,OnixSpark69,2026-09-20,25-31,Perro,Arte digital,Twitter/X,true,5,9,0,3,0.557,2026-10-10,en_riesgo,true,16,20.514300,-100.387100
+U000575,AshSpark45,2022-02-20,18-24,Coyote,Cosplay,Instagram,false,16,36,1,1,1.0,2026-11-04,activo,false,,,
+U000576,AshClaw31,2026-09-19,32-38,Lobo,Música,Discord,false,6,14,0,0,0.181,2026-11-07,activo,true,9,19.430000,-99.196000
+U000577,NeoPelaje71,2026-08-18,25-31,Conejo,Videojuegos,Instagram,false,3,9,0,0,-0.168,2026-11-04,activo,false,,,
+U000578,CobreSpark48,2025-09-09,18-24,Conejo,Arte digital,Instagram,false,0,0,0,0,0.972,2025-11-06,inactivo,false,,,
+U000579,RexTail10,2024-07-17,25-31,Lobo,Fursuit,Facebook,false,4,14,0,0,0.311,2026-10-15,en_riesgo,true,12,,
+U000580,TalaFang60,2026-05-31,25-31,Coyote,Arte digital,Facebook,true,3,5,0,5,0.328,2026-10-22,en_riesgo,true,9,19.417800,-99.075800
+U000581,NubeArt52,2025-10-08,18-24,Zorro,Arte tradicional,Facebook,true,3,4,0,5,0.45,2026-10-11,en_riesgo,true,9,19.371500,-99.067400
+U000582,TalaArt82,2025-03-26,18-24,Gato,Cómics,Facebook,false,0,0,0,0,0.348,2026-07-23,inactivo,true,17,21.209200,-86.863900
+U000583,BrunoInk42,2024-12-24,18-24,Lobo,Arte tradicional,Discord,true,5,11,0,3,0.219,2026-10-27,activo,true,20,20.993500,-89.599800
+U000584,SolArt60,2023-05-03,32-38,Husky,Videojuegos,Telegram,false,0,0,0,1,0.532,2026-09-06,inactivo,true,9,19.496200,-99.190100
+U000585,SolArt78,2025-09-08,25-31,Conejo,Arte digital,Twitter/X,true,1,2,0,0,0.607,2026-09-24,en_riesgo,true,12,20.635200,-103.302500
+U000586,RuneMaya46,2026-03-31,18-24,Coyote,Arte digital,Discord,false,0,0,0,0,0.313,2026-03-31,inactivo,false,,,
+U000587,AshFang98,2023-11-10,18-24,Gato,Música,Instagram,false,2,7,1,0,0.411,2026-10-24,en_riesgo,false,,,
+U000588,RuneDash95,2026-02-12,18-24,Gato,Videojuegos,Twitter/X,false,3,8,0,1,-0.043,2026-10-11,en_riesgo,true,9,,
+U000589,KuroZac16,2024-09-15,18-24,Híbrido/Otro,Convenciones,Twitter/X,false,3,10,0,0,0.167,2026-09-29,en_riesgo,true,3,4.697500,-74.109100
+U000590,LunaClaw75,2023-12-06,25-31,Perro,Cómics,Instagram,false,0,0,7,0,0.588,2026-02-17,inactivo,false,,,
+U000591,OnixByte26,2024-09-26,18-24,Gato,Música,TikTok,true,0,0,0,0,0.743,2025-11-28,inactivo,true,9,19.371800,-99.089000
+U000592,ZorriMaya22,2025-06-28,18-24,Reptil,Fursuit,Telegram,false,4,15,0,5,-0.252,2026-10-31,activo,false,,,
+U000593,TalaArt64,2023-09-04,39+,Conejo,Streaming/Contenido,Instagram,false,7,21,0,0,0.49,2026-11-06,activo,true,3,4.726100,-74.084400
+U000594,FlarePaw70,2022-11-15,18-24,Ave,Fursuit,Twitter/X,false,2,3,1,0,0.338,2026-11-04,activo,true,8,19.794200,-90.513900
+U000595,LoboByte98,2024-11-27,25-31,Zorro,Música,Twitter/X,false,3,6,0,0,0.112,2026-09-20,en_riesgo,true,9,,
+U000596,BrunoDash87,2025-08-31,18-24,Zorro,Cómics,Twitter/X,false,0,0,0,1,0.664,2026-09-07,inactivo,true,16,20.516000,-100.438000
+U000597,BrumaClaw30,2025-12-24,25-31,Zorro,Arte tradicional,Telegram,true,14,30,0,2,-0.299,2026-11-03,activo,true,13,25.658000,-100.279700
+U000598,KibaArt27,2024-09-15,25-31,Zorro,Escritura/Historias,Twitter/X,false,39,133,0,0,-0.283,2026-11-09,activo,true,7,32.555300,-117.059400
+U000599,RexDash28,2024-12-29,18-24,Ave,Escritura/Historias,Telegram,false,2,2,0,0,0.367,2026-09-22,en_riesgo,true,1,-34.678100,-58.436900
+U000600,LoboByte1,2023-05-31,25-31,Gato,Música,Instagram,false,9,31,1,0,-0.057,2026-11-05,activo,true,2,-33.378000,-70.665100
+U000601,LunaZac47,2026-09-06,25-31,Husky,Escritura/Historias,Instagram,false,0,0,0,1,-0.007,2026-09-06,inactivo,true,20,20.896000,-89.596800
+U000602,KuroMoon82,2025-04-28,18-24,Dragón,Fursuit,Telegram,false,2,7,0,1,0.273,2026-10-17,en_riesgo,true,12,20.746200,-103.280500
+U000603,RuneDash18,2022-02-27,18-24,Híbrido/Otro,Arte tradicional,Discord,true,7,15,4,5,0.051,2026-11-04,activo,true,7,32.431700,-117.066700
+U000604,KibaFox26,2026-04-07,25-31,Reptil,Cómics,Twitter/X,false,5,19,0,0,0.312,2026-11-04,activo,true,13,25.726200,-100.280800
+U000605,RuneInk82,2024-12-11,18-24,Zorro,Arte digital,Facebook,true,1,2,0,2,-0.039,2026-10-08,en_riesgo,true,4,40.381600,-3.726500
+U000606,AshZac52,2025-12-26,25-31,Zorro,Arte digital,Discord,false,2,3,0,5,1.0,2026-10-20,en_riesgo,true,8,19.876400,-90.578000
+U000607,FlareMoon61,2022-03-22,18-24,Tigre,Escritura/Historias,Instagram,false,3,11,0,0,0.272,2026-10-24,en_riesgo,true,17,21.134600,-86.875000
+U000608,RuneMaya9,2024-10-01,39+,Coyote,Videojuegos,Telegram,false,0,0,0,0,-0.092,2025-11-29,inactivo,false,,,
+U000609,ZorriHowl97,2024-05-10,18-24,Lobo,Convenciones,Facebook,false,3,10,0,1,0.155,2026-10-22,en_riesgo,true,13,25.602000,-100.258700
+U000610,SombraPaw44,2026-09-06,18-24,Reptil,Arte digital,Telegram,false,4,13,0,0,0.388,2026-10-25,en_riesgo,false,,,
+U000611,NubeDash65,2022-06-28,25-31,Perro,Videojuegos,Facebook,false,0,0,0,0,0.222,2025-12-10,inactivo,true,5,34.071100,-118.235100
+U000612,ZetaWolf98,2025-12-12,32-38,Zorro,Música,Telegram,false,0,0,0,0,0.614,2026-08-30,inactivo,false,,,
+U000613,RuneSpark12,2025-06-10,18-24,Dragón,Arte digital,TikTok,true,0,0,0,3,0.285,2026-09-06,inactivo,false,,,
+U000614,TalaArt88,2025-09-20,18-24,Husky,Fursuit,Instagram,true,3,7,0,1,0.718,2026-11-03,activo,true,12,,
+U000615,CobreTail27,2025-03-23,25-31,Híbrido/Otro,Videojuegos,Telegram,false,2,6,0,0,0.02,2026-10-09,en_riesgo,true,9,19.508700,-99.118600
+U000616,NovaPaw78,2022-05-29,18-24,Lobo,Streaming/Contenido,Telegram,false,3,6,0,0,0.198,2026-10-25,en_riesgo,true,7,32.439900,-117.093900
+U000617,ZorriWolf21,2022-10-12,25-31,Perro,Música,Facebook,false,4,13,0,0,0.231,2026-10-18,en_riesgo,true,4,40.483700,-3.748500
+U000618,LunaFox99,2024-10-30,25-31,Reptil,Videojuegos,Twitter/X,true,0,0,0,0,0.045,2025-12-08,inactivo,true,7,32.558900,-117.054200
+U000619,NovaKin67,2025-06-28,18-24,Gato,Cosplay,Telegram,false,12,39,0,0,0.686,2026-11-07,activo,true,9,19.468400,-99.200500
+U000620,SolDash77,2025-04-24,18-24,Gato,Arte digital,Telegram,true,2,2,0,1,0.615,2026-10-11,en_riesgo,false,,,
+U000621,AshKin96,2022-04-28,18-24,Reptil,Arte digital,Instagram,true,3,3,0,0,0.079,2026-10-30,activo,true,12,20.592000,-103.320500
+U000622,ÁmbarPaw45,2022-02-06,25-31,Conejo,Fursuit,Telegram,false,8,30,0,1,0.489,2026-11-05,activo,true,9,19.381400,-99.200500
+U000623,CobrePaw32,2026-09-22,25-31,Tigre,Cosplay,Twitter/X,false,0,0,0,0,0.077,2026-09-22,en_riesgo,false,,,
+U000624,ZorriSpark79,2025-11-19,25-31,Dragón,Fursuit,Telegram,false,7,23,1,3,0.19,2026-11-03,activo,true,20,21.004800,-89.600100
+U000625,ZetaFox70,2026-01-06,25-31,Perro,Cómics,TikTok,false,3,11,0,0,0.554,2026-10-30,activo,true,15,18.990400,-98.241700
+U000626,BrumaFox73,2025-01-14,18-24,Perro,Videojuegos,Instagram,true,3,9,0,0,0.572,2026-10-09,en_riesgo,true,9,19.352500,-99.208400
+U000627,TalaPelaje73,2022-11-29,32-38,Gato,Escritura/Historias,Telegram,false,6,10,0,0,0.375,2026-11-07,activo,true,3,4.764300,-74.027900
+U000628,TalaZac70,2023-02-18,18-24,Lobo,Música,Facebook,false,0,0,0,0,0.266,2026-01-30,inactivo,true,11,21.164300,-101.623600
+U000629,RexMoon46,2025-01-04,18-24,Zorro,Videojuegos,Telegram,false,0,0,0,0,0.262,2026-08-26,inactivo,true,9,19.400300,-99.067700
+U000630,BrunoZac28,2022-12-09,25-31,Reptil,Música,Telegram,false,4,6,0,1,0.155,2026-10-05,en_riesgo,true,8,19.897100,-90.579400
+U000631,PixelMaya29,2022-02-25,32-38,Zorro,Convenciones,Telegram,false,4,5,1,0,0.374,2026-10-28,activo,true,3,4.670300,-74.141400
+U000632,LunaTail15,2023-04-17,18-24,Dragón,Fursuit,Twitter/X,false,6,8,4,3,0.41,2026-11-06,activo,true,10,28.701700,-106.033100
+U000633,ZetaPaw20,2024-06-24,25-31,Zorro,Escritura/Historias,TikTok,false,0,0,0,0,0.817,2025-11-16,inactivo,true,13,25.599100,-100.295600
+U000634,SombraFox76,2026-09-24,18-24,Zorro,Videojuegos,Telegram,false,9,19,0,0,0.166,2026-11-01,activo,true,16,20.643000,-100.369700
+U000635,YukiFox31,2026-05-27,25-31,Lobo,Arte digital,Instagram,true,0,0,0,1,-0.029,2026-07-08,inactivo,true,3,4.745400,-74.142800
+U000636,OnixZac7,2025-04-05,18-24,Dragón,Arte tradicional,Facebook,false,18,30,0,5,-0.168,2026-11-07,activo,false,,,
+U000637,NeoCh'a37,2026-04-28,18-24,Híbrido/Otro,Arte tradicional,Instagram,true,2,2,3,1,0.506,2026-09-24,en_riesgo,true,5,34.063900,-118.288700
+U000638,ZorriPaw51,2022-07-20,18-24,Lobo,Arte digital,TikTok,true,7,15,0,3,-0.137,2026-11-04,activo,true,10,28.675700,-106.021200
+U000639,BrumaKin41,2022-05-20,25-31,Híbrido/Otro,Streaming/Contenido,Telegram,true,0,0,4,1,-0.513,2026-09-06,inactivo,true,9,19.430600,-99.091200
+U000640,BrunoInk32,2022-06-22,25-31,Dragón,Arte digital,Facebook,true,0,0,0,5,-0.265,2026-03-19,inactivo,true,9,19.377600,-99.092200
+U000641,MikaMaya65,2026-03-27,18-24,Reptil,Convenciones,Discord,false,1,1,1,0,0.165,2026-10-25,en_riesgo,true,20,20.922300,-89.580400
+U000642,MikaTail96,2026-10-28,25-31,Gato,Música,Discord,false,8,24,8,0,-0.353,2026-10-28,activo,true,20,21.039400,-89.609100
+U000643,TalaPaw4,2026-10-29,18-24,Lobo,Cosplay,Discord,false,4,15,0,0,0.056,2026-11-02,activo,true,12,20.660500,-103.378500
+U000644,RexInk36,2026-03-08,32-38,Coyote,Fursuit,Instagram,true,14,52,1,1,0.517,2026-11-09,activo,true,12,20.623700,-103.288500
+U000645,NovaHowl32,2025-02-16,18-24,Gato,Convenciones,Telegram,false,30,47,0,0,0.433,2026-10-28,activo,true,12,20.623800,-103.337200
+U000646,ZetaZac11,2023-08-18,32-38,Híbrido/Otro,Arte digital,Telegram,true,4,7,0,1,0.355,2026-10-15,en_riesgo,true,15,18.981800,-98.249000
+U000647,ZetaPaw3,2022-03-14,39+,Ave,Escritura/Historias,Twitter/X,false,5,12,0,0,-0.286,2026-11-06,activo,true,20,20.932100,-89.615600
+U000648,SolDash73,2026-10-29,25-31,Coyote,Cómics,Discord,false,7,20,0,0,0.065,2026-10-29,activo,false,,,
+U000649,SombraDash9,2023-02-24,25-31,Zorro,Convenciones,Telegram,false,0,0,3,0,0.868,2026-08-01,inactivo,true,18,18.067000,-93.007700
+U000650,BrunoClaw88,2024-07-25,32-38,Ave,Streaming/Contenido,Twitter/X,false,2,3,0,0,0.27,2026-09-29,en_riesgo,true,11,21.093300,-101.694800
+U000651,ÁmbarMaya65,2024-06-13,18-24,Husky,Escritura/Historias,Telegram,false,0,0,3,0,0.044,2026-08-15,inactivo,true,14,,
+U000652,BrunoArt47,2023-05-15,32-38,Híbrido/Otro,Videojuegos,Telegram,false,19,43,0,0,-0.043,2026-10-30,activo,true,20,20.902800,-89.541100
+U000653,CobreByte21,2023-12-06,32-38,Zorro,Escritura/Historias,Telegram,false,3,10,0,0,0.651,2026-11-09,activo,true,20,20.977200,-89.549500
+U000654,CobreZac11,2026-01-16,25-31,Zorro,Arte digital,Instagram,true,21,57,0,3,0.406,2026-11-09,activo,true,12,20.692100,-103.303700
+U000655,LunaCh'a45,2025-03-16,39+,Zorro,Música,Facebook,true,8,14,0,0,0.977,2026-11-01,activo,true,9,19.440900,-99.061300
+U000656,YukiMoon98,2024-08-03,25-31,Tigre,Cosplay,TikTok,false,0,0,0,0,0.221,2026-08-14,inactivo,true,20,,
+U000657,PixelInk53,2025-09-06,18-24,Perro,Escritura/Historias,Instagram,true,2,7,0,0,0.441,2026-10-23,en_riesgo,false,,,
+U000658,ZorriPelaje81,2025-10-19,18-24,Dragón,Fursuit,Telegram,false,4,15,3,1,-0.008,2026-09-26,en_riesgo,true,3,4.756500,-74.024000
+U000659,NeoPelaje66,2025-05-18,25-31,Lobo,Música,Twitter/X,false,39,46,0,0,0.566,2026-11-03,activo,true,10,,
+U000660,AshDash17,2022-04-30,18-24,Lobo,Música,TikTok,false,12,15,0,0,-0.107,2026-11-03,activo,true,16,20.617400,-100.451800
+U000661,NeoHowl74,2023-03-26,32-38,Híbrido/Otro,Arte digital,Instagram,true,21,60,0,0,0.923,2026-11-06,activo,true,15,19.024400,-98.197500
+U000662,NovaCh'a34,2026-10-07,18-24,Dragón,Fursuit,Facebook,false,10,28,1,3,0.343,2026-11-06,activo,false,,,
+U000663,RexMoon12,2025-12-11,32-38,Zorro,Arte digital,TikTok,true,7,20,0,3,0.238,2026-10-19,en_riesgo,true,9,,
+U000664,SombraKin73,2026-08-29,32-38,Tigre,Streaming/Contenido,Facebook,false,2,5,0,0,0.344,2026-09-14,en_riesgo,true,9,19.454400,-99.191000
+U000665,NubePaw26,2026-08-31,18-24,Híbrido/Otro,Cosplay,Instagram,false,2,3,0,0,-0.411,2026-09-18,en_riesgo,true,9,19.491700,-99.084400
+U000666,BrumaZac44,2023-08-08,25-31,Perro,Arte tradicional,Discord,true,4,14,0,3,-0.41,2026-10-21,en_riesgo,true,13,25.615200,-100.314000
+U000667,LunaKin92,2024-10-20,18-24,Husky,Streaming/Contenido,Twitter/X,false,15,47,0,0,0.23,2026-11-02,activo,true,11,21.064700,-101.625400
+U000668,SombraTail52,2025-08-21,18-24,Zorro,Convenciones,Discord,false,2,3,0,0,0.533,2026-10-31,activo,false,,,
+U000669,SolWolf57,2026-09-20,25-31,Tigre,Streaming/Contenido,Telegram,false,4,9,4,0,-0.248,2026-10-23,en_riesgo,true,20,21.029000,-89.555800
+U000670,ZetaZac48,2023-05-03,25-31,Zorro,Videojuegos,Telegram,false,2,6,0,0,0.341,2026-11-04,activo,true,17,21.096400,-86.819200
+U000671,TalaSpark4,2023-10-05,25-31,Perro,Streaming/Contenido,TikTok,false,0,0,0,1,0.345,2025-11-07,inactivo,true,8,19.838300,-90.547900
+U000672,MikaZac59,2024-04-08,18-24,Lobo,Videojuegos,Facebook,false,6,14,0,0,-0.221,2026-10-29,activo,false,,,
+U000673,NeoInk59,2026-04-07,18-24,Tigre,Cómics,Twitter/X,false,14,33,0,0,0.395,2026-10-18,en_riesgo,true,12,20.668300,-103.310500
+U000674,NovaDash99,2023-04-18,25-31,Zorro,Videojuegos,Facebook,false,7,13,2,0,-0.257,2026-11-06,activo,true,18,17.919000,-92.959600
+U000675,FlarePaw14,2024-12-11,18-24,Zorro,Videojuegos,Twitter/X,false,13,30,3,0,0.4,2026-11-02,activo,false,,,
+U000676,RuneSpark61,2022-06-14,18-24,Perro,Fursuit,Facebook,false,2,6,4,0,0.266,2026-10-16,en_riesgo,true,13,25.619800,-100.237100
+U000677,YukiKin60,2026-04-20,39+,Zorro,Escritura/Historias,Facebook,false,0,0,0,0,0.709,2026-04-20,inactivo,true,9,19.360100,-99.202300
+U000678,YukiSpark27,2023-06-25,25-31,Tigre,Fursuit,Facebook,false,50,157,0,1,0.209,2026-11-09,activo,true,13,25.684300,-100.371700
+U000679,MikaFang96,2023-03-08,18-24,Dragón,Videojuegos,Discord,false,9,27,0,0,0.316,2026-10-27,activo,true,8,19.845800,-90.553000
+U000680,NeoClaw41,2026-01-18,18-24,Perro,Cómics,Instagram,false,7,15,3,0,0.281,2026-10-29,activo,true,2,-33.427800,-70.608100
+U000681,ZetaCh'a65,2022-09-26,39+,Gato,Videojuegos,TikTok,true,2,3,0,0,0.658,2026-10-24,en_riesgo,false,,,
+U000682,RexZac20,2024-11-20,25-31,Tigre,Escritura/Historias,Twitter/X,false,1,1,3,0,0.237,2026-10-14,en_riesgo,false,,,
+U000683,NeoClaw47,2025-01-22,18-24,Coyote,Arte tradicional,Telegram,false,0,0,0,0,0.331,2026-05-15,inactivo,false,,,
+U000684,RuneWolf22,2023-08-06,25-31,Coyote,Arte digital,TikTok,true,34,97,0,2,-0.019,2026-10-21,en_riesgo,true,8,19.842700,-90.538500
+U000685,OnixInk57,2025-06-06,32-38,Lobo,Música,Telegram,false,1,2,0,0,0.234,2026-10-10,en_riesgo,true,13,25.746800,-100.261100
+U000686,CobreZac23,2023-03-03,18-24,Perro,Arte digital,Facebook,true,1,2,0,5,0.541,2026-10-24,en_riesgo,true,15,19.047200,-98.268100
+U000687,ZorriCh'a21,2023-04-30,18-24,Gato,Fursuit,Telegram,false,4,9,0,2,-0.422,2026-10-24,en_riesgo,true,13,25.639400,-100.261800
+U000688,NovaInk5,2026-08-29,18-24,Lobo,Fursuit,Facebook,true,0,0,0,3,0.044,2026-08-29,inactivo,true,20,20.984100,-89.617800
+U000689,SombraHowl11,2025-10-11,18-24,Lobo,Videojuegos,Facebook,false,24,28,0,0,0.57,2026-10-23,en_riesgo,true,13,25.674300,-100.290600
+U000690,BrunoFang58,2026-10-24,32-38,Zorro,Arte digital,Telegram,true,8,20,0,3,0.051,2026-10-29,activo,true,8,19.888100,-90.451000
+U000691,RuneArt29,2023-01-13,18-24,Perro,Escritura/Historias,Instagram,false,2,2,5,0,-0.224,2026-09-26,en_riesgo,false,,,
+U000692,SombraMaya54,2025-06-10,18-24,Dragón,Arte digital,TikTok,true,1,2,3,3,0.421,2026-09-17,en_riesgo,true,12,20.653700,-103.319000
+U000693,TalaHowl29,2026-07-26,18-24,Perro,Cosplay,Instagram,false,1,1,4,0,0.455,2026-10-16,en_riesgo,false,,,
+U000694,NeoKin87,2022-07-13,18-24,Híbrido/Otro,Arte digital,Discord,true,4,9,0,2,0.422,2026-10-08,en_riesgo,true,9,19.414600,-99.079800
+U000695,AshPelaje95,2026-06-29,25-31,Gato,Escritura/Historias,Instagram,false,4,10,1,0,0.796,2026-11-06,activo,true,17,21.187800,-86.805900
+U000696,ZetaDash16,2022-01-23,18-24,Gato,Convenciones,Telegram,false,0,0,2,0,-0.071,2025-12-07,inactivo,false,,,
+U000697,BrunoCh'a95,2025-10-03,18-24,Lobo,Arte tradicional,Discord,true,0,0,0,3,1.0,2026-08-16,inactivo,true,20,20.988700,-89.656800
+U000698,ÁmbarWolf26,2023-03-07,25-31,Conejo,Cosplay,Telegram,false,1,3,0,0,0.111,2026-09-19,en_riesgo,true,15,19.093800,-98.233900
+U000699,KuroDash38,2022-11-22,18-24,Perro,Fursuit,TikTok,false,0,0,0,0,0.435,2026-08-11,inactivo,true,20,21.036900,-89.554100
+U000700,PixelCh'a43,2026-06-07,18-24,Conejo,Streaming/Contenido,Twitter/X,false,0,0,0,0,-0.012,2026-06-07,inactivo,true,20,,
+U000701,KuroInk4,2026-07-06,25-31,Tigre,Fursuit,Facebook,false,4,14,1,1,0.962,2026-09-14,en_riesgo,true,2,,
+U000702,OnixDash93,2023-06-23,25-31,Coyote,Arte digital,Twitter/X,true,4,7,0,2,-0.109,2026-10-04,en_riesgo,true,9,19.399500,-99.107000
+U000703,PixelSpark84,2024-04-30,18-24,Gato,Música,Instagram,false,2,6,0,0,0.218,2026-10-13,en_riesgo,true,11,21.147200,-101.623800
+U000704,CobrePelaje48,2023-03-29,25-31,Dragón,Streaming/Contenido,Facebook,true,2,3,0,0,-0.041,2026-10-22,en_riesgo,true,9,19.386600,-99.074700
+U000705,LoboZac80,2023-08-30,25-31,Reptil,Streaming/Contenido,Facebook,true,4,12,0,0,0.537,2026-09-17,en_riesgo,true,17,21.122600,-86.870800
+U000706,CobreZac96,2026-07-13,25-31,Lobo,Arte digital,Facebook,true,4,9,2,1,-0.001,2026-10-22,en_riesgo,true,12,20.739500,-103.389000
+U000707,LunaFang33,2024-07-28,18-24,Coyote,Escritura/Historias,Twitter/X,false,0,0,1,0,-0.456,2025-10-13,inactivo,false,,,
+U000708,MikaMaya13,2024-05-03,25-31,Híbrido/Otro,Videojuegos,Twitter/X,false,3,6,0,0,-0.116,2026-10-20,en_riesgo,true,10,28.553200,-106.087700
+U000709,SolMaya27,2026-10-19,18-24,Ave,Arte digital,TikTok,false,3,9,0,2,0.357,2026-10-22,en_riesgo,true,9,19.380600,-99.128900
+U000710,NubeHowl18,2023-09-18,18-24,Dragón,Videojuegos,Telegram,false,0,0,0,0,0.388,2026-01-23,inactivo,true,12,20.727300,-103.412600
+U000711,BrumaArt66,2026-11-04,39+,Tigre,Fursuit,Instagram,false,17,34,2,1,-0.083,2026-11-04,activo,true,20,20.914500,-89.544100
+U000712,NovaInk9,2026-05-25,32-38,Perro,Cosplay,Facebook,false,8,19,0,0,0.08,2026-11-06,activo,false,,,
+U000713,ZorriPaw3,2022-12-09,18-24,Gato,Música,Facebook,false,8,19,0,0,0.609,2026-10-28,activo,true,18,17.947100,-92.867600
+U000714,BrumaFang69,2023-10-21,18-24,Lobo,Escritura/Historias,Twitter/X,false,0,0,0,0,-0.328,2025-10-15,inactivo,true,6,29.748300,-95.439000
+U000715,RexHowl58,2023-07-18,18-24,Híbrido/Otro,Arte digital,Facebook,false,7,14,0,0,0.548,2026-11-08,activo,true,7,32.477100,-116.996200
+U000716,RexWolf98,2024-07-24,25-31,Dragón,Cómics,Twitter/X,false,14,24,1,0,0.091,2026-11-01,activo,false,,,
+U000717,NubeFang12,2022-04-10,25-31,Híbrido/Otro,Arte digital,Instagram,true,27,63,0,5,0.547,2026-10-30,activo,true,20,20.976500,-89.645900
+U000718,TalaSpark44,2023-04-16,18-24,Híbrido/Otro,Convenciones,TikTok,false,6,17,1,0,0.215,2026-10-26,activo,false,,,
+U000719,KibaByte74,2025-12-15,18-24,Coyote,Fursuit,Telegram,false,18,38,2,2,0.161,2026-10-23,en_riesgo,true,20,,
+U000720,ZetaPelaje3,2025-07-27,18-24,Gato,Música,Facebook,false,0,0,0,0,0.406,2026-07-31,inactivo,false,,,
+U000721,LoboHowl95,2025-02-09,18-24,Dragón,Convenciones,Twitter/X,true,0,0,1,0,0.108,2026-02-02,inactivo,true,12,20.658700,-103.404300
+U000722,RexZac81,2024-10-06,18-24,Zorro,Convenciones,Facebook,false,0,0,0,0,0.125,2026-02-09,inactivo,true,21,-12.104900,-77.105700
+U000723,TalaByte63,2024-12-28,18-24,Coyote,Arte digital,Telegram,true,0,0,0,1,-0.052,2025-12-28,inactivo,true,21,-12.081600,-77.074700
+U000724,LunaByte90,2023-12-03,18-24,Reptil,Cosplay,TikTok,false,7,27,4,0,0.359,2026-10-21,en_riesgo,true,16,20.511500,-100.393400
+U000725,BrunoHowl85,2024-12-29,25-31,Tigre,Videojuegos,Instagram,false,10,13,0,0,1.0,2026-11-09,activo,true,9,19.432300,-99.159400
+U000726,FlareZac13,2025-08-09,32-38,Híbrido/Otro,Arte digital,Telegram,false,0,0,0,5,0.352,2025-10-29,inactivo,true,17,21.171600,-86.807800
+U000727,LoboSpark56,2023-04-04,25-31,Reptil,Streaming/Contenido,Twitter/X,false,25,83,0,0,0.254,2026-11-03,activo,true,20,,
+U000728,RexFox11,2026-04-02,25-31,Husky,Streaming/Contenido,Telegram,false,3,5,0,0,0.163,2026-10-12,en_riesgo,true,16,20.611100,-100.440300
+U000729,KuroSpark71,2024-02-22,18-24,Perro,Cómics,Instagram,false,0,0,0,0,0.692,2026-02-17,inactivo,false,,,
+U000730,KibaSpark32,2022-12-02,25-31,Conejo,Cosplay,Discord,false,0,0,1,0,0.345,2025-12-25,inactivo,false,,,
+U000731,FlareMoon5,2023-08-08,25-31,Coyote,Convenciones,Telegram,false,0,0,1,0,0.362,2026-03-20,inactivo,false,,,
+U000732,PixelZac38,2026-08-13,25-31,Coyote,Videojuegos,Facebook,false,0,0,0,0,0.229,2026-08-19,inactivo,true,8,19.850800,-90.601900
+U000733,LunaArt9,2025-04-28,18-24,Lobo,Convenciones,Facebook,false,9,11,0,0,0.033,2026-11-02,activo,true,8,19.863000,-90.589400
+U000734,RexKin25,2026-02-15,18-24,Reptil,Arte digital,Telegram,true,13,50,4,3,0.185,2026-11-08,activo,false,,,
+U000735,KuroSpark74,2023-12-24,25-31,Híbrido/Otro,Escritura/Historias,TikTok,false,4,9,6,0,0.271,2026-09-26,en_riesgo,true,8,19.909600,-90.557900
+U000736,KibaZac49,2022-09-07,18-24,Reptil,Convenciones,Telegram,false,5,11,0,1,0.155,2026-11-08,activo,true,15,18.987600,-98.174500
+U000737,KuroSpark19,2025-12-11,18-24,Tigre,Fursuit,Facebook,false,11,19,0,1,0.867,2026-10-21,en_riesgo,true,20,20.927100,-89.546100
+U000738,RexClaw20,2025-09-21,18-24,Lobo,Arte tradicional,Facebook,true,7,10,0,0,-0.025,2026-10-28,activo,true,8,19.850000,-90.495800
+U000739,RuneTail59,2026-10-06,18-24,Lobo,Música,Telegram,false,26,68,0,0,0.567,2026-10-17,en_riesgo,true,11,21.050800,-101.641200
+U000740,KuroMaya62,2022-08-13,25-31,Coyote,Música,Instagram,false,1,1,0,0,-0.096,2026-09-20,en_riesgo,false,,,
+U000741,BrumaInk73,2025-06-20,25-31,Lobo,Música,Telegram,false,0,0,0,0,0.147,2026-04-18,inactivo,true,20,20.964100,-89.614200
+U000742,TalaKin45,2026-03-31,25-31,Perro,Arte digital,TikTok,false,8,29,0,3,0.107,2026-10-30,activo,true,2,-33.511900,-70.705400
+U000743,ÁmbarSpark81,2022-10-03,18-24,Perro,Videojuegos,Discord,false,0,0,0,0,0.073,2026-02-22,inactivo,true,8,19.876700,-90.462800
+U000744,RuneTail89,2026-07-01,25-31,Ave,Convenciones,TikTok,false,10,39,2,0,0.296,2026-11-01,activo,true,20,20.987600,-89.542100
+U000745,MikaZac78,2023-05-24,18-24,Perro,Arte digital,Facebook,false,0,0,0,2,0.851,2026-04-05,inactivo,true,9,19.375700,-99.172100
+U000746,ZorriPaw76,2023-07-25,25-31,Perro,Arte digital,TikTok,true,9,30,0,0,0.656,2026-11-07,activo,true,12,20.721900,-103.361500
+U000747,NubeKin94,2025-02-17,25-31,Ave,Arte digital,Facebook,false,2,6,0,0,0.606,2026-10-17,en_riesgo,true,13,25.636600,-100.321200
+U000748,SolFox26,2023-10-13,32-38,Gato,Streaming/Contenido,Instagram,false,0,0,0,0,0.387,2026-08-17,inactivo,true,16,20.567500,-100.352600
+U000749,KibaDash21,2024-12-12,25-31,Zorro,Cómics,Telegram,false,18,26,3,0,-0.064,2026-10-26,activo,false,,,
+U000750,TalaPelaje76,2023-09-05,18-24,Zorro,Fursuit,Facebook,false,0,0,4,1,0.207,2026-08-12,inactivo,true,20,,
+U000751,KibaMaya87,2023-12-12,18-24,Zorro,Arte tradicional,Twitter/X,true,0,0,2,2,0.413,2026-04-11,inactivo,false,,,
+U000752,NeoInk67,2023-03-03,25-31,Perro,Arte digital,TikTok,true,4,15,0,0,0.118,2026-10-21,en_riesgo,true,15,18.996400,-98.261400
+U000753,SombraWolf80,2025-04-25,25-31,Ave,Arte tradicional,Telegram,true,0,0,0,1,0.622,2026-10-25,en_riesgo,true,9,19.352700,-99.052800
+U000754,ZetaPaw48,2024-09-15,18-24,Conejo,Videojuegos,Instagram,false,2,3,1,0,0.041,2026-10-27,activo,true,20,20.983300,-89.564000
+U000755,LunaHowl76,2023-08-03,39+,Husky,Música,Telegram,false,0,0,0,0,0.468,2026-01-28,inactivo,true,9,19.448500,-99.124200
+U000756,KibaCh'a82,2025-05-21,18-24,Zorro,Arte tradicional,Telegram,true,12,14,0,5,0.113,2026-10-09,en_riesgo,true,8,19.814500,-90.473800
+U000757,PixelMoon7,2025-07-05,25-31,Conejo,Arte tradicional,Telegram,true,10,36,0,2,-0.075,2026-10-21,en_riesgo,true,14,17.141000,-96.726800
+U000758,LunaMaya61,2024-01-21,25-31,Zorro,Arte digital,Telegram,true,3,10,0,3,0.154,2026-10-27,activo,true,9,19.448300,-99.060400
+U000759,NubeKin46,2023-04-05,32-38,Lobo,Arte digital,Telegram,true,3,4,0,0,0.158,2026-11-02,activo,true,20,20.992100,-89.656300
+U000760,NovaPaw71,2026-09-12,18-24,Híbrido/Otro,Cómics,Facebook,false,2,4,2,1,-0.424,2026-09-12,en_riesgo,true,20,21.019300,-89.698800
+U000761,PixelArt91,2025-02-18,32-38,Zorro,Cómics,TikTok,false,6,20,0,1,-0.442,2026-10-26,activo,true,12,,
+U000762,ZetaPelaje12,2022-11-20,18-24,Lobo,Videojuegos,TikTok,false,9,21,0,0,0.681,2026-11-01,activo,true,20,20.997400,-89.648500
+U000763,BrunoWolf61,2025-08-27,25-31,Lobo,Cosplay,Discord,false,4,5,0,0,0.109,2026-10-27,activo,true,9,,
+U000764,LunaFox15,2023-03-20,18-24,Conejo,Convenciones,Twitter/X,false,1,3,0,0,0.018,2026-09-15,en_riesgo,true,9,19.375800,-99.075700
+U000765,AshInk84,2023-03-16,18-24,Perro,Streaming/Contenido,TikTok,false,1,1,0,0,0.535,2026-10-01,en_riesgo,false,,,
+U000766,BrunoKin73,2025-02-18,18-24,Lobo,Arte tradicional,Telegram,true,2,4,0,3,-0.136,2026-09-30,en_riesgo,true,9,19.381500,-99.107900
+U000767,RexPelaje88,2022-07-13,25-31,Híbrido/Otro,Arte digital,TikTok,false,0,0,2,5,-0.584,2026-08-30,inactivo,true,5,34.041000,-118.314900
+U000768,NeoKin9,2025-01-30,25-31,Lobo,Videojuegos,Telegram,false,16,53,0,0,-0.033,2026-11-09,activo,true,20,20.987400,-89.585300
+U000769,AshCh'a57,2025-03-30,32-38,Dragón,Escritura/Historias,Telegram,false,3,11,0,0,0.143,2026-10-09,en_riesgo,true,4,40.357300,-3.723400
+U000770,SombraPaw63,2026-08-22,25-31,Conejo,Streaming/Contenido,Discord,false,1,3,0,0,0.624,2026-10-15,en_riesgo,true,7,32.520200,-117.009400
+U000771,NeoHowl81,2023-09-25,25-31,Conejo,Streaming/Contenido,Telegram,false,0,0,0,0,0.394,2025-10-30,inactivo,true,17,21.214600,-86.866100
+U000772,MikaInk9,2026-03-06,18-24,Zorro,Arte tradicional,Facebook,true,3,7,0,0,0.45,2026-10-22,en_riesgo,true,20,20.961800,-89.693500
+U000773,NovaHowl15,2025-10-10,25-31,Perro,Arte tradicional,Discord,false,0,0,1,0,0.599,2026-09-03,inactivo,true,15,19.077300,-98.177500
+U000774,ZorriByte36,2022-04-18,18-24,Reptil,Arte digital,Facebook,true,4,12,0,0,-0.097,2026-11-09,activo,true,9,19.407300,-99.125700
+U000775,AshKin25,2025-01-10,25-31,Gato,Fursuit,Instagram,false,0,0,0,0,0.364,2026-08-14,inactivo,true,20,20.907400,-89.570900
+U000776,BrumaDash2,2026-09-30,25-31,Perro,Fursuit,Instagram,false,3,10,0,1,-0.532,2026-09-30,en_riesgo,true,9,,
+U000777,RuneWolf33,2026-04-01,18-24,Dragón,Convenciones,Instagram,false,4,10,2,0,0.456,2026-10-23,en_riesgo,true,20,20.989700,-89.573000
+U000778,SombraPaw15,2022-04-29,18-24,Perro,Arte digital,Facebook,false,4,9,0,3,0.535,2026-10-04,en_riesgo,true,14,17.121500,-96.743600
+U000779,ÁmbarMaya62,2025-01-15,39+,Reptil,Convenciones,Instagram,false,1,1,0,0,-0.075,2026-10-18,en_riesgo,true,1,-34.626700,-58.333000
+U000780,YukiPaw90,2026-09-22,25-31,Zorro,Videojuegos,Telegram,false,12,30,0,0,0.035,2026-11-04,activo,true,7,32.525800,-117.108600
+U000781,FlareFox19,2022-12-11,39+,Zorro,Arte digital,TikTok,true,4,6,0,3,0.369,2026-10-21,en_riesgo,true,12,20.615100,-103.325800
+U000782,SombraMaya96,2024-10-28,32-38,Dragón,Cómics,TikTok,false,2,2,0,0,-0.416,2026-10-25,en_riesgo,true,18,17.936600,-92.858400
+U000783,KibaFox30,2023-07-18,32-38,Híbrido/Otro,Cómics,Instagram,false,25,61,0,0,0.437,2026-09-23,en_riesgo,true,5,34.029500,-118.174600
+U000784,KibaPelaje64,2024-09-03,25-31,Híbrido/Otro,Arte digital,Telegram,true,0,0,1,0,0.506,2026-09-07,inactivo,false,,,
+U000785,ZorriDash14,2024-12-25,25-31,Husky,Escritura/Historias,TikTok,false,3,8,0,0,-0.14,2026-09-28,en_riesgo,true,8,19.862900,-90.473500
+U000786,BrunoTail2,2022-03-02,18-24,Coyote,Arte tradicional,TikTok,true,6,18,0,0,0.272,2026-10-19,en_riesgo,false,,,
+U000787,SombraCh'a68,2026-10-12,18-24,Dragón,Fursuit,Discord,false,9,32,0,0,0.002,2026-11-08,activo,true,9,,
+U000788,CobreTail92,2026-06-25,25-31,Reptil,Cosplay,Telegram,true,0,0,0,0,0.275,2026-06-25,inactivo,true,1,-34.657300,-58.304100
+U000789,NovaSpark46,2024-10-26,39+,Husky,Streaming/Contenido,Telegram,false,0,0,0,0,0.492,2026-07-13,inactivo,true,9,19.431000,-99.098000
+U000790,MikaKin70,2023-07-14,18-24,Gato,Streaming/Contenido,Telegram,false,4,10,0,0,0.213,2026-10-19,en_riesgo,true,18,17.973800,-92.945600
+U000791,OnixPaw91,2026-08-30,18-24,Conejo,Videojuegos,TikTok,false,10,31,0,0,0.012,2026-10-26,activo,true,17,,
+U000792,SombraInk46,2022-08-19,39+,Lobo,Convenciones,Facebook,false,3,10,0,0,-0.177,2026-10-15,en_riesgo,true,16,,
+U000793,NeoHowl16,2025-09-12,39+,Gato,Cosplay,Discord,false,2,5,1,0,0.756,2026-10-23,en_riesgo,false,,,
+U000794,ZorriHowl14,2026-10-16,25-31,Gato,Cómics,TikTok,false,1,3,2,0,0.531,2026-10-16,en_riesgo,true,20,,
+U000795,BrumaTail52,2022-07-30,18-24,Ave,Arte tradicional,Telegram,true,2,5,0,1,0.308,2026-10-24,en_riesgo,true,2,,
+U000796,CobreKin70,2026-01-16,18-24,Gato,Videojuegos,Telegram,false,0,0,0,0,0.199,2026-07-21,inactivo,false,,,
+U000797,NubeByte13,2025-02-18,25-31,Perro,Arte digital,Twitter/X,false,13,19,1,3,0.627,2026-10-28,activo,false,,,
+U000798,LunaMoon55,2023-01-21,18-24,Gato,Arte tradicional,Telegram,true,6,15,0,5,0.015,2026-11-08,activo,true,9,19.381000,-99.125500
+U000799,BrumaByte49,2024-06-17,18-24,Gato,Arte digital,TikTok,true,0,0,0,0,0.469,2026-08-07,inactivo,false,,,
+U000800,LunaKin42,2026-05-05,25-31,Zorro,Arte digital,Telegram,true,1,1,0,5,-0.024,2026-10-15,en_riesgo,true,4,40.490200,-3.669600
+U000801,LunaArt1,2022-03-04,25-31,Dragón,Arte digital,Facebook,true,6,22,0,0,0.485,2026-11-09,activo,true,20,20.971000,-89.577700
+U000802,PixelCh'a52,2026-11-05,25-31,Zorro,Arte tradicional,TikTok,true,11,22,0,5,-0.029,2026-11-05,activo,true,6,29.697300,-95.399600
+U000803,CobreWolf57,2022-06-22,25-31,Perro,Cosplay,TikTok,false,10,28,0,0,0.094,2026-10-31,activo,true,17,21.199100,-86.926200
+U000804,RuneArt26,2024-01-30,18-24,Dragón,Streaming/Contenido,TikTok,false,3,4,0,0,0.511,2026-10-22,en_riesgo,true,20,20.948800,-89.594800
+U000805,SombraPelaje50,2023-02-19,18-24,Conejo,Streaming/Contenido,Facebook,false,4,9,0,0,0.184,2026-10-23,en_riesgo,true,15,19.013700,-98.239400
+U000806,RuneFang51,2026-02-24,18-24,Husky,Fursuit,Facebook,false,0,0,0,1,-0.371,2026-09-01,inactivo,true,11,21.146700,-101.650100
+U000807,NeoMoon46,2023-11-07,25-31,Zorro,Convenciones,Telegram,false,0,0,0,0,-0.13,2025-10-11,inactivo,true,6,29.709700,-95.385800
+U000808,PixelPelaje43,2025-12-02,25-31,Coyote,Fursuit,Telegram,false,0,0,0,3,-0.506,2026-07-29,inactivo,true,20,20.972400,-89.680900
+U000809,RuneSpark90,2024-03-08,25-31,Híbrido/Otro,Videojuegos,Facebook,false,0,0,0,0,-0.017,2026-07-13,inactivo,true,9,19.492000,-99.184400
+U000810,KuroFox20,2024-09-24,32-38,Coyote,Streaming/Contenido,TikTok,false,10,29,0,1,0.726,2026-10-28,activo,true,13,25.599200,-100.348100
+U000811,LoboMaya96,2025-07-03,18-24,Perro,Cosplay,Telegram,true,9,14,4,0,0.191,2026-11-08,activo,false,,,
+U000812,NovaFox62,2023-11-25,18-24,Lobo,Arte digital,Facebook,true,0,0,0,2,0.312,2026-07-24,inactivo,false,,,
+U000813,BrumaFox33,2024-07-22,18-24,Coyote,Videojuegos,Telegram,false,1,3,2,0,0.141,2026-09-17,en_riesgo,true,9,,
+U000814,OnixByte15,2024-04-25,25-31,Tigre,Escritura/Historias,Twitter/X,false,0,0,0,0,0.212,2026-07-08,inactivo,true,20,20.897300,-89.589400
+U000815,RunePelaje67,2026-11-06,32-38,Conejo,Videojuegos,Facebook,true,7,25,0,0,-0.261,2026-11-06,activo,false,,,
+U000816,PixelDash97,2024-08-16,32-38,Zorro,Escritura/Historias,Facebook,false,18,55,0,0,0.039,2026-11-03,activo,true,8,19.899000,-90.525100
+U000817,NubeKin13,2025-12-11,25-31,Conejo,Arte digital,Telegram,true,0,0,0,2,0.42,2026-08-12,inactivo,false,,,
+U000818,LoboArt5,2025-01-14,18-24,Dragón,Arte digital,Telegram,true,0,0,0,0,0.387,2026-07-10,inactivo,true,21,-12.065000,-76.998000
+U000819,NovaPelaje41,2022-09-09,25-31,Zorro,Cosplay,Telegram,false,3,5,1,1,0.381,2026-10-12,en_riesgo,true,8,,
+U000820,LunaMoon3,2025-10-07,18-24,Dragón,Arte digital,TikTok,true,11,33,0,2,0.693,2026-10-29,activo,true,3,4.634600,-74.037100
+U000821,CobreCh'a16,2023-06-01,25-31,Dragón,Arte digital,Facebook,true,7,27,0,0,0.816,2026-11-01,activo,true,18,17.925900,-92.976000
+U000822,OnixKin89,2022-06-03,18-24,Dragón,Arte tradicional,Telegram,true,4,13,0,2,0.353,2026-11-03,activo,true,13,25.724000,-100.267000
+U000823,TalaZac59,2026-07-06,25-31,Perro,Arte digital,Facebook,true,0,0,0,0,0.394,2026-07-21,inactivo,true,12,,
+U000824,NubeSpark56,2022-09-13,32-38,Coyote,Videojuegos,Twitter/X,false,4,12,0,0,0.292,2026-11-09,activo,true,3,,
+U000825,LunaMoon33,2026-06-28,18-24,Husky,Streaming/Contenido,TikTok,false,1,1,0,0,0.57,2026-10-04,en_riesgo,true,9,19.421400,-99.205600
+U000826,FlareWolf74,2024-01-20,32-38,Lobo,Convenciones,Telegram,false,7,19,0,0,1.0,2026-11-04,activo,true,1,-34.652600,-58.429400
+U000827,PixelPaw12,2022-11-12,25-31,Perro,Música,Instagram,true,36,77,0,0,0.425,2026-10-31,activo,true,17,,
+U000828,YukiDash87,2025-07-25,39+,Perro,Arte digital,Telegram,true,15,26,0,0,0.02,2026-11-05,activo,false,,,
+U000829,LoboFox37,2024-03-14,18-24,Tigre,Arte tradicional,Telegram,true,0,0,0,0,0.715,2026-05-10,inactivo,true,20,21.014500,-89.695500
+U000830,SombraHowl43,2025-01-02,18-24,Lobo,Convenciones,Discord,false,0,0,1,0,0.186,2026-02-14,inactivo,true,9,19.378000,-99.157200
+U000831,AshSpark52,2025-10-29,32-38,Perro,Videojuegos,Discord,false,51,182,0,0,0.35,2026-10-26,activo,true,20,21.048700,-89.604800
+U000832,BrumaZac81,2023-07-03,18-24,Perro,Videojuegos,Facebook,false,0,0,0,0,0.184,2026-06-26,inactivo,false,,,
+U000833,YukiHowl69,2026-05-06,18-24,Conejo,Convenciones,Telegram,false,3,4,0,0,1.0,2026-09-28,en_riesgo,true,10,28.667500,-106.073900
+U000834,ZetaMoon91,2026-03-26,18-24,Zorro,Videojuegos,Discord,false,4,10,0,0,0.12,2026-09-29,en_riesgo,true,12,20.608200,-103.411900
+U000835,PixelPelaje15,2024-09-24,18-24,Reptil,Cómics,Telegram,false,5,19,0,0,0.038,2026-11-03,activo,true,20,21.029000,-89.696800
+U000836,ZetaInk80,2025-01-08,18-24,Lobo,Convenciones,Telegram,true,2,4,1,1,0.119,2026-09-29,en_riesgo,true,9,19.383800,-99.121900
+U000837,FlareKin65,2023-10-22,18-24,Lobo,Cómics,Facebook,false,8,24,0,0,0.383,2026-11-08,activo,true,12,,
+U000838,LoboMaya3,2024-03-22,32-38,Husky,Streaming/Contenido,Telegram,false,16,39,0,0,0.631,2026-11-05,activo,true,9,19.410100,-99.128900
+U000839,TalaFang84,2022-06-16,18-24,Ave,Streaming/Contenido,Telegram,false,4,6,0,0,-0.114,2026-09-21,en_riesgo,true,12,20.613200,-103.315800
+U000840,NubeInk70,2024-06-19,32-38,Lobo,Arte digital,Facebook,true,7,24,0,0,0.808,2026-11-01,activo,true,13,25.659600,-100.332700
+U000841,LunaCh'a41,2023-07-16,32-38,Zorro,Streaming/Contenido,Facebook,false,0,0,0,0,0.659,2026-06-08,inactivo,true,9,19.375500,-99.125500
+U000842,MikaPelaje44,2025-01-01,25-31,Conejo,Fursuit,Telegram,false,2,3,1,0,-0.038,2026-09-18,en_riesgo,true,7,32.493300,-116.997200
+U000843,BrumaMoon91,2026-02-28,18-24,Perro,Arte tradicional,Instagram,true,8,29,1,5,-0.277,2026-11-03,activo,true,1,-34.647200,-58.321600
+U000844,LunaPelaje9,2025-05-31,25-31,Dragón,Escritura/Historias,Instagram,false,10,22,0,0,0.488,2026-10-22,en_riesgo,true,8,19.918100,-90.605600
+U000845,KibaZac51,2026-09-08,25-31,Coyote,Cosplay,Facebook,false,7,9,1,0,0.358,2026-10-01,en_riesgo,true,19,19.147900,-96.052200
+U000846,BrunoClaw68,2022-09-12,25-31,Ave,Arte tradicional,Facebook,false,3,11,0,3,-0.293,2026-10-20,en_riesgo,true,9,19.382600,-99.188000
+U000847,BrumaMoon20,2022-05-21,25-31,Híbrido/Otro,Fursuit,Discord,true,0,0,4,0,0.266,2026-10-23,en_riesgo,true,12,20.703900,-103.400900
+U000848,PixelPaw75,2025-05-15,25-31,Zorro,Arte tradicional,Telegram,false,3,5,0,1,0.753,2026-10-13,en_riesgo,true,1,,
+U000849,YukiInk62,2023-04-10,25-31,Tigre,Arte digital,Discord,false,65,203,3,2,0.047,2026-10-28,activo,true,13,25.635800,-100.288500
+U000850,TalaWolf68,2024-01-19,18-24,Perro,Arte tradicional,Instagram,true,11,30,0,2,-0.15,2026-10-30,activo,true,13,25.720500,-100.361000
+U000851,MikaCh'a31,2022-03-26,18-24,Lobo,Cómics,TikTok,false,0,0,0,0,0.422,2026-10-23,en_riesgo,true,20,20.985900,-89.575900
+U000852,NeoPelaje18,2023-07-03,32-38,Perro,Escritura/Historias,Facebook,false,47,137,0,0,-0.119,2026-10-23,en_riesgo,true,20,20.906600,-89.684300
+U000853,CobreMoon67,2025-05-26,32-38,Husky,Videojuegos,TikTok,false,3,7,0,0,0.829,2026-10-09,en_riesgo,true,12,20.620400,-103.316400
+U000854,KibaHowl44,2026-08-31,32-38,Lobo,Arte digital,Twitter/X,true,5,9,0,5,0.321,2026-10-13,en_riesgo,true,11,21.053900,-101.631500
+U000855,CobreFang86,2025-02-08,18-24,Zorro,Convenciones,Telegram,false,4,6,3,0,0.16,2026-10-20,en_riesgo,true,9,19.494900,-99.155400
+U000856,LoboPelaje83,2024-01-17,25-31,Ave,Streaming/Contenido,Telegram,false,14,45,0,0,0.539,2026-11-07,activo,false,,,
+U000857,ZorriCh'a28,2025-05-08,25-31,Zorro,Streaming/Contenido,TikTok,false,3,5,2,0,0.278,2026-10-02,en_riesgo,true,17,21.135000,-86.794100
+U000858,MikaFang6,2025-04-23,18-24,Zorro,Arte digital,Twitter/X,true,0,0,0,2,0.004,2026-10-17,en_riesgo,false,,,
+U000859,NovaPelaje25,2025-03-03,18-24,Zorro,Fursuit,Facebook,false,5,7,4,0,0.131,2026-10-25,en_riesgo,true,21,,
+U000860,YukiCh'a39,2025-08-30,18-24,Híbrido/Otro,Arte digital,Facebook,true,0,0,0,0,0.793,2026-07-26,inactivo,true,16,20.566900,-100.368700
+U000861,TalaFox23,2025-12-14,18-24,Gato,Arte tradicional,Telegram,true,3,5,0,0,-0.073,2026-10-13,en_riesgo,true,15,18.978400,-98.237900
+U000862,YukiClaw14,2026-03-30,32-38,Gato,Arte digital,Telegram,true,0,0,0,0,0.324,2026-09-08,inactivo,true,15,19.003100,-98.150700
+U000863,CobrePaw45,2026-09-14,32-38,Dragón,Convenciones,Discord,false,16,62,2,0,-0.159,2026-11-08,activo,true,9,19.501900,-99.137900
+U000864,LunaClaw13,2025-07-05,25-31,Lobo,Arte tradicional,TikTok,true,4,8,0,5,0.2,2026-11-06,activo,true,9,19.404500,-99.059300
+U000865,SombraCh'a96,2024-01-27,18-24,Lobo,Convenciones,Discord,true,101,207,1,0,0.084,2026-10-25,en_riesgo,true,9,19.480300,-99.142700
+U000866,PixelFang75,2024-07-16,32-38,Perro,Streaming/Contenido,Telegram,false,6,8,0,0,0.637,2026-10-28,activo,true,15,19.006700,-98.134200
+U000867,TalaPaw7,2023-11-12,39+,Híbrido/Otro,Cómics,Instagram,false,7,14,0,0,0.362,2026-10-07,en_riesgo,true,20,20.924600,-89.601800
+U000868,RuneFang52,2023-09-23,18-24,Gato,Convenciones,Twitter/X,false,9,17,1,0,0.165,2026-11-03,activo,false,,,
+U000869,RexKin32,2025-05-28,18-24,Coyote,Videojuegos,TikTok,false,18,68,0,0,0.011,2026-10-10,en_riesgo,true,9,19.397800,-99.171400
+U000870,AshWolf13,2024-08-21,18-24,Lobo,Cosplay,Twitter/X,false,13,17,1,0,0.347,2026-10-20,en_riesgo,true,12,20.636100,-103.313900
+U000871,LunaZac94,2024-01-02,25-31,Ave,Convenciones,Telegram,true,6,14,0,0,0.178,2026-10-27,activo,true,9,19.497200,-99.165700
+U000872,SombraTail57,2025-03-14,25-31,Gato,Convenciones,Telegram,false,0,0,0,0,1.0,2026-03-19,inactivo,true,9,19.437000,-99.159000
+U000873,BrunoTail90,2026-07-31,32-38,Husky,Cosplay,Telegram,false,2,5,2,0,0.122,2026-10-19,en_riesgo,true,20,20.896300,-89.548400
+U000874,OnixMoon24,2022-01-27,32-38,Conejo,Streaming/Contenido,TikTok,false,4,7,0,1,0.16,2026-10-19,en_riesgo,true,16,,
+U000875,NubeFang55,2024-03-13,18-24,Zorro,Música,Telegram,false,0,0,0,0,0.203,2026-08-22,inactivo,true,2,-33.518400,-70.670700
+U000876,SolMoon54,2024-11-14,25-31,Perro,Arte digital,Facebook,true,3,3,2,3,-0.121,2026-10-22,en_riesgo,true,8,19.798900,-90.477200
+U000877,YukiArt46,2025-06-01,25-31,Gato,Música,TikTok,false,0,0,0,0,0.223,2025-12-23,inactivo,true,13,25.610600,-100.347000
+U000878,SombraHowl81,2024-08-09,18-24,Híbrido/Otro,Fursuit,Twitter/X,false,5,12,1,5,0.382,2026-10-19,en_riesgo,true,16,20.532600,-100.459000
+U000879,RuneWolf41,2026-10-04,18-24,Coyote,Streaming/Contenido,Instagram,false,2,3,0,1,0.486,2026-11-04,activo,true,9,19.491700,-99.116900
+U000880,BrumaHowl81,2024-05-25,18-24,Zorro,Cómics,Facebook,false,1,2,0,0,0.123,2026-10-25,en_riesgo,true,9,19.459300,-99.174000
+U000881,KuroCh'a78,2022-09-15,18-24,Gato,Videojuegos,Telegram,false,16,20,0,0,0.199,2026-10-25,en_riesgo,true,10,28.703100,-106.128000
+U000882,MikaDash60,2022-05-08,18-24,Dragón,Arte digital,Instagram,true,0,0,0,1,0.88,2025-10-23,inactivo,true,20,20.947000,-89.655300
+U000883,YukiClaw26,2025-05-01,18-24,Lobo,Fursuit,Telegram,false,0,0,1,5,0.168,2026-07-20,inactivo,true,7,32.539900,-117.094100
+U000884,NeoPelaje43,2022-11-28,32-38,Zorro,Arte digital,Twitter/X,true,6,23,0,0,-0.019,2026-10-21,en_riesgo,false,,,
+U000885,OnixTail36,2024-06-26,25-31,Lobo,Cómics,Discord,false,0,0,0,1,-0.141,2026-09-03,inactivo,true,21,-12.126600,-76.970400
+U000886,KibaClaw19,2024-10-08,39+,Lobo,Convenciones,Instagram,false,11,15,1,1,0.869,2026-10-26,activo,true,12,20.714700,-103.274700
+U000887,KibaWolf87,2026-08-17,32-38,Zorro,Arte digital,TikTok,true,16,59,0,0,0.878,2026-11-04,activo,true,17,21.192600,-86.875800
+U000888,ZorriKin41,2026-06-09,39+,Híbrido/Otro,Videojuegos,Twitter/X,false,10,35,0,0,0.404,2026-10-23,en_riesgo,true,20,20.985300,-89.688600
+U000889,AshCh'a85,2024-08-14,18-24,Gato,Arte tradicional,Discord,true,14,45,0,5,-0.428,2026-10-10,en_riesgo,false,,,
+U000890,SolPelaje30,2023-09-24,18-24,Zorro,Cómics,Instagram,false,2,7,0,0,0.629,2026-09-29,en_riesgo,true,14,17.026400,-96.788200
+U000891,KibaClaw97,2022-09-11,39+,Dragón,Videojuegos,TikTok,false,3,9,0,0,0.134,2026-11-01,activo,true,17,21.080100,-86.789500
+U000892,CobrePaw34,2024-06-20,18-24,Conejo,Fursuit,Telegram,false,3,10,1,0,0.113,2026-11-01,activo,true,9,19.458400,-99.153600
+U000893,SombraKin40,2026-08-26,18-24,Gato,Videojuegos,Telegram,false,5,12,0,0,0.3,2026-10-02,en_riesgo,true,3,4.701700,-74.025400
+U000894,CobreMoon79,2024-08-17,32-38,Lobo,Streaming/Contenido,Twitter/X,false,0,0,0,0,0.835,2026-02-03,inactivo,true,13,25.660400,-100.269600
+U000895,NubeByte81,2026-05-27,18-24,Husky,Videojuegos,Facebook,false,2,4,0,0,-0.592,2026-10-14,en_riesgo,true,9,19.379400,-99.102200
+U000896,ZorriPaw49,2022-05-18,18-24,Perro,Videojuegos,Telegram,false,9,29,0,0,0.244,2026-10-31,activo,true,5,33.997200,-118.205000
+U000897,ZorriDash39,2023-09-13,18-24,Dragón,Streaming/Contenido,TikTok,false,0,0,0,0,0.232,2026-10-17,en_riesgo,true,9,,
+U000898,RexPelaje93,2023-02-03,18-24,Gato,Cómics,Telegram,false,0,0,1,1,0.598,2026-08-17,inactivo,true,15,19.010600,-98.245500
+U000899,TalaFox59,2026-04-15,18-24,Dragón,Videojuegos,Instagram,false,5,11,0,0,0.286,2026-09-22,en_riesgo,true,20,20.974300,-89.563000
+U000900,KibaPelaje79,2025-08-27,25-31,Dragón,Música,Facebook,true,0,0,0,0,0.391,2026-07-29,inactivo,false,,,
+U000901,NubeWolf3,2024-06-19,25-31,Perro,Arte digital,Telegram,true,0,0,0,5,0.107,2026-06-20,inactivo,true,12,20.644900,-103.331000
+U000902,NeoCh'a76,2026-08-23,18-24,Perro,Escritura/Historias,Instagram,false,1,1,2,0,-0.151,2026-09-17,en_riesgo,true,9,,
+U000903,NeoByte55,2025-07-04,39+,Gato,Arte tradicional,Telegram,true,2,3,0,2,-0.132,2026-09-16,en_riesgo,true,17,,
+U000904,ZetaSpark65,2023-04-22,32-38,Dragón,Música,Telegram,false,3,8,0,0,-0.165,2026-11-05,activo,true,12,20.728100,-103.405100
+U000905,KibaFox71,2022-04-16,18-24,Conejo,Arte tradicional,Telegram,true,21,79,0,0,0.379,2026-10-30,activo,true,9,19.492100,-99.147900
+U000906,ZorriMoon65,2025-11-02,18-24,Lobo,Convenciones,TikTok,false,0,0,1,0,0.294,2026-10-05,en_riesgo,true,20,21.010600,-89.629400
+U000907,YukiMoon81,2026-09-01,18-24,Gato,Arte digital,Telegram,true,18,69,0,0,0.655,2026-10-31,activo,true,3,4.705900,-74.055600
+U000908,ÁmbarInk25,2024-05-19,18-24,Lobo,Streaming/Contenido,TikTok,false,15,20,0,0,0.117,2026-11-09,activo,false,,,
+U000909,RuneFang31,2024-12-09,18-24,Conejo,Fursuit,Telegram,false,1,2,0,5,0.067,2026-10-09,en_riesgo,true,17,21.111100,-86.904400
+U000910,LunaMoon75,2026-10-31,18-24,Gato,Convenciones,Telegram,false,5,11,1,0,0.729,2026-10-31,activo,true,20,21.002800,-89.683200
+U000911,ÁmbarFang82,2026-04-15,25-31,Zorro,Arte digital,TikTok,true,4,5,0,3,0.702,2026-09-27,en_riesgo,true,20,,
+U000912,BrumaKin7,2023-03-20,18-24,Husky,Videojuegos,Facebook,false,4,5,0,0,0.546,2026-11-05,activo,true,15,19.085800,-98.183700
+U000913,YukiArt81,2025-08-09,18-24,Gato,Arte tradicional,Telegram,true,9,22,0,1,0.089,2026-11-04,activo,true,20,,
+U000914,LunaWolf23,2024-08-07,18-24,Perro,Arte digital,TikTok,false,82,283,0,2,-0.218,2026-11-05,activo,true,11,21.079100,-101.727000
+U000915,MikaTail88,2024-03-12,25-31,Coyote,Arte tradicional,Facebook,false,1,3,0,3,0.785,2026-10-13,en_riesgo,true,9,19.501900,-99.192100
+U000916,FlareClaw54,2024-07-19,18-24,Zorro,Escritura/Historias,Facebook,false,31,83,0,0,0.013,2026-11-04,activo,false,,,
+U000917,RuneCh'a31,2024-07-19,25-31,Zorro,Fursuit,TikTok,false,120,391,0,3,0.382,2026-10-18,en_riesgo,true,20,21.016900,-89.617500
+U000918,BrunoMaya54,2026-01-15,32-38,Reptil,Arte digital,Instagram,true,1,2,0,0,1.0,2026-09-25,en_riesgo,true,7,,
+U000919,MikaZac11,2025-04-26,25-31,Perro,Videojuegos,Telegram,false,25,56,0,1,0.15,2026-11-08,activo,true,16,,
+U000920,RexClaw74,2025-03-18,18-24,Gato,Fursuit,Telegram,false,0,0,0,3,0.258,2026-10-15,en_riesgo,true,9,19.492700,-99.093300
+U000921,ÁmbarKin57,2023-03-27,32-38,Gato,Cosplay,Facebook,false,0,0,1,0,-0.057,2026-07-03,inactivo,true,12,20.652900,-103.350000
+U000922,KuroByte5,2025-07-31,32-38,Híbrido/Otro,Arte digital,Instagram,false,4,5,0,2,0.234,2026-09-22,en_riesgo,true,20,21.011800,-89.561700
+U000923,LoboByte39,2025-06-20,18-24,Perro,Cosplay,Facebook,false,0,0,0,0,0.011,2026-06-05,inactivo,true,13,,
+U000924,ÁmbarFang30,2024-10-01,18-24,Perro,Videojuegos,TikTok,false,81,322,0,0,0.177,2026-11-09,activo,true,17,,
+U000925,SombraKin13,2024-03-04,18-24,Híbrido/Otro,Música,Discord,false,11,33,0,0,0.238,2026-11-08,activo,true,5,34.051500,-118.178600
+U000926,LoboPaw47,2025-12-17,32-38,Lobo,Arte tradicional,Instagram,true,0,0,0,2,0.13,2026-01-09,inactivo,true,20,20.962300,-89.546800
+U000927,RexTail82,2025-01-19,39+,Lobo,Convenciones,Instagram,true,0,0,1,0,0.401,2025-11-03,inactivo,true,9,19.412400,-99.182400
+U000928,ZorriByte1,2025-09-05,18-24,Gato,Arte digital,Facebook,false,0,0,0,1,-0.037,2026-08-25,inactivo,false,,,
+U000929,NovaClaw55,2024-05-10,18-24,Coyote,Música,Facebook,false,3,9,0,0,0.431,2026-10-13,en_riesgo,true,20,20.946900,-89.582800
+U000930,SolMoon66,2026-07-22,32-38,Zorro,Música,Discord,false,8,27,0,0,1.0,2026-10-27,activo,true,20,20.964100,-89.545500
+U000931,AshPaw62,2024-12-06,18-24,Zorro,Música,Telegram,false,0,0,0,0,-0.056,2026-09-08,inactivo,true,20,21.045400,-89.612400
+U000932,NovaCh'a78,2023-02-07,18-24,Coyote,Fursuit,TikTok,false,0,0,1,5,0.393,2025-10-11,inactivo,true,9,19.439100,-99.172200
+U000933,KibaClaw92,2024-02-20,18-24,Lobo,Arte tradicional,Twitter/X,false,6,19,0,3,0.205,2026-11-07,activo,true,1,-34.648500,-58.439800
+U000934,TalaZac30,2026-03-05,25-31,Lobo,Cómics,Facebook,false,0,0,0,0,0.042,2026-10-23,en_riesgo,true,16,20.535100,-100.454500
+U000935,LunaByte3,2025-06-21,18-24,Gato,Música,Facebook,false,0,0,0,0,0.24,2026-06-29,inactivo,true,9,19.386900,-99.181400
+U000936,TalaWolf63,2023-11-29,25-31,Híbrido/Otro,Escritura/Historias,Instagram,false,0,0,0,0,0.249,2026-08-16,inactivo,true,5,34.086500,-118.220500
+U000937,BrunoPelaje51,2026-09-18,18-24,Lobo,Convenciones,Telegram,false,3,10,2,0,0.733,2026-09-18,en_riesgo,true,10,28.606500,-106.122900
+U000938,FlareMoon3,2023-09-17,32-38,Híbrido/Otro,Videojuegos,Telegram,false,9,16,1,0,0.061,2026-11-09,activo,true,12,20.726200,-103.403400
+U000939,OnixFang64,2026-05-03,18-24,Husky,Fursuit,TikTok,false,3,6,0,5,-0.191,2026-11-01,activo,true,17,21.154600,-86.897700
+U000940,NubeMoon60,2025-06-09,32-38,Husky,Streaming/Contenido,Telegram,false,0,0,0,0,0.877,2026-06-27,inactivo,true,19,19.110100,-96.156100
+U000941,LoboSpark32,2023-09-04,25-31,Perro,Arte digital,Instagram,true,11,19,0,1,0.482,2026-11-03,activo,true,20,20.920000,-89.628400
+U000942,FlareKin71,2026-05-12,18-24,Coyote,Arte tradicional,Telegram,true,3,4,0,3,0.657,2026-10-02,en_riesgo,true,12,20.683200,-103.299900
+U000943,RexKin70,2023-09-10,25-31,Perro,Arte digital,Discord,true,13,47,0,0,-0.02,2026-10-31,activo,true,9,19.459900,-99.142600
+U000944,AshCh'a38,2024-06-21,25-31,Husky,Cómics,Discord,false,12,46,0,0,0.605,2026-10-02,en_riesgo,true,13,25.684900,-100.279600
+U000945,YukiMoon78,2023-10-12,18-24,Lobo,Streaming/Contenido,Facebook,false,1,2,0,0,0.009,2026-10-09,en_riesgo,true,14,17.096500,-96.784300
+U000946,BrunoCh'a22,2025-02-28,18-24,Zorro,Streaming/Contenido,TikTok,false,7,17,0,0,0.563,2026-09-20,en_riesgo,true,18,18.020000,-92.851800
+U000947,NeoZac35,2024-10-22,25-31,Gato,Convenciones,Facebook,false,0,0,1,1,0.31,2026-02-21,inactivo,true,9,19.361300,-99.176300
+U000948,ÁmbarZac31,2026-07-27,18-24,Lobo,Convenciones,Facebook,false,2,4,0,0,0.073,2026-10-11,en_riesgo,true,20,21.033200,-89.658300
+U000949,NovaArt26,2024-05-02,18-24,Zorro,Arte tradicional,Telegram,true,9,14,0,5,0.537,2026-11-07,activo,true,17,21.122100,-86.778400
+U000950,ZorriWolf40,2022-11-16,39+,Dragón,Videojuegos,Instagram,false,1,3,1,0,0.216,2026-10-05,en_riesgo,true,17,21.147300,-86.912900
+U000951,LunaDash18,2024-07-13,18-24,Perro,Videojuegos,Telegram,false,6,20,0,0,0.088,2026-11-01,activo,true,20,20.940800,-89.678700
+U000952,TalaMaya4,2024-02-24,18-24,Gato,Videojuegos,TikTok,false,3,8,0,0,0.687,2026-09-19,en_riesgo,true,20,,
+U000953,TalaPelaje30,2026-06-23,18-24,Zorro,Cómics,Telegram,false,20,50,0,0,0.377,2026-11-05,activo,true,17,21.175300,-86.805000
+U000954,KuroPelaje18,2023-08-25,39+,Gato,Arte digital,Telegram,false,4,5,0,5,0.062,2026-09-26,en_riesgo,true,17,21.207700,-86.850200
+U000955,ZorriByte53,2025-06-26,18-24,Conejo,Videojuegos,Instagram,false,12,25,0,0,0.478,2026-10-20,en_riesgo,true,20,,
+U000956,TalaFang1,2022-10-08,18-24,Dragón,Escritura/Historias,Facebook,false,5,13,0,0,-0.015,2026-10-23,en_riesgo,true,12,20.738100,-103.420100
+U000957,NeoMaya73,2025-05-28,18-24,Lobo,Fursuit,Facebook,false,2,2,0,2,0.784,2026-10-01,en_riesgo,false,,,
+U000958,TalaMaya91,2025-02-01,25-31,Husky,Videojuegos,Facebook,false,3,11,0,0,0.674,2026-11-01,activo,true,11,21.048800,-101.667500
+U000959,KibaKin88,2022-03-23,25-31,Coyote,Música,Twitter/X,false,1,2,1,0,0.615,2026-09-22,en_riesgo,true,3,4.687100,-74.117900
+U000960,OnixZac67,2024-06-24,18-24,Conejo,Arte tradicional,Instagram,true,7,20,0,0,0.239,2026-11-02,activo,true,7,32.557500,-116.998300
+U000961,YukiSpark3,2024-08-14,32-38,Zorro,Arte digital,Discord,true,1,3,0,1,-0.605,2026-10-18,en_riesgo,true,17,21.167300,-86.810500
+U000962,AshKin58,2024-01-22,18-24,Dragón,Cómics,Facebook,false,4,14,0,1,0.181,2026-10-21,en_riesgo,true,9,19.434200,-99.152400
+U000963,PixelDash9,2023-06-14,18-24,Husky,Videojuegos,Facebook,false,8,17,5,0,0.149,2026-10-09,en_riesgo,true,13,25.729500,-100.380100
+U000964,ÁmbarPaw57,2024-09-19,32-38,Conejo,Arte digital,Facebook,true,0,0,0,0,-0.457,2026-05-23,inactivo,true,12,20.599200,-103.402100
+U000965,FlareHowl71,2023-12-23,25-31,Conejo,Arte tradicional,Telegram,true,2,2,0,1,0.348,2026-09-17,en_riesgo,false,,,
+U000966,LunaArt83,2023-03-21,32-38,Perro,Arte digital,Telegram,true,8,15,0,3,0.173,2026-10-02,en_riesgo,false,,,
+U000967,YukiWolf19,2025-07-05,18-24,Dragón,Videojuegos,TikTok,true,2,7,1,0,0.634,2026-09-23,en_riesgo,true,9,19.380100,-99.196600
+U000968,NubeFox13,2024-10-21,25-31,Perro,Escritura/Historias,TikTok,false,4,15,0,0,0.142,2026-10-24,en_riesgo,true,1,-34.563000,-58.371600
+U000969,BrumaDash23,2026-06-06,18-24,Gato,Música,Twitter/X,false,0,0,0,0,0.138,2026-07-30,inactivo,false,,,
+U000970,YukiArt97,2024-08-20,18-24,Reptil,Cómics,TikTok,false,4,14,1,0,0.3,2026-11-08,activo,true,16,20.526400,-100.468900
+U000971,NeoCh'a57,2025-06-05,18-24,Lobo,Escritura/Historias,Instagram,false,8,17,0,0,-0.038,2026-11-02,activo,true,9,19.498500,-99.139100
+U000972,LunaFang88,2025-04-06,18-24,Lobo,Convenciones,Facebook,false,2,4,4,0,-0.247,2026-10-03,en_riesgo,false,,,
+U000973,NovaWolf84,2024-05-08,32-38,Dragón,Videojuegos,Telegram,false,3,11,1,0,0.64,2026-10-13,en_riesgo,true,9,19.446800,-99.147800
+U000974,TalaMaya86,2026-02-09,18-24,Reptil,Cómics,Twitter/X,false,4,11,0,0,0.892,2026-10-25,en_riesgo,true,9,19.449100,-99.185400
+U000975,ZetaFox88,2026-08-14,25-31,Híbrido/Otro,Arte digital,Facebook,true,3,10,0,2,0.13,2026-10-15,en_riesgo,true,20,20.940600,-89.628500
+U000976,CobreMoon29,2025-12-29,25-31,Perro,Arte digital,Twitter/X,false,7,9,0,3,0.969,2026-10-29,activo,true,21,-12.092100,-77.019300
+U000977,TalaSpark80,2023-02-03,25-31,Ave,Fursuit,Telegram,false,4,14,1,0,-0.109,2026-11-06,activo,true,20,20.939600,-89.547900
+U000978,TalaPaw76,2022-03-07,18-24,Husky,Convenciones,TikTok,false,3,3,2,0,0.168,2026-10-25,en_riesgo,false,,,
+U000979,SombraDash81,2023-04-22,18-24,Perro,Fursuit,Facebook,false,0,0,0,0,-0.116,2026-06-13,inactivo,true,9,19.406500,-99.124700
+U000980,ZetaZac80,2025-11-10,18-24,Coyote,Música,Telegram,false,9,12,0,0,-0.004,2026-10-09,en_riesgo,true,16,20.536100,-100.366800
+U000981,OnixInk56,2024-07-21,18-24,Reptil,Arte digital,Telegram,true,3,10,0,3,0.3,2026-10-14,en_riesgo,true,15,,
+U000982,BrunoCh'a3,2025-12-12,25-31,Reptil,Arte digital,Facebook,true,3,4,2,1,-0.158,2026-11-08,activo,true,19,,
+U000983,NubeDash49,2025-01-04,18-24,Lobo,Videojuegos,Telegram,false,3,8,0,0,0.103,2026-09-25,en_riesgo,false,,,
+U000984,SolFang86,2024-07-29,18-24,Lobo,Cómics,Telegram,true,29,63,1,0,0.029,2026-10-26,activo,true,15,19.051700,-98.215400
+U000985,ZorriHowl88,2025-02-09,18-24,Coyote,Convenciones,Discord,false,12,30,0,0,0.089,2026-10-31,activo,true,9,19.392500,-99.127200
+U000986,BrunoMoon60,2023-01-26,18-24,Lobo,Videojuegos,TikTok,false,4,6,0,0,-0.104,2026-10-02,en_riesgo,true,1,-34.525300,-58.363600
+U000987,BrunoInk11,2023-08-07,32-38,Lobo,Videojuegos,Telegram,false,2,5,0,0,0.506,2026-10-09,en_riesgo,true,17,21.201600,-86.792900
+U000988,ÁmbarMoon92,2025-10-13,18-24,Lobo,Arte tradicional,Telegram,true,9,33,0,3,0.292,2026-10-19,en_riesgo,true,9,19.497600,-99.195700
+U000989,SolSpark76,2025-09-21,18-24,Gato,Arte digital,Telegram,true,7,12,0,1,0.324,2026-11-09,activo,true,4,40.373800,-3.701100
+U000990,SolWolf97,2026-02-19,25-31,Lobo,Cómics,TikTok,false,0,0,0,0,0.364,2026-04-22,inactivo,true,3,4.757700,-74.020000
+U000991,NubePelaje46,2024-05-17,25-31,Lobo,Música,TikTok,false,0,0,0,0,0.487,2026-04-01,inactivo,true,20,21.041200,-89.656600
+U000992,NubeMaya7,2023-04-24,39+,Reptil,Streaming/Contenido,Instagram,false,4,10,1,0,-0.079,2026-10-11,en_riesgo,true,20,20.988800,-89.621000
+U000993,LunaWolf15,2023-07-18,18-24,Gato,Cómics,Discord,false,0,0,0,0,0.307,2026-07-24,inactivo,true,16,20.641500,-100.432100
+U000994,CobrePelaje66,2023-03-23,25-31,Lobo,Escritura/Historias,Facebook,false,6,22,0,0,0.269,2026-10-25,en_riesgo,false,,,
+U000995,ZetaMoon31,2022-08-03,18-24,Híbrido/Otro,Convenciones,Telegram,false,3,5,1,0,0.301,2026-11-09,activo,true,10,28.624100,-106.122700
+U000996,MikaWolf68,2023-08-31,25-31,Híbrido/Otro,Cosplay,Telegram,false,2,6,0,0,-0.075,2026-10-11,en_riesgo,true,13,25.708800,-100.349800
+U000997,NovaByte3,2025-10-04,25-31,Zorro,Arte digital,Facebook,false,4,14,0,5,0.064,2026-10-08,en_riesgo,true,19,19.125800,-96.161100
+U000998,TalaFang51,2024-02-09,25-31,Híbrido/Otro,Escritura/Historias,Telegram,false,0,0,0,0,-0.156,2026-08-23,inactivo,false,,,
+U000999,NovaPelaje42,2022-06-13,25-31,Dragón,Videojuegos,Twitter/X,false,7,14,0,0,0.515,2026-10-28,activo,true,12,20.730600,-103.281600
+U001000,BrumaByte20,2023-03-06,18-24,Híbrido/Otro,Videojuegos,Telegram,false,68,202,1,0,-0.001,2026-11-05,activo,true,9,19.459600,-99.188300
+U001001,KuroHowl40,2025-01-24,25-31,Coyote,Streaming/Contenido,TikTok,false,0,0,0,0,0.566,2026-02-05,inactivo,true,14,17.127700,-96.783600
+U001002,BrunoCh'a31,2022-09-11,18-24,Coyote,Convenciones,Facebook,false,0,0,1,0,-0.579,2026-10-08,en_riesgo,true,11,21.168100,-101.702200
+U001003,LunaClaw82,2023-07-05,18-24,Gato,Fursuit,TikTok,false,10,36,1,1,0.212,2026-10-28,activo,true,1,-34.646200,-58.432900
+U001004,AshMaya58,2026-06-15,18-24,Reptil,Cómics,Facebook,false,2,4,0,0,0.515,2026-11-05,activo,true,3,4.734500,-74.096600
+U001005,ZorriClaw4,2024-07-26,32-38,Perro,Fursuit,Telegram,false,7,24,0,3,0.087,2026-11-02,activo,true,20,20.937000,-89.618500
+U001006,SolPaw51,2023-07-20,25-31,Lobo,Música,Telegram,false,2,4,0,0,-0.143,2026-09-30,en_riesgo,false,,,
+U001007,LoboFang67,2025-02-12,32-38,Coyote,Videojuegos,Twitter/X,false,2,6,0,0,0.258,2026-10-23,en_riesgo,true,20,21.044300,-89.638800
+U001008,ZetaDash51,2024-05-28,25-31,Gato,Cómics,TikTok,false,15,40,2,0,0.153,2026-11-04,activo,true,15,18.960500,-98.224200
+U001009,RuneSpark14,2023-07-04,18-24,Lobo,Videojuegos,Twitter/X,false,5,15,0,0,1.0,2026-11-05,activo,true,20,20.912900,-89.625000
+U001010,RuneFang70,2025-11-24,18-24,Híbrido/Otro,Música,Telegram,false,9,27,0,0,-0.269,2026-11-06,activo,true,13,25.633200,-100.302700
+U001011,MikaFox43,2024-08-22,25-31,Híbrido/Otro,Música,Instagram,false,0,0,1,0,-0.341,2026-02-09,inactivo,true,12,20.612700,-103.411600
+U001012,ÁmbarKin97,2022-04-20,18-24,Ave,Videojuegos,Telegram,false,13,26,0,0,0.726,2026-11-05,activo,true,16,20.628700,-100.367500
+U001013,TalaTail55,2024-10-03,25-31,Reptil,Arte digital,Facebook,false,0,0,1,0,0.232,2026-03-04,inactivo,true,17,21.186700,-86.863300
+U001014,OnixArt12,2023-07-17,18-24,Dragón,Arte digital,Facebook,true,11,27,0,3,-0.274,2026-11-09,activo,false,,,
+U001015,LunaPelaje12,2022-07-06,18-24,Lobo,Arte tradicional,Telegram,false,0,0,0,0,0.149,2026-05-05,inactivo,true,8,19.783200,-90.476900
+U001016,OnixByte86,2026-02-12,18-24,Perro,Arte digital,Facebook,false,0,0,3,0,0.08,2026-09-04,inactivo,true,17,21.115700,-86.883600
+U001017,ZetaMaya47,2023-05-09,39+,Lobo,Arte digital,Instagram,false,0,0,0,3,0.042,2026-06-23,inactivo,true,9,19.415600,-99.103200
+U001018,KuroHowl87,2026-02-14,25-31,Lobo,Arte digital,Telegram,true,2,5,0,5,0.618,2026-11-04,activo,true,11,21.139000,-101.636400
+U001019,RexPaw63,2024-07-21,32-38,Zorro,Arte digital,Facebook,true,3,7,0,5,0.496,2026-10-16,en_riesgo,true,14,17.124100,-96.662900
+U001020,RexWolf87,2022-04-22,18-24,Coyote,Streaming/Contenido,Instagram,false,4,13,0,1,0.399,2026-10-08,en_riesgo,true,2,-33.402500,-70.680500
+U001021,NovaFox59,2025-04-21,39+,Lobo,Cosplay,Twitter/X,false,0,0,1,0,0.565,2025-12-07,inactivo,false,,,
+U001022,TalaFang86,2025-01-22,18-24,Perro,Convenciones,Instagram,false,2,4,0,0,0.083,2026-10-23,en_riesgo,true,20,20.966000,-89.668000
+U001023,YukiZac64,2025-09-02,25-31,Zorro,Videojuegos,Twitter/X,false,0,0,0,0,-0.103,2026-03-18,inactivo,true,17,21.231000,-86.893400
+U001024,SombraFox14,2024-09-06,18-24,Lobo,Cosplay,Facebook,false,17,43,1,0,-0.39,2026-10-31,activo,true,1,-34.597400,-58.399000
+U001025,MikaPaw35,2026-01-23,18-24,Lobo,Videojuegos,TikTok,true,0,0,0,0,0.624,2026-01-23,inactivo,true,2,-33.509300,-70.717200
+U001026,ZorriClaw36,2026-02-10,18-24,Ave,Fursuit,Discord,false,2,3,3,0,0.087,2026-09-23,en_riesgo,false,,,
+U001027,CobreTail81,2023-03-09,32-38,Perro,Arte digital,Facebook,true,5,10,2,2,-0.143,2026-11-02,activo,true,7,32.575800,-117.007300
+U001028,YukiCh'a16,2023-06-21,25-31,Híbrido/Otro,Arte digital,Twitter/X,true,18,22,0,0,0.194,2026-11-03,activo,true,13,25.680400,-100.296400
+U001029,PixelByte77,2025-12-14,18-24,Lobo,Cómics,Telegram,false,1,2,0,1,-0.021,2026-09-14,en_riesgo,true,12,,
+U001030,TalaClaw65,2025-07-14,25-31,Ave,Música,TikTok,false,2,6,0,0,0.034,2026-11-06,activo,false,,,
+U001031,BrumaInk33,2025-10-21,18-24,Zorro,Fursuit,Facebook,false,5,18,2,0,0.247,2026-11-01,activo,true,21,-11.979200,-77.021800
+U001032,CobreArt69,2026-11-08,25-31,Gato,Música,TikTok,false,21,47,0,0,0.631,2026-11-08,activo,false,,,
+U001033,TalaInk29,2026-02-04,39+,Husky,Arte digital,Telegram,true,0,0,0,5,0.486,2026-06-25,inactivo,true,15,19.078800,-98.203900
+U001034,RexPelaje41,2026-05-03,25-31,Conejo,Arte tradicional,Instagram,true,11,36,0,1,0.401,2026-11-04,activo,true,13,25.739100,-100.310700
+U001035,BrunoClaw61,2025-02-28,32-38,Dragón,Cómics,Instagram,false,0,0,0,0,0.457,2026-01-06,inactivo,true,11,,
+U001036,ÁmbarCh'a50,2024-12-04,18-24,Coyote,Fursuit,Facebook,false,0,0,1,0,0.462,2026-02-19,inactivo,false,,,
+U001037,ZorriClaw29,2025-01-24,25-31,Husky,Arte digital,TikTok,true,22,84,0,3,0.298,2026-10-03,en_riesgo,true,21,-12.075900,-77.055500
+U001038,ZetaPelaje38,2025-01-09,18-24,Husky,Arte tradicional,TikTok,true,4,13,6,5,0.064,2026-10-17,en_riesgo,true,12,20.642500,-103.272900
+U001039,PixelByte54,2026-08-19,18-24,Husky,Streaming/Contenido,Telegram,false,4,15,0,1,0.023,2026-11-06,activo,true,2,-33.380600,-70.679200
+U001040,RuneKin95,2026-08-16,18-24,Zorro,Arte digital,TikTok,true,10,16,0,5,-0.143,2026-11-04,activo,true,9,19.431300,-99.191800
+U001041,YukiInk5,2023-07-06,18-24,Híbrido/Otro,Videojuegos,Discord,false,2,7,0,0,-0.115,2026-09-15,en_riesgo,false,,,
+U001042,FlareFox82,2024-02-17,18-24,Lobo,Convenciones,Discord,false,11,24,0,1,-0.003,2026-10-26,activo,false,,,
+U001043,KibaInk65,2026-02-13,18-24,Dragón,Arte digital,Telegram,true,4,12,0,0,0.786,2026-11-07,activo,true,5,34.060200,-118.274600
+U001044,TalaByte30,2022-06-03,32-38,Perro,Videojuegos,Facebook,false,23,29,5,1,0.671,2026-10-07,en_riesgo,true,20,20.981200,-89.543800
+U001045,ZetaTail89,2026-07-13,39+,Gato,Arte digital,Facebook,true,0,0,2,1,0.128,2026-07-13,inactivo,true,18,17.911100,-92.914300
+U001046,BrumaMoon96,2022-06-06,25-31,Gato,Cómics,Telegram,false,12,28,0,0,0.078,2026-10-28,activo,true,13,25.627300,-100.286400
+U001047,MikaHowl89,2022-10-20,18-24,Híbrido/Otro,Videojuegos,Instagram,false,5,16,0,0,0.566,2026-11-05,activo,false,,,
+U001048,ZorriCh'a76,2025-02-28,39+,Coyote,Streaming/Contenido,Instagram,false,2,7,0,0,0.226,2026-09-23,en_riesgo,false,,,
+U001049,ZetaHowl60,2024-06-15,25-31,Conejo,Cosplay,Discord,false,0,0,0,0,0.397,2026-08-24,inactivo,true,14,17.096900,-96.699200
+U001050,BrunoMaya1,2024-07-04,18-24,Gato,Arte tradicional,Telegram,true,6,13,0,5,0.354,2026-10-14,en_riesgo,true,11,21.162300,-101.747900
+U001051,MikaHowl13,2023-04-25,39+,Dragón,Streaming/Contenido,Facebook,false,0,0,0,0,0.219,2025-10-23,inactivo,true,2,-33.414900,-70.614300
+U001052,LunaHowl33,2024-02-07,25-31,Perro,Cómics,Telegram,false,4,14,0,0,0.75,2026-10-07,en_riesgo,true,20,20.924600,-89.608900
+U001053,BrumaInk78,2025-03-21,18-24,Perro,Arte digital,Instagram,false,4,10,0,5,0.436,2026-10-29,activo,true,13,25.681400,-100.359900
+U001054,YukiTail89,2025-12-30,25-31,Reptil,Videojuegos,Facebook,false,2,3,0,0,0.456,2026-10-10,en_riesgo,true,9,,
+U001055,PixelClaw73,2026-02-24,32-38,Perro,Videojuegos,Telegram,false,69,97,0,0,-0.007,2026-11-05,activo,true,11,21.138100,-101.669400
+U001056,LoboDash55,2023-09-23,39+,Gato,Arte digital,TikTok,true,10,13,0,0,0.769,2026-11-06,activo,true,3,4.642000,-74.084600
+U001057,FlareArt63,2024-08-20,25-31,Dragón,Arte digital,Facebook,true,186,493,0,1,0.497,2026-11-07,activo,true,12,,
+U001058,FlareMaya72,2026-04-08,32-38,Zorro,Escritura/Historias,TikTok,false,4,12,0,0,-0.313,2026-11-07,activo,true,20,20.914400,-89.681300
+U001059,KibaDash46,2026-01-12,18-24,Gato,Arte tradicional,Facebook,true,7,8,0,3,0.726,2026-11-05,activo,true,13,25.673700,-100.283100
+U001060,TalaMoon67,2023-01-29,18-24,Lobo,Videojuegos,Facebook,true,6,7,0,1,0.439,2026-10-27,activo,true,2,-33.373100,-70.608300
+U001061,SolFang69,2025-08-07,32-38,Gato,Arte tradicional,Instagram,true,7,19,0,1,0.457,2026-10-29,activo,true,9,19.371500,-99.059100
+U001062,YukiInk94,2022-08-26,18-24,Gato,Fursuit,Instagram,false,26,42,0,0,0.127,2026-10-30,activo,false,,,
+U001063,RexMaya47,2022-11-29,18-24,Híbrido/Otro,Cómics,Twitter/X,false,5,8,0,0,0.484,2026-10-05,en_riesgo,true,13,25.714400,-100.261200
+U001064,ÁmbarInk38,2025-12-09,39+,Gato,Arte digital,TikTok,true,7,25,0,0,-0.129,2026-10-31,activo,true,17,21.173000,-86.808300
+U001065,TalaArt47,2022-03-01,39+,Lobo,Arte digital,Telegram,true,0,0,0,2,0.368,2025-11-13,inactivo,true,12,20.663600,-103.394300
+U001066,YukiByte23,2024-07-12,18-24,Híbrido/Otro,Cómics,Instagram,false,8,29,0,1,0.938,2026-11-09,activo,true,10,28.608200,-106.121700
+U001067,CobreInk45,2022-06-26,18-24,Zorro,Arte digital,Facebook,true,0,0,0,2,0.825,2026-07-18,inactivo,true,12,20.746300,-103.418200
+U001068,MikaTail95,2023-11-23,18-24,Lobo,Cosplay,Instagram,false,2,6,0,0,0.159,2026-10-15,en_riesgo,true,12,20.629700,-103.321300

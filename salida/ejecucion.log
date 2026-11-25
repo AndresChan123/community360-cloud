@@ -1,0 +1,68 @@
+ETL Community 360 - ejecucion 20261120_055250
+Leidos: 1068 usuarios (22 columnas) y 1000 interacciones (16 columnas)
+
+======================================================================
+ETAPA 1: Eliminacion de registros duplicados
+======================================================================
+usuarios: 1068 recibidos, 0 duplicados eliminados {}
+interacciones: 1000 recibidas, 0 duplicadas eliminadas {}
+
+======================================================================
+ETAPA 2: Normalizacion de valores vacios y nulos
+======================================================================
+usuarios: 550 valores vacios pasaron a NULL -> {'latitud': 275, 'longitud': 275}
+interacciones: 894 valores vacios pasaron a NULL -> {'etiquetas': 231, 'texto': 144, 'pais': 173, 'estado': 173, 'ciudad': 173}
+interacciones: 144 reacciones sin texto con longitud_texto corregida a 0
+
+======================================================================
+ETAPA 3: Estandarizacion de fechas, categorias y formatos
+======================================================================
+usuarios: valores modificados por campo -> {'fecha_ingreso': 1068, 'ultima_actividad': 1068}
+interacciones: valores modificados por campo -> {'timestamp': 1000}
+interacciones: campo etiquetas separado en lista (1524 etiquetas en total)
+
+======================================================================
+ETAPA 4: Validacion de tipos de datos
+======================================================================
+usuarios: 1068 validos, 0 con tipos invalidos
+interacciones: 1000 validas, 0 con tipos invalidos
+valor atipico (se conserva y se anota): {'id_usuario': 'U000002', 'campo': 'mensajes_30d', 'valor': 817, 'segundo_mayor': 311}
+valor atipico (se conserva y se anota): {'id_usuario': 'U000002', 'campo': 'reacciones_30d', 'valor': 2026, 'segundo_mayor': 726}
+
+======================================================================
+ETAPA 5: Verificacion de referencias entre usuarios e interacciones
+======================================================================
+interacciones con usuario existente: 207 (de 136 usuarios)
+interacciones huerfanas: 793 (614 id_usuario distintos) -> cuarentena
+
+======================================================================
+ETAPA 6: Eliminacion de informacion geografica sin consentimiento
+======================================================================
+usuarios con consentimiento 'no': 171
+   a 171 se les borro ciudad, estado, pais, zona horaria y coordenadas
+catalogo de ubicaciones: 21 lugares (solo de usuarios con consentimiento)
+interacciones validas de autores sin consentimiento con geo borrada: 0
+interacciones en cuarentena con geo borrada (consentimiento desconocido): 646
+
+======================================================================
+ETAPA 7: Generacion de archivos depurados
+======================================================================
+usuarios_depurados.csv: 1068 filas
+ubicaciones.csv: 21 filas
+interacciones_depuradas.csv: 207 filas
+cuarentena_interacciones.csv: 793 filas
+
+======================================================================
+ETAPA 8: Carga de los registros validos en la nube
+======================================================================
+CockroachDB: 1068 usuarios y 21 ubicaciones cargados
+Firestore: 207 interacciones, 793 documentos de cuarentena, 2 de bitacora y metricas_vivas/actuales cargados
+
+----------------------------------------------------------------------
+VERIFICACION DE LOS ARCHIVOS DEPURADOS
+----------------------------------------------------------------------
+usuarios sin consentimiento que conservan datos geograficos : 0
+interacciones cuyo id_usuario no existe en usuarios        : 0
+interacciones sin texto con longitud_texto distinta de 0   : 0
+
+RESULTADO: PROCESO TERMINADO SIN ERRORES

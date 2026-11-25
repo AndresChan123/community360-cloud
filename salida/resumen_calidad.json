@@ -1,0 +1,153 @@
+{
+  "fecha_ejecucion": "2026-11-20T05:52:50+00:00",
+  "usuarios": {
+    "recibidos": 1068,
+    "duplicados": {},
+    "duplicados_total": 0,
+    "nulos_normalizados": {
+      "latitud": 275,
+      "longitud": 275
+    },
+    "nulos_normalizados_total": 550,
+    "espacios_recortados": 0,
+    "estandarizados": {
+      "fecha_ingreso": 1068,
+      "ultima_actividad": 1068
+    },
+    "tipos_invalidos": 0,
+    "atipicos": [
+      {
+        "id_usuario": "U000002",
+        "campo": "mensajes_30d",
+        "valor": 817,
+        "segundo_mayor": 311
+      },
+      {
+        "id_usuario": "U000002",
+        "campo": "reacciones_30d",
+        "valor": 2026,
+        "segundo_mayor": 726
+      }
+    ],
+    "sin_consentimiento": 171,
+    "geo_eliminada": 171,
+    "ubicaciones_catalogo": 21,
+    "aceptados": 1068,
+    "rechazados": 0
+  },
+  "interacciones": {
+    "recibidos": 1000,
+    "duplicados": {},
+    "duplicados_total": 0,
+    "nulos_normalizados": {
+      "etiquetas": 231,
+      "texto": 144,
+      "pais": 173,
+      "estado": 173,
+      "ciudad": 173
+    },
+    "nulos_normalizados_total": 894,
+    "espacios_recortados": 0,
+    "longitud_texto_corregida": 144,
+    "estandarizados": {
+      "timestamp": 1000
+    },
+    "tipos_invalidos": 0,
+    "huerfanas": 793,
+    "ids_huerfanos_distintos": 614,
+    "con_referencia_valida": 207,
+    "usuarios_con_interacciones": 136,
+    "geo_eliminada_autores_sin_consentimiento": 0,
+    "geo_eliminada_cuarentena": 646,
+    "geo_eliminada": 646,
+    "lugar_fuera_de_catalogo": 0,
+    "aceptadas": 207,
+    "cuarentena": 793
+  },
+  "archivos": {
+    "usuarios_depurados.csv": 1068,
+    "ubicaciones.csv": 21,
+    "interacciones_depuradas.csv": 207,
+    "cuarentena_interacciones.csv": 793
+  },
+  "bitacora": [
+    {
+      "id_ejecucion": "etl_20261120_055250_usuarios",
+      "fecha_ejecucion": "2026-11-20T05:52:50+00:00",
+      "archivo_origen": "comunidad_virtual_usuarios.csv",
+      "recibidos": 1068,
+      "aceptados": 1068,
+      "transformados": 1068,
+      "rechazados": 0,
+      "duplicados": 0,
+      "ubicaciones_eliminadas": 171
+    },
+    {
+      "id_ejecucion": "etl_20261120_055250_interacciones",
+      "fecha_ejecucion": "2026-11-20T05:52:50+00:00",
+      "archivo_origen": "comunidad_virtual_interacciones_1000.csv",
+      "recibidos": 1000,
+      "aceptados": 207,
+      "transformados": 207,
+      "rechazados": 793,
+      "duplicados": 0,
+      "ubicaciones_eliminadas": 646
+    }
+  ],
+  "metricas_iniciales": {
+    "version": 1,
+    "total_interacciones": 207,
+    "sentimiento_promedio": 0.299,
+    "por_tipo": {
+      "comentario": 56,
+      "mensaje": 90,
+      "respuesta_encuesta": 22,
+      "reaccion": 33,
+      "rsvp_evento": 6
+    },
+    "por_canal": {
+      "Facebook": 51,
+      "Instagram": 28,
+      "Twitter/X": 19,
+      "TikTok": 24,
+      "Telegram": 70,
+      "Discord": 15
+    },
+    "por_tema": {
+      "musica": 14,
+      "eventos_convenciones": 30,
+      "videojuegos": 31,
+      "fursuits": 15,
+      "reglas_moderacion": 37,
+      "arte_comisiones": 48,
+      "seguridad_privacidad": 19,
+      "memes_humor": 13
+    },
+    "mapa_calor_estado": {
+      "Yucatán": 25,
+      "Lima": 6,
+      "CDMX": 21,
+      "Nuevo León": 26,
+      "Veracruz": 12,
+      "Jalisco": 31,
+      "Guanajuato": 9,
+      "Baja California": 6,
+      "Querétaro": 4,
+      "Cundinamarca": 5,
+      "Puebla": 6,
+      "Quintana Roo": 15,
+      "Buenos Aires": 3,
+      "Chihuahua": 3,
+      "Campeche": 2,
+      "Tabasco": 5,
+      "Comunidad de Madrid": 1,
+      "Oaxaca": 1
+    }
+  },
+  "carga": "todo",
+  "verificacion": {
+    "usuarios_sin_consentimiento_con_geo": 0,
+    "interacciones_sin_usuario": 0,
+    "reacciones_longitud_inconsistente": 0
+  }
+}

@@ -1,0 +1,24 @@
+[
+  {
+    "id_ejecucion": "etl_20261120_055250_usuarios",
+    "fecha_ejecucion": "2026-11-20T05:52:50+00:00",
+    "archivo_origen": "comunidad_virtual_usuarios.csv",
+    "recibidos": 1068,
+    "aceptados": 1068,
+    "transformados": 1068,
+    "rechazados": 0,
+    "duplicados": 0,
+    "ubicaciones_eliminadas": 171
+  },
+  {
+    "id_ejecucion": "etl_20261120_055250_interacciones",
+    "fecha_ejecucion": "2026-11-20T05:52:50+00:00",
+    "archivo_origen": "comunidad_virtual_interacciones_1000.csv",
+    "recibidos": 1000,
+    "aceptados": 207,
+    "transformados": 207,
+    "rechazados": 793,
+    "duplicados": 0,
+    "ubicaciones_eliminadas": 646
+  }
+]

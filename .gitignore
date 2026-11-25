@@ -1,0 +1,7 @@
+.env
+credenciales/
+datos/
+__pycache__/
+node_modules/
+*.pdf
+*.docx
