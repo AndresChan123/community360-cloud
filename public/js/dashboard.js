@@ -1215,15 +1215,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   document
     .getElementById("btn-filtrar-usuarios")
     ?.addEventListener("click", consultarTablaUsuariosREST);
-  document
-    .getElementById("filtro-estatus")
-    ?.addEventListener("change", consultarTablaUsuariosREST);
-  document
-    .getElementById("filtro-consentimiento")
-    ?.addEventListener("change", consultarTablaUsuariosREST);
-  document
-    .getElementById("filtro-limite")
-    ?.addEventListener("change", consultarTablaUsuariosREST);
 
   window.addEventListener("c360:theme-changed", () => {
     const col = obtenerColoresTema();
