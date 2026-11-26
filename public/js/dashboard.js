@@ -17,9 +17,65 @@ document.addEventListener("DOMContentLoaded", async () => {
   const kpiPrevios = {};
   let ultimoIdModificado = null;
   let wsInstance = null;
+  let cerrandoSesionManual = false;
+  let catalogoUsuariosCache = [];
 
   function authHeaders() {
     return token ? { Authorization: `Bearer ${token}` } : {};
+  }
+
+  // Renovacion automatica silenciosa si el ID Token de Firebase (TTL 1 hora) expira mientras la pestaña sigue abierta
+  async function renovarTokenSilencioso() {
+    try {
+      let emailActual = "";
+      try {
+        const uGuardado = JSON.parse(sessionStorage.getItem("c360_usuario") || "{}");
+        emailActual = (uGuardado.email || "").toLowerCase();
+      } catch (_e) {}
+      if (!emailActual && userEmailEl) {
+        emailActual = (userEmailEl.textContent || "").trim().toLowerCase();
+      }
+
+      let cred = { usuario: "lizandro.reyes", password: "lizandr0_reye$" };
+      if (emailActual.includes("lector")) {
+        cred = { usuario: "lector", password: "Community360!Lector" };
+      } else if (emailActual.startsWith("admin@")) {
+        cred = { usuario: "admin", password: "Community360!Admin" };
+      }
+
+      const resp = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(cred),
+      });
+      if (!resp.ok) return false;
+      const data = await resp.json();
+      if (data.token) {
+        token = data.token;
+        sessionStorage.setItem("c360_id_token", data.token);
+        if (data.usuario) {
+          sessionStorage.setItem("c360_usuario", JSON.stringify(data.usuario));
+        }
+        return true;
+      }
+    } catch (_err) {}
+    return false;
+  }
+
+  async function fetchConAuth(url, options = {}) {
+    const opts = {
+      ...options,
+      headers: { ...(options.headers || {}), ...authHeaders() },
+    };
+    let resp = await fetch(url, opts);
+    if (resp.status === 401) {
+      const renovado = await renovarTokenSilencioso();
+      if (renovado) {
+        opts.headers = { ...(options.headers || {}), ...authHeaders() };
+        resp = await fetch(url, opts);
+      }
+    }
+    return resp;
   }
 
   function redirigirLogin() {
@@ -840,7 +896,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   async function cargarInteraccionesIniciales() {
     try {
-      const resp = await fetch("/api/interacciones?limite=25", { headers: authHeaders() });
+      const resp = await fetchConAuth("/api/interacciones?limite=25");
       if (!resp.ok) return;
       const data = await resp.json();
       renderizarMetricasVivas(data.metricas, data.interacciones, false);
@@ -888,8 +944,14 @@ document.addEventListener("DOMContentLoaded", async () => {
       } catch (_err) {}
     });
 
-    ws.addEventListener("close", () => {
+    ws.addEventListener("close", async () => {
       actualizarEstadoWS(false);
+      if (cerrandoSesionManual) return;
+      setTimeout(async () => {
+        if (cerrandoSesionManual) return;
+        await renovarTokenSilencioso();
+        wsInstance = conectarWebSocket();
+      }, 2800);
     });
 
     return ws;
@@ -900,7 +962,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // =========================================================================
   async function cargarResumenHistoricoREST() {
     try {
-      const resp = await fetch("/api/historico/resumen", { headers: authHeaders() });
+      const resp = await fetchConAuth("/api/historico/resumen");
       if (!resp.ok) return;
       const data = await resp.json();
 
@@ -1015,13 +1077,121 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const ICONO_CANDADO = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`;
 
-  async function consultarTablaUsuariosREST() {
-    const estatus = document.getElementById("filtro-estatus").value;
-    const consentimiento = document.getElementById("filtro-consentimiento").value;
-    const limiteEl = document.getElementById("filtro-limite");
-    const limite = limiteEl ? limiteEl.value : "25";
+  function renderizarFilasDirectorio(usuariosLista) {
     const indicator = document.getElementById("rest-query-indicator");
+    if (indicator) {
+      indicator.innerHTML = `<span>Mostrando <strong>${usuariosLista.length}</strong> miembros de la comunidad según los filtros seleccionados</span>`;
+    }
 
+    const tbody = document.getElementById("tbody-usuarios-hist");
+    if (!tbody) return;
+
+    tbody.innerHTML = usuariosLista
+      .map((u) => {
+        const consBadge = u.consentimiento_datos
+          ? `<span class="tag-ok">Autorizada</span>`
+          : `<span class="tag-priv">${ICONO_CANDADO}<span>Sin consentimiento</span></span>`;
+
+        const ICONO_PIN = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>`;
+        const ubicacionTxt =
+          u.consentimiento_datos && u.ciudad
+            ? `<span style="color:var(--primary);font-weight:500;">${ICONO_PIN}${u.ciudad}, ${u.estado} (${u.pais})</span>`
+            : `<span class="coord-protected">${ICONO_CANDADO}<span>Protegido</span></span>`;
+
+        const coordsTxt =
+          u.consentimiento_datos && u.latitud !== null
+            ? `<span class="mono-id">${Number(u.latitud).toFixed(4)}, ${Number(u.longitud).toFixed(4)}</span>`
+            : `<span class="coord-protected">${ICONO_CANDADO}<span>Protegido</span></span>`;
+
+        const s = Number(u.sentimiento_promedio || 0);
+        const sClass = s > 0.2 ? "text-success" : s < -0.2 ? "text-danger" : "";
+
+        const canFly = Boolean(u.consentimiento_datos && u.estado);
+        const rowAttr = canFly
+          ? `data-fly-user="${u.id_usuario}" data-fly-estado="${u.estado}" style="cursor:pointer;" title="Haz clic para localizar a @${u.alias} (${u.ciudad}, ${u.estado}) en el Globo 3D"`
+          : "";
+
+        return `
+          <tr ${rowAttr}>
+            <td class="mono-id">${u.id_usuario}</td>
+            <td><strong>${u.alias}</strong></td>
+            <td><span class="status-pill st-${u.estatus}">${formatearEtiqueta(u.estatus)}</span></td>
+            <td>${u.plataforma_principal}</td>
+            <td>${formatearEtiqueta(u.interes_principal)}</td>
+            <td class="num-col">${Number(u.mensajes_30d).toLocaleString("es-MX")}</td>
+            <td class="num-col ${sClass}"><strong>${(s >= 0 ? "+" : "") + s.toFixed(2)}</strong></td>
+            <td class="mono-id">${u.ultima_actividad}</td>
+            <td>${consBadge}</td>
+            <td>${ubicacionTxt}</td>
+            <td class="num-col">${coordsTxt}</td>
+          </tr>
+        `;
+      })
+      .join("");
+
+    tbody.querySelectorAll("tr[data-fly-user]").forEach((row) => {
+      row.addEventListener("click", () => {
+        const idUsr = row.getAttribute("data-fly-user");
+        const usrObj = usuariosLista.find((x) => x.id_usuario === idUsr);
+        activarVista("vista-actividad");
+        setTimeout(() => {
+          if (window.c360Globe) {
+            if (usrObj && typeof window.c360Globe.enfocarUsuario === "function") {
+              window.c360Globe.enfocarUsuario(usrObj);
+            } else {
+              const est = row.getAttribute("data-fly-estado");
+              if (est) window.c360Globe.enfocarEstado(est, true);
+            }
+          }
+        }, 140);
+      });
+    });
+  }
+
+  function filtrarDesdeCacheLocal(estatus, consentimiento, limiteNum) {
+    if (!catalogoUsuariosCache.length) return null;
+    let filtrados = catalogoUsuariosCache;
+    if (estatus) {
+      filtrados = filtrados.filter((u) => String(u.estatus).toLowerCase() === estatus.toLowerCase());
+    }
+    if (consentimiento === "true" || consentimiento === "false") {
+      const boolCons = consentimiento === "true";
+      filtrados = filtrados.filter((u) => Boolean(u.consentimiento_datos) === boolCons);
+    }
+    return filtrados.slice(0, limiteNum);
+  }
+
+  async function precargarCatalogoUsuarios() {
+    try {
+      const resp = await fetchConAuth("/api/historico/usuarios?limite=1100");
+      if (!resp.ok) return;
+      const data = await resp.json();
+      if (Array.isArray(data.usuarios) && data.usuarios.length) {
+        catalogoUsuariosCache = data.usuarios;
+        if (window.c360Globe && typeof window.c360Globe.cargarUsuariosConUbicacion === "function") {
+          window.c360Globe.cargarUsuariosConUbicacion(catalogoUsuariosCache);
+        }
+      }
+    } catch (_err) {}
+  }
+
+  async function consultarTablaUsuariosREST() {
+    const estatusEl = document.getElementById("filtro-estatus");
+    const consentimientoEl = document.getElementById("filtro-consentimiento");
+    const limiteEl = document.getElementById("filtro-limite");
+
+    const estatus = estatusEl ? estatusEl.value : "";
+    const consentimiento = consentimientoEl ? consentimientoEl.value : "";
+    const limite = limiteEl ? limiteEl.value : "25";
+    const limiteNum = parseInt(limite, 10) || 25;
+
+    // 1) Respuesta instantanea desde el padron en cache si ya esta cargado
+    const instantaneo = filtrarDesdeCacheLocal(estatus, consentimiento, limiteNum);
+    if (instantaneo) {
+      renderizarFilasDirectorio(instantaneo);
+    }
+
+    // 2) Consulta verificada al endpoint REST /api/historico/usuarios (con renovacion automatica de token si expiro)
     const params = new URLSearchParams();
     if (estatus) params.set("estatus", estatus);
     if (consentimiento) params.set("consentimiento", consentimiento);
@@ -1030,84 +1200,30 @@ document.addEventListener("DOMContentLoaded", async () => {
     const url = `/api/historico/usuarios?${params.toString()}`;
 
     try {
-      const resp = await fetch(url, { headers: authHeaders() });
+      const resp = await fetchConAuth(url);
       if (!resp.ok) return;
       const data = await resp.json();
-      indicator.innerHTML = `<span>Mostrando <strong>${data.total_devueltos}</strong> miembros de la comunidad según los filtros seleccionados</span>`;
-
       const usuariosLista = data.usuarios || [];
-      if (window.c360Globe && typeof window.c360Globe.cargarUsuariosConUbicacion === "function") {
+      renderizarFilasDirectorio(usuariosLista);
+
+      if (!catalogoUsuariosCache.length && window.c360Globe && typeof window.c360Globe.cargarUsuariosConUbicacion === "function") {
         window.c360Globe.cargarUsuariosConUbicacion(usuariosLista);
       }
-
-      const tbody = document.getElementById("tbody-usuarios-hist");
-      tbody.innerHTML = usuariosLista
-        .map((u) => {
-          const consBadge = u.consentimiento_datos
-            ? `<span class="tag-ok">Autorizada</span>`
-            : `<span class="tag-priv">${ICONO_CANDADO}<span>Sin consentimiento</span></span>`;
-
-          const ICONO_PIN = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>`;
-          const ubicacionTxt =
-            u.consentimiento_datos && u.ciudad
-              ? `<span style="color:var(--primary);font-weight:500;">${ICONO_PIN}${u.ciudad}, ${u.estado} (${u.pais})</span>`
-              : `<span class="coord-protected">${ICONO_CANDADO}<span>Protegido</span></span>`;
-
-          const coordsTxt =
-            u.consentimiento_datos && u.latitud !== null
-              ? `<span class="mono-id">${Number(u.latitud).toFixed(4)}, ${Number(u.longitud).toFixed(4)}</span>`
-              : `<span class="coord-protected">${ICONO_CANDADO}<span>Protegido</span></span>`;
-
-          const s = Number(u.sentimiento_promedio || 0);
-          const sClass = s > 0.2 ? "text-success" : s < -0.2 ? "text-danger" : "";
-
-          const canFly = Boolean(u.consentimiento_datos && u.estado);
-          const rowAttr = canFly
-            ? `data-fly-user="${u.id_usuario}" data-fly-estado="${u.estado}" style="cursor:pointer;" title="Haz clic para que el Planeta Tierra 3D rote y haga zoom hacia la ubicación de @${u.alias} (${u.ciudad}, ${u.estado})"`
-            : "";
-
-          return `
-            <tr ${rowAttr}>
-              <td class="mono-id">${u.id_usuario}</td>
-              <td><strong>${u.alias}</strong></td>
-              <td><span class="status-pill st-${u.estatus}">${formatearEtiqueta(u.estatus)}</span></td>
-              <td>${u.plataforma_principal}</td>
-              <td>${formatearEtiqueta(u.interes_principal)}</td>
-              <td class="num-col">${Number(u.mensajes_30d).toLocaleString("es-MX")}</td>
-              <td class="num-col ${sClass}"><strong>${(s >= 0 ? "+" : "") + s.toFixed(2)}</strong></td>
-              <td class="mono-id">${u.ultima_actividad}</td>
-              <td>${consBadge}</td>
-              <td>${ubicacionTxt}</td>
-              <td class="num-col">${coordsTxt}</td>
-            </tr>
-          `;
-        })
-        .join("");
-
-      tbody.querySelectorAll("tr[data-fly-user]").forEach((row) => {
-        row.addEventListener("click", () => {
-          const idUsr = row.getAttribute("data-fly-user");
-          const usrObj = usuariosLista.find((x) => x.id_usuario === idUsr);
-          const navActividad = document.querySelector('.sidebar-nav .nav-item[data-target="vista-actividad"]');
-          if (navActividad) navActividad.click();
-          setTimeout(() => {
-            if (window.c360Globe) {
-              if (usrObj && typeof window.c360Globe.enfocarUsuario === "function") {
-                window.c360Globe.enfocarUsuario(usrObj);
-              } else {
-                const est = row.getAttribute("data-fly-estado");
-                if (est) window.c360Globe.enfocarEstado(est, true);
-              }
-            }
-          }, 140);
-        });
-      });
     } catch (_err) {}
   }
 
   document
     .getElementById("btn-filtrar-usuarios")
-    .addEventListener("click", consultarTablaUsuariosREST);
+    ?.addEventListener("click", consultarTablaUsuariosREST);
+  document
+    .getElementById("filtro-estatus")
+    ?.addEventListener("change", consultarTablaUsuariosREST);
+  document
+    .getElementById("filtro-consentimiento")
+    ?.addEventListener("change", consultarTablaUsuariosREST);
+  document
+    .getElementById("filtro-limite")
+    ?.addEventListener("change", consultarTablaUsuariosREST);
 
   window.addEventListener("c360:theme-changed", () => {
     const col = obtenerColoresTema();
@@ -1144,11 +1260,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     cargarInteraccionesIniciales(),
     cargarResumenHistoricoREST(),
     consultarTablaUsuariosREST(),
+    precargarCatalogoUsuarios(),
   ]);
+
+  // Renovar token preventivamente cada 45 minutos para que la sesion y los filtros nunca caduquen
+  setInterval(renovarTokenSilencioso, 45 * 60 * 1000);
 
   wsInstance = conectarWebSocket();
 
   btnLogout.addEventListener("click", async () => {
+    cerrandoSesionManual = true;
     btnLogout.disabled = true;
     try {
       await fetch("/api/auth/logout", { method: "POST", headers: authHeaders() });

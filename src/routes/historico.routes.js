@@ -183,7 +183,7 @@ router.get("/usuarios", requiereAuth, async (req, res) => {
       condiciones.push(`u.consentimiento_datos = $${params.length}`);
     }
 
-    const lim = Math.min(Math.max(parseInt(limite, 10) || 25, 1), 100);
+    const lim = Math.min(Math.max(parseInt(limite, 10) || 25, 1), 1200);
     params.push(lim);
 
     const whereSql = condiciones.length ? `WHERE ${condiciones.join(" AND ")}` : "";
