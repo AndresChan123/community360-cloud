@@ -270,39 +270,39 @@ document.addEventListener("DOMContentLoaded", async () => {
     requestAnimationFrame(frame);
   }
 
-  // Paleta ejecutiva corporativa reactiva al tema claro / oscuro
-  const PRIMARY = "#2563EB";
-  const PRIMARY_HOVER = "#1E40AF";
+  // Paleta Pastel Armoniosa reactiva al tema claro / oscuro (Lavanda, Menta, Durazno, Rosa Pastel)
+  const PRIMARY = "#9D84D2";
+  const PRIMARY_HOVER = "#8B72BE";
   function esTemaOscuro() {
     return document.documentElement.getAttribute("data-theme") === "dark";
   }
   function obtenerColoresTema() {
     const dark = esTemaOscuro();
     return {
-      grid: dark ? "rgba(148, 163, 184, 0.10)" : "#E2E8F0",
-      axis: dark ? "#94A3B8" : "#475569",
-      text: dark ? "#F8FAFC" : "#0F172A",
-      borderDona: dark ? "#0F172A" : "#FFFFFF",
+      grid: dark ? "rgba(203, 189, 240, 0.12)" : "#E6DFD5",
+      axis: dark ? "#B8B0CC" : "#6E6A7C",
+      text: dark ? "#F7F4FC" : "#2D2A32",
+      borderDona: dark ? "#242132" : "#FFFFFF",
     };
   }
   let GRID_COLOR = obtenerColoresTema().grid;
   let AXIS_TEXT = obtenerColoresTema().axis;
   let DARK_TEXT = obtenerColoresTema().text;
 
-  // Paleta ejecutiva monocromatica/analoga (Zafiro, Cobalto, Cian Corporativo, Teal, Indigo, Pizarra)
+  // Paleta Pastel agradable para la vista (Lavanda, Menta Salvia, Durazno, Rosa Coral, Periwinkle, Malva)
   const PALETA_CANALES = [
-    "#1E40AF",
-    "#2563EB",
-    "#0284C7",
-    "#0D9488",
-    "#4F46E5",
-    "#64748B",
+    "#A78BFA",
+    "#76C893",
+    "#F4A261",
+    "#E58C9E",
+    "#8ECAE6",
+    "#B59DA4",
   ];
 
   const COLORES_ESTATUS = {
-    activo: "#059669",
-    en_riesgo: "#D97706",
-    inactivo: "#E11D48",
+    activo: "#6BB5A2",
+    en_riesgo: "#F4A261",
+    inactivo: "#E58C9E",
   };
 
   Chart.defaults.color = AXIS_TEXT;
@@ -407,7 +407,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   Chart.register(barValueLabelsPlugin, doughnutCenterTextPlugin);
 
   function opcionesDona(centerLabel) {
-    const esMovil = window.innerWidth <= 640;
     return {
       responsive: true,
       maintainAspectRatio: false,
@@ -416,7 +415,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       plugins: {
         centerLabel,
         legend: {
-          position: esMovil ? "bottom" : "right",
+          position: "right",
           labels: {
             boxWidth: 10,
             boxHeight: 10,
@@ -490,26 +489,26 @@ document.addEventListener("DOMContentLoaded", async () => {
     const dark = esTemaOscuro();
 
     if (dark) {
-      // Escala ejecutiva nocturna: Pizarra Oscuro (#131C31) -> Zafiro Corporativo (#1D4ED8)
-      const r = Math.round(19 + (29 - 19) * t);
-      const g = Math.round(28 + (78 - 28) * t);
-      const b = Math.round(49 + (216 - 49) * t);
+      // Escala Pastel Nocturna: Ciruela Suave (#262235) -> Lavanda Pastel (#6D599E)
+      const r = Math.round(38 + (109 - 38) * t);
+      const g = Math.round(34 + (89 - 34) * t);
+      const b = Math.round(53 + (158 - 53) * t);
       return {
         bg: `rgb(${r}, ${g}, ${b})`,
-        textColor: "#F8FAFC",
-        subColor: t >= 0.45 ? "#93C5FD" : "#60A5FA",
+        textColor: "#F7F4FC",
+        subColor: t >= 0.45 ? "#A7F3D0" : "#D8B4FE",
       };
     }
 
-    // Escala ejecutiva diurna: Platino (#F1F5F9) -> Azul Zafiro (#1E40AF)
-    const r = Math.round(241 + (30 - 241) * t);
-    const g = Math.round(245 + (64 - 245) * t);
-    const b = Math.round(249 + (175 - 249) * t);
-    const esOscuro = t >= 0.52;
+    // Escala Pastel Diurna: Crema Menta (#F3EFEA) -> Lavanda Menta Pastel (#9B84CE)
+    const r = Math.round(243 + (155 - 243) * t);
+    const g = Math.round(239 + (132 - 239) * t);
+    const b = Math.round(234 + (206 - 234) * t);
+    const esOscuro = t >= 0.55;
     return {
       bg: `rgb(${r}, ${g}, ${b})`,
-      textColor: esOscuro ? "#FFFFFF" : "#0F172A",
-      subColor: esOscuro ? "rgba(255, 255, 255, 0.92)" : "#1E40AF",
+      textColor: esOscuro ? "#FFFFFF" : "#2D2A32",
+      subColor: esOscuro ? "rgba(255, 255, 255, 0.94)" : "#7359A8",
     };
   }
 
@@ -668,7 +667,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         datasets: [
           {
             data: [distSent.positivas || 0, distSent.neutras || 0, distSent.negativas || 0],
-            backgroundColor: ["#059669", "#64748B", "#E11D48"],
+            backgroundColor: ["#76C893", "#B59DA4", "#E58C9E"],
             borderWidth: 2,
             borderColor: obtenerColoresTema().borderDona,
           },
