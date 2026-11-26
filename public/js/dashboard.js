@@ -645,13 +645,27 @@ document.addEventListener("DOMContentLoaded", async () => {
       .map(([estado, conteo]) => {
         const col = calcularColorHeatmap(conteo, minEstado, maxEstado);
         return `
-          <div class="heatmap-cell" style="background:${col.bg};">
+          <div class="heatmap-cell" data-estado="${estado}" title="Haz clic para girar el Mapa 3D hacia ${estado}" style="background:${col.bg};">
             <div class="heatmap-state" style="color:${col.textColor};">${estado}</div>
             <div class="heatmap-count" style="color:${col.subColor};">${conteo}</div>
           </div>
         `;
       })
       .join("");
+
+    // Conectar clic/hover de las celdas regionales con el Globo 3D
+    heatmapContainer.querySelectorAll(".heatmap-cell").forEach((cell) => {
+      cell.addEventListener("click", () => {
+        const est = cell.getAttribute("data-estado");
+        if (window.c360Globe && est) {
+          window.c360Globe.enfocarEstado(est, true);
+        }
+      });
+    });
+
+    if (window.c360Globe) {
+      window.c360Globe.actualizarDatos(metricas.mapa_calor_estado, null);
+    }
 
     // 6) Tabla de actividad reciente
     if (Array.isArray(interaccionesRecientes)) {
@@ -808,6 +822,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         data.auditoria_etl?.total_cuarentena_firestore || 793
       ).toLocaleString("es-MX");
 
+      if (window.c360Globe && Array.isArray(data.catalogo_ubicaciones)) {
+        window.c360Globe.actualizarDatos(null, data.catalogo_ubicaciones);
+      }
+
       const ordenEstatus = ["activo", "en_riesgo", "inactivo"].filter(
         (k) => data.por_estatus && data.por_estatus[k] !== undefined
       );
@@ -930,8 +948,13 @@ document.addEventListener("DOMContentLoaded", async () => {
           const s = Number(u.sentimiento_promedio || 0);
           const sClass = s > 0.2 ? "text-success" : s < -0.2 ? "text-danger" : "";
 
+          const canFly = Boolean(u.consentimiento_datos && u.estado);
+          const rowAttr = canFly
+            ? `data-fly-estado="${u.estado}" style="cursor:pointer;" title="Haz clic para ver la ubicación de ${u.alias} (${u.ciudad}, ${u.estado}) en el Mapa 3D"`
+            : "";
+
           return `
-            <tr>
+            <tr ${rowAttr}>
               <td class="mono-id">${u.id_usuario}</td>
               <td><strong>${u.alias}</strong></td>
               <td><span class="status-pill st-${u.estatus}">${formatearEtiqueta(u.estatus)}</span></td>
@@ -947,6 +970,18 @@ document.addEventListener("DOMContentLoaded", async () => {
           `;
         })
         .join("");
+
+      tbody.querySelectorAll("tr[data-fly-estado]").forEach((row) => {
+        row.addEventListener("click", () => {
+          const est = row.getAttribute("data-fly-estado");
+          if (!est) return;
+          const navActividad = document.querySelector('.sidebar-nav .nav-item[data-target="vista-actividad"]');
+          if (navActividad) navActividad.click();
+          setTimeout(() => {
+            if (window.c360Globe) window.c360Globe.enfocarEstado(est, true);
+          }, 120);
+        });
+      });
     } catch (_err) {}
   }
 

@@ -363,15 +363,46 @@
         </div>
 
         <!-- =============================================================== -->
-        <!-- VISTA 2: PUBLICACIONES Y MAPA REGIONAL                          -->
+        <!-- VISTA 2: PUBLICACIONES Y MAPA REGIONAL (CON GLOBO 3D EN VIVO)   -->
         <!-- =============================================================== -->
         <div id="vista-actividad" class="view-section">
-          <section class="grid-2-col-asym">
+          <!-- Panel superior: Globo Terraqueo 3D Interactivo + Mapa de calor regional -->
+          <section class="grid-2-col" style="margin-bottom: 18px;">
+            <article class="panel-card svc globe-panel">
+              <div class="panel-header">
+                <div>
+                  <span class="tag">01 · Globo Terráqueo 3D Interactivo</span>
+                  <h3>Mapa 3D de ubicaciones de la comunidad</h3>
+                  <p>Gira con el cursor o haz clic en cualquier región para viajar a la ubicación de los miembros</p>
+                </div>
+                <div class="globe-controls">
+                  <button type="button" id="btn-globe-tour" class="live-chip globe-btn active">Recorrido 3D activo</button>
+                  <button type="button" class="live-chip globe-btn" data-globe-region="mexico">Centro MX</button>
+                  <button type="button" class="live-chip globe-btn" data-globe-region="sur">Sureste MX</button>
+                  <button type="button" class="live-chip globe-btn" data-globe-region="latam">Sudamérica</button>
+                  <button type="button" class="live-chip globe-btn" data-globe-region="espana">España</button>
+                </div>
+              </div>
+
+              <div class="globe-stage">
+                <canvas id="globe-3d-canvas"></canvas>
+                <div id="globe-hud-card" class="globe-hud-card">
+                  <div class="globe-hud-tag">Ubicación enfocada en 3D</div>
+                  <div id="globe-hud-city" class="globe-hud-city">Guadalajara, Jalisco (México)</div>
+                  <div id="globe-hud-coords" class="globe-hud-coords">20.6719° N, 103.3519° O</div>
+                  <div class="globe-hud-stats">
+                    <span id="globe-hud-inter" class="status-pill st-activo">31 publicaciones</span>
+                    <span id="globe-hud-members" class="status-pill tag-priv">Ubicación verificada</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
             <article class="panel-card svc">
               <div class="panel-header">
                 <div>
-                  <span class="tag">01 · Distribución territorial</span>
-                  <h3>Actividad por región</h3>
+                  <span class="tag">02 · Distribución territorial</span>
+                  <h3>Actividad por región (Haz clic para girar el Mapa 3D)</h3>
                   <p>Estados con mayor participación (solo miembros que comparten ubicación)</p>
                 </div>
                 <div class="heatmap-legend">
@@ -382,11 +413,14 @@
               </div>
               <div id="heatmap-estados" class="heatmap-grid"></div>
             </article>
+          </section>
 
+          <!-- Panel inferior: Tabla de ultimas publicaciones -->
+          <section>
             <article class="panel-card svc">
               <div class="panel-header">
                 <div>
-                  <span class="tag">02 · Historial en vivo</span>
+                  <span class="tag">03 · Historial en vivo</span>
                   <h3>Últimas publicaciones y reacciones</h3>
                   <p>Historial en vivo de la actividad más reciente en las plataformas</p>
                 </div>
@@ -598,6 +632,7 @@
   </div>
 
   <script src="/js/effects.js"></script>
+  <script src="/js/globe3d.js"></script>
   <script src="/js/dashboard.js"></script>
 </body>
 </html>
