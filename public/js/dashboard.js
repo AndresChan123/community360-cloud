@@ -62,46 +62,62 @@ document.addEventListener("DOMContentLoaded", async () => {
   // NAVEGACION POR VISTAS INDEPENDIENTES (SIN TENER QUE HACER SCROLL LARGO)
   // =========================================================================
   const TITULOS_VISTAS = {
+    "vista-inicio": {
+      eyebrow: "Resumen General · Cuatro Áreas de Análisis",
+      titulo: "Centro de Analítica Comunitaria",
+      subtitulo: "Selecciona cualquiera de las áreas para explorar el pulso en vivo, el mapa regional o el padrón de miembros.",
+    },
     "vista-pulso": {
-      titulo: "Pulso en tiempo real",
-      subtitulo: "Resumen vivo del ánimo, temas y canales donde participa la comunidad",
+      eyebrow: "01 · Conversación en Vivo · Redes Sociales",
+      titulo: "Pulso en Vivo",
+      subtitulo: "Seguimiento instantáneo del ánimo, temas comentados y participación por canal digital.",
     },
     "vista-actividad": {
-      titulo: "Publicaciones y mapa regional",
-      subtitulo: "Distribución geográfica de la actividad y flujo reciente de publicaciones",
+      eyebrow: "02 · Territorio y Flujo · Participación Regional",
+      titulo: "Mapa Regional y Publicaciones",
+      subtitulo: "Distribución geográfica de la actividad por estado y flujo reciente de publicaciones.",
     },
     "vista-comunidad": {
-      titulo: "Perfiles y retención de miembros",
-      subtitulo: "Permanencia en la comunidad, intereses culturales y composición por edades",
+      eyebrow: "03 · Demografía y Retención · Comunidad",
+      titulo: "Perfiles y Retención de Miembros",
+      subtitulo: "Permanencia en la comunidad, intereses culturales y composición por grupos de edad.",
     },
     "vista-directorio": {
-      titulo: "Directorio de miembros y privacidad",
-      subtitulo: "Consulta individual de perfiles y resguardo de ubicación personal",
+      eyebrow: "04 · Padrón Comunitario · Privacidad de Ubicación",
+      titulo: "Directorio de Miembros",
+      subtitulo: "Consulta individual de perfiles y resguardo de ubicación de quienes eligieron mantenerla privada.",
     },
   };
 
   function activarVista(viewId) {
+    if (!viewId) return;
     document.querySelectorAll(".view-section").forEach((sec) => {
       sec.classList.toggle("active", sec.id === viewId);
     });
-    document.querySelectorAll("[data-view]").forEach((btn) => {
-      btn.classList.toggle("active", btn.getAttribute("data-view") === viewId);
+    document.querySelectorAll(".nx-nav-link").forEach((btn) => {
+      const activo = btn.getAttribute("data-view") === viewId;
+      btn.classList.toggle("active", activo);
+      if (activo) btn.setAttribute("aria-current", "page");
+      else btn.removeAttribute("aria-current");
     });
     const meta = TITULOS_VISTAS[viewId];
     if (meta) {
+      const eyebrowEl = document.getElementById("hero-eyebrow-text");
+      if (eyebrowEl) eyebrowEl.textContent = meta.eyebrow;
       document.getElementById("topbar-view-title").textContent = meta.titulo;
       document.getElementById("topbar-view-subtitle").textContent = meta.subtitulo;
     }
-    // Redimensionar graficas al hacerse visible la vista
+    window.scrollTo({ top: 0, behavior: "smooth" });
     setTimeout(() => {
       Object.values(charts).forEach((c) => {
         if (c && typeof c.resize === "function") c.resize();
       });
-    }, 40);
+    }, 50);
   }
 
   document.querySelectorAll("[data-view]").forEach((btn) => {
-    btn.addEventListener("click", () => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
       activarVista(btn.getAttribute("data-view"));
     });
   });
@@ -426,10 +442,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     versionBadgeEl.textContent = "Actualizado al momento";
 
+    const totalInterNum = Number(metricas.total_interacciones || 0);
+    const hubPubEl = document.getElementById("hub-stat-publicaciones");
+    if (hubPubEl) hubPubEl.textContent = totalInterNum.toLocaleString("es-MX");
+
     actualizarKPI(
       "kpi-total-inter",
       "card-kpi-total",
-      Number(metricas.total_interacciones || 0),
+      totalInterNum,
       (v) => Math.round(v).toLocaleString("es-MX"),
       esEventoWS
     );

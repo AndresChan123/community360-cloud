@@ -1,468 +1,604 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="light">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Community 360 · Panel de la Comunidad</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Community 360 · Plataforma de Analítica Comunitaria</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/css/styles.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 </head>
-<body class="app-body">
-  <div class="app-shell">
-    <!-- Barra lateral de navegacion por vistas independientes -->
-    <aside class="sidebar">
-      <div class="sidebar-brand">
-        <div class="logo-mark">C360</div>
-        <div>
-          <div class="brand-name">Community 360</div>
-          <div class="brand-sub">Panel Comunitario</div>
-        </div>
-      </div>
+<body>
+  <div id="sp" aria-hidden="true"></div>
+  <div id="cg" aria-hidden="true"></div>
+  <canvas id="constellation-bg" aria-hidden="true"></canvas>
 
-      <nav class="sidebar-nav" id="sidebar-nav">
-        <div class="nav-group-label">Actividad en Vivo</div>
-        <button type="button" class="nav-link active" data-view="vista-pulso">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg>
-          <span>Pulso en tiempo real</span>
-        </button>
-        <button type="button" class="nav-link" data-view="vista-actividad">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          <span>Publicaciones y mapa</span>
+  <!-- Header horizontal fijo inspirado en Nodrex -->
+  <header class="nx-header">
+    <div class="wrap nx-header-wrap">
+      <a class="nx-logo" href="#inicio" data-view="vista-inicio">COMMUN<b>I</b>TY 360</a>
+
+      <nav class="nx-nav" aria-label="Navegación principal">
+        <button type="button" class="nx-nav-link" data-view="vista-inicio">Resumen</button>
+        <button type="button" class="nx-nav-link active" data-view="vista-pulso" aria-current="page">Pulso en Vivo</button>
+        <button type="button" class="nx-nav-link" data-view="vista-actividad">Mapa y Actividad</button>
+        <button type="button" class="nx-nav-link" data-view="vista-comunidad">Comunidad</button>
+        <button type="button" class="nx-nav-link" data-view="vista-directorio">Directorio</button>
+
+        <!-- Boton circular de Modo Claro / Oscuro estilo Nodrex (.tgl) -->
+        <button class="tgl" id="btn-theme-toggle" type="button" aria-label="Cambiar entre modo claro y oscuro" title="Cambiar entre modo claro y oscuro">
+          <svg id="theme-icon-sun" class="su" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+          </svg>
+          <svg id="theme-icon-moon" class="mo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/>
+          </svg>
         </button>
 
-        <div class="nav-group-label">Miembros</div>
-        <button type="button" class="nav-link" data-view="vista-comunidad">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          <span>Perfiles y retención</span>
-        </button>
-        <button type="button" class="nav-link" data-view="vista-directorio">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <span>Directorio y privacidad</span>
-        </button>
-      </nav>
-
-      <div class="sidebar-footer">
-        <div class="live-pill-box">
-          <span id="ws-dot" class="status-dot"></span>
-          <div class="live-pill-info">
-            <div id="ws-status" class="status-title">Conectando...</div>
-            <div id="version-badge" class="status-meta">Actualización automática</div>
-          </div>
-        </div>
-      </div>
-    </aside>
-
-    <!-- Area principal sin desbordamiento -->
-    <div class="main-area">
-      <!-- Encabezado superior con selector de sesion y cambio de cuenta -->
-      <header class="topbar">
-        <div class="topbar-heading">
-          <h1 id="topbar-view-title">Pulso en tiempo real</h1>
-          <p id="topbar-view-subtitle">Resumen vivo del ánimo, temas y canales donde participa la comunidad</p>
+        <!-- Estado de conexion en vivo -->
+        <div class="header-live-pill">
+          <span id="ws-header-dot" class="status-dot online"></span>
+          <span id="ws-header-text">En vivo</span>
         </div>
 
-        <div class="topbar-actions">
-          <button type="button" id="btn-theme-toggle" class="btn-theme-toggle" title="Cambiar entre modo claro y oscuro">
-            <svg id="theme-icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-            <svg id="theme-icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-            <span id="theme-toggle-label">Modo claro</span>
+        <!-- Panel desplegable de sesion y cambio de cuenta -->
+        <div class="session-dropdown-wrap" id="session-dropdown-wrap">
+          <button type="button" id="btn-session-toggle" class="user-profile-chip" aria-expanded="false" title="Sesión activa y cambio de cuenta">
+            <div id="user-avatar" class="user-avatar">LR</div>
+            <div class="user-meta">
+              <div id="user-email" class="user-name">Cargando...</div>
+              <div id="user-rol" class="user-role">Administrador</div>
+            </div>
+            <svg class="chevron-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
 
-          <div class="header-live-pill">
-            <span id="ws-header-dot" class="status-dot"></span>
-            <span id="ws-header-text">Conectado en tiempo real</span>
-          </div>
+          <div id="session-panel" class="session-panel" hidden>
+            <div class="session-panel-header">
+              <div class="session-panel-label">Sesión actual</div>
+              <div id="panel-current-email" class="session-panel-email">-</div>
+              <span id="panel-current-role" class="status-pill st-activo">Administrador</span>
+            </div>
 
-          <!-- Panel desplegable de sesion / cambio de cuenta -->
-          <div class="session-dropdown-wrap" id="session-dropdown-wrap">
-            <button type="button" id="btn-session-toggle" class="user-profile-chip" aria-expanded="false" title="Opciones de cuenta y cambio de usuario">
-              <div id="user-avatar" class="user-avatar">LR</div>
-              <div class="user-meta">
-                <div id="user-email" class="user-name">Cargando...</div>
-                <div id="user-rol" class="user-role">Administrador</div>
-              </div>
-              <svg class="chevron-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
+            <div class="session-panel-divider"></div>
 
-            <div id="session-panel" class="session-panel" hidden>
-              <div class="session-panel-header">
-                <div class="session-panel-label">Sesión activa</div>
-                <div id="panel-current-email" class="session-panel-email">-</div>
-                <span id="panel-current-role" class="status-pill st-activo">Administrador</span>
-              </div>
-
-              <div class="session-panel-divider"></div>
-
-              <div class="session-panel-section">
-                <div class="session-panel-label">Cambiar rápido de cuenta</div>
-                <button type="button" class="account-switch-btn" data-user="lizandro.reyes" data-pass="lizandr0_reye$">
-                  <span class="acc-avatar">LR</span>
-                  <span class="acc-info">
-                    <strong>lizandro.reyes</strong>
-                    <small>Docente Evaluador · Administrador</small>
-                  </span>
-                </button>
-                <button type="button" class="account-switch-btn" data-user="lector" data-pass="Community360!Lector">
-                  <span class="acc-avatar neutral">LC</span>
-                  <span class="acc-info">
-                    <strong>lector@community360.mx</strong>
-                    <small>Cuenta de consulta · Solo lectura</small>
-                  </span>
-                </button>
-                <button type="button" class="account-switch-btn" data-user="admin" data-pass="Community360!Admin">
-                  <span class="acc-avatar">AD</span>
-                  <span class="acc-info">
-                    <strong>admin@community360.mx</strong>
-                    <small>Administrador general</small>
-                  </span>
-                </button>
-              </div>
-
-              <div class="session-panel-divider"></div>
-
-              <!-- Formulario rapido para ingresar con cualquier otra cuenta desde el mismo panel -->
-              <form id="quick-switch-form" class="quick-switch-form">
-                <div class="session-panel-label">Ingresar con otra cuenta</div>
-                <input type="text" id="switch-user" placeholder="Usuario o correo" required />
-                <input type="password" id="switch-pass" placeholder="Contraseña" required />
-                <div id="switch-msg" class="switch-msg"></div>
-                <button type="submit" id="btn-quick-switch" class="btn-filter" style="width:100%;">Cambiar de cuenta</button>
-              </form>
-
-              <div class="session-panel-divider"></div>
-
-              <button id="btn-logout" class="btn-logout-full" type="button">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-                <span>Cerrar sesión actual</span>
+            <div class="session-panel-section">
+              <div class="session-panel-label">Cambiar rápido de cuenta</div>
+              <button type="button" class="account-switch-btn" data-user="lizandro.reyes" data-pass="lizandr0_reye$">
+                <span class="acc-avatar">LR</span>
+                <span class="acc-info">
+                  <strong>lizandro.reyes</strong>
+                  <small>Docente Evaluador · Administrador</small>
+                </span>
+              </button>
+              <button type="button" class="account-switch-btn" data-user="lector" data-pass="Community360!Lector">
+                <span class="acc-avatar neutral">LC</span>
+                <span class="acc-info">
+                  <strong>lector@community360.mx</strong>
+                  <small>Cuenta de consulta · Solo lectura</small>
+                </span>
+              </button>
+              <button type="button" class="account-switch-btn" data-user="admin" data-pass="Community360!Admin">
+                <span class="acc-avatar">AD</span>
+                <span class="acc-info">
+                  <strong>admin@community360.mx</strong>
+                  <small>Administrador general</small>
+                </span>
               </button>
             </div>
+
+            <div class="session-panel-divider"></div>
+
+            <form id="quick-switch-form" class="quick-switch-form">
+              <div class="session-panel-label">Ingresar con otra cuenta</div>
+              <input type="text" id="switch-user" placeholder="Usuario o correo" required />
+              <input type="password" id="switch-pass" placeholder="Contraseña" required />
+              <div id="switch-msg" class="switch-msg"></div>
+              <button type="submit" id="btn-quick-switch" class="nx-btn sm" style="width:100%;">Cambiar de cuenta</button>
+            </form>
+
+            <div class="session-panel-divider"></div>
+
+            <button id="btn-logout" class="btn-logout-full" type="button">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+              <span>Cerrar sesión</span>
+            </button>
           </div>
         </div>
-      </header>
+      </nav>
+    </div>
+  </header>
 
-      <!-- Pestañas superiores de acceso rapido entre las 4 secciones -->
-      <div class="view-tabs-bar">
-        <button type="button" class="view-tab active" data-view="vista-pulso">1. Pulso en tiempo real</button>
-        <button type="button" class="view-tab" data-view="vista-actividad">2. Publicaciones y mapa</button>
-        <button type="button" class="view-tab" data-view="vista-comunidad">3. Perfiles y retención</button>
-        <button type="button" class="view-tab" data-view="vista-directorio">4. Directorio y privacidad</button>
-      </div>
+  <main>
+    <!-- Hero dinamico de cada seccion inspirado en .page-hero de Nodrex -->
+    <div class="page-hero">
+      <div class="wrap">
+        <span class="eyebrow"><i id="ws-dot"></i><span id="hero-eyebrow-text">Monitoreo en Vivo · Redes Sociales · Comunidad</span></span>
+        <h1 id="topbar-view-title">Pulso en Vivo</h1>
+        <p id="topbar-view-subtitle" class="lead">Seguimiento instantáneo del ánimo, temas comentados y participación por canal digital.</p>
 
-      <main class="content-wrap">
-        <!-- Barra de aviso de actualizaciones en vivo (visible cuando ocurre un cambio) -->
-        <section id="ws-banner" class="activity-ticker" aria-live="polite">
+        <!-- Barra compacta de notificaciones en tiempo real dentro del Hero -->
+        <div id="ws-banner" class="activity-ticker" aria-live="polite">
           <div class="ticker-left">
             <span class="pulse-dot-green"></span>
-            <span class="ticker-tag">EN VIVO</span>
-            <span id="ws-last-title" class="ticker-text">El panel está sincronizado. Cualquier nueva publicación o cambio se mostrará aquí automáticamente.</span>
+            <span class="ticker-tag" id="ws-status">EN LÍNEA</span>
+            <span id="ws-last-title" class="ticker-text">Sincronización activa. Los cambios en publicaciones se reflejan al instante sin recargar.</span>
           </div>
           <span id="ws-last-time" class="ticker-time">Al día</span>
-        </section>
+          <span id="version-badge" style="display:none;"></span>
+        </div>
         <div id="ws-event-log" class="event-toast-list"></div>
+      </div>
+    </div>
 
-        <!-- =============================================================== -->
-        <!-- VISTA 1: PULSO EN TIEMPO REAL                                   -->
-        <!-- =============================================================== -->
-        <div id="vista-pulso" class="view-section active">
-          <!-- 5 Tarjetas KPI centradas y esteticas -->
-          <section class="kpi-row-5">
-            <article class="metric-card" id="card-kpi-total">
-              <div class="metric-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-              </div>
-              <span class="metric-label">Publicaciones activas</span>
-              <div id="kpi-total-inter" class="metric-value">-</div>
-              <span class="metric-sub">Total registrado en la comunidad</span>
-            </article>
-
-            <article class="metric-card" id="card-kpi-sent">
-              <div class="metric-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
-              </div>
-              <span class="metric-label">Ánimo promedio</span>
-              <div id="kpi-sentimiento" class="metric-value">-</div>
-              <span class="metric-sub">Percepción general de la comunidad</span>
-            </article>
-
-            <article class="metric-card" id="card-kpi-reac">
-              <div class="metric-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-              </div>
-              <span class="metric-label">Reacciones acumuladas</span>
-              <div id="kpi-reacciones" class="metric-value">-</div>
-              <span id="kpi-reacciones-prom" class="metric-sub">Promedio por publicación</span>
-            </article>
-
-            <article class="metric-card" id="card-kpi-pos">
-              <div class="metric-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-              </div>
-              <span class="metric-label">Ambiente favorable</span>
-              <div id="kpi-tasa-pos" class="metric-value text-success">-</div>
-              <span class="metric-sub">Mensajes con ánimo positivo</span>
-            </article>
-
-            <article class="metric-card" id="card-kpi-neg">
-              <div class="metric-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-              </div>
-              <span class="metric-label">Atención de moderación</span>
-              <div id="kpi-tasa-neg" class="metric-value text-danger">-</div>
-              <span class="metric-sub">Publicaciones que requieren revisión</span>
-            </article>
-          </section>
-
-          <section class="grid-2-col">
-            <article class="panel-card">
-              <div class="panel-header">
-                <div>
-                  <h3>Temas más comentados</h3>
-                  <p>Asuntos que concentran la conversación actual</p>
-                </div>
-                <span class="live-chip">Tiempo real</span>
-              </div>
-              <div class="chart-container">
-                <canvas id="chart-ws-tema"></canvas>
-              </div>
-            </article>
-
-            <article class="panel-card">
-              <div class="panel-header">
-                <div>
-                  <h3>Participación por red social</h3>
-                  <p>Proporción de actividad registrada en cada plataforma</p>
-                </div>
-                <span class="live-chip">Tiempo real</span>
-              </div>
-              <div class="chart-container">
-                <canvas id="chart-ws-canal"></canvas>
-              </div>
-            </article>
-          </section>
-
-          <section class="grid-2-col">
-            <article class="panel-card">
-              <div class="panel-header">
-                <div>
-                  <h3>Forma de participación</h3>
-                  <p>Mensajes, comentarios, reacciones, encuestas y asistencia a eventos</p>
-                </div>
-                <span class="live-chip">Tiempo real</span>
-              </div>
-              <div class="chart-container">
-                <canvas id="chart-ws-tipo"></canvas>
-              </div>
-            </article>
-
-            <article class="panel-card">
-              <div class="panel-header">
-                <div>
-                  <h3>Balance de ánimo en la conversación</h3>
-                  <p>Distribución entre mensajes positivos, neutros y críticos</p>
-                </div>
-                <span class="live-chip">Tiempo real</span>
-              </div>
-              <div class="chart-container">
-                <canvas id="chart-ws-polaridad"></canvas>
-              </div>
-            </article>
-          </section>
+    <!-- =================================================================== -->
+    <!-- VISTA 0: RESUMEN (HUB DE MODULOS ESTILO NODREX)                     -->
+    <!-- =================================================================== -->
+    <section id="vista-inicio" class="view-section">
+      <div class="wrap">
+        <!-- Franja de contadores principales estilo .stats de Nodrex -->
+        <div class="nx-stats">
+          <div>
+            <b id="hub-stat-miembros">1,068</b>
+            <span>Miembros en el padrón</span>
+          </div>
+          <div>
+            <b id="hub-stat-publicaciones">207</b>
+            <span>Publicaciones activas</span>
+          </div>
+          <div>
+            <b id="hub-stat-ciudades">21</b>
+            <span>Ciudades con actividad</span>
+          </div>
+          <div>
+            <b id="hub-stat-protegidos">171</b>
+            <span>Perfiles con ubicación privada</span>
+          </div>
         </div>
 
-        <!-- =============================================================== -->
-        <!-- VISTA 2: PUBLICACIONES Y MAPA REGIONAL                          -->
-        <!-- =============================================================== -->
-        <div id="vista-actividad" class="view-section">
-          <section class="grid-2-col-asym">
-            <article class="panel-card">
-              <div class="panel-header">
-                <div>
-                  <h3>Actividad por región</h3>
-                  <p>Estados con mayor participación (solo miembros que comparten ubicación)</p>
-                </div>
-                <div class="heatmap-legend">
-                  <span>Menos</span>
-                  <span class="heatmap-gradient-bar"></span>
-                  <span>Más</span>
-                </div>
-              </div>
-              <div id="heatmap-estados" class="heatmap-grid"></div>
-            </article>
+        <!-- Tarjetas de acceso directo a las 4 areas (.hub-grid estilo Nodrex) -->
+        <div class="hub-grid" style="margin-top: 32px;">
+          <div class="hub-card svc" data-view-card="vista-pulso">
+            <div>
+              <span class="hub-badge">01 · Conversación en vivo</span>
+              <h3>Pulso en Tiempo Real</h3>
+              <p>Supervisa las publicaciones activas, el ánimo general de la comunidad, las reacciones acumuladas y la distribución por red social.</p>
+            </div>
+            <div class="cta">
+              <button type="button" class="nx-btn sm" data-view="vista-pulso">Abrir Pulso en Vivo →</button>
+            </div>
+          </div>
 
-            <article class="panel-card">
-              <div class="panel-header">
-                <div>
-                  <h3>Últimas publicaciones y reacciones</h3>
-                  <p>Historial en vivo de la actividad más reciente en las plataformas</p>
-                </div>
-                <span class="live-chip">Actualización continua</span>
-              </div>
-              <div class="table-wrapper table-tall">
-                <table class="clean-table">
-                  <thead>
-                    <tr>
-                      <th>Folio</th>
-                      <th>Miembro</th>
-                      <th>Plataforma</th>
-                      <th>Actividad</th>
-                      <th>Tema</th>
-                      <th class="num-col">Ánimo</th>
-                      <th class="num-col">Reacciones</th>
-                      <th>Categorías</th>
-                    </tr>
-                  </thead>
-                  <tbody id="tbody-interacciones"></tbody>
-                </table>
-              </div>
-            </article>
-          </section>
+          <div class="hub-card svc" data-view-card="vista-actividad">
+            <div>
+              <span class="hub-badge gold">02 · Territorio y flujo</span>
+              <h3>Mapa Regional y Publicaciones</h3>
+              <p>Identifica los estados con mayor participación para planificar eventos presenciales y revisa las últimas publicaciones registradas.</p>
+            </div>
+            <div class="cta">
+              <button type="button" class="nx-btn sm" data-view="vista-actividad">Ver Mapa y Actividad →</button>
+            </div>
+          </div>
+
+          <div class="hub-card svc" data-view-card="vista-comunidad">
+            <div>
+              <span class="hub-badge">03 · Demografía y retención</span>
+              <h3>Perfiles de la Comunidad</h3>
+              <p>Analiza la proporción de miembros activos, en riesgo de abandono e inactivos, junto con sus intereses culturales y grupos de edad.</p>
+            </div>
+            <div class="cta">
+              <button type="button" class="nx-btn sm" data-view="vista-comunidad">Explorar Comunidad →</button>
+            </div>
+          </div>
+
+          <div class="hub-card svc" data-view-card="vista-directorio">
+            <div>
+              <span class="hub-badge gold">04 · Padrón y privacidad</span>
+              <h3>Directorio de Miembros</h3>
+              <p>Filtra a los miembros por su estado de participación o verifica el resguardo de ubicación de quienes eligieron mantenerla privada.</p>
+            </div>
+            <div class="cta">
+              <button type="button" class="nx-btn sm" data-view="vista-directorio">Consultar Directorio →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- VISTA 1: PULSO EN VIVO                                              -->
+    <!-- =================================================================== -->
+    <section id="vista-pulso" class="view-section active">
+      <div class="wrap">
+        <!-- 5 Tarjetas KPI centradas -->
+        <div class="kpi-row-5">
+          <article class="metric-card svc" id="card-kpi-total">
+            <span class="tag">01 · Volumen</span>
+            <span class="metric-label">Publicaciones activas</span>
+            <div id="kpi-total-inter" class="metric-value">-</div>
+            <span class="metric-sub">Total registrado en plataformas</span>
+          </article>
+
+          <article class="metric-card svc" id="card-kpi-sent">
+            <span class="tag">02 · Percepción</span>
+            <span class="metric-label">Ánimo promedio</span>
+            <div id="kpi-sentimiento" class="metric-value">-</div>
+            <span class="metric-sub">Balance general de la comunidad</span>
+          </article>
+
+          <article class="metric-card svc" id="card-kpi-reac">
+            <span class="tag">03 · Interacción</span>
+            <span class="metric-label">Reacciones acumuladas</span>
+            <div id="kpi-reacciones" class="metric-value">-</div>
+            <span id="kpi-reacciones-prom" class="metric-sub">Promedio por publicación</span>
+          </article>
+
+          <article class="metric-card svc" id="card-kpi-pos">
+            <span class="tag">04 · Favorable</span>
+            <span class="metric-label">Ambiente positivo</span>
+            <div id="kpi-tasa-pos" class="metric-value text-success">-</div>
+            <span class="metric-sub">Mensajes con recepción favorable</span>
+          </article>
+
+          <article class="metric-card svc" id="card-kpi-neg">
+            <span class="tag">05 · Moderación</span>
+            <span class="metric-label">Atención prioritaria</span>
+            <div id="kpi-tasa-neg" class="metric-value text-danger">-</div>
+            <span class="metric-sub">Publicaciones que requieren revisión</span>
+          </article>
         </div>
 
-        <!-- =============================================================== -->
-        <!-- VISTA 3: PERFILES Y RETENCION                                   -->
-        <!-- =============================================================== -->
-        <div id="vista-comunidad" class="view-section">
-          <section class="kpi-row-4">
-            <article class="metric-card">
-              <div class="metric-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-              </div>
-              <span class="metric-label">Miembros de la comunidad</span>
-              <div id="kpi-hist-usuarios" class="metric-value">-</div>
-              <span id="kpi-hist-artistas" class="metric-sub">Cargando padrón...</span>
-            </article>
-
-            <article class="metric-card">
-              <div class="metric-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-              </div>
-              <span class="metric-label">En riesgo de inactividad</span>
-              <div id="kpi-hist-riesgo" class="metric-value text-warning">-</div>
-              <span class="metric-sub">Miembros con poca participación reciente</span>
-            </article>
-
-            <article class="metric-card">
-              <div class="metric-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              </div>
-              <span class="metric-label">Ubicación privada</span>
-              <div id="kpi-hist-sin-cons" class="metric-value text-success">-</div>
-              <span id="kpi-hist-violaciones" class="metric-sub">Datos de ubicación resguardados</span>
-            </article>
-
-            <article class="metric-card">
-              <div class="metric-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-              </div>
-              <span class="metric-label">Actividad no vinculada</span>
-              <div id="kpi-hist-cuarentena" class="metric-value">-</div>
-              <span class="metric-sub">Separada por no pertenecer a un miembro</span>
-            </article>
-          </section>
-
-          <section class="grid-3-col">
-            <article class="panel-card">
-              <div class="panel-header">
-                <div>
-                  <h3>Permanencia de miembros</h3>
-                  <p>Proporción de miembros activos, en riesgo e inactivos</p>
-                </div>
-              </div>
-              <div class="chart-container">
-                <canvas id="chart-rest-estatus"></canvas>
-              </div>
-            </article>
-
-            <article class="panel-card">
-              <div class="panel-header">
-                <div>
-                  <h3>Intereses principales</h3>
-                  <p>Temas favoritos declarados por los miembros</p>
-                </div>
-              </div>
-              <div class="chart-container">
-                <canvas id="chart-rest-interes"></canvas>
-              </div>
-            </article>
-
-            <article class="panel-card">
-              <div class="panel-header">
-                <div>
-                  <h3>Grupos de edad</h3>
-                  <p>Distribución de edades dentro de la comunidad</p>
-                </div>
-              </div>
-              <div class="chart-container">
-                <canvas id="chart-rest-edad"></canvas>
-              </div>
-            </article>
-          </section>
-        </div>
-
-        <!-- =============================================================== -->
-        <!-- VISTA 4: DIRECTORIO Y PRIVACIDAD                                -->
-        <!-- =============================================================== -->
-        <div id="vista-directorio" class="view-section">
-          <section class="panel-card">
+        <!-- 4 Graficas en tarjetas estilo .svc de Nodrex -->
+        <div class="grid-2-col">
+          <article class="panel-card svc">
             <div class="panel-header">
               <div>
-                <h3>Directorio de miembros y privacidad de ubicación</h3>
-                <p>Consulta la situación de cada miembro y comprueba el resguardo de ubicación de quienes eligieron mantenerla privada</p>
+                <span class="tag">01 · Conversación</span>
+                <h3>Temas más comentados</h3>
+                <p>Asuntos que concentran el interés actual de los miembros</p>
               </div>
+              <span class="live-chip">En vivo</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="chart-ws-tema"></canvas>
+            </div>
+          </article>
 
-              <div class="filter-controls">
-                <select id="filtro-estatus" aria-label="Filtrar por estado">
-                  <option value="en_riesgo">Estado: En riesgo</option>
-                  <option value="">Estado: Todos</option>
-                  <option value="activo">Estado: Activo</option>
-                  <option value="inactivo">Estado: Inactivo</option>
-                </select>
-                <select id="filtro-consentimiento" aria-label="Filtrar por privacidad">
-                  <option value="">Ubicación: Todos</option>
-                  <option value="false">Ubicación: Privada (Sin consentimiento)</option>
-                  <option value="true">Ubicación: Compartida</option>
-                </select>
-                <select id="filtro-limite" aria-label="Cantidad de filas">
-                  <option value="25">Mostrar: 25 miembros</option>
-                  <option value="50">Mostrar: 50 miembros</option>
-                  <option value="100">Mostrar: 100 miembros</option>
-                </select>
-                <button id="btn-filtrar-usuarios" type="button" class="btn-filter">Actualizar lista</button>
+          <article class="panel-card svc">
+            <div class="panel-header">
+              <div>
+                <span class="tag">02 · Plataformas</span>
+                <h3>Participación por red social</h3>
+                <p>Distribución porcentual de actividad en los 6 canales</p>
+              </div>
+              <span class="live-chip">En vivo</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="chart-ws-canal"></canvas>
+            </div>
+          </article>
+        </div>
+
+        <div class="grid-2-col">
+          <article class="panel-card svc">
+            <div class="panel-header">
+              <div>
+                <span class="tag">03 · Dinámica</span>
+                <h3>Forma de participación</h3>
+                <p>Mensajes, comentarios, reacciones, encuestas y asistencia a eventos</p>
+              </div>
+              <span class="live-chip">En vivo</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="chart-ws-tipo"></canvas>
+            </div>
+          </article>
+
+          <article class="panel-card svc">
+            <div class="panel-header">
+              <div>
+                <span class="tag">04 · Clima comunitario</span>
+                <h3>Balance de ánimo</h3>
+                <p>Proporción entre mensajes positivos, neutros y críticos</p>
+              </div>
+              <span class="live-chip">En vivo</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="chart-ws-polaridad"></canvas>
+            </div>
+          </article>
+        </div>
+
+        <!-- Next Banner estilo Nodrex para pasar a la siguiente seccion -->
+        <div class="next-banner">
+          <div>
+            <h3>Mapa Regional y Últimas Publicaciones</h3>
+            <p>Ubicación geográfica por estado · Historial en vivo de actividad reciente.</p>
+          </div>
+          <div class="cta">
+            <button type="button" class="nx-btn" data-view="vista-actividad">Ver Mapa y Actividad →</button>
+            <button type="button" class="nx-btn ghost" data-view="vista-comunidad">Perfiles de la Comunidad</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- VISTA 2: MAPA Y ACTIVIDAD RECIENTE                                  -->
+    <!-- =================================================================== -->
+    <section id="vista-actividad" class="view-section">
+      <div class="wrap">
+        <div class="grid-2-col-asym">
+          <article class="panel-card svc">
+            <div class="panel-header">
+              <div>
+                <span class="tag">01 · Distribución territorial</span>
+                <h3>Actividad por región</h3>
+                <p>Estados con mayor participación (solo miembros que comparten ubicación)</p>
+              </div>
+              <div class="heatmap-legend">
+                <span>Menos</span>
+                <span class="heatmap-gradient-bar"></span>
+                <span>Más</span>
               </div>
             </div>
+            <div id="heatmap-estados" class="heatmap-grid"></div>
+          </article>
 
-            <div id="rest-query-indicator" class="query-status-bar">
-              <span>Cargando directorio...</span>
+          <article class="panel-card svc">
+            <div class="panel-header">
+              <div>
+                <span class="tag">02 · Historial en vivo</span>
+                <h3>Últimas publicaciones y reacciones</h3>
+                <p>Flujo actualizado al instante con las interacciones más recientes</p>
+              </div>
+              <span class="live-chip">Actualización continua</span>
             </div>
-
             <div class="table-wrapper table-tall">
               <table class="clean-table">
                 <thead>
                   <tr>
-                    <th>Clave</th>
-                    <th>Alias</th>
-                    <th>Estado</th>
-                    <th>Red principal</th>
-                    <th>Interés</th>
-                    <th class="num-col">Mensajes (30d)</th>
+                    <th>Folio</th>
+                    <th>Miembro</th>
+                    <th>Plataforma</th>
+                    <th>Actividad</th>
+                    <th>Tema</th>
                     <th class="num-col">Ánimo</th>
-                    <th>Última actividad</th>
-                    <th>Ubicación</th>
-                    <th>Ciudad / Región</th>
-                    <th class="num-col">Coordenadas</th>
+                    <th class="num-col">Reacciones</th>
+                    <th>Categorías</th>
                   </tr>
                 </thead>
-                <tbody id="tbody-usuarios-hist"></tbody>
+                <tbody id="tbody-interacciones"></tbody>
               </table>
             </div>
-          </section>
+          </article>
         </div>
-      </main>
+
+        <div class="next-banner">
+          <div>
+            <h3>Perfiles y Retención de la Comunidad</h3>
+            <p>Análisis de permanencia · Intereses culturales y grupos de edad.</p>
+          </div>
+          <div class="cta">
+            <button type="button" class="nx-btn" data-view="vista-comunidad">Ver Perfiles y Retención →</button>
+            <button type="button" class="nx-btn ghost" data-view="vista-directorio">Ir al Directorio</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- VISTA 3: COMUNIDAD (DEMOGRAFIA Y RETENCION)                         -->
+    <!-- =================================================================== -->
+    <section id="vista-comunidad" class="view-section">
+      <div class="wrap">
+        <div class="kpi-row-4">
+          <article class="metric-card svc">
+            <span class="tag">01 · Padrón</span>
+            <span class="metric-label">Miembros registrados</span>
+            <div id="kpi-hist-usuarios" class="metric-value">-</div>
+            <span id="kpi-hist-artistas" class="metric-sub">Cargando padrón...</span>
+          </article>
+
+          <article class="metric-card svc">
+            <span class="tag">02 · Retención</span>
+            <span class="metric-label">En riesgo de inactividad</span>
+            <div id="kpi-hist-riesgo" class="metric-value text-warning">-</div>
+            <span class="metric-sub">Miembros con poca participación reciente</span>
+          </article>
+
+          <article class="metric-card svc">
+            <span class="tag">03 · Privacidad</span>
+            <span class="metric-label">Ubicación privada</span>
+            <div id="kpi-hist-sin-cons" class="metric-value text-success">-</div>
+            <span id="kpi-hist-violaciones" class="metric-sub">Datos de ubicación resguardados</span>
+          </article>
+
+          <article class="metric-card svc">
+            <span class="tag">04 · Depuración</span>
+            <span class="metric-label">Actividad no vinculada</span>
+            <div id="kpi-hist-cuarentena" class="metric-value">-</div>
+            <span class="metric-sub">Separada por no pertenecer a un miembro</span>
+          </article>
+        </div>
+
+        <div class="grid-3-col">
+          <article class="panel-card svc">
+            <div class="panel-header">
+              <div>
+                <span class="tag">01 · Permanencia</span>
+                <h3>Estado de los miembros</h3>
+                <p>Proporción de perfiles activos, en riesgo e inactivos</p>
+              </div>
+            </div>
+            <div class="chart-container">
+              <canvas id="chart-rest-estatus"></canvas>
+            </div>
+          </article>
+
+          <article class="panel-card svc">
+            <div class="panel-header">
+              <div>
+                <span class="tag">02 · Afinidad</span>
+                <h3>Intereses culturales</h3>
+                <p>Temas favoritos declarados en el padrón</p>
+              </div>
+            </div>
+            <div class="chart-container">
+              <canvas id="chart-rest-interes"></canvas>
+            </div>
+          </article>
+
+          <article class="panel-card svc">
+            <div class="panel-header">
+              <div>
+                <span class="tag">03 · Demografía</span>
+                <h3>Grupos de edad</h3>
+                <p>Composición por rango de edad en la comunidad</p>
+              </div>
+            </div>
+            <div class="chart-container">
+              <canvas id="chart-rest-edad"></canvas>
+            </div>
+          </article>
+        </div>
+
+        <div class="next-banner">
+          <div>
+            <h3>Directorio de Miembros y Privacidad</h3>
+            <p>Búsqueda por estado de actividad · Comprobación de ubicación protegida.</p>
+          </div>
+          <div class="cta">
+            <button type="button" class="nx-btn" data-view="vista-directorio">Abrir Directorio →</button>
+            <button type="button" class="nx-btn ghost" data-view="vista-pulso">Volver a Pulso en Vivo</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- VISTA 4: DIRECTORIO Y PRIVACIDAD                                    -->
+    <!-- =================================================================== -->
+    <section id="vista-directorio" class="view-section">
+      <div class="wrap">
+        <article class="panel-card svc">
+          <div class="panel-header">
+            <div>
+              <span class="tag">01 · Padrón comunitario</span>
+              <h3>Directorio de miembros y resguardo de ubicación</h3>
+              <p>Consulta la situación de cada miembro y comprueba cómo se protege la ubicación de quienes eligieron mantenerla privada</p>
+            </div>
+
+            <div class="filter-controls">
+              <select id="filtro-estatus" aria-label="Filtrar por estado">
+                <option value="en_riesgo">Estado: En riesgo</option>
+                <option value="">Estado: Todos</option>
+                <option value="activo">Estado: Activo</option>
+                <option value="inactivo">Estado: Inactivo</option>
+              </select>
+              <select id="filtro-consentimiento" aria-label="Filtrar por privacidad">
+                <option value="">Ubicación: Todos</option>
+                <option value="false">Ubicación: Privada (Sin consentimiento)</option>
+                <option value="true">Ubicación: Compartida</option>
+              </select>
+              <select id="filtro-limite" aria-label="Cantidad de filas">
+                <option value="25">Mostrar: 25 miembros</option>
+                <option value="50">Mostrar: 50 miembros</option>
+                <option value="100">Mostrar: 100 miembros</option>
+              </select>
+              <button id="btn-filtrar-usuarios" type="button" class="nx-btn sm">Actualizar lista</button>
+            </div>
+          </div>
+
+          <div id="rest-query-indicator" class="query-status-bar">
+            <span>Cargando directorio...</span>
+          </div>
+
+          <div class="table-wrapper table-tall">
+            <table class="clean-table">
+              <thead>
+                <tr>
+                  <th>Clave</th>
+                  <th>Alias</th>
+                  <th>Estado</th>
+                  <th>Red principal</th>
+                  <th>Interés</th>
+                  <th class="num-col">Mensajes (30d)</th>
+                  <th class="num-col">Ánimo</th>
+                  <th>Última actividad</th>
+                  <th>Ubicación</th>
+                  <th>Ciudad / Región</th>
+                  <th class="num-col">Coordenadas</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-usuarios-hist"></tbody>
+            </table>
+          </div>
+        </article>
+
+        <div class="next-banner">
+          <div>
+            <h3>Resumen General y Pulso en Vivo</h3>
+            <p>Regresa al panel de monitoreo continuo en tiempo real.</p>
+          </div>
+          <div class="cta">
+            <button type="button" class="nx-btn" data-view="vista-pulso">Ir a Pulso en Vivo →</button>
+            <button type="button" class="nx-btn ghost" data-view="vista-inicio">Ver Resumen General</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer corporativo inspirado en Nodrex -->
+  <footer class="site-footer">
+    <div class="wrap ft-grid">
+      <div class="ft-brand">
+        <a class="nx-logo" href="#inicio" data-view="vista-inicio">COMMUN<b>I</b>TY 360</a>
+        <p>Plataforma de analítica, participación multicanal y retención para comunidades digitales.</p>
+        <div class="ft-tags">
+          <span>Tiempo Real</span>
+          <span>Multicanal</span>
+          <span>Retención</span>
+          <span>Privacidad</span>
+        </div>
+      </div>
+      <div>
+        <h4>Secciones</h4>
+        <ul>
+          <li><button type="button" class="ft-link" data-view="vista-inicio">Resumen General</button></li>
+          <li><button type="button" class="ft-link" data-view="vista-pulso">Pulso en Vivo</button></li>
+          <li><button type="button" class="ft-link" data-view="vista-actividad">Mapa y Actividad</button></li>
+          <li><button type="button" class="ft-link" data-view="vista-comunidad">Comunidad</button></li>
+          <li><button type="button" class="ft-link" data-view="vista-directorio">Directorio</button></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Canales Monitoreados</h4>
+        <ul>
+          <li>Discord y Telegram</li>
+          <li>Instagram y TikTok</li>
+          <li>Facebook y Twitter/X</li>
+          <li>Eventos y Convenciones</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Plataforma</h4>
+        <ul>
+          <li>1,068 Miembros registrados</li>
+          <li>21 Ciudades activas</li>
+          <li>Protección de ubicación personal</li>
+          <li>Sincronización continua</li>
+        </ul>
+      </div>
     </div>
-  </div>
+    <div class="wrap ft-bottom">
+      <span>© 2026 Community 360 · Analytics Suite</span>
+      <span>Mérida, Yucatán · México</span>
+    </div>
+  </footer>
 
   <script src="/js/effects.js"></script>
   <script src="/js/dashboard.js"></script>

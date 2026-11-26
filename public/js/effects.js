@@ -45,12 +45,22 @@
       });
     }
 
-    // 2) Canvas interactivo de constelaciones en el fondo
+    // 2) Canvas interactivo de constelaciones y resplandor de cursor (#cg)
     iniciarConstelaciones();
+    iniciarCursorGlow();
 
     // 3) Efecto 3D de giro e impulso hacia adelante en tarjetas, graficas y tablas
     iniciarEfecto3DTilt();
   });
+
+  function iniciarCursorGlow() {
+    const cg = document.getElementById("cg");
+    if (!cg) return;
+    window.addEventListener("mousemove", (e) => {
+      cg.classList.add("on");
+      cg.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+    });
+  }
 
   function iniciarConstelaciones() {
     let canvas = document.getElementById("constellation-bg");
@@ -169,7 +179,7 @@
   }
 
   function iniciarEfecto3DTilt() {
-    const selectores = ".metric-card, .panel-card, .hero-mini-card, .login-card";
+    const selectores = ".metric-card, .panel-card, .hub-card, .hero-mini-card, .login-card";
 
     function vincularTarjetas() {
       document.querySelectorAll(selectores).forEach((card) => {
@@ -203,3 +213,4 @@
     vincularTarjetas();
   }
 })();
+
