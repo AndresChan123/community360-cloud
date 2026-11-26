@@ -193,12 +193,11 @@
           const centerX = rect.width / 2;
           const centerY = rect.height / 2;
 
-          // Limitar angulo maximo segun el tamano de la tarjeta (mas pronunciado en KPIs, suave en tablas grandes)
-          const maxAngle = rect.width > 650 ? 4.5 : 10;
+          const maxAngle = rect.width > 600 ? 1.8 : 4.5;
           const rotateX = (((centerY - y) / centerY) * maxAngle).toFixed(2);
           const rotateY = (((x - centerX) / centerX) * maxAngle).toFixed(2);
 
-          card.style.transform = `perspective(1100px) translate3d(0, -8px, 26px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.022)`;
+          card.style.transform = `perspective(1200px) translate3d(0, -7px, 22px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.016)`;
           card.style.setProperty("--mouse-x", `${x}px`);
           card.style.setProperty("--mouse-y", `${y}px`);
         });

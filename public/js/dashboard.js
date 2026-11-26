@@ -94,11 +94,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.querySelectorAll(".view-section").forEach((sec) => {
       sec.classList.toggle("active", sec.id === viewId);
     });
-    document.querySelectorAll(".nx-nav-link").forEach((btn) => {
+    document.querySelectorAll(".sidebar-nav .nav-link").forEach((btn) => {
       const activo = btn.getAttribute("data-view") === viewId;
       btn.classList.toggle("active", activo);
-      if (activo) btn.setAttribute("aria-current", "page");
-      else btn.removeAttribute("aria-current");
     });
     const meta = TITULOS_VISTAS[viewId];
     if (meta) {
@@ -328,6 +326,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     },
   };
 
+  // Plugin 2: Total fijo al centro + anillo HUD futurista mientras la dona gira sola
+  let hudAngle = 0;
   const doughnutCenterTextPlugin = {
     id: "doughnutCenterText",
     afterDraw(chart) {
@@ -337,13 +337,23 @@ document.addEventListener("DOMContentLoaded", async () => {
       const { ctx } = chart;
       const centerX = meta.data[0].x;
       const centerY = meta.data[0].y;
+      const innerRadius = meta.data[0].innerRadius || 55;
       const total = (chart.data.datasets[0]?.data || []).reduce((acc, v) => acc + Number(v || 0), 0);
       const centerLabel = chart.config.options?.plugins?.centerLabel || "Total";
 
       ctx.save();
+      // Anillo tecnologico discontinuo contrarrotante en el interior de la dona
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, innerRadius - 7, -hudAngle, -hudAngle + Math.PI * 1.35);
+      ctx.strokeStyle = esTemaOscuro() ? "rgba(56, 189, 248, 0.35)" : "rgba(36, 87, 197, 0.25)";
+      ctx.lineWidth = 1.6;
+      ctx.setLineDash([5, 5]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      ctx.font = "600 20px 'Inter', sans-serif";
+      ctx.font = "700 21px 'Sora', 'Inter', sans-serif";
       ctx.fillStyle = DARK_TEXT;
       ctx.fillText(total.toLocaleString("es-MX"), centerX, centerY - 7);
 
@@ -353,6 +363,33 @@ document.addEventListener("DOMContentLoaded", async () => {
       ctx.restore();
     },
   };
+
+  // Bucle de rotacion continua automatica para todas las graficas redondas (donas)
+  const donasEnHover = new Set();
+  function iniciarRotacionContinuaDonas() {
+    function step() {
+      hudAngle = (hudAngle + 0.012) % (Math.PI * 2);
+      Object.values(charts).forEach((chart) => {
+        if (!chart || chart.config.type !== "doughnut") return;
+        const canvas = chart.canvas;
+        if (!canvas || canvas.offsetParent === null) return;
+        if (donasEnHover.has(canvas.id)) return;
+        const rotActual = Number(chart.options.rotation || 0);
+        chart.options.rotation = (rotActual + 0.32) % 360;
+        chart.update("none");
+      });
+      requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  iniciarRotacionContinuaDonas();
+
+  ["chart-ws-canal", "chart-ws-polaridad", "chart-rest-estatus"].forEach((id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener("mouseenter", () => donasEnHover.add(id));
+    el.addEventListener("mouseleave", () => donasEnHover.delete(id));
+  });
 
   Chart.register(barValueLabelsPlugin, doughnutCenterTextPlugin);
 
