@@ -1,9 +1,10 @@
 /**
  * Planeta Tierra 3D Interactivo de Community 360
- * Renderiza el planeta Tierra con continentes realistas, oceanos con reflejo solar,
- * plataforma continental turquesa, capa de nubes atmosfericas, estrellas de fondo,
- * rotacion exacta hacia la localizacion del usuario centrada en pantalla,
- * zoom interactivo y modo expandido a vista principal de pantalla completa.
+ * - Apariencia realista del planeta Tierra (continentes, oceanos, nubes, estrellas)
+ * - Sin tecnicismos ni coordenadas crudas para el usuario final
+ * - Rotacion libre con raton, gestos tactiles (1 dedo gira con inercia, 2 dedos pellizcan para zoom)
+ *   y control por gestos de la mano frente a la camara web ("Girar con la mano")
+ * - Zoom profundo de hasta 7.5x para acercarse a nivel regional y de ciudad
  */
 (function () {
   const COORDENADAS_ESTADOS = {
@@ -27,7 +28,7 @@
     "Lima": { ciudad: "Lima", pais: "Perú", lat: -12.0629, lon: -77.0299, region: "latam" },
     "Región Metropolitana": { ciudad: "Santiago", pais: "Chile", lat: -33.4356, lon: -70.6650, region: "latam" },
     "Buenos Aires": { ciudad: "Buenos Aires", pais: "Argentina", lat: -34.6081, lon: -58.3797, region: "latam" },
-    "Comunidad de Madrid": { ciudad: "Madrid", pais: "España", lat: 40.4168, lon: -3.7066, region: "intl" },
+    "Comunidad de Madrid": { ciudad: "Madrid", pais: "España", lat: 40.4168, lon: -3.7066, region: "intl" }
   };
 
   // Poligonos continentales detallados [lat, lon] para renderizar la Tierra en 3D
@@ -166,7 +167,6 @@
     }
   ];
 
-  // Bandas de nubes atmosfericas que flotan suavemente sobre la Tierra
   const NUBES_ATMOSFERA = [
     { lat: 24, lon: -92, rx: 14, ry: 4.5, alpha: 0.16 },
     { lat: 12, lon: -78, rx: 18, ry: 5, alpha: 0.15 },
@@ -178,7 +178,6 @@
     { lat: 2, lon: -25, rx: 24, ry: 5, alpha: 0.15 }
   ];
 
-  // Estrellas de espacio profundo
   const ESTRELLAS_FONDO = Array.from({ length: 85 }, (_, i) => ({
     u: ((i * 73 + 19) % 100) / 100,
     v: ((i * 41 + 37) % 100) / 100,
@@ -187,6 +186,8 @@
   }));
 
   const DEG2RAD = Math.PI / 180;
+  const ZOOM_MIN = 0.58;
+  const ZOOM_MAX = 7.5;
 
   function latLonToXYZ(lat, lon, radius) {
     const phi = lat * DEG2RAD;
@@ -198,12 +199,6 @@
     };
   }
 
-  /**
-   * Rotacion esferica 3D corregida:
-   * Cuando yaw = -lon * DEG2RAD y pitch = +lat * DEG2RAD,
-   * el punto (lat, lon) queda exactamente en (x = 0, y = 0, z = +radius),
-   * es decir, 100% centrado frente al usuario.
-   */
   function rotarPunto(p, yaw, pitch) {
     const cosY = Math.cos(yaw);
     const sinY = Math.sin(yaw);
@@ -223,7 +218,6 @@
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
 
-    // Crear backdrop para el modo expandido a pantalla completa
     let backdropEl = document.getElementById("globe-backdrop-overlay");
     if (!backdropEl) {
       backdropEl = document.createElement("div");
@@ -232,17 +226,21 @@
       document.body.appendChild(backdropEl);
     }
 
-    // Estado de camara centrado inicialmente en Yucatan, Mexico (20.97 N, -89.62 O)
     let yaw = 89.6172 * DEG2RAD;
     let pitch = 20.9721 * DEG2RAD;
     let targetYaw = yaw;
     let targetPitch = pitch;
 
-    let zoom = 1.08;
-    let targetZoom = 1.08;
+    // Velocidad de inercia al soltar el giro con el dedo o raton
+    let velYaw = 0;
+    let velPitch = 0;
+
+    let zoom = 1.12;
+    let targetZoom = 1.12;
 
     let autoTour = true;
     let isDragging = false;
+    let dragMoved = false;
     let dragStartX = 0;
     let dragStartY = 0;
     let estadoSeleccionado = "Yucatán";
@@ -266,6 +264,7 @@
       panel.scrollIntoView({ behavior: "smooth", block: "center" });
     }
 
+    // Tarjeta limpia sin datos tecnicos (sin coordenadas decimales ni IDs internos)
     function actualizarHUD(estadoKey, usuarioCustom = null) {
       const info = datosPorEstado[estadoKey];
       if (!info && !usuarioCustom) return;
@@ -273,53 +272,43 @@
       const elTag = document.getElementById("globe-hud-tag");
       const elCiudad = document.getElementById("globe-hud-city");
       const elUser = document.getElementById("globe-hud-user");
-      const elCoords = document.getElementById("globe-hud-coords");
       const elInter = document.getElementById("globe-hud-inter");
       const elMiembros = document.getElementById("globe-hud-members");
       const elStatusText = document.getElementById("globe-status-text");
 
-      const lat = usuarioCustom ? Number(usuarioCustom.latitud) : info.lat;
-      const lon = usuarioCustom ? Number(usuarioCustom.longitud) : info.lon;
       const ciudad = usuarioCustom ? usuarioCustom.ciudad : info.ciudad;
       const estado = usuarioCustom ? usuarioCustom.estado : info.estado;
       const pais = usuarioCustom ? usuarioCustom.pais : info.pais;
 
       if (elTag) {
-        elTag.textContent = usuarioCustom
-          ? `LOCALIZACIÓN DE MIEMBRO (${usuarioCustom.id_usuario})`
-          : "LOCALIZACIÓN CENTRADA EN 3D";
+        elTag.textContent = usuarioCustom ? "Miembro localizado" : "Ciudad seleccionada";
       }
       if (elCiudad) {
-        elCiudad.textContent = `${ciudad}, ${estado} (${pais})`;
+        elCiudad.textContent = `${ciudad}, ${estado} · ${pais}`;
       }
       if (elUser) {
         if (usuarioCustom) {
-          elUser.textContent = `👤 @${usuarioCustom.alias} · ${usuarioCustom.plataforma_principal || "Comunidad"} · ${usuarioCustom.mensajes_30d || 0} msjs`;
+          elUser.textContent = `👤 @${usuarioCustom.alias} · Participa en ${usuarioCustom.plataforma_principal || "la comunidad"}`;
         } else {
-          elUser.textContent = `Región activa de Community 360`;
+          elUser.textContent = "Comunidad activa en esta región";
         }
-      }
-      if (elCoords) {
-        const ns = lat >= 0 ? "N" : "S";
-        const eo = lon >= 0 ? "E" : "O";
-        elCoords.textContent = `${Math.abs(lat).toFixed(4)}° ${ns}, ${Math.abs(lon).toFixed(4)}° ${eo}`;
       }
       if (elInter && info) {
         elInter.textContent = `${info.interacciones} publicaciones`;
       }
       if (elMiembros) {
         if (usuarioCustom) {
-          elMiembros.textContent = `Consentimiento verificado`;
+          elMiembros.textContent = "Ubicación compartida";
         } else if (info && info.miembros) {
           elMiembros.textContent = `${info.miembros} miembros`;
         } else {
-          elMiembros.textContent = "Ubicación verificada";
+          elMiembros.textContent = "Comunidad activa";
         }
       }
       if (elStatusText) {
         elStatusText.textContent = usuarioCustom
-          ? `Enfocando a @${usuarioCustom.alias} en ${ciudad}, ${estado} (${Math.abs(lat).toFixed(2)}° ${lat >= 0 ? "N" : "S"}, ${Math.abs(lon).toFixed(2)}° ${lon >= 0 ? "E" : "O"})`
-          : `Planeta Tierra centrado en ${ciudad}, ${estado} · Zoom ${targetZoom.toFixed(1)}x`;
+          ? `Viendo la ciudad de @${usuarioCustom.alias} en ${ciudad}, ${estado}`
+          : `Explorando ${ciudad}, ${estado} · Puedes girar con tus dedos, tu mano o acercarte más con +`;
       }
 
       document.querySelectorAll(".heatmap-cell").forEach((cell) => {
@@ -328,11 +317,12 @@
     }
 
     function pausarRecorridoAutomatico() {
+      if (!autoTour) return;
       autoTour = false;
       const btnTour = document.getElementById("btn-globe-tour");
       if (btnTour) {
         btnTour.classList.remove("active");
-        btnTour.textContent = "Reanudar recorrido 3D";
+        btnTour.textContent = "▶️ Reanudar giro";
       }
     }
 
@@ -341,6 +331,8 @@
       if (!info) return;
       estadoSeleccionado = estadoKey;
       usuarioEnfocado = opciones.usuario || null;
+      velYaw = 0;
+      velPitch = 0;
 
       const latObjetivo = usuarioEnfocado ? Number(usuarioEnfocado.latitud) : info.lat;
       const lonObjetivo = usuarioEnfocado ? Number(usuarioEnfocado.longitud) : info.lon;
@@ -351,7 +343,7 @@
 
       if (manual) {
         pausarRecorridoAutomatico();
-        targetZoom = opciones.zoom || (usuarioEnfocado ? 1.62 : 1.42);
+        targetZoom = opciones.zoom || (usuarioEnfocado ? 2.15 : 1.75);
         if (opciones.centrarVista !== false) {
           centrarVistaPrincipalEnPantalla();
         }
@@ -365,16 +357,18 @@
       const estadoKey = datosPorEstado[usuario.estado] ? usuario.estado : "Yucatán";
       enfocarEstado(estadoKey, true, {
         usuario,
-        zoom: 1.68,
+        zoom: 2.35,
         centrarVista: true
       });
     }
 
     function enfocarCoordenadas(lat, lon, etiqueta) {
       pausarRecorridoAutomatico();
+      velYaw = 0;
+      velPitch = 0;
       targetYaw = -Number(lon) * DEG2RAD;
       targetPitch = Number(lat) * DEG2RAD;
-      targetZoom = 1.58;
+      targetZoom = 2.2;
       pulsoOnda = 0;
 
       const match = Object.keys(datosPorEstado).find(
@@ -386,39 +380,58 @@
         estadoSeleccionado = match;
       }
       usuarioEnfocado = {
-        id_usuario: "GPS-LOCAL",
-        alias: etiqueta || "Mi ubicación actual",
-        ciudad: match ? datosPorEstado[match].ciudad : "Ubicación local",
-        estado: match || "Mérida / Yucatán",
+        alias: etiqueta || "Mi ubicación",
+        ciudad: match ? datosPorEstado[match].ciudad : "Mi ciudad",
+        estado: match || "Yucatán",
         pais: "México",
         latitud: lat,
         longitud: lon,
-        plataforma_principal: "Sesión activa",
-        mensajes_30d: 1
+        plataforma_principal: "Sesión actual"
       };
       actualizarHUD(estadoSeleccionado, usuarioEnfocado);
       centrarVistaPrincipalEnPantalla();
     }
 
-    // Recorrido automatico cada 3.8 segundos entre las ubicaciones con actividad
+    // Giro automatico entre ciudades
     let tourIdx = 0;
     setInterval(() => {
-      if (!autoTour || isDragging) return;
+      if (!autoTour || isDragging || handModeActive) return;
       const activos = Object.keys(datosPorEstado).sort(
         (a, b) => datosPorEstado[b].interacciones - datosPorEstado[a].interacciones
       );
       if (!activos.length) return;
       tourIdx = (tourIdx + 1) % activos.length;
       usuarioEnfocado = null;
-      targetZoom = 1.12;
+      targetZoom = 1.15;
       enfocarEstado(activos[tourIdx], false);
     }, 3800);
 
-    // Eventos de raton y rueda de zoom sobre el planeta Tierra 3D
+    // =========================================================================
+    // 1) CONTROL CON RATON, TRACKPAD Y GESTOS TACTILES (1 DEDO Y 2 DEDOS PINCH)
+    // =========================================================================
     let nodosEnPantalla = [];
+    let pinchStartDist = 0;
+    let pinchStartZoom = 1;
+
+    function aplicarDeltaRotacion(dx, dy) {
+      pausarRecorridoAutomatico();
+      const sensibilidad = 0.0075 / Math.max(0.85, Math.sqrt(zoom) * 0.75);
+      const dYaw = -dx * sensibilidad;
+      const dPitch = dy * sensibilidad;
+      targetYaw += dYaw;
+      targetPitch = Math.max(-1.42, Math.min(1.42, targetPitch + dPitch));
+      yaw = targetYaw;
+      pitch = targetPitch;
+      velYaw = dYaw * 0.65;
+      velPitch = dPitch * 0.65;
+    }
 
     canvas.addEventListener("mousedown", (e) => {
       isDragging = true;
+      dragMoved = false;
+      pausarRecorridoAutomatico();
+      velYaw = 0;
+      velPitch = 0;
       dragStartX = e.clientX;
       dragStartY = e.clientY;
     });
@@ -427,35 +440,92 @@
       if (!isDragging) return;
       const dx = e.clientX - dragStartX;
       const dy = e.clientY - dragStartY;
+      if (Math.hypot(dx, dy) > 3) dragMoved = true;
       dragStartX = e.clientX;
       dragStartY = e.clientY;
-      targetYaw -= (dx * 0.0065) / Math.max(1, zoom * 0.7);
-      targetPitch = Math.max(-1.35, Math.min(1.35, targetPitch + (dy * 0.0065) / Math.max(1, zoom * 0.7)));
-      yaw = targetYaw;
-      pitch = targetPitch;
+      aplicarDeltaRotacion(dx, dy);
     });
 
     window.addEventListener("mouseup", () => {
       isDragging = false;
     });
 
+    // Gestos tactiles (1 dedo para girar con la mano, 2 dedos para pellizcar y hacer zoom)
     canvas.addEventListener(
-      "wheel",
+      "touchstart",
+      (e) => {
+        pausarRecorridoAutomatico();
+        velYaw = 0;
+        velPitch = 0;
+        if (e.touches.length === 1) {
+          isDragging = true;
+          dragMoved = false;
+          dragStartX = e.touches[0].clientX;
+          dragStartY = e.touches[0].clientY;
+        } else if (e.touches.length === 2) {
+          isDragging = false;
+          pinchStartDist = Math.hypot(
+            e.touches[0].clientX - e.touches[1].clientX,
+            e.touches[0].clientY - e.touches[1].clientY
+          );
+          pinchStartZoom = targetZoom;
+        }
+      },
+      { passive: true }
+    );
+
+    canvas.addEventListener(
+      "touchmove",
       (e) => {
         e.preventDefault();
-        const factor = e.deltaY < 0 ? 0.16 : -0.16;
-        targetZoom = Math.max(0.82, Math.min(2.85, targetZoom + factor));
+        if (e.touches.length === 1 && isDragging) {
+          const dx = e.touches[0].clientX - dragStartX;
+          const dy = e.touches[0].clientY - dragStartY;
+          if (Math.hypot(dx, dy) > 3) dragMoved = true;
+          dragStartX = e.touches[0].clientX;
+          dragStartY = e.touches[0].clientY;
+          aplicarDeltaRotacion(dx, dy);
+        } else if (e.touches.length === 2 && pinchStartDist > 0) {
+          const dist = Math.hypot(
+            e.touches[0].clientX - e.touches[1].clientX,
+            e.touches[0].clientY - e.touches[1].clientY
+          );
+          const ratio = dist / pinchStartDist;
+          targetZoom = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, pinchStartZoom * ratio));
+        }
       },
       { passive: false }
     );
 
-    // Clic sobre un marcador en la Tierra 3D
+    canvas.addEventListener("touchend", () => {
+      isDragging = false;
+      pinchStartDist = 0;
+    });
+
+    // Rueda del raton y gesto de trackpad (2 dedos deslizar o pellizcar)
+    canvas.addEventListener(
+      "wheel",
+      (e) => {
+        e.preventDefault();
+        // Si el usuario desliza horizontalmente con 2 dedos en el trackpad, gira el planeta
+        if (!e.ctrlKey && Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 2) {
+          aplicarDeltaRotacion(-e.deltaX * 0.85, -e.deltaY * 0.85);
+          return;
+        }
+        const step = e.ctrlKey ? -e.deltaY * 0.018 : e.deltaY < 0 ? 0.28 : -0.28;
+        targetZoom = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, targetZoom * (1 + step * 0.45)));
+      },
+      { passive: false }
+    );
+
+    // Clic sobre una ciudad en el planeta
     canvas.addEventListener("click", (e) => {
+      if (dragMoved) return;
       const rect = canvas.getBoundingClientRect();
       const mx = e.clientX - rect.left;
       const my = e.clientY - rect.top;
       let mejor = null;
-      let minDist = 26;
+      let minDist = 28;
       for (const n of nodosEnPantalla) {
         const d = Math.hypot(n.sx - mx, n.sy - my);
         if (d < minDist) {
@@ -468,52 +538,211 @@
       }
     });
 
-    // Doble clic en el planeta alterna pantalla completa / vista expandida
     canvas.addEventListener("dblclick", () => {
-      alternarModoExpandido();
+      targetZoom = Math.min(ZOOM_MAX, targetZoom * 1.45);
     });
 
-    // Botones de control del mapa 3D
+    // =========================================================================
+    // 2) CONTROL POR GESTOS DE LA MANO FRENTE A LA CAMARA ("🖐️ Girar con la mano")
+    // =========================================================================
+    let handModeActive = false;
+    let handStream = null;
+    let prevHandFrame = null;
+    let smoothHandX = null;
+    let smoothHandY = null;
+    const btnHand = document.getElementById("btn-globe-hand");
+    const handBox = document.getElementById("globe-hand-box");
+    const handVideo = document.getElementById("globe-hand-video");
+    const handOverlay = document.getElementById("globe-hand-overlay");
+    const handHint = document.getElementById("globe-hand-hint");
+    const btnHandClose = document.getElementById("btn-globe-hand-close");
+    const procCanvas = document.createElement("canvas");
+    procCanvas.width = 64;
+    procCanvas.height = 48;
+    const procCtx = procCanvas.getContext("2d", { willReadFrequently: true });
+
+    async function activarControlMano() {
+      if (handModeActive) {
+        desactivarControlMano();
+        return;
+      }
+      try {
+        handStream = await navigator.mediaDevices.getUserMedia({
+          video: { width: 320, height: 240, facingMode: "user" },
+          audio: false
+        });
+        handVideo.srcObject = handStream;
+        handModeActive = true;
+        prevHandFrame = null;
+        smoothHandX = null;
+        smoothHandY = null;
+        pausarRecorridoAutomatico();
+
+        if (handBox) handBox.style.display = "block";
+        if (btnHand) {
+          btnHand.classList.add("active");
+          btnHand.textContent = "🖐️ Mano activa (Detener)";
+        }
+        const elStatus = document.getElementById("globe-status-text");
+        if (elStatus) {
+          elStatus.textContent = "Mueve tu mano frente a la cámara hacia los lados o arriba/abajo para girar la Tierra";
+        }
+      } catch (_err) {
+        const elStatus = document.getElementById("globe-status-text");
+        if (elStatus) {
+          elStatus.textContent = "No se detectó cámara disponible · Puedes girar el planeta con tus dedos en pantalla o el trackpad";
+        }
+      }
+    }
+
+    function desactivarControlMano() {
+      handModeActive = false;
+      if (handStream) {
+        handStream.getTracks().forEach((t) => t.stop());
+        handStream = null;
+      }
+      if (handBox) handBox.style.display = "none";
+      if (btnHand) {
+        btnHand.classList.remove("active");
+        btnHand.textContent = "🖐️ Girar con la mano";
+      }
+    }
+
+    function procesarGestoMano() {
+      if (!handModeActive || !handVideo || handVideo.readyState < 2) return;
+      const w = procCanvas.width;
+      const h = procCanvas.height;
+      procCtx.drawImage(handVideo, 0, 0, w, h);
+      const frame = procCtx.getImageData(0, 0, w, h).data;
+
+      if (handOverlay) {
+        handOverlay.width = 180;
+        handOverlay.height = 115;
+      }
+      const oCtx = handOverlay ? handOverlay.getContext("2d") : null;
+      if (oCtx) oCtx.clearRect(0, 0, handOverlay.width, handOverlay.height);
+
+      let sumX = 0;
+      let sumY = 0;
+      let totalWeight = 0;
+
+      if (prevHandFrame) {
+        for (let y = 2; y < h - 2; y++) {
+          for (let x = 2; x < w - 2; x++) {
+            const idx = (y * w + x) * 4;
+            const r = frame[idx];
+            const g = frame[idx + 1];
+            const b = frame[idx + 2];
+            const pr = prevHandFrame[idx];
+            const pg = prevHandFrame[idx + 1];
+            const pb = prevHandFrame[idx + 2];
+
+            const diff = Math.abs(r - pr) + Math.abs(g - pg) + Math.abs(b - pb);
+            // Priorizar movimiento de tonos calidos (mano)
+            const esPiel = r > 75 && g > 40 && r > g && r > b;
+            const peso = diff > 38 ? (esPiel ? diff * 2.2 : diff) : 0;
+
+            if (peso > 0) {
+              sumX += x * peso;
+              sumY += y * peso;
+              totalWeight += peso;
+            }
+          }
+        }
+      }
+
+      prevHandFrame = new Uint8ClampedArray(frame);
+
+      if (totalWeight > 1900) {
+        const cxHand = sumX / totalWeight; // 0..w
+        const cyHand = sumY / totalWeight; // 0..h
+
+        if (smoothHandX !== null && smoothHandY !== null) {
+          // Como el video esta en espejo (scaleX(-1)), invertimos dx para que siga la mano del usuario
+          const dx = -(cxHand - smoothHandX);
+          const dy = cyHand - smoothHandY;
+
+          if (Math.hypot(dx, dy) > 0.35) {
+            aplicarDeltaRotacion(dx * 16, dy * 14);
+          }
+
+          // Si el movimiento de la mano es muy cercano/amplio, acercar zoom suavemente
+          if (totalWeight > 28000) {
+            targetZoom = Math.min(ZOOM_MAX, targetZoom + 0.025);
+            if (handHint) handHint.textContent = "🖐️ Mano cerca: Acercando vista (+)";
+          } else if (handHint) {
+            handHint.textContent = "🖐️ Girando la Tierra con tu mano";
+          }
+        }
+
+        smoothHandX = smoothHandX === null ? cxHand : smoothHandX * 0.55 + cxHand * 0.45;
+        smoothHandY = smoothHandY === null ? cyHand : smoothHandY * 0.55 + cyHand * 0.45;
+
+        if (oCtx && handOverlay) {
+          const ox = (smoothHandX / w) * handOverlay.width;
+          const oy = (smoothHandY / h) * handOverlay.height;
+          oCtx.beginPath();
+          oCtx.arc(ox, oy, 16, 0, Math.PI * 2);
+          oCtx.strokeStyle = "#34D399";
+          oCtx.lineWidth = 2.5;
+          oCtx.stroke();
+
+          oCtx.beginPath();
+          oCtx.arc(ox, oy, 4, 0, Math.PI * 2);
+          oCtx.fillStyle = "#38BDF8";
+          oCtx.fill();
+        }
+      } else {
+        smoothHandX = null;
+        smoothHandY = null;
+        if (handHint) handHint.textContent = "Mueve tu mano frente a la cámara";
+      }
+    }
+
+    if (btnHand) {
+      btnHand.addEventListener("click", activarControlMano);
+    }
+    if (btnHandClose) {
+      btnHandClose.addEventListener("click", desactivarControlMano);
+    }
+
+    // =========================================================================
+    // 3) BOTONES DE INTERFAZ Y ZOOM PROFUNDO
+    // =========================================================================
     const btnTour = document.getElementById("btn-globe-tour");
     if (btnTour) {
       btnTour.addEventListener("click", () => {
         autoTour = !autoTour;
         if (autoTour) {
           usuarioEnfocado = null;
-          targetZoom = 1.12;
+          targetZoom = 1.15;
         }
         btnTour.classList.toggle("active", autoTour);
-        btnTour.textContent = autoTour ? "Recorrido 3D activo" : "Reanudar recorrido 3D";
+        btnTour.textContent = autoTour ? "🔄 Giro automático" : "▶️ Reanudar giro";
       });
     }
 
-    // Boton "Mi ubicacion"
     const btnMyLoc = document.getElementById("btn-globe-my-loc");
     if (btnMyLoc) {
       btnMyLoc.addEventListener("click", () => {
-        const emailActual = localStorage.getItem("c360_email") || "Mi ubicación";
+        const emailActual = localStorage.getItem("c360_email") || "Mi cuenta";
+        const nombreLimpio = emailActual.split("@")[0];
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
             (pos) => {
-              enfocarCoordenadas(
-                pos.coords.latitude,
-                pos.coords.longitude,
-                `${emailActual.split("@")[0]} (GPS actual)`
-              );
+              enfocarCoordenadas(pos.coords.latitude, pos.coords.longitude, nombreLimpio);
             },
             () => {
-              // Fallback inmediato a Merida, Yucatan (UT Metropolitana)
-              enfocarCoordenadas(20.9721, -89.6172, `${emailActual.split("@")[0]} (Mérida, Yucatán)`);
+              enfocarCoordenadas(20.9721, -89.6172, nombreLimpio);
             },
             { timeout: 2200 }
           );
         } else {
-          enfocarCoordenadas(20.9721, -89.6172, `${emailActual.split("@")[0]} (Mérida, Yucatán)`);
+          enfocarCoordenadas(20.9721, -89.6172, nombreLimpio);
         }
       });
     }
 
-    // Selector de miembros con ubicacion autorizada
     const selectUser = document.getElementById("select-globe-user");
     let listaUsuariosAutorizados = [];
     if (selectUser) {
@@ -527,7 +756,6 @@
       });
     }
 
-    // Botones de Zoom (+ / - / Centrar / Expandir)
     const btnZoomIn = document.getElementById("btn-globe-zoom-in");
     const btnZoomOut = document.getElementById("btn-globe-zoom-out");
     const btnCenter = document.getElementById("btn-globe-center");
@@ -536,19 +764,21 @@
 
     if (btnZoomIn) {
       btnZoomIn.addEventListener("click", () => {
-        targetZoom = Math.min(2.85, targetZoom + 0.25);
+        pausarRecorridoAutomatico();
+        targetZoom = Math.min(ZOOM_MAX, targetZoom * 1.38);
       });
     }
     if (btnZoomOut) {
       btnZoomOut.addEventListener("click", () => {
-        targetZoom = Math.max(0.82, targetZoom - 0.25);
+        pausarRecorridoAutomatico();
+        targetZoom = Math.max(ZOOM_MIN, targetZoom / 1.38);
       });
     }
     if (btnCenter) {
       btnCenter.addEventListener("click", () => {
         enfocarEstado(estadoSeleccionado, true, {
           usuario: usuarioEnfocado,
-          zoom: 1.48,
+          zoom: 1.9,
           centrarVista: true
         });
       });
@@ -566,7 +796,7 @@
       backdropEl.classList.toggle("visible", nuevoEstado);
 
       if (btnExpand) {
-        btnExpand.textContent = nuevoEstado ? "✕ Cerrar vista expandida" : "⛶ Expandir Mapa 3D";
+        btnExpand.textContent = nuevoEstado ? "✕ Salir de pantalla completa" : "⛶ Pantalla completa";
       }
       setTimeout(ajustarCanvas, 50);
     }
@@ -607,7 +837,6 @@
 
     window.addEventListener("resize", ajustarCanvas);
 
-    // Dibuja un poligono terrestre proyectado sobre la esfera 3D
     function dibujarContinente3D(coords, radius, cx, cy, bioma) {
       const proyectados = [];
       let visibles = 0;
@@ -616,7 +845,6 @@
         const [lat, lon] = coords[i];
         const p = rotarPunto(latLonToXYZ(lat, lon, radius), yaw, pitch);
         if (p.z > 0) visibles++;
-        // Si un vertice pasa ligeramente al hemisferio trasero, proyectarlo sobre el borde del horizonte
         if (p.z < 0) {
           const mag = Math.hypot(p.x, p.y) || 1;
           proyectados.push({
@@ -643,15 +871,13 @@
       }
       ctx.closePath();
 
-      // 1) Plataforma continental (aguas poco profundas color turquesa satelital)
       ctx.save();
       ctx.lineJoin = "round";
-      ctx.lineWidth = 7 * Math.min(1.4, zoom);
+      ctx.lineWidth = 7 * Math.min(1.6, zoom);
       ctx.strokeStyle = "rgba(14, 165, 233, 0.26)";
       ctx.stroke();
       ctx.restore();
 
-      // 2) Relleno de masa continental con gradiente natural de la Tierra
       const landGrad = ctx.createLinearGradient(
         cx - radius * 0.7,
         cy - radius * 0.7,
@@ -676,14 +902,17 @@
       ctx.fillStyle = landGrad;
       ctx.fill();
 
-      // 3) Contorno costero definido
-      ctx.lineWidth = 1.25;
-      ctx.strokeStyle = bioma === "polar" ? "rgba(224, 242, 254, 0.85)" : "rgba(74, 222, 128, 0.55)";
+      ctx.lineWidth = 1.3;
+      ctx.strokeStyle = bioma === "polar" ? "rgba(224, 242, 254, 0.85)" : "rgba(74, 222, 128, 0.58)";
       ctx.stroke();
     }
 
     function renderizarGlobo() {
       ajustarCanvas();
+      if (handModeActive && Math.round(tick * 50) % 2 === 0) {
+        procesarGestoMano();
+      }
+
       const dpr = window.devicePixelRatio || 1;
       const width = canvas.width / dpr;
       const height = canvas.height / dpr;
@@ -692,15 +921,21 @@
       ctx.scale(dpr, dpr);
       ctx.clearRect(0, 0, width, height);
 
-      // Interpolacion suave de camara y zoom hacia la localizacion del usuario
+      // Inercia suave cuando el usuario suelta el planeta tras girarlo con la mano/dedos
       if (!isDragging) {
+        if (Math.abs(velYaw) > 0.0001 || Math.abs(velPitch) > 0.0001) {
+          targetYaw += velYaw;
+          targetPitch = Math.max(-1.42, Math.min(1.42, targetPitch + velPitch));
+          velYaw *= 0.93;
+          velPitch *= 0.93;
+        }
         let diffYaw = targetYaw - yaw;
         while (diffYaw > Math.PI) diffYaw -= Math.PI * 2;
         while (diffYaw < -Math.PI) diffYaw += Math.PI * 2;
-        yaw += diffYaw * 0.08;
-        pitch += (targetPitch - pitch) * 0.08;
+        yaw += diffYaw * 0.09;
+        pitch += (targetPitch - pitch) * 0.09;
       }
-      zoom += (targetZoom - zoom) * 0.09;
+      zoom += (targetZoom - zoom) * 0.11;
 
       tick += 0.022;
       pulsoOnda = (pulsoOnda + 0.022) % 1;
@@ -710,13 +945,13 @@
       const baseRadius = Math.min(width, height) * 0.37;
       const radius = baseRadius * zoom;
 
-      // 0) Campo de estrellas de espacio profundo
+      // Estrellas de fondo
       for (let i = 0; i < ESTRELLAS_FONDO.length; i++) {
         const st = ESTRELLAS_FONDO[i];
         const sx = st.u * width;
         const sy = st.v * height;
         const distCentro = Math.hypot(sx - cx, sy - cy);
-        if (distCentro < radius * 1.03) continue;
+        if (distCentro < radius * 1.02) continue;
         const twinkle = 0.3 + 0.55 * (0.5 + 0.5 * Math.sin(tick * 1.6 + st.phase));
         ctx.fillStyle = `rgba(226, 232, 240, ${twinkle.toFixed(2)})`;
         ctx.beginPath();
@@ -724,17 +959,17 @@
         ctx.fill();
       }
 
-      // 1) Corona y atmosfera azul exterior de la Tierra (Rayleigh scattering)
-      const haloGrad = ctx.createRadialGradient(cx, cy, radius * 0.92, cx, cy, radius * 1.24);
+      // Corona atmosferica azul de la Tierra
+      const haloGrad = ctx.createRadialGradient(cx, cy, radius * 0.92, cx, cy, radius * 1.22);
       haloGrad.addColorStop(0, "rgba(56, 189, 248, 0.42)");
       haloGrad.addColorStop(0.45, "rgba(14, 165, 233, 0.16)");
       haloGrad.addColorStop(1, "rgba(0, 0, 0, 0)");
       ctx.fillStyle = haloGrad;
       ctx.beginPath();
-      ctx.arc(cx, cy, radius * 1.24, 0, Math.PI * 2);
+      ctx.arc(cx, cy, radius * 1.22, 0, Math.PI * 2);
       ctx.fill();
 
-      // 2) Esfera Oceanica del Planeta Tierra con reflejo solar especular
+      // Oceano terrestre
       const oceanGrad = ctx.createRadialGradient(
         cx - radius * 0.32,
         cy - radius * 0.32,
@@ -753,13 +988,12 @@
       ctx.fillStyle = oceanGrad;
       ctx.fill();
 
-      // Recorte circular de la esfera terrestre para que los continentes y nubes se curven dentro del planeta
       ctx.save();
       ctx.beginPath();
       ctx.arc(cx, cy, radius, 0, Math.PI * 2);
       ctx.clip();
 
-      // 3) Paralelos, meridianos y Linea del Ecuador
+      // Lineas suaves de referencia sobre el oceano
       for (let lon = -180; lon < 180; lon += 30) {
         ctx.beginPath();
         let started = false;
@@ -777,7 +1011,7 @@
           }
         }
         ctx.lineWidth = 0.7;
-        ctx.strokeStyle = "rgba(125, 211, 252, 0.14)";
+        ctx.strokeStyle = "rgba(125, 211, 252, 0.12)";
         ctx.stroke();
       }
 
@@ -797,18 +1031,18 @@
             started = false;
           }
         }
-        ctx.lineWidth = lat === 0 ? 1.2 : 0.7;
-        ctx.strokeStyle = lat === 0 ? "rgba(56, 189, 248, 0.28)" : "rgba(125, 211, 252, 0.14)";
+        ctx.lineWidth = lat === 0 ? 1.1 : 0.7;
+        ctx.strokeStyle = lat === 0 ? "rgba(56, 189, 248, 0.24)" : "rgba(125, 211, 252, 0.12)";
         ctx.stroke();
       }
 
-      // 4) Continentes e Islas del Planeta Tierra en 3D
+      // Continentes del Planeta Tierra
       for (let i = 0; i < CONTINENTES_TIERRA.length; i++) {
         const cont = CONTINENTES_TIERRA[i];
         dibujarContinente3D(cont.coords, radius, cx, cy, cont.bioma);
       }
 
-      // 5) Capa de nubes atmosfericas en movimiento suave
+      // Nubes atmosfericas
       const lonOffsetNubes = (tick * 2.2) % 360;
       for (let i = 0; i < NUBES_ATMOSFERA.length; i++) {
         const nb = NUBES_ATMOSFERA[i];
@@ -822,18 +1056,18 @@
           ctx.save();
           ctx.translate(cx + pNube.x, cy + pNube.y);
           ctx.scale(1, 0.55);
-          const cGrad = ctx.createRadialGradient(0, 0, 2, 0, 0, nb.rx * 2.2 * zoom);
+          const cGrad = ctx.createRadialGradient(0, 0, 2, 0, 0, nb.rx * 2.2 * Math.min(2.2, zoom));
           cGrad.addColorStop(0, `rgba(255, 255, 255, ${(nb.alpha * visFactor).toFixed(3)})`);
           cGrad.addColorStop(1, "rgba(255, 255, 255, 0)");
           ctx.fillStyle = cGrad;
           ctx.beginPath();
-          ctx.arc(0, 0, nb.rx * 2.2 * zoom, 0, Math.PI * 2);
+          ctx.arc(0, 0, nb.rx * 2.2 * Math.min(2.2, zoom), 0, Math.PI * 2);
           ctx.fill();
           ctx.restore();
         }
       }
 
-      // 6) Sombreado esferico 3D (iluminacion dia/noche y atmosfera interna en el borde)
+      // Sombreado esferico 3D
       const shadeGrad = ctx.createRadialGradient(
         cx - radius * 0.35,
         cy - radius * 0.35,
@@ -850,16 +1084,16 @@
       ctx.arc(cx, cy, radius, 0, Math.PI * 2);
       ctx.fill();
 
-      ctx.restore(); // Fin del clip circular de la superficie terrestre
+      ctx.restore();
 
-      // Borde luminoso de la atmosfera terrestre
+      // Contorno atmosferico de la Tierra
       ctx.beginPath();
       ctx.arc(cx, cy, radius, 0, Math.PI * 2);
       ctx.lineWidth = 2;
       ctx.strokeStyle = "rgba(56, 189, 248, 0.65)";
       ctx.stroke();
 
-      // 7) Arcos 3D de actividad entre el nodo central y las demas ubicaciones activas
+      // Arcos de conexion entre ciudades
       const centroHub = datosPorEstado["Yucatán"] || datosPorEstado["CDMX"];
       if (centroHub) {
         const pHubSurf = rotarPunto(
@@ -879,8 +1113,9 @@
 
           const midLat = (centroHub.lat + dest.lat) / 2;
           const midLon = (centroHub.lon + dest.lon) / 2;
+          const arcLift = 1 + 0.18 / Math.max(1, zoom * 0.55);
           const pMid = rotarPunto(
-            latLonToXYZ(midLat, midLon, radius * 1.22),
+            latLonToXYZ(midLat, midLon, radius * arcLift),
             yaw,
             pitch
           );
@@ -899,11 +1134,10 @@
           ctx.quadraticCurveTo(xm, ym, x1, y1);
           ctx.strokeStyle = esDestinoActivo
             ? "rgba(52, 211, 153, 0.88)"
-            : "rgba(56, 189, 248, 0.30)";
+            : "rgba(56, 189, 248, 0.28)";
           ctx.lineWidth = esDestinoActivo ? 2.2 : 1.1;
           ctx.stroke();
 
-          // Paquete luminoso viajando por el arco
           const tPkt = (tick * 0.6 + idx * 0.17) % 1;
           const inv = 1 - tPkt;
           const px = inv * inv * x0 + 2 * inv * tPkt * xm + tPkt * tPkt * x1;
@@ -915,7 +1149,7 @@
         });
       }
 
-      // 8) Pilares 3D, marcadores pulsantes, mira GPS y etiquetas de las 21 ubicaciones
+      // Marcadores y etiquetas de las 21 ciudades
       const maxInter = Math.max(
         1,
         ...Object.values(datosPorEstado).map((d) => d.interacciones || 1)
@@ -927,7 +1161,7 @@
         if (pBase.z < 0) return;
 
         const ratio = (loc.interacciones || 1) / maxInter;
-        const alturaPilar = (10 + ratio * 28) * Math.min(1.35, zoom);
+        const alturaPilar = 10 + ratio * 24;
         const pTop = rotarPunto(
           latLonToXYZ(loc.lat, loc.lon, radius + alturaPilar),
           yaw,
@@ -946,14 +1180,12 @@
           sy: by
         });
 
-        // Luces doradas de ciudad alrededor del marcador
         ctx.fillStyle = "rgba(251, 191, 36, 0.65)";
         ctx.beginPath();
         ctx.arc(bx + 3, by - 2, 1.3, 0, Math.PI * 2);
         ctx.arc(bx - 3.5, by + 2, 1.1, 0, Math.PI * 2);
         ctx.fill();
 
-        // Pilar 3D
         ctx.beginPath();
         ctx.moveTo(bx, by);
         ctx.lineTo(tx, ty);
@@ -961,19 +1193,16 @@
         ctx.lineWidth = esActivo ? 3.4 : 2;
         ctx.stroke();
 
-        // Base en la superficie de la Tierra
         ctx.beginPath();
-        ctx.arc(bx, by, esActivo ? 5.5 : 3.2, 0, Math.PI * 2);
+        ctx.arc(bx, by, esActivo ? 5.5 : 3.4, 0, Math.PI * 2);
         ctx.fillStyle = esActivo ? "#10B981" : "#FBBF24";
         ctx.fill();
 
-        // Punta luminosa del pilar
         ctx.beginPath();
         ctx.arc(tx, ty, esActivo ? 4.5 : 2.8, 0, Math.PI * 2);
         ctx.fillStyle = esActivo ? "#A7F3D0" : "#F8FAFC";
         ctx.fill();
 
-        // Mira GPS de localizacion + onda de sonar en la ubicacion enfocada
         if (esActivo) {
           const rOnda = 8 + pulsoOnda * 30;
           ctx.beginPath();
@@ -981,34 +1210,20 @@
           ctx.strokeStyle = `rgba(52, 211, 153, ${(1 - pulsoOnda).toFixed(2)})`;
           ctx.lineWidth = 2;
           ctx.stroke();
-
-          // Mira de bloqueo GPS (reticula circular)
-          const rMira = 16;
-          ctx.save();
-          ctx.translate(bx, by);
-          ctx.rotate(tick * 0.9);
-          ctx.strokeStyle = "rgba(52, 211, 153, 0.88)";
-          ctx.lineWidth = 1.5;
-          for (let a = 0; a < 4; a++) {
-            ctx.beginPath();
-            ctx.arc(0, 0, rMira, a * (Math.PI / 2) + 0.2, (a + 1) * (Math.PI / 2) - 0.2);
-            ctx.stroke();
-          }
-          ctx.restore();
         }
 
-        // Etiqueta flotante clara sobre el planeta
-        if (esActivo || (pBase.z > radius * 0.55 && (loc.interacciones >= 10 || zoom >= 1.35))) {
+        // Mostrar etiquetas de ciudades de forma limpia (y al hacer mas zoom, mostrar todas las visibles)
+        if (esActivo || zoom >= 1.55 || (pBase.z > radius * 0.55 && loc.interacciones >= 10)) {
           ctx.font = esActivo
             ? "700 12.5px 'Inter', sans-serif"
-            : "600 10.5px 'Inter', sans-serif";
+            : "600 11px 'Inter', sans-serif";
           const labelTxt =
             esActivo && usuarioEnfocado
               ? `📍 @${usuarioEnfocado.alias} · ${loc.ciudad}`
               : `${loc.ciudad} (${loc.interacciones})`;
 
           const textW = ctx.measureText(labelTxt).width;
-          ctx.fillStyle = esActivo ? "rgba(6, 78, 59, 0.88)" : "rgba(15, 23, 42, 0.78)";
+          ctx.fillStyle = esActivo ? "rgba(6, 78, 59, 0.90)" : "rgba(15, 23, 42, 0.80)";
           ctx.beginPath();
           ctx.roundRect(tx + 7, ty - 11, textW + 12, 20, 6);
           ctx.fill();
@@ -1027,7 +1242,6 @@
 
     requestAnimationFrame(renderizarGlobo);
 
-    // Exponer API global para dashboard.js
     window.c360Globe = {
       actualizarDatos(mapaCalorEstado, catalogoUbicaciones) {
         if (mapaCalorEstado) {
@@ -1055,7 +1269,7 @@
         if (selectUser) {
           const valorPrevio = selectUser.value;
           selectUser.innerHTML =
-            `<option value="">👤 Localizar miembro en la Tierra (${conPermiso.length})...</option>` +
+            `<option value="">👤 Elegir miembro...</option>` +
             conPermiso
               .map(
                 (u) =>

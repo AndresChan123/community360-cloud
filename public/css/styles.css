@@ -925,6 +925,8 @@ header, main, footer, .login-layout {
   height: 100%;
   display: block;
   cursor: grab;
+  touch-action: none;
+  user-select: none;
 }
 
 #globe-3d-canvas:active {
@@ -939,7 +941,7 @@ header, main, footer, .login-layout {
 }
 
 .globe-user-select {
-  padding: 5px 10px;
+  padding: 5px 12px;
   border-radius: 999px;
   border: 1px solid var(--border);
   background: var(--bg2);
@@ -948,7 +950,8 @@ header, main, footer, .login-layout {
   font-weight: 600;
   font-family: inherit;
   cursor: pointer;
-  max-width: 245px;
+  min-width: 190px;
+  max-width: 280px;
   outline: none;
 }
 
@@ -970,6 +973,20 @@ header, main, footer, .login-layout {
   border-color: var(--primary);
 }
 
+.globe-btn-hand {
+  background: rgba(56, 189, 248, 0.14);
+  color: #38BDF8;
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  font-weight: 700;
+}
+
+.globe-btn-hand.active,
+.globe-btn-hand:hover {
+  background: #0284C7;
+  color: #FFFFFF;
+  border-color: #38BDF8;
+}
+
 .globe-btn-expand {
   background: rgba(16, 185, 129, 0.15);
   color: #10B981;
@@ -981,6 +998,68 @@ header, main, footer, .login-layout {
   background: #10B981;
   color: #FFFFFF;
   border-color: #10B981;
+}
+
+/* Recuadro de control por gestos de mano (camara) */
+.globe-hand-box {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  width: 200px;
+  background: rgba(11, 19, 37, 0.92);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1.5px solid #38BDF8;
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
+  z-index: 6;
+}
+
+.globe-hand-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 700;
+  color: #38BDF8;
+  margin-bottom: 6px;
+}
+
+.globe-hand-close {
+  background: transparent;
+  border: none;
+  color: #94A3B8;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.globe-hand-video-wrap {
+  position: relative;
+  width: 100%;
+  height: 115px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #020617;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+#globe-hand-video,
+#globe-hand-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1);
+}
+
+.globe-hand-hint {
+  margin-top: 6px;
+  font-size: 10.5px;
+  color: #E2E8F0;
+  text-align: center;
 }
 
 /* Herramientas flotantes de Zoom y Centrado */
