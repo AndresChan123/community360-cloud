@@ -25,8 +25,15 @@ const auth = admin.auth();
 
 const pool = new Pool({
   connectionString: process.env.COCKROACH_DATABASE_URL,
-  max: 10,
-  idleTimeoutMillis: 30000,
+  max: 5,
+  idleTimeoutMillis: 25000,
+  connectionTimeoutMillis: 10000,
+  keepAlive: true,
+});
+
+// Evitar que una desconexion inactiva de CockroachDB Serverless tumbe el proceso Node en Render
+pool.on("error", (err) => {
+  console.warn("[CockroachDB Pool] Conexion inactiva reciclada:", err.message);
 });
 
 module.exports = {

@@ -15,7 +15,24 @@ const {
 const app = express();
 const server = http.createServer(app);
 
-app.use(express.json());
+// Proteccion global del proceso para que errores transitorios de red nunca tumben la instancia en Render
+process.on("unhandledRejection", (reason) => {
+  console.warn("[Proceso] Promesa rechazada controlada:", reason?.message || reason);
+});
+process.on("uncaughtException", (err) => {
+  console.error("[Proceso] Excepcion controlada:", err?.message || err);
+});
+
+app.use(express.json({ limit: "256kb" }));
+
+// Endpoint ultraligero de salud (<1ms) para Render Health Check y Keep-Alive anti-hibernacion
+app.get("/healthz", (_req, res) => {
+  res.status(200).json({
+    ok: true,
+    servicio: "community360-cloud",
+    uptime_s: Math.round(process.uptime()),
+  });
+});
 
 // Rutas REST (Fases 3 y 4)
 app.use("/api/auth", authRoutes);
@@ -87,6 +104,11 @@ server.on("upgrade", async (request, socket, head) => {
 });
 
 wss.on("connection", (ws) => {
+  ws.isAlive = true;
+  ws.on("pong", () => {
+    ws.isAlive = true;
+  });
+
   ws.send(
     JSON.stringify({
       evento: "conectado",
@@ -100,6 +122,21 @@ wss.on("connection", (ws) => {
     })
   );
 });
+
+// Heartbeat WebSocket cada 25 segundos para que el balanceador de Render no cierre conexiones inactivas
+const wsHeartbeatInterval = setInterval(() => {
+  for (const ws of wss.clients) {
+    if (ws.isAlive === false) {
+      ws.terminate();
+      continue;
+    }
+    ws.isAlive = false;
+    try {
+      ws.ping();
+    } catch (_err) {}
+  }
+}, 25000);
+wsHeartbeatInterval.unref();
 
 // Funcion auxiliar para emitir eventos a todos los clientes WebSocket conectados (Fase 5)
 function emitirEventoWS(evento, payload) {
@@ -121,6 +158,20 @@ const PORT = Number(process.env.PORT || 3000);
 if (require.main === module) {
   server.listen(PORT, () => {
     console.log(`Servidor Community 360 ejecutándose en http://localhost:${PORT}`);
+
+    // Auto Keep-Alive cada 9 minutos para evitar que el plan gratuito de Render hiberne el servicio tras 15 min
+    const externalUrl =
+      process.env.RENDER_EXTERNAL_URL ||
+      (process.env.RENDER ? "https://community360-cloud.onrender.com" : null);
+
+    if (externalUrl) {
+      const keepAliveTimer = setInterval(async () => {
+        try {
+          await fetch(`${externalUrl}/healthz`);
+        } catch (_err) {}
+      }, 9 * 60 * 1000);
+      keepAliveTimer.unref();
+    }
   });
 }
 

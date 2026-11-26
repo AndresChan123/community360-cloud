@@ -907,7 +907,23 @@
       ctx.stroke();
     }
 
+    const vistaActividadEl = document.getElementById("vista-actividad");
+
+    // Ping ligero cada 4 minutos mientras el panel este abierto para que Render Free Tier no entre en suspension
+    setInterval(() => {
+      fetch("/healthz").catch(() => {});
+    }, 4 * 60 * 1000);
+
     function renderizarGlobo() {
+      // Ahorro de CPU/GPU: no renderizar frames 3D si la pestaña esta oculta o si el usuario esta en otra seccion
+      if (
+        document.hidden ||
+        (vistaActividadEl && !vistaActividadEl.classList.contains("active"))
+      ) {
+        requestAnimationFrame(renderizarGlobo);
+        return;
+      }
+
       ajustarCanvas();
       if (handModeActive && Math.round(tick * 50) % 2 === 0) {
         procesarGestoMano();

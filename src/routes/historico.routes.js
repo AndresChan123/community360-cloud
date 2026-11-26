@@ -4,6 +4,12 @@ const { requiereAuth } = require("../middleware/auth");
 
 const router = express.Router();
 
+// Cache en memoria de 45 segundos para el resumen historico analitico,
+// evitando saturar CockroachDB Serverless y la memoria de Render en recargas continuas.
+let cacheResumenData = null;
+let cacheResumenExpira = 0;
+const RESUMEN_CACHE_TTL_MS = 45000;
+
 /**
  * GET /api/historico/resumen
  * Consulta analitica historica consumida directamente desde CockroachDB Cloud (ubicaciones y usuarios)
@@ -11,6 +17,9 @@ const router = express.Router();
  */
 router.get("/resumen", requiereAuth, async (req, res) => {
   try {
+    if (cacheResumenData && Date.now() < cacheResumenExpira) {
+      return res.status(200).json(cacheResumenData);
+    }
     const [
       totalesQ,
       estatusQ,
@@ -121,7 +130,7 @@ router.get("/resumen", requiereAuth, async (req, res) => {
     const porRangoEdad = {};
     for (const r of edadQ.rows) porRangoEdad[r.rango_edad] = r.total;
 
-    return res.status(200).json({
+    const payload = {
       resumen_usuarios: totalesQ.rows[0],
       por_estatus: porEstatus,
       por_plataforma: porPlataforma,
@@ -137,7 +146,12 @@ router.get("/resumen", requiereAuth, async (req, res) => {
         total_cuarentena_firestore: totalCuarentena,
         bitacora_etl: bitacora,
       },
-    });
+    };
+
+    cacheResumenData = payload;
+    cacheResumenExpira = Date.now() + RESUMEN_CACHE_TTL_MS;
+
+    return res.status(200).json(payload);
   } catch (err) {
     return res.status(500).json({
       error: "Error al consultar métricas históricas en la nube.",

@@ -17,11 +17,32 @@ function extraerToken(req) {
   return null;
 }
 
+// Cache en memoria de corta duracion (25s) para evitar rafagas de llamadas duplicadas
+// a Firebase Auth + Firestore cuando el dashboard carga 5 recursos simultaneamente.
+// Se limpia inmediatamente al hacer POST /api/auth/logout para respetar la revocacion de tokens.
+const tokenCache = new Map();
+const TOKEN_CACHE_TTL_MS = 25000;
+
+function invalidarCacheToken(uid, token) {
+  if (token) tokenCache.delete(token);
+  if (uid) {
+    for (const [k, v] of tokenCache.entries()) {
+      if (v.usuario?.uid === uid) tokenCache.delete(k);
+    }
+  }
+}
+
 /**
  * Verifica el ID Token con Firebase Admin SDK (incluyendo comprobacion de revocacion)
  * y consulta el rol en la coleccion "administradores" de Cloud Firestore (ID = uid).
  */
 async function validarTokenYObtenerAdmin(token) {
+  const ahora = Date.now();
+  const enCache = tokenCache.get(token);
+  if (enCache && enCache.expira > ahora) {
+    return enCache.usuario;
+  }
+
   const decoded = await auth.verifyIdToken(token, true);
   const docSnap = await firestore.collection("administradores").doc(decoded.uid).get();
 
@@ -39,13 +60,17 @@ async function validarTokenYObtenerAdmin(token) {
     throw err;
   }
 
-  return {
+  const usuario = {
     uid: decoded.uid,
     email: datos.email || decoded.email,
     rol,
     creado_en: datos.creado_en || null,
     ultimo_acceso: datos.ultimo_acceso || null,
   };
+
+  if (tokenCache.size > 100) tokenCache.clear();
+  tokenCache.set(token, { usuario, expira: ahora + TOKEN_CACHE_TTL_MS });
+  return usuario;
 }
 
 /**
@@ -112,6 +137,7 @@ async function protegerRutaDashboard(req, res, next) {
 module.exports = {
   extraerToken,
   validarTokenYObtenerAdmin,
+  invalidarCacheToken,
   requiereAuth,
   requiereRol,
   protegerRutaDashboard,

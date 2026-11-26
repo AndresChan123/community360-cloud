@@ -1,6 +1,6 @@
 const express = require("express");
 const { admin, firestore, auth } = require("../config/db");
-const { requiereAuth, validarTokenYObtenerAdmin } = require("../middleware/auth");
+const { requiereAuth, validarTokenYObtenerAdmin, invalidarCacheToken } = require("../middleware/auth");
 
 const router = express.Router();
 
@@ -124,6 +124,7 @@ router.get("/sesion", requiereAuth, async (req, res) => {
  * Revoca los tokens de refresco en Firebase Auth y limpia la cookie de sesion.
  */
 router.post("/logout", requiereAuth, async (req, res) => {
+  invalidarCacheToken(req.usuario?.uid, req.token);
   try {
     await auth.revokeRefreshTokens(req.usuario.uid);
   } catch (_err) {
