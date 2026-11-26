@@ -244,12 +244,24 @@ document.addEventListener("DOMContentLoaded", async () => {
     requestAnimationFrame(frame);
   }
 
-  // Paleta corporativa sobria
-  const PRIMARY = "#2457C5";
-  const PRIMARY_HOVER = "#1D49A6";
-  const GRID_COLOR = "#E3E8EF";
-  const AXIS_TEXT = "#5B6778";
-  const DARK_TEXT = "#1B2430";
+  // Colores reactivos al tema claro / oscuro
+  const PRIMARY = "#3B82F6";
+  const PRIMARY_HOVER = "#2563EB";
+  function esTemaOscuro() {
+    return document.documentElement.getAttribute("data-theme") === "dark";
+  }
+  function obtenerColoresTema() {
+    const dark = esTemaOscuro();
+    return {
+      grid: dark ? "rgba(148, 163, 184, 0.12)" : "#E3E8EF",
+      axis: dark ? "#94A3B8" : "#5B6778",
+      text: dark ? "#F8FAFC" : "#1B2430",
+      borderDona: dark ? "#11192C" : "#FFFFFF",
+    };
+  }
+  let GRID_COLOR = obtenerColoresTema().grid;
+  let AXIS_TEXT = obtenerColoresTema().axis;
+  let DARK_TEXT = obtenerColoresTema().text;
 
   const PALETA_CANALES = [
     "#2457C5",
@@ -884,6 +896,34 @@ document.addEventListener("DOMContentLoaded", async () => {
   document
     .getElementById("btn-filtrar-usuarios")
     .addEventListener("click", consultarTablaUsuariosREST);
+
+  window.addEventListener("c360:theme-changed", () => {
+    const col = obtenerColoresTema();
+    GRID_COLOR = col.grid;
+    AXIS_TEXT = col.axis;
+    DARK_TEXT = col.text;
+    Chart.defaults.color = AXIS_TEXT;
+    Chart.defaults.borderColor = GRID_COLOR;
+    Object.values(charts).forEach((c) => {
+      if (!c) return;
+      if (c.options?.scales?.x) {
+        if (c.options.scales.x.grid && c.options.scales.x.grid.display !== false) {
+          c.options.scales.x.grid.color = GRID_COLOR;
+        }
+        if (c.options.scales.x.ticks) c.options.scales.x.ticks.color = AXIS_TEXT;
+      }
+      if (c.options?.scales?.y) {
+        if (c.options.scales.y.grid && c.options.scales.y.grid.display !== false) {
+          c.options.scales.y.grid.color = GRID_COLOR;
+        }
+        if (c.options.scales.y.ticks) c.options.scales.y.ticks.color = AXIS_TEXT;
+      }
+      if (c.config.type === "doughnut" && c.data.datasets[0]) {
+        c.data.datasets[0].borderColor = col.borderDona;
+      }
+      c.update();
+    });
+  });
 
   await Promise.all([
     cargarInteraccionesIniciales(),

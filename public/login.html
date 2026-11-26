@@ -13,12 +13,19 @@
   <div class="login-layout">
     <!-- Panel izquierdo informativo sin tecnicismos -->
     <aside class="login-hero">
-      <div class="hero-brand">
-        <div class="logo-mark">C360</div>
-        <div>
-          <div class="brand-title">Community 360</div>
-          <div class="brand-caption">Gestión y Analítica de Comunidades</div>
+      <div class="hero-brand" style="justify-content: space-between; width: 100%;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div class="logo-mark">C360</div>
+          <div>
+            <div class="brand-title">Community 360</div>
+            <div class="brand-caption">Gestión y Analítica de Comunidades</div>
+          </div>
         </div>
+        <button type="button" id="btn-theme-toggle" class="btn-theme-toggle" title="Cambiar entre modo claro y oscuro">
+          <svg id="theme-icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg id="theme-icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <span id="theme-toggle-label">Modo claro</span>
+        </button>
       </div>
 
       <div class="hero-main">
@@ -149,6 +156,7 @@
     </main>
   </div>
 
+  <script src="/js/effects.js"></script>
   <script src="/js/login.js"></script>
 </body>
 </html>
