@@ -1,10 +1,11 @@
 /**
- * Planeta Tierra 3D Interactivo de Community 360
- * - Apariencia realista del planeta Tierra (continentes, oceanos, nubes, estrellas)
- * - Sin tecnicismos ni coordenadas crudas para el usuario final
- * - Rotacion libre con raton, gestos tactiles (1 dedo gira con inercia, 2 dedos pellizcan para zoom)
- *   y control por gestos de la mano frente a la camara web ("Girar con la mano")
- * - Zoom profundo de hasta 7.5x para acercarse a nivel regional y de ciudad
+ * Planeta Tierra 3D Satelital Fotorrealista con Relieve Topografico — Community 360
+ * - Texturas satelitales reales NASA Blue Marble (/img/earth-blue-marble.jpg)
+ * - Mapa de relieve topografico 3D (/img/earth-topology.png) para sombras de cordilleras y montañas
+ * - Mascara especular oceanica (/img/earth-water.png) para reflejo solar en mares
+ * - Etiquetas geograficas de paises + las 21 ciudades reales de la comunidad
+ * - Soporte completo para escritorio, pantallas tactiles moviles (1 dedo gira, 2 dedos zoom)
+ *   y control por gestos de la mano frente a la camara ("Girar con la mano")
  */
 (function () {
   const COORDENADAS_ESTADOS = {
@@ -31,154 +32,38 @@
     "Comunidad de Madrid": { ciudad: "Madrid", pais: "España", lat: 40.4168, lon: -3.7066, region: "intl" }
   };
 
-  // Poligonos continentales detallados [lat, lon] para renderizar la Tierra en 3D
-  const CONTINENTES_TIERRA = [
-    {
-      nombre: "Norteamérica, México y Centroamérica",
-      bioma: "templado",
-      coords: [
-        [70, -162], [71, -156], [69, -138], [68, -125], [64, -110], [60, -95],
-        [63, -82], [61, -77], [58, -64], [52, -56], [47, -61], [44, -66],
-        [41, -70], [39, -74], [35, -76], [31, -81], [25, -80], [25, -82],
-        [29, -84], [30, -89], [29, -95], [26, -97], [22, -98], [19, -96],
-        [18, -94], [18.5, -91.5], [21.3, -90], [21.5, -87], [18.5, -88],
-        [16, -88.5], [15.5, -85], [14, -83.5], [11, -83.5], [9.5, -82.5],
-        [8.5, -79.5], [7.8, -77.5], [8.2, -79], [8.5, -83], [11, -86],
-        [13.5, -88], [14.5, -92.5], [16, -95], [16, -98], [18, -103],
-        [20.5, -105.5], [23, -106.5], [26, -109.5], [29, -112.5], [31.5, -114.5],
-        [28, -114], [23, -110], [24.5, -112], [28, -115], [32.5, -117.2],
-        [34.5, -120.5], [38, -123], [43, -124.5], [48, -124.7], [54, -130],
-        [59, -138], [61, -149], [55, -162], [60, -165], [65, -168]
-      ]
-    },
-    {
-      nombre: "Cuba",
-      bioma: "tropical",
-      coords: [
-        [22, -84.8], [23.1, -82], [22.5, -79], [21, -76], [20, -74.2],
-        [19.9, -77.5], [21.5, -80], [21.8, -83.5]
-      ]
-    },
-    {
-      nombre: "La Española y Caribe",
-      bioma: "tropical",
-      coords: [
-        [19.9, -73.4], [19.7, -70.5], [18.6, -68.4], [18, -71.5], [18.4, -74.4]
-      ]
-    },
-    {
-      nombre: "Sudamérica",
-      bioma: "tropical",
-      coords: [
-        [11, -75], [12, -71.5], [10.5, -67], [10.5, -62], [8.5, -60],
-        [6, -55], [4.5, -51.5], [1, -50], [-1.5, -45], [-3.5, -38.5],
-        [-6, -35], [-10, -36], [-13, -38.5], [-18, -39.5], [-23, -42],
-        [-25, -48], [-30, -50], [-34.5, -54], [-35.5, -57], [-38.5, -58],
-        [-41, -63], [-46, -67], [-52, -69], [-55, -67], [-53, -73],
-        [-46, -75], [-39, -73.5], [-33, -71.8], [-27, -71], [-21, -70.2],
-        [-18, -71], [-14, -76], [-11, -78], [-5, -81.3], [-1, -80.8],
-        [2, -78.8], [5, -77.5], [8, -77.2]
-      ]
-    },
-    {
-      nombre: "Groenlandia",
-      bioma: "polar",
-      coords: [
-        [60, -44], [65, -38], [70, -23], [77, -19], [82, -30],
-        [81, -55], [76, -68], [70, -54], [64, -52]
-      ]
-    },
-    {
-      nombre: "Europa y Península Ibérica",
-      bioma: "templado",
-      coords: [
-        [36.1, -5.6], [37, -8.9], [41.8, -8.9], [43.4, -8.4], [43.4, -1.8],
-        [46, -1.3], [48.5, -4.5], [49.5, -1.5], [51, 1.8], [53.5, 6.5],
-        [57, 8.5], [55, 10.5], [54.5, 14], [55, 20], [59.5, 24],
-        [60.5, 28], [66, 25], [70, 28], [71, 24], [68, 15],
-        [62, 5], [58, 7], [60, 11], [65, 21], [59, 18],
-        [56, 15.5], [54, 11], [54, 9], [48, 8], [44.5, 9],
-        [41, 14], [38, 15.8], [40.5, 18], [44, 13], [45.5, 13.5],
-        [42, 19], [38, 21], [37.5, 24], [40.5, 23], [41, 29],
-        [45, 30], [46, 35], [42, 28], [37, 27], [36, 22],
-        [44, 7], [43.2, 5.4], [42.5, 3.2], [40.6, 0.6], [38.8, 0.1],
-        [36.7, -2.2]
-      ]
-    },
-    {
-      nombre: "Islas Británicas",
-      bioma: "templado",
-      coords: [
-        [50.1, -5.2], [51.4, 1.3], [53.6, 0.1], [56, -2.8],
-        [58.6, -3.1], [57.5, -5.8], [55, -5], [53.3, -4.5], [51.5, -5]
-      ]
-    },
-    {
-      nombre: "África",
-      bioma: "continental",
-      coords: [
-        [35.8, -5.8], [36.9, 3], [37.2, 10.2], [33, 11.5], [32.5, 22],
-        [31.5, 32], [28, 34], [22, 37], [12, 43.5], [11.8, 51.2],
-        [4, 48], [-1, 41.5], [-7, 39.5], [-15, 40.7], [-20, 35],
-        [-26, 32.8], [-34, 25.5], [-34.8, 19.5], [-30, 17], [-22, 14.3],
-        [-15, 12], [-6, 12.2], [0, 9.4], [4.2, 8.8], [6.4, 3.4],
-        [4.8, -2], [4.5, -7.5], [8.5, -13.3], [14.7, -17.4], [21, -17],
-        [27.5, -13], [32, -9.5]
-      ]
-    },
-    {
-      nombre: "Asia y Oriente",
-      bioma: "continental",
-      coords: [
-        [41, 29], [42, 41], [46, 48], [68, 68], [72, 105], [70, 140],
-        [66, 175], [60, 162], [52, 141], [43, 132], [38, 125], [35, 120],
-        [31, 121.5], [24, 118], [22, 114], [20, 106], [12, 109], [9, 105],
-        [13.5, 100.5], [3, 101.5], [1.3, 103.8], [7, 99], [16, 97],
-        [22, 91.5], [16, 81], [8, 77.5], [15, 74], [22, 69], [25, 66],
-        [25.5, 57], [29.5, 48], [24, 54], [21, 59], [14, 49], [12.8, 43.4],
-        [20, 40], [29, 34.8], [31.5, 34.5], [36, 36], [37, 27]
-      ]
-    },
-    {
-      nombre: "Japón",
-      bioma: "templado",
-      coords: [
-        [31.5, 130.5], [34.5, 136], [35.6, 140.5], [39.5, 142],
-        [43.5, 145], [41, 140], [37, 137], [34, 131]
-      ]
-    },
-    {
-      nombre: "Australia",
-      bioma: "continental",
-      coords: [
-        [-12, 131], [-12, 136], [-11, 142.5], [-18, 146], [-25, 153],
-        [-33.8, 151.2], [-38, 145], [-35, 136], [-32, 128], [-34, 115],
-        [-26, 113.5], [-21, 114.5], [-16, 123]
-      ]
-    },
-    {
-      nombre: "Antártida",
-      bioma: "polar",
-      coords: [
-        [-66, -180], [-65, -140], [-71, -100], [-64, -60], [-70, -20],
-        [-68, 20], [-66, 60], [-66, 100], [-67, 140], [-66, 180],
-        [-84, 180], [-84, -180]
-      ]
-    }
+  // Etiquetas geograficas de paises para orientacion tipo Google Earth / Earth 3D Map
+  const PAISES_ETIQUETAS = [
+    { nombre: "MÉXICO", lat: 23.6, lon: -102.5, principal: true },
+    { nombre: "ESTADOS UNIDOS", lat: 39.5, lon: -98.3, principal: true },
+    { nombre: "CANADÁ", lat: 56.1, lon: -106.3, principal: false },
+    { nombre: "COLOMBIA", lat: 4.1, lon: -72.9, principal: true },
+    { nombre: "PERÚ", lat: -9.2, lon: -75.0, principal: true },
+    { nombre: "BRASIL", lat: -10.8, lon: -52.9, principal: true },
+    { nombre: "CHILE", lat: -35.7, lon: -71.5, principal: true },
+    { nombre: "ARGENTINA", lat: -38.4, lon: -63.6, principal: true },
+    { nombre: "BOLIVIA", lat: -16.3, lon: -63.6, principal: false },
+    { nombre: "VENEZUELA", lat: 6.4, lon: -66.6, principal: false },
+    { nombre: "CUBA", lat: 21.5, lon: -79.5, principal: false },
+    { nombre: "ESPAÑA", lat: 40.2, lon: -3.7, principal: true },
+    { nombre: "FRANCIA", lat: 46.6, lon: 2.2, principal: false },
+    { nombre: "REINO UNIDO", lat: 54.0, lon: -2.0, principal: false },
+    { nombre: "ITALIA", lat: 42.8, lon: 12.6, principal: false },
+    { nombre: "ALEMANIA", lat: 51.2, lon: 10.4, principal: false },
+    { nombre: "MARRUECOS", lat: 31.8, lon: -7.1, principal: false },
+    { nombre: "ARGELIA", lat: 28.0, lon: 1.7, principal: false },
+    { nombre: "EGIPTO", lat: 26.8, lon: 30.8, principal: false },
+    { nombre: "NIGERIA", lat: 9.1, lon: 8.7, principal: false },
+    { nombre: "SUDÁFRICA", lat: -30.6, lon: 22.9, principal: false },
+    { nombre: "TURQUÍA", lat: 38.9, lon: 35.2, principal: false },
+    { nombre: "ARABIA SAUDITA", lat: 23.9, lon: 45.1, principal: false },
+    { nombre: "INDIA", lat: 21.1, lon: 78.9, principal: true },
+    { nombre: "CHINA", lat: 35.8, lon: 104.2, principal: true },
+    { nombre: "JAPÓN", lat: 36.2, lon: 138.2, principal: false },
+    { nombre: "AUSTRALIA", lat: -25.3, lon: 133.8, principal: true }
   ];
 
-  const NUBES_ATMOSFERA = [
-    { lat: 24, lon: -92, rx: 14, ry: 4.5, alpha: 0.16 },
-    { lat: 12, lon: -78, rx: 18, ry: 5, alpha: 0.15 },
-    { lat: -8, lon: -58, rx: 20, ry: 6, alpha: 0.16 },
-    { lat: 36, lon: -42, rx: 22, ry: 5.5, alpha: 0.14 },
-    { lat: 46, lon: -12, rx: 16, ry: 4.5, alpha: 0.15 },
-    { lat: -24, lon: -66, rx: 16, ry: 4.5, alpha: 0.14 },
-    { lat: 40, lon: -108, rx: 17, ry: 5, alpha: 0.14 },
-    { lat: 2, lon: -25, rx: 24, ry: 5, alpha: 0.15 }
-  ];
-
-  const ESTRELLAS_FONDO = Array.from({ length: 85 }, (_, i) => ({
+  const ESTRELLAS_FONDO = Array.from({ length: 95 }, (_, i) => ({
     u: ((i * 73 + 19) % 100) / 100,
     v: ((i * 41 + 37) % 100) / 100,
     r: 0.6 + (i % 3) * 0.55,
@@ -186,7 +71,9 @@
   }));
 
   const DEG2RAD = Math.PI / 180;
-  const ZOOM_MIN = 0.58;
+  const INV_PI = 1 / Math.PI;
+  const INV_2PI = 1 / (Math.PI * 2);
+  const ZOOM_MIN = 0.62;
   const ZOOM_MAX = 7.5;
 
   function latLonToXYZ(lat, lon, radius) {
@@ -226,17 +113,185 @@
       document.body.appendChild(backdropEl);
     }
 
+    // =========================================================================
+    // MOTOR DE TEXTURAS SATELITALES NASA BLUE MARBLE + RELIEVE TOPOGRAFICO 3D
+    // =========================================================================
+    const TEX_W = 1024;
+    const TEX_H = 512;
+    let colorPixels = null;
+    let bumpPixels = null;
+    let waterPixels = null;
+    let texturasListas = false;
+
+    function extraerBufferImagen(img) {
+      const c = document.createElement("canvas");
+      c.width = TEX_W;
+      c.height = TEX_H;
+      const cx = c.getContext("2d");
+      cx.drawImage(img, 0, 0, TEX_W, TEX_H);
+      return cx.getImageData(0, 0, TEX_W, TEX_H).data;
+    }
+
+    function cargarImagenPromesa(src) {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.onload = () => resolve(img);
+        img.onerror = reject;
+        img.src = src;
+      });
+    }
+
+    Promise.all([
+      cargarImagenPromesa("/img/earth-blue-marble.jpg"),
+      cargarImagenPromesa("/img/earth-topology.png"),
+      cargarImagenPromesa("/img/earth-water.png")
+    ])
+      .then(([imgColor, imgBump, imgWater]) => {
+        colorPixels = extraerBufferImagen(imgColor);
+        bumpPixels = extraerBufferImagen(imgBump);
+        waterPixels = extraerBufferImagen(imgWater);
+        texturasListas = true;
+      })
+      .catch(() => {
+        texturasListas = false;
+      });
+
+    // Buffer esferico 3D de alta velocidad con tabla precalculada de normales y iluminacion
+    const SPHERE_RES = 360;
+    const sphereCanvas = document.createElement("canvas");
+    sphereCanvas.width = SPHERE_RES;
+    sphereCanvas.height = SPHERE_RES;
+    const sphereCtx = sphereCanvas.getContext("2d");
+    const sphereImgData = sphereCtx.createImageData(SPHERE_RES, SPHERE_RES);
+    const sphereOut32 = new Uint32Array(sphereImgData.data.buffer);
+
+    // Precalcular pixeles dentro del disco esferico para que el raytracer tarde < 1.8 ms por frame
+    const sphereLut = [];
+    const halfRes = SPHERE_RES / 2;
+    const invHalf = 1 / (halfRes - 2);
+    // Direccion de luz solar (arriba-izquierda-frente)
+    const sunX = -0.42;
+    const sunY = -0.35;
+    const sunZ = 0.837;
+
+    for (let py = 0; py < SPHERE_RES; py++) {
+      const ny = (py - halfRes) * invHalf;
+      for (let px = 0; px < SPHERE_RES; px++) {
+        const nx = (px - halfRes) * invHalf;
+        const r2 = nx * nx + ny * ny;
+        if (r2 <= 1.0) {
+          const nz = Math.sqrt(1.0 - r2);
+          // Iluminacion difusa solar + fresnel atmosferico en el borde
+          const dotSun = Math.max(0.18, nx * sunX + ny * sunY + nz * sunZ);
+          const specBase = Math.pow(Math.max(0, dotSun), 16);
+          const rim = Math.pow(1.0 - nz, 3.1);
+          sphereLut.push({
+            idx: py * SPHERE_RES + px,
+            nx,
+            ny,
+            nz,
+            dotSun,
+            specBase,
+            rim
+          });
+        }
+      }
+    }
+
+    function renderizarEsferaSatelital3D(yawAngle, pitchAngle) {
+      if (!texturasListas || !colorPixels) return false;
+
+      const cosY = Math.cos(yawAngle);
+      const sinY = Math.sin(yawAngle);
+      const cosP = Math.cos(pitchAngle);
+      const sinP = Math.sin(pitchAngle);
+
+      sphereOut32.fill(0);
+      const nPts = sphereLut.length;
+
+      for (let i = 0; i < nPts; i++) {
+        const pt = sphereLut[i];
+        const nx = pt.nx;
+        const y2 = pt.ny;
+        const z2 = pt.nz;
+
+        // Rotacion inversa exacta de pantalla a coordenadas terrestres
+        const ey = y2 * cosP - z2 * sinP;
+        const z1 = y2 * sinP + z2 * cosP;
+        const ex = nx * cosY - z1 * sinY;
+        const ez = nx * sinY + z1 * cosY;
+
+        const lat = Math.asin(ey < -1 ? -1 : ey > 1 ? 1 : -ey);
+        const lon = Math.atan2(ex, ez);
+
+        let u = lon * INV_2PI + 0.5;
+        if (u < 0) u += 1;
+        else if (u >= 1) u -= 1;
+        let v = 0.5 - lat * INV_PI;
+        if (v < 0) v = 0;
+        else if (v >= 1) v = 0.9999;
+
+        const tx = (u * TEX_W) | 0;
+        const ty = (v * TEX_H) | 0;
+        const tIdx = (ty * TEX_W + tx) << 2;
+
+        let r = colorPixels[tIdx];
+        let g = colorPixels[tIdx + 1];
+        let b = colorPixels[tIdx + 2];
+
+        const esAgua = waterPixels ? waterPixels[tIdx] > 110 : b > r * 1.25;
+
+        // Relieve topografico 3D (sombras y crestas de cordilleras en tierra firme)
+        let reliefFactor = 1.0;
+        if (!esAgua && bumpPixels) {
+          const txNext = tx + 2 < TEX_W ? tx + 2 : tx;
+          const tyNext = ty + 2 < TEX_H ? ty + 2 : ty;
+          const h0 = bumpPixels[tIdx];
+          const hX = bumpPixels[(ty * TEX_W + txNext) << 2];
+          const hY = bumpPixels[(tyNext * TEX_W + tx) << 2];
+          const slope = (hX - h0) * 0.011 + (hY - h0) * 0.011;
+          reliefFactor = 1.0 + Math.max(-0.42, Math.min(0.48, slope));
+
+          // Realzar ligeramente la saturacion natural de bosques, selvas y desiertos
+          const elevBoost = (h0 / 255) * 22;
+          r = Math.min(255, r * 1.12 + elevBoost * 0.8);
+          g = Math.min(255, g * 1.14 + elevBoost * 0.45);
+          b = Math.min(255, b * 1.02);
+        } else if (esAgua) {
+          // Oceano profundo con batimetria turquesa costera y brillo solar
+          const spec = pt.specBase * 68;
+          r = Math.min(255, r * 0.92 + spec * 0.55);
+          g = Math.min(255, g * 1.08 + spec * 0.82);
+          b = Math.min(255, Math.max(b * 1.18, 42) + spec);
+        }
+
+        const light = (0.28 + pt.dotSun * 0.84) * reliefFactor;
+        const rimGlow = pt.rim;
+
+        const outR = Math.max(0, Math.min(255, (r * light + rimGlow * 45) | 0));
+        const outG = Math.max(0, Math.min(255, (g * light + rimGlow * 155) | 0));
+        const outB = Math.max(0, Math.min(255, (b * light + rimGlow * 235) | 0));
+
+        // Little-endian ABGR en Uint32Array
+        sphereOut32[pt.idx] = (255 << 24) | (outB << 16) | (outG << 8) | outR;
+      }
+
+      sphereCtx.putImageData(sphereImgData, 0, 0);
+      return true;
+    }
+
+    // Estado de camara centrado inicialmente en Merida, Yucatan
     let yaw = 89.6172 * DEG2RAD;
     let pitch = 20.9721 * DEG2RAD;
     let targetYaw = yaw;
     let targetPitch = pitch;
 
-    // Velocidad de inercia al soltar el giro con el dedo o raton
     let velYaw = 0;
     let velPitch = 0;
 
-    let zoom = 1.12;
-    let targetZoom = 1.12;
+    let zoom = 1.14;
+    let targetZoom = 1.14;
 
     let autoTour = true;
     let isDragging = false;
@@ -264,7 +319,6 @@
       panel.scrollIntoView({ behavior: "smooth", block: "center" });
     }
 
-    // Tarjeta limpia sin datos tecnicos (sin coordenadas decimales ni IDs internos)
     function actualizarHUD(estadoKey, usuarioCustom = null) {
       const info = datosPorEstado[estadoKey];
       if (!info && !usuarioCustom) return;
@@ -308,7 +362,7 @@
       if (elStatusText) {
         elStatusText.textContent = usuarioCustom
           ? `Viendo la ciudad de @${usuarioCustom.alias} en ${ciudad}, ${estado}`
-          : `Explorando ${ciudad}, ${estado} · Puedes girar con tus dedos, tu mano o acercarte más con +`;
+          : `Explorando ${ciudad}, ${estado} · Gira con tus dedos, tu mano o acércate con +`;
       }
 
       document.querySelectorAll(".heatmap-cell").forEach((cell) => {
@@ -392,7 +446,6 @@
       centrarVistaPrincipalEnPantalla();
     }
 
-    // Giro automatico entre ciudades
     let tourIdx = 0;
     setInterval(() => {
       if (!autoTour || isDragging || handModeActive) return;
@@ -402,12 +455,12 @@
       if (!activos.length) return;
       tourIdx = (tourIdx + 1) % activos.length;
       usuarioEnfocado = null;
-      targetZoom = 1.15;
+      targetZoom = 1.16;
       enfocarEstado(activos[tourIdx], false);
     }, 3800);
 
     // =========================================================================
-    // 1) CONTROL CON RATON, TRACKPAD Y GESTOS TACTILES (1 DEDO Y 2 DEDOS PINCH)
+    // CONTROL TACTIL MOVIL, TRACKPAD Y RATON CON INERCIA
     // =========================================================================
     let nodosEnPantalla = [];
     let pinchStartDist = 0;
@@ -450,7 +503,6 @@
       isDragging = false;
     });
 
-    // Gestos tactiles (1 dedo para girar con la mano, 2 dedos para pellizcar y hacer zoom)
     canvas.addEventListener(
       "touchstart",
       (e) => {
@@ -502,12 +554,10 @@
       pinchStartDist = 0;
     });
 
-    // Rueda del raton y gesto de trackpad (2 dedos deslizar o pellizcar)
     canvas.addEventListener(
       "wheel",
       (e) => {
         e.preventDefault();
-        // Si el usuario desliza horizontalmente con 2 dedos en el trackpad, gira el planeta
         if (!e.ctrlKey && Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 2) {
           aplicarDeltaRotacion(-e.deltaX * 0.85, -e.deltaY * 0.85);
           return;
@@ -518,7 +568,6 @@
       { passive: false }
     );
 
-    // Clic sobre una ciudad en el planeta
     canvas.addEventListener("click", (e) => {
       if (dragMoved) return;
       const rect = canvas.getBoundingClientRect();
@@ -543,7 +592,7 @@
     });
 
     // =========================================================================
-    // 2) CONTROL POR GESTOS DE LA MANO FRENTE A LA CAMARA ("🖐️ Girar con la mano")
+    // CONTROL POR GESTOS DE LA MANO FRENTE A LA CAMARA ("🖐️ Girar con la mano")
     // =========================================================================
     let handModeActive = false;
     let handStream = null;
@@ -590,7 +639,7 @@
       } catch (_err) {
         const elStatus = document.getElementById("globe-status-text");
         if (elStatus) {
-          elStatus.textContent = "No se detectó cámara disponible · Puedes girar el planeta con tus dedos en pantalla o el trackpad";
+          elStatus.textContent = "Cámara no disponible · Gira el planeta deslizando con tus dedos en pantalla o el trackpad";
         }
       }
     }
@@ -638,7 +687,6 @@
             const pb = prevHandFrame[idx + 2];
 
             const diff = Math.abs(r - pr) + Math.abs(g - pg) + Math.abs(b - pb);
-            // Priorizar movimiento de tonos calidos (mano)
             const esPiel = r > 75 && g > 40 && r > g && r > b;
             const peso = diff > 38 ? (esPiel ? diff * 2.2 : diff) : 0;
 
@@ -654,11 +702,10 @@
       prevHandFrame = new Uint8ClampedArray(frame);
 
       if (totalWeight > 1900) {
-        const cxHand = sumX / totalWeight; // 0..w
-        const cyHand = sumY / totalWeight; // 0..h
+        const cxHand = sumX / totalWeight;
+        const cyHand = sumY / totalWeight;
 
         if (smoothHandX !== null && smoothHandY !== null) {
-          // Como el video esta en espejo (scaleX(-1)), invertimos dx para que siga la mano del usuario
           const dx = -(cxHand - smoothHandX);
           const dy = cyHand - smoothHandY;
 
@@ -666,10 +713,9 @@
             aplicarDeltaRotacion(dx * 16, dy * 14);
           }
 
-          // Si el movimiento de la mano es muy cercano/amplio, acercar zoom suavemente
           if (totalWeight > 28000) {
             targetZoom = Math.min(ZOOM_MAX, targetZoom + 0.025);
-            if (handHint) handHint.textContent = "🖐️ Mano cerca: Acercando vista (+)";
+            if (handHint) handHint.textContent = "🖐️ Mano cerca: Acercando (+)";
           } else if (handHint) {
             handHint.textContent = "🖐️ Girando la Tierra con tu mano";
           }
@@ -699,15 +745,11 @@
       }
     }
 
-    if (btnHand) {
-      btnHand.addEventListener("click", activarControlMano);
-    }
-    if (btnHandClose) {
-      btnHandClose.addEventListener("click", desactivarControlMano);
-    }
+    if (btnHand) btnHand.addEventListener("click", activarControlMano);
+    if (btnHandClose) btnHandClose.addEventListener("click", desactivarControlMano);
 
     // =========================================================================
-    // 3) BOTONES DE INTERFAZ Y ZOOM PROFUNDO
+    // CONTROLES DE INTERFAZ Y ZOOM
     // =========================================================================
     const btnTour = document.getElementById("btn-globe-tour");
     if (btnTour) {
@@ -715,7 +757,7 @@
         autoTour = !autoTour;
         if (autoTour) {
           usuarioEnfocado = null;
-          targetZoom = 1.15;
+          targetZoom = 1.16;
         }
         btnTour.classList.toggle("active", autoTour);
         btnTour.textContent = autoTour ? "🔄 Giro automático" : "▶️ Reanudar giro";
@@ -750,9 +792,7 @@
         const idSel = selectUser.value;
         if (!idSel) return;
         const usr = listaUsuariosAutorizados.find((u) => u.id_usuario === idSel);
-        if (usr) {
-          enfocarUsuario(usr);
-        }
+        if (usr) enfocarUsuario(usr);
       });
     }
 
@@ -801,12 +841,8 @@
       setTimeout(ajustarCanvas, 50);
     }
 
-    if (btnExpand) {
-      btnExpand.addEventListener("click", () => alternarModoExpandido());
-    }
-    if (btnExpandFloat) {
-      btnExpandFloat.addEventListener("click", () => alternarModoExpandido());
-    }
+    if (btnExpand) btnExpand.addEventListener("click", () => alternarModoExpandido());
+    if (btnExpandFloat) btnExpandFloat.addEventListener("click", () => alternarModoExpandido());
     backdropEl.addEventListener("click", () => alternarModoExpandido(false));
     window.addEventListener("keydown", (e) => {
       if (e.key === "Escape") alternarModoExpandido(false);
@@ -837,85 +873,14 @@
 
     window.addEventListener("resize", ajustarCanvas);
 
-    function dibujarContinente3D(coords, radius, cx, cy, bioma) {
-      const proyectados = [];
-      let visibles = 0;
-
-      for (let i = 0; i < coords.length; i++) {
-        const [lat, lon] = coords[i];
-        const p = rotarPunto(latLonToXYZ(lat, lon, radius), yaw, pitch);
-        if (p.z > 0) visibles++;
-        if (p.z < 0) {
-          const mag = Math.hypot(p.x, p.y) || 1;
-          proyectados.push({
-            x: cx + (p.x / mag) * radius,
-            y: cy + (p.y / mag) * radius,
-            z: 0
-          });
-        } else {
-          proyectados.push({
-            x: cx + p.x,
-            y: cy + p.y,
-            z: p.z
-          });
-        }
-      }
-
-      if (visibles < 2) return;
-
-      ctx.beginPath();
-      for (let i = 0; i < proyectados.length; i++) {
-        const pt = proyectados[i];
-        if (i === 0) ctx.moveTo(pt.x, pt.y);
-        else ctx.lineTo(pt.x, pt.y);
-      }
-      ctx.closePath();
-
-      ctx.save();
-      ctx.lineJoin = "round";
-      ctx.lineWidth = 6 * Math.min(1.5, zoom);
-      ctx.strokeStyle = "rgba(14, 165, 233, 0.16)";
-      ctx.stroke();
-      ctx.restore();
-
-      // Paleta Satelital Ejecutiva (Azul Pizarra / Topografia Teal-Esmeralda sobria)
-      const landGrad = ctx.createLinearGradient(
-        cx - radius * 0.7,
-        cy - radius * 0.7,
-        cx + radius * 0.7,
-        cy + radius * 0.7
-      );
-
-      if (bioma === "polar") {
-        landGrad.addColorStop(0, "#CBD5E1");
-        landGrad.addColorStop(1, "#64748B");
-      } else if (bioma === "tropical") {
-        landGrad.addColorStop(0, "#1E4D5C");
-        landGrad.addColorStop(0.55, "#163B4A");
-        landGrad.addColorStop(1, "#0F2937");
-      } else {
-        landGrad.addColorStop(0, "#235368");
-        landGrad.addColorStop(0.5, "#1B3F54");
-        landGrad.addColorStop(1, "#122B3D");
-      }
-
-      ctx.fillStyle = landGrad;
-      ctx.fill();
-
-      ctx.lineWidth = 1.15;
-      ctx.strokeStyle = bioma === "polar" ? "rgba(226, 232, 240, 0.65)" : "rgba(125, 211, 252, 0.42)";
-      ctx.stroke();
-    }
-
     const vistaActividadEl = document.getElementById("vista-actividad");
 
-    // Ping ligero cada 4 minutos mientras el panel este abierto para que Render Free Tier no entre en suspension
+    // Ping ligero cada 4 minutos para mantener despierto el servicio en Render
     setInterval(() => {
       fetch("/healthz").catch(() => {});
     }, 4 * 60 * 1000);
 
     function renderizarGlobo() {
-      // Ahorro de CPU/GPU: no renderizar frames 3D si la pestaña esta oculta o si el usuario esta en otra seccion
       if (
         document.hidden ||
         (vistaActividadEl && !vistaActividadEl.classList.contains("active"))
@@ -937,7 +902,6 @@
       ctx.scale(dpr, dpr);
       ctx.clearRect(0, 0, width, height);
 
-      // Inercia suave cuando el usuario suelta el planeta tras girarlo con la mano/dedos
       if (!isDragging) {
         if (Math.abs(velYaw) > 0.0001 || Math.abs(velPitch) > 0.0001) {
           targetYaw += velYaw;
@@ -958,158 +922,102 @@
 
       const cx = width / 2;
       const cy = height / 2;
-      const baseRadius = Math.min(width, height) * 0.37;
+      const esMovil = width < 520;
+      const baseRadius = Math.min(width, height) * (esMovil ? 0.39 : 0.38);
       const radius = baseRadius * zoom;
 
-      // Estrellas de fondo
+      // 0) Estrellas de espacio profundo
       for (let i = 0; i < ESTRELLAS_FONDO.length; i++) {
         const st = ESTRELLAS_FONDO[i];
         const sx = st.u * width;
         const sy = st.v * height;
         const distCentro = Math.hypot(sx - cx, sy - cy);
         if (distCentro < radius * 1.02) continue;
-        const twinkle = 0.3 + 0.55 * (0.5 + 0.5 * Math.sin(tick * 1.6 + st.phase));
+        const twinkle = 0.28 + 0.55 * (0.5 + 0.5 * Math.sin(tick * 1.6 + st.phase));
         ctx.fillStyle = `rgba(226, 232, 240, ${twinkle.toFixed(2)})`;
         ctx.beginPath();
         ctx.arc(sx, sy, st.r, 0, Math.PI * 2);
         ctx.fill();
       }
 
-      // Corona atmosferica azul de la Tierra
-      const haloGrad = ctx.createRadialGradient(cx, cy, radius * 0.92, cx, cy, radius * 1.22);
-      haloGrad.addColorStop(0, "rgba(56, 189, 248, 0.42)");
-      haloGrad.addColorStop(0.45, "rgba(14, 165, 233, 0.16)");
+      // 1) Resplandor atmosferico exterior (halo de dispersion Rayleigh)
+      const haloGrad = ctx.createRadialGradient(cx, cy, radius * 0.94, cx, cy, radius * 1.18);
+      haloGrad.addColorStop(0, "rgba(56, 189, 248, 0.38)");
+      haloGrad.addColorStop(0.45, "rgba(14, 165, 233, 0.12)");
       haloGrad.addColorStop(1, "rgba(0, 0, 0, 0)");
       ctx.fillStyle = haloGrad;
       ctx.beginPath();
-      ctx.arc(cx, cy, radius * 1.22, 0, Math.PI * 2);
+      ctx.arc(cx, cy, radius * 1.18, 0, Math.PI * 2);
       ctx.fill();
 
-      // Oceano terrestre ejecutivo (Zafiro profundo)
-      const oceanGrad = ctx.createRadialGradient(
-        cx - radius * 0.32,
-        cy - radius * 0.32,
-        radius * 0.06,
-        cx,
-        cy,
-        radius
-      );
-      oceanGrad.addColorStop(0, "#0F3868");
-      oceanGrad.addColorStop(0.38, "#0A2547");
-      oceanGrad.addColorStop(0.75, "#06172E");
-      oceanGrad.addColorStop(1, "#030B18");
-
-      ctx.beginPath();
-      ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-      ctx.fillStyle = oceanGrad;
-      ctx.fill();
-
-      ctx.save();
-      ctx.beginPath();
-      ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-      ctx.clip();
-
-      // Lineas suaves de referencia sobre el oceano
-      for (let lon = -180; lon < 180; lon += 30) {
+      // 2) Esfera Satelital 3D Fotorrealista (NASA Blue Marble + Relieve Topografico 3D + Reflejo Solar)
+      const okSat = renderizarEsferaSatelital3D(yaw, pitch);
+      if (okSat) {
+        ctx.save();
         ctx.beginPath();
-        let started = false;
-        for (let lat = -80; lat <= 80; lat += 5) {
-          const p = rotarPunto(latLonToXYZ(lat, lon, radius), yaw, pitch);
-          if (p.z > 0) {
-            if (!started) {
-              ctx.moveTo(cx + p.x, cy + p.y);
-              started = true;
-            } else {
-              ctx.lineTo(cx + p.x, cy + p.y);
-            }
-          } else {
-            started = false;
-          }
-        }
-        ctx.lineWidth = 0.7;
-        ctx.strokeStyle = "rgba(125, 211, 252, 0.12)";
-        ctx.stroke();
-      }
-
-      for (let lat = -60; lat <= 60; lat += 30) {
-        ctx.beginPath();
-        let started = false;
-        for (let lon = -180; lon <= 180; lon += 5) {
-          const p = rotarPunto(latLonToXYZ(lat, lon, radius), yaw, pitch);
-          if (p.z > 0) {
-            if (!started) {
-              ctx.moveTo(cx + p.x, cy + p.y);
-              started = true;
-            } else {
-              ctx.lineTo(cx + p.x, cy + p.y);
-            }
-          } else {
-            started = false;
-          }
-        }
-        ctx.lineWidth = lat === 0 ? 1.1 : 0.7;
-        ctx.strokeStyle = lat === 0 ? "rgba(56, 189, 248, 0.24)" : "rgba(125, 211, 252, 0.12)";
-        ctx.stroke();
-      }
-
-      // Continentes del Planeta Tierra
-      for (let i = 0; i < CONTINENTES_TIERRA.length; i++) {
-        const cont = CONTINENTES_TIERRA[i];
-        dibujarContinente3D(cont.coords, radius, cx, cy, cont.bioma);
-      }
-
-      // Nubes atmosfericas
-      const lonOffsetNubes = (tick * 2.2) % 360;
-      for (let i = 0; i < NUBES_ATMOSFERA.length; i++) {
-        const nb = NUBES_ATMOSFERA[i];
-        const pNube = rotarPunto(
-          latLonToXYZ(nb.lat, nb.lon + lonOffsetNubes, radius * 1.01),
-          yaw,
-          pitch
+        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+        ctx.clip();
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = "high";
+        const scalePad = radius * 1.012;
+        ctx.drawImage(
+          sphereCanvas,
+          cx - scalePad,
+          cy - scalePad,
+          scalePad * 2,
+          scalePad * 2
         );
-        if (pNube.z > radius * 0.15) {
-          const visFactor = pNube.z / radius;
-          ctx.save();
-          ctx.translate(cx + pNube.x, cy + pNube.y);
-          ctx.scale(1, 0.55);
-          const cGrad = ctx.createRadialGradient(0, 0, 2, 0, 0, nb.rx * 2.2 * Math.min(2.2, zoom));
-          cGrad.addColorStop(0, `rgba(255, 255, 255, ${(nb.alpha * visFactor).toFixed(3)})`);
-          cGrad.addColorStop(1, "rgba(255, 255, 255, 0)");
-          ctx.fillStyle = cGrad;
-          ctx.beginPath();
-          ctx.arc(0, 0, nb.rx * 2.2 * Math.min(2.2, zoom), 0, Math.PI * 2);
-          ctx.fill();
-          ctx.restore();
-        }
+        ctx.restore();
+      } else {
+        // Fallback inmediato mientras termina de decodificar la textura en el primer frame
+        const oceanGrad = ctx.createRadialGradient(
+          cx - radius * 0.32,
+          cy - radius * 0.32,
+          radius * 0.06,
+          cx,
+          cy,
+          radius
+        );
+        oceanGrad.addColorStop(0, "#0F3868");
+        oceanGrad.addColorStop(1, "#030B18");
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+        ctx.fillStyle = oceanGrad;
+        ctx.fill();
       }
 
-      // Sombreado esferico 3D
-      const shadeGrad = ctx.createRadialGradient(
-        cx - radius * 0.35,
-        cy - radius * 0.35,
-        radius * 0.2,
-        cx,
-        cy,
-        radius
-      );
-      shadeGrad.addColorStop(0, "rgba(255, 255, 255, 0.10)");
-      shadeGrad.addColorStop(0.65, "rgba(0, 0, 0, 0)");
-      shadeGrad.addColorStop(1, "rgba(2, 6, 23, 0.55)");
-      ctx.fillStyle = shadeGrad;
+      // Borde atmosferico nitido del planeta
       ctx.beginPath();
       ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.restore();
-
-      // Contorno atmosferico de la Tierra
-      ctx.beginPath();
-      ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-      ctx.lineWidth = 2;
-      ctx.strokeStyle = "rgba(56, 189, 248, 0.65)";
+      ctx.lineWidth = 1.6;
+      ctx.strokeStyle = "rgba(125, 211, 252, 0.55)";
       ctx.stroke();
 
-      // Arcos de conexion entre ciudades
+      // 3) Nombres geograficos de paises sobre la superficie satelital (estilo Google Earth / Earth 3D Map)
+      ctx.save();
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      for (let i = 0; i < PAISES_ETIQUETAS.length; i++) {
+        const pais = PAISES_ETIQUETAS[i];
+        if (!pais.principal && zoom < 1.35) continue;
+        const pPais = rotarPunto(latLonToXYZ(pais.lat, pais.lon, radius), yaw, pitch);
+        if (pPais.z < radius * 0.38) continue;
+
+        const px = cx + pPais.x;
+        const py = cy + pPais.y;
+        const vis = Math.min(1, (pPais.z / radius - 0.35) * 1.8);
+        ctx.font = pais.principal
+          ? "700 10px 'Inter', sans-serif"
+          : "600 9px 'Inter', sans-serif";
+        ctx.fillStyle = `rgba(248, 250, 252, ${(0.68 * vis).toFixed(2)})`;
+        ctx.strokeStyle = `rgba(2, 6, 23, ${(0.85 * vis).toFixed(2)})`;
+        ctx.lineWidth = 2.6;
+        ctx.strokeText(pais.nombre, px, py);
+        ctx.fillText(pais.nombre, px, py);
+      }
+      ctx.restore();
+
+      // 4) Arcos 3D de conexion entre ciudades de la comunidad
       const centroHub = datosPorEstado["Yucatán"] || datosPorEstado["CDMX"];
       if (centroHub) {
         const pHubSurf = rotarPunto(
@@ -1129,7 +1037,7 @@
 
           const midLat = (centroHub.lat + dest.lat) / 2;
           const midLon = (centroHub.lon + dest.lon) / 2;
-          const arcLift = 1 + 0.18 / Math.max(1, zoom * 0.55);
+          const arcLift = 1 + 0.16 / Math.max(1, zoom * 0.55);
           const pMid = rotarPunto(
             latLonToXYZ(midLat, midLon, radius * arcLift),
             yaw,
@@ -1149,8 +1057,8 @@
           ctx.moveTo(x0, y0);
           ctx.quadraticCurveTo(xm, ym, x1, y1);
           ctx.strokeStyle = esDestinoActivo
-            ? "rgba(52, 211, 153, 0.88)"
-            : "rgba(56, 189, 248, 0.28)";
+            ? "rgba(52, 211, 153, 0.92)"
+            : "rgba(56, 189, 248, 0.35)";
           ctx.lineWidth = esDestinoActivo ? 2.2 : 1.1;
           ctx.stroke();
 
@@ -1165,16 +1073,14 @@
         });
       }
 
-      // Marcadores y etiquetas de las 21 ciudades
+      // 5) Marcadores y etiquetas de las 21 ciudades de la comunidad
       const maxInter = Math.max(
         1,
         ...Object.values(datosPorEstado).map((d) => d.interacciones || 1)
       );
       nodosEnPantalla = [];
-
       const etiquetasDibujadas = [];
 
-      // Ordenar para que la ciudad enfocada se procese y etiquete con prioridad
       const listaOrdenada = Object.values(datosPorEstado).sort((a, b) => {
         if (a.estado === estadoSeleccionado) return 1;
         if (b.estado === estadoSeleccionado) return -1;
@@ -1186,7 +1092,7 @@
         if (pBase.z < 0) return;
 
         const ratio = (loc.interacciones || 1) / maxInter;
-        const alturaPilar = 10 + ratio * 24;
+        const alturaPilar = 10 + ratio * 22;
         const pTop = rotarPunto(
           latLonToXYZ(loc.lat, loc.lon, radius + alturaPilar),
           yaw,
@@ -1210,23 +1116,20 @@
           esActivo
         });
 
-        ctx.fillStyle = "rgba(148, 163, 184, 0.45)";
-        ctx.beginPath();
-        ctx.arc(bx + 3, by - 2, 1.2, 0, Math.PI * 2);
-        ctx.arc(bx - 3.5, by + 2, 1.0, 0, Math.PI * 2);
-        ctx.fill();
-
         ctx.beginPath();
         ctx.moveTo(bx, by);
         ctx.lineTo(tx, ty);
-        ctx.strokeStyle = esActivo ? "#10B981" : "rgba(56, 189, 248, 0.85)";
-        ctx.lineWidth = esActivo ? 3.2 : 1.8;
+        ctx.strokeStyle = esActivo ? "#10B981" : "rgba(56, 189, 248, 0.9)";
+        ctx.lineWidth = esActivo ? 3.2 : 1.9;
         ctx.stroke();
 
         ctx.beginPath();
-        ctx.arc(bx, by, esActivo ? 5.2 : 3.2, 0, Math.PI * 2);
+        ctx.arc(bx, by, esActivo ? 5.2 : 3.4, 0, Math.PI * 2);
         ctx.fillStyle = esActivo ? "#10B981" : "#38BDF8";
         ctx.fill();
+        ctx.lineWidth = 1.2;
+        ctx.strokeStyle = "#090D16";
+        ctx.stroke();
 
         ctx.beginPath();
         ctx.arc(tx, ty, esActivo ? 4.2 : 2.6, 0, Math.PI * 2);
@@ -1238,12 +1141,11 @@
           ctx.beginPath();
           ctx.arc(bx, by, rOnda, 0, Math.PI * 2);
           ctx.strokeStyle = `rgba(52, 211, 153, ${(1 - pulsoOnda).toFixed(2)})`;
-          ctx.lineWidth = 2;
+          ctx.lineWidth = 2.2;
           ctx.stroke();
         }
       });
 
-      // Dibujar etiquetas sin superposicion (priorizando la ciudad seleccionada y las de mayor actividad)
       const candidatosEtiqueta = [...nodosEnPantalla].sort((a, b) => {
         if (a.esActivo) return -1;
         if (b.esActivo) return 1;
@@ -1255,28 +1157,29 @@
         if (!esActivo && z < radius * 0.42 && zoom < 2.2) return;
         if (!esActivo && loc.interacciones < 10 && zoom < 1.9) return;
 
-        // Verificar que no choque con otra etiqueta ya dibujada
-        const choca = !esActivo && etiquetasDibujadas.some(
-          (prev) => Math.abs(prev.x - tx) < 88 && Math.abs(prev.y - ty) < 24
-        );
+        const choca =
+          !esActivo &&
+          etiquetasDibujadas.some(
+            (prev) => Math.abs(prev.x - tx) < 88 && Math.abs(prev.y - ty) < 24
+          );
         if (choca) return;
 
         etiquetasDibujadas.push({ x: tx, y: ty });
 
         ctx.font = esActivo
-          ? "700 12.5px 'Inter', sans-serif"
-          : "600 11px 'Inter', sans-serif";
+          ? "700 12px 'Inter', sans-serif"
+          : "600 10.5px 'Inter', sans-serif";
         const labelTxt =
           esActivo && usuarioEnfocado
             ? `📍 @${usuarioEnfocado.alias} · ${loc.ciudad}`
             : `${loc.ciudad} (${loc.interacciones})`;
 
         const textW = ctx.measureText(labelTxt).width;
-        ctx.fillStyle = esActivo ? "rgba(6, 78, 59, 0.92)" : "rgba(15, 23, 42, 0.84)";
+        ctx.fillStyle = esActivo ? "rgba(6, 78, 59, 0.92)" : "rgba(15, 23, 42, 0.86)";
         ctx.beginPath();
         ctx.roundRect(tx + 7, ty - 11, textW + 12, 20, 6);
         ctx.fill();
-        ctx.strokeStyle = esActivo ? "#34D399" : "rgba(56, 189, 248, 0.4)";
+        ctx.strokeStyle = esActivo ? "#34D399" : "rgba(56, 189, 248, 0.45)";
         ctx.lineWidth = 1;
         ctx.stroke();
 

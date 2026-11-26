@@ -407,6 +407,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   Chart.register(barValueLabelsPlugin, doughnutCenterTextPlugin);
 
   function opcionesDona(centerLabel) {
+    const esMovil = window.innerWidth <= 640;
     return {
       responsive: true,
       maintainAspectRatio: false,
@@ -415,7 +416,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       plugins: {
         centerLabel,
         legend: {
-          position: "right",
+          position: esMovil ? "bottom" : "right",
           labels: {
             boxWidth: 10,
             boxHeight: 10,
