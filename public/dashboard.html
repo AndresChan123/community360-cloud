@@ -366,44 +366,72 @@
         <!-- VISTA 2: PUBLICACIONES Y MAPA REGIONAL (CON GLOBO 3D EN VIVO)   -->
         <!-- =============================================================== -->
         <div id="vista-actividad" class="view-section">
-          <!-- Panel superior: Globo Terraqueo 3D Interactivo + Mapa de calor regional -->
-          <section class="grid-2-col" style="margin-bottom: 18px;">
-            <article class="panel-card svc globe-panel">
-              <div class="panel-header">
+          <!-- Vista Principal Centrada: Planeta Tierra 3D Interactivo -->
+          <section class="globe-hero-section" style="margin-bottom: 18px;">
+            <article id="globe-main-panel" class="panel-card svc globe-panel">
+              <div class="panel-header globe-header-bar">
                 <div>
-                  <span class="tag">01 · Globo Terráqueo 3D Interactivo</span>
-                  <h3>Mapa 3D de ubicaciones de la comunidad</h3>
-                  <p>Gira con el cursor o haz clic en cualquier región para viajar a la ubicación de los miembros</p>
+                  <span class="tag">01 · Planeta Tierra 3D Interactivo · Vista Principal</span>
+                  <h3>Globo Terráqueo 3D de ubicaciones de la comunidad</h3>
+                  <p>Selecciona un miembro o región para que el planeta Tierra rote y haga zoom hacia su localización exacta</p>
                 </div>
                 <div class="globe-controls">
+                  <div class="globe-user-picker-wrap">
+                    <label for="select-globe-user" class="sr-only">Localizar miembro</label>
+                    <select id="select-globe-user" class="globe-user-select" title="Selecciona un miembro para rotar el planeta hacia su ubicación">
+                      <option value="">👤 Localizar miembro en la Tierra...</option>
+                    </select>
+                  </div>
+                  <button type="button" id="btn-globe-my-loc" class="live-chip globe-btn" title="Rotar hacia mi ubicación actual (Mérida, Yucatán)">📍 Mi ubicación</button>
                   <button type="button" id="btn-globe-tour" class="live-chip globe-btn active">Recorrido 3D activo</button>
                   <button type="button" class="live-chip globe-btn" data-globe-region="mexico">Centro MX</button>
-                  <button type="button" class="live-chip globe-btn" data-globe-region="sur">Sureste MX</button>
+                  <button type="button" class="live-chip globe-btn" data-globe-region="sur">Yucatán / Sureste</button>
                   <button type="button" class="live-chip globe-btn" data-globe-region="latam">Sudamérica</button>
                   <button type="button" class="live-chip globe-btn" data-globe-region="espana">España</button>
+                  <button type="button" id="btn-globe-expand" class="live-chip globe-btn globe-btn-expand" title="Expandir el planeta Tierra 3D a pantalla completa">⛶ Expandir Mapa 3D</button>
                 </div>
               </div>
 
-              <div class="globe-stage">
+              <div id="globe-stage-container" class="globe-stage">
                 <canvas id="globe-3d-canvas"></canvas>
+
+                <!-- Botones flotantes de Zoom y Centrado sobre el Planeta -->
+                <div class="globe-floating-tools">
+                  <button type="button" id="btn-globe-zoom-in" class="globe-tool-btn" title="Acercar vista (Zoom +)">+</button>
+                  <button type="button" id="btn-globe-zoom-out" class="globe-tool-btn" title="Alejar vista (Zoom -)">−</button>
+                  <button type="button" id="btn-globe-center" class="globe-tool-btn" title="Centrar ubicación actual en la pantalla">🎯</button>
+                  <button type="button" id="btn-globe-fullscreen-float" class="globe-tool-btn" title="Expandir o contraer vista principal">⛶</button>
+                </div>
+
+                <!-- Indicador superior de navegacion -->
+                <div class="globe-top-badge">
+                  <span class="pulse-dot-green"></span>
+                  <span id="globe-status-text">Planeta Tierra 3D · Arrastra para girar o usa la rueda del ratón para hacer zoom</span>
+                </div>
+
+                <!-- Tarjeta HUD con datos de la localizacion enfocada -->
                 <div id="globe-hud-card" class="globe-hud-card">
-                  <div class="globe-hud-tag">Ubicación enfocada en 3D</div>
-                  <div id="globe-hud-city" class="globe-hud-city">Guadalajara, Jalisco (México)</div>
-                  <div id="globe-hud-coords" class="globe-hud-coords">20.6719° N, 103.3519° O</div>
+                  <div id="globe-hud-tag" class="globe-hud-tag">Localización centrada en 3D</div>
+                  <div id="globe-hud-city" class="globe-hud-city">Mérida, Yucatán (México)</div>
+                  <div id="globe-hud-user" class="globe-hud-user">Comunidad regional verificada</div>
+                  <div id="globe-hud-coords" class="globe-hud-coords">20.9721° N, 89.6172° O</div>
                   <div class="globe-hud-stats">
-                    <span id="globe-hud-inter" class="status-pill st-activo">31 publicaciones</span>
+                    <span id="globe-hud-inter" class="status-pill st-activo">36 publicaciones</span>
                     <span id="globe-hud-members" class="status-pill tag-priv">Ubicación verificada</span>
                   </div>
                 </div>
               </div>
             </article>
+          </section>
 
+          <!-- Panel intermedio: Mapa de calor regional conectado al Globo 3D -->
+          <section style="margin-bottom: 18px;">
             <article class="panel-card svc">
               <div class="panel-header">
                 <div>
-                  <span class="tag">02 · Distribución territorial</span>
-                  <h3>Actividad por región (Haz clic para girar el Mapa 3D)</h3>
-                  <p>Estados con mayor participación (solo miembros que comparten ubicación)</p>
+                  <span class="tag">02 · Distribución territorial conectada al Planeta 3D</span>
+                  <h3>Actividad por región (Haz clic en cualquier tarjeta para rotar la Tierra hacia esa ubicación)</h3>
+                  <p>Estados y países con mayor participación (solo miembros que autorizaron compartir su ubicación)</p>
                 </div>
                 <div class="heatmap-legend">
                   <span>Menos</span>

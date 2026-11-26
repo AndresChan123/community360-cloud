@@ -928,8 +928,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       const data = await resp.json();
       indicator.innerHTML = `<span>Mostrando <strong>${data.total_devueltos}</strong> miembros de la comunidad según los filtros seleccionados</span>`;
 
+      const usuariosLista = data.usuarios || [];
+      if (window.c360Globe && typeof window.c360Globe.cargarUsuariosConUbicacion === "function") {
+        window.c360Globe.cargarUsuariosConUbicacion(usuariosLista);
+      }
+
       const tbody = document.getElementById("tbody-usuarios-hist");
-      tbody.innerHTML = (data.usuarios || [])
+      tbody.innerHTML = usuariosLista
         .map((u) => {
           const consBadge = u.consentimiento_datos
             ? `<span class="tag-ok">Autorizada</span>`
@@ -937,7 +942,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
           const ubicacionTxt =
             u.consentimiento_datos && u.ciudad
-              ? `${u.ciudad}, ${u.estado} (${u.pais})`
+              ? `<span style="color:var(--primary);font-weight:600;text-decoration:underline;text-underline-offset:3px;">🌍 ${u.ciudad}, ${u.estado} (${u.pais})</span>`
               : `<span class="coord-protected">${ICONO_CANDADO}<span>Protegido</span></span>`;
 
           const coordsTxt =
@@ -950,7 +955,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
           const canFly = Boolean(u.consentimiento_datos && u.estado);
           const rowAttr = canFly
-            ? `data-fly-estado="${u.estado}" style="cursor:pointer;" title="Haz clic para ver la ubicación de ${u.alias} (${u.ciudad}, ${u.estado}) en el Mapa 3D"`
+            ? `data-fly-user="${u.id_usuario}" data-fly-estado="${u.estado}" style="cursor:pointer;" title="Haz clic para que el Planeta Tierra 3D rote y haga zoom hacia la ubicación de @${u.alias} (${u.ciudad}, ${u.estado})"`
             : "";
 
           return `
@@ -971,15 +976,22 @@ document.addEventListener("DOMContentLoaded", async () => {
         })
         .join("");
 
-      tbody.querySelectorAll("tr[data-fly-estado]").forEach((row) => {
+      tbody.querySelectorAll("tr[data-fly-user]").forEach((row) => {
         row.addEventListener("click", () => {
-          const est = row.getAttribute("data-fly-estado");
-          if (!est) return;
+          const idUsr = row.getAttribute("data-fly-user");
+          const usrObj = usuariosLista.find((x) => x.id_usuario === idUsr);
           const navActividad = document.querySelector('.sidebar-nav .nav-item[data-target="vista-actividad"]');
           if (navActividad) navActividad.click();
           setTimeout(() => {
-            if (window.c360Globe) window.c360Globe.enfocarEstado(est, true);
-          }, 120);
+            if (window.c360Globe) {
+              if (usrObj && typeof window.c360Globe.enfocarUsuario === "function") {
+                window.c360Globe.enfocarUsuario(usrObj);
+              } else {
+                const est = row.getAttribute("data-fly-estado");
+                if (est) window.c360Globe.enfocarEstado(est, true);
+              }
+            }
+          }, 140);
         });
       });
     } catch (_err) {}
