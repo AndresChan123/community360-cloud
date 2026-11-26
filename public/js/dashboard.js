@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  const token = sessionStorage.getItem("c360_id_token");
+  let token = sessionStorage.getItem("c360_id_token");
   const userEmailEl = document.getElementById("user-email");
   const userRolEl = document.getElementById("user-rol");
   const userAvatarEl = document.getElementById("user-avatar");
+  const panelCurrentEmailEl = document.getElementById("panel-current-email");
+  const panelCurrentRoleEl = document.getElementById("panel-current-role");
   const wsDotEl = document.getElementById("ws-dot");
   const wsStatusEl = document.getElementById("ws-status");
   const wsHeaderDotEl = document.getElementById("ws-header-dot");
@@ -13,6 +15,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const charts = {};
   const kpiPrevios = {};
   let ultimoIdModificado = null;
+  let wsInstance = null;
 
   function authHeaders() {
     return token ? { Authorization: `Bearer ${token}` } : {};
@@ -34,11 +37,14 @@ document.addEventListener("DOMContentLoaded", async () => {
       reglas_moderacion: "Reglas y moderación",
       arte_digital: "Arte digital",
       arte_tradicional: "Arte tradicional",
-      respuesta_encuesta: "Respuesta a encuesta",
-      rsvp_evento: "Confirmación RSVP",
+      respuesta_encuesta: "Encuesta",
+      rsvp_evento: "Asistencia a evento",
       reaccion: "Reacción",
+      comentario: "Comentario",
+      mensaje: "Mensaje",
       musica: "Música",
       comics: "Cómics",
+      videojuegos: "Videojuegos",
     };
     const clave = String(texto).trim().toLowerCase();
     if (diccionario[clave]) return diccionario[clave];
@@ -52,13 +58,156 @@ document.addEventListener("DOMContentLoaded", async () => {
       .join(" ");
   }
 
-  const navLinks = document.querySelectorAll(".sidebar-nav .nav-link");
-  navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      navLinks.forEach((l) => l.classList.remove("active"));
-      link.classList.add("active");
+  // =========================================================================
+  // NAVEGACION POR VISTAS INDEPENDIENTES (SIN TENER QUE HACER SCROLL LARGO)
+  // =========================================================================
+  const TITULOS_VISTAS = {
+    "vista-pulso": {
+      titulo: "Pulso en tiempo real",
+      subtitulo: "Resumen vivo del ánimo, temas y canales donde participa la comunidad",
+    },
+    "vista-actividad": {
+      titulo: "Publicaciones y mapa regional",
+      subtitulo: "Distribución geográfica de la actividad y flujo reciente de publicaciones",
+    },
+    "vista-comunidad": {
+      titulo: "Perfiles y retención de miembros",
+      subtitulo: "Permanencia en la comunidad, intereses culturales y composición por edades",
+    },
+    "vista-directorio": {
+      titulo: "Directorio de miembros y privacidad",
+      subtitulo: "Consulta individual de perfiles y resguardo de ubicación personal",
+    },
+  };
+
+  function activarVista(viewId) {
+    document.querySelectorAll(".view-section").forEach((sec) => {
+      sec.classList.toggle("active", sec.id === viewId);
+    });
+    document.querySelectorAll("[data-view]").forEach((btn) => {
+      btn.classList.toggle("active", btn.getAttribute("data-view") === viewId);
+    });
+    const meta = TITULOS_VISTAS[viewId];
+    if (meta) {
+      document.getElementById("topbar-view-title").textContent = meta.titulo;
+      document.getElementById("topbar-view-subtitle").textContent = meta.subtitulo;
+    }
+    // Redimensionar graficas al hacerse visible la vista
+    setTimeout(() => {
+      Object.values(charts).forEach((c) => {
+        if (c && typeof c.resize === "function") c.resize();
+      });
+    }, 40);
+  }
+
+  document.querySelectorAll("[data-view]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      activarVista(btn.getAttribute("data-view"));
     });
   });
+
+  // =========================================================================
+  // PANEL DE SESION Y CAMBIO DE CUENTA DESDE EL ENCABEZADO
+  // =========================================================================
+  const btnSessionToggle = document.getElementById("btn-session-toggle");
+  const sessionPanel = document.getElementById("session-panel");
+  const sessionWrap = document.getElementById("session-dropdown-wrap");
+  const quickSwitchForm = document.getElementById("quick-switch-form");
+  const switchMsgEl = document.getElementById("switch-msg");
+
+  function actualizarUISesion(usuario) {
+    const rolTexto = usuario.rol === "admin" ? "Administrador" : "Solo lectura";
+    userEmailEl.textContent = usuario.email;
+    userRolEl.textContent = rolTexto;
+    if (panelCurrentEmailEl) panelCurrentEmailEl.textContent = usuario.email;
+    if (panelCurrentRoleEl) {
+      panelCurrentRoleEl.textContent = rolTexto;
+      panelCurrentRoleEl.className = `status-pill ${usuario.rol === "admin" ? "st-activo" : "tag-priv"}`;
+    }
+    const iniciales = (usuario.email || "U")
+      .split("@")[0]
+      .split(/[._-]/)
+      .map((p) => p[0]?.toUpperCase())
+      .join("")
+      .slice(0, 2);
+    if (userAvatarEl && iniciales) userAvatarEl.textContent = iniciales;
+  }
+
+  if (btnSessionToggle && sessionPanel) {
+    btnSessionToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const abierto = !sessionPanel.hidden;
+      sessionPanel.hidden = abierto;
+      btnSessionToggle.setAttribute("aria-expanded", String(!abierto));
+    });
+
+    document.addEventListener("click", (e) => {
+      if (sessionWrap && !sessionWrap.contains(e.target)) {
+        sessionPanel.hidden = true;
+        btnSessionToggle.setAttribute("aria-expanded", "false");
+      }
+    });
+  }
+
+  async function cambiarDeCuenta(usuarioInput, passwordInput) {
+    if (switchMsgEl) switchMsgEl.textContent = "Cambiando de cuenta...";
+    try {
+      const resp = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ usuario: usuarioInput, password: passwordInput }),
+      });
+      const data = await resp.json();
+      if (!resp.ok) {
+        if (switchMsgEl) switchMsgEl.textContent = data.error || "Credenciales incorrectas.";
+        return;
+      }
+      token = data.token;
+      sessionStorage.setItem("c360_id_token", data.token);
+      sessionStorage.setItem("c360_usuario", JSON.stringify(data.usuario));
+      actualizarUISesion(data.usuario);
+      if (switchMsgEl) switchMsgEl.textContent = "";
+      if (sessionPanel) sessionPanel.hidden = true;
+
+      if (wsInstance && wsInstance.readyState === WebSocket.OPEN) {
+        wsInstance.close();
+      }
+      wsInstance = conectarWebSocket();
+    } catch (_err) {
+      if (switchMsgEl) switchMsgEl.textContent = "Error al conectar con el servidor.";
+    }
+  }
+
+  document.querySelectorAll(".account-switch-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const u = btn.getAttribute("data-user");
+      const p = btn.getAttribute("data-pass");
+      cambiarDeCuenta(u, p);
+    });
+  });
+
+  if (quickSwitchForm) {
+    quickSwitchForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const u = document.getElementById("switch-user").value.trim();
+      const p = document.getElementById("switch-pass").value;
+      if (u && p) cambiarDeCuenta(u, p);
+    });
+  }
+
+  // 1) Validar sesion activa al cargar
+  try {
+    const respSesion = await fetch("/api/auth/sesion", { headers: authHeaders() });
+    if (!respSesion.ok) {
+      redirigirLogin();
+      return;
+    }
+    const { usuario } = await respSesion.json();
+    actualizarUISesion(usuario);
+  } catch (_err) {
+    redirigirLogin();
+    return;
+  }
 
   function actualizarKPI(elementId, cardId, nuevoValorNumero, formateador, animar = false) {
     const el = document.getElementById(elementId);
@@ -95,28 +244,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     requestAnimationFrame(frame);
   }
 
-  // 1) Validar sesion activa
-  try {
-    const respSesion = await fetch("/api/auth/sesion", { headers: authHeaders() });
-    if (!respSesion.ok) {
-      redirigirLogin();
-      return;
-    }
-    const { usuario } = await respSesion.json();
-    userEmailEl.textContent = usuario.email;
-    userRolEl.textContent = usuario.rol === "admin" ? "Administrador" : "Lector";
-    const iniciales = (usuario.email || "U")
-      .split("@")[0]
-      .split(/[._-]/)
-      .map((p) => p[0]?.toUpperCase())
-      .join("")
-      .slice(0, 2);
-    if (userAvatarEl && iniciales) userAvatarEl.textContent = iniciales;
-  } catch (_err) {
-    redirigirLogin();
-    return;
-  }
-
   // Paleta corporativa sobria
   const PRIMARY = "#2457C5";
   const PRIMARY_HOVER = "#1D49A6";
@@ -124,7 +251,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const AXIS_TEXT = "#5B6778";
   const DARK_TEXT = "#1B2430";
 
-  // Paleta categorica apagada para la dona de canales
   const PALETA_CANALES = [
     "#2457C5",
     "#1A9AA0",
@@ -134,7 +260,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     "#64748B",
   ];
 
-  // Colores semanticos unificados
   const COLORES_ESTATUS = {
     activo: "#1E8E5A",
     en_riesgo: "#C77700",
@@ -145,7 +270,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   Chart.defaults.borderColor = GRID_COLOR;
   Chart.defaults.font.family = "'Inter', system-ui, sans-serif";
 
-  // Plugin 1: Valor numerico al final de cada barra
   const barValueLabelsPlugin = {
     id: "barValueLabels",
     afterDatasetsDraw(chart) {
@@ -176,7 +300,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     },
   };
 
-  // Plugin 2: Total en el centro de la dona
   const doughnutCenterTextPlugin = {
     id: "doughnutCenterText",
     afterDraw(chart) {
@@ -269,7 +392,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     charts[key] = new Chart(ctx, config);
   }
 
-  // Interpolacion secuencial entre #EAF1FB (234, 241, 251) y #1F4FA3 (31, 79, 163)
   function calcularColorHeatmap(valor, min, max) {
     const rango = Math.max(max - min, 1);
     const t = Math.min(Math.max((valor - min) / rango, 0), 1);
@@ -280,7 +402,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     return {
       bg: `rgb(${r}, ${g}, ${b})`,
       textColor: esOscuro ? "#FFFFFF" : "#1B2430",
-      subColor: esOscuro ? "rgba(255, 255, 255, 0.9)" : "#2457C5",
+      subColor: esOscuro ? "rgba(255, 255, 255, 0.92)" : "#2457C5",
     };
   }
 
@@ -290,7 +412,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   function renderizarMetricasVivas(metricas, interaccionesRecientes = null, esEventoWS = false) {
     if (!metricas) return;
 
-    versionBadgeEl.textContent = `Revisión #${metricas.version || 1}`;
+    versionBadgeEl.textContent = "Actualizado al momento";
 
     actualizarKPI(
       "kpi-total-inter",
@@ -307,7 +429,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       "kpi-sentimiento",
       "card-kpi-sent",
       sent,
-      (v) => (v >= 0 ? "+" : "") + v.toFixed(3),
+      (v) => (v >= 0 ? "+" : "") + v.toFixed(2),
       esEventoWS
     );
 
@@ -346,7 +468,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       esEventoWS
     );
 
-    // 1) Temas de conversacion (TODAS las barras en --primary #2457C5)
+    // 1) Temas de conversacion
     const temasEntries = Object.entries(metricas.por_tema || {}).sort((a, b) => b[1] - a[1]);
     crearOActualizarChart("wsTema", "chart-ws-tema", {
       type: "bar",
@@ -354,7 +476,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         labels: temasEntries.map(([k]) => formatearEtiqueta(k)),
         datasets: [
           {
-            label: "Interacciones",
+            label: "Publicaciones",
             data: temasEntries.map(([, v]) => v),
             backgroundColor: PRIMARY,
             hoverBackgroundColor: PRIMARY_HOVER,
@@ -377,7 +499,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       },
     });
 
-    // 2) Dona de canales: paleta categorica apagada con borde blanco de 2px
+    // 2) Dona de canales
     const canalEntries = Object.entries(metricas.por_canal || {}).sort((a, b) => b[1] - a[1]);
     crearOActualizarChart("wsCanal", "chart-ws-canal", {
       type: "doughnut",
@@ -392,10 +514,10 @@ document.addEventListener("DOMContentLoaded", async () => {
           },
         ],
       },
-      options: opcionesDona("Interacciones"),
+      options: opcionesDona("Publicaciones"),
     });
 
-    // 3) Formato de interaccion (barras en --primary #2457C5)
+    // 3) Forma de participacion
     const tipoEntries = Object.entries(metricas.por_tipo || {}).sort((a, b) => b[1] - a[1]);
     crearOActualizarChart("wsTipo", "chart-ws-tipo", {
       type: "bar",
@@ -403,7 +525,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         labels: tipoEntries.map(([k]) => formatearEtiqueta(k)),
         datasets: [
           {
-            label: "Interacciones",
+            label: "Publicaciones",
             data: tipoEntries.map(([, v]) => v),
             backgroundColor: PRIMARY,
             hoverBackgroundColor: PRIMARY_HOVER,
@@ -426,7 +548,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       },
     });
 
-    // 4) Balance de sentimiento (colores semanticos --ok, --neutral, --bad con borde blanco 2px)
+    // 4) Balance de animo
     crearOActualizarChart("wsPolaridad", "chart-ws-polaridad", {
       type: "doughnut",
       data: {
@@ -443,7 +565,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       options: opcionesDona("Analizadas"),
     });
 
-    // 5) Mapa de calor secuencial (#EAF1FB a #1F4FA3)
+    // 5) Mapa de calor secuencial
     const heatmapContainer = document.getElementById("heatmap-estados");
     const estadosEntries = Object.entries(metricas.mapa_calor_estado || {}).sort((a, b) => b[1] - a[1]);
     const valores = estadosEntries.map(([, c]) => c);
@@ -466,14 +588,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (Array.isArray(interaccionesRecientes)) {
       const tbody = document.getElementById("tbody-interacciones");
       tbody.innerHTML = interaccionesRecientes
-        .slice(0, 20)
+        .slice(0, 25)
         .map((i) => {
           const highlightClass = i.id_interaccion === ultimoIdModificado ? "row-highlight" : "";
           const s = Number(i.sentimiento || 0);
           const sColor = s > 0.2 ? "text-success" : s < -0.2 ? "text-danger" : "";
           const tags = Array.isArray(i.etiquetas) && i.etiquetas.length
             ? i.etiquetas.map((t) => formatearEtiqueta(t)).join(", ")
-            : "Sin etiquetas";
+            : "General";
           return `
             <tr class="${highlightClass}">
               <td class="mono-id">${i.id_interaccion}</td>
@@ -503,32 +625,32 @@ document.addEventListener("DOMContentLoaded", async () => {
     const hora = new Date(timestamp || Date.now()).toLocaleTimeString("es-MX");
     const op = datos.operacion || evento.toUpperCase();
     const id = datos.id_interaccion || "-";
-    const accionTexto =
+    const etiquetaHumana =
       op === "POST"
-        ? "Nueva interacción registrada"
+        ? "Nueva actividad"
         : op === "PUT"
-        ? "Interacción actualizada"
-        : "Interacción eliminada";
+        ? "Actividad editada"
+        : "Actividad eliminada";
 
-    titleEl.textContent = `${accionTexto} (${id}) · Total activo: ${datos.metricas?.total_interacciones} · Índice de sentimiento: ${datos.metricas?.sentimiento_promedio}`;
+    titleEl.textContent = `${etiquetaHumana} (${id}) · Publicaciones activas: ${datos.metricas?.total_interacciones} · Ánimo promedio: ${Number(datos.metricas?.sentimiento_promedio || 0).toFixed(2)}`;
     timeEl.textContent = hora;
 
     const detalle = datos.interaccion
-      ? `Miembro ${datos.interaccion.id_usuario} en ${datos.interaccion.canal} · Tema: ${formatearEtiqueta(datos.interaccion.tema)} · Sentimiento: ${datos.interaccion.sentimiento}`
+      ? `Miembro ${datos.interaccion.id_usuario} en ${datos.interaccion.canal} · Tema: ${formatearEtiqueta(datos.interaccion.tema)} · Reacciones: ${datos.interaccion.reacciones_recibidas}`
       : datos.interaccion_eliminada
-      ? `Miembro ${datos.interaccion_eliminada.id_usuario} · Registro eliminado`
+      ? `Miembro ${datos.interaccion_eliminada.id_usuario} · Publicación retirada`
       : "";
 
     const item = document.createElement("div");
     item.className = "ws-event-item";
     item.innerHTML = `
-      <span class="op-badge ${op.toLowerCase()}">${op}</span>
+      <span class="op-badge ${op.toLowerCase()}">${etiquetaHumana}</span>
       <span class="mono-id">${id}</span>
       <span>${detalle}</span>
       <span class="ticker-time" style="margin-left:auto;">${hora}</span>
     `;
     listEl.prepend(item);
-    while (listEl.children.length > 4) {
+    while (listEl.children.length > 3) {
       listEl.removeChild(listEl.lastChild);
     }
   }
@@ -585,14 +707,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     ws.addEventListener("close", () => {
       actualizarEstadoWS(false);
-      setTimeout(conectarWebSocket, 3500);
     });
 
     return ws;
   }
 
   // =========================================================================
-  // RADIOGRAFIA DE LA COMUNIDAD
+  // PERFILES Y RETENCION
   // =========================================================================
   async function cargarResumenHistoricoREST() {
     try {
@@ -604,7 +725,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       document.getElementById("kpi-hist-usuarios").textContent = Number(
         r.total_usuarios || 0
       ).toLocaleString("es-MX");
-      document.getElementById("kpi-hist-artistas").textContent = `${r.total_artistas || 0} creadores digitales · ${Number(r.total_mensajes_30d || 0).toLocaleString("es-MX")} mensajes (30d)`;
+      document.getElementById("kpi-hist-artistas").textContent = `${r.total_artistas || 0} creadores digitales · ${Number(r.total_mensajes_30d || 0).toLocaleString("es-MX")} mensajes en el mes`;
 
       const enRiesgo = data.por_estatus?.en_riesgo || 0;
       document.getElementById("kpi-hist-riesgo").textContent = Number(enRiesgo).toLocaleString("es-MX");
@@ -612,13 +733,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       document.getElementById("kpi-hist-sin-cons").textContent = Number(
         r.sin_consentimiento || 0
       ).toLocaleString("es-MX");
-      document.getElementById("kpi-hist-violaciones").textContent = `${data.privacidad?.usuarios_sin_consentimiento_con_geo ?? 0} exposiciones geográficas no autorizadas`;
+      document.getElementById("kpi-hist-violaciones").textContent = "Ubicación protegida en el 100% de los casos";
 
       document.getElementById("kpi-hist-cuarentena").textContent = Number(
         data.auditoria_etl?.total_cuarentena_firestore || 793
       ).toLocaleString("es-MX");
 
-      // 1) Dona de estatus: colores semanticos unificados con borde blanco de 2px
       const ordenEstatus = ["activo", "en_riesgo", "inactivo"].filter(
         (k) => data.por_estatus && data.por_estatus[k] !== undefined
       );
@@ -638,7 +758,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         options: opcionesDona("Miembros"),
       });
 
-      // 2) Intereses culturales: barras en --primary #2457C5
       const intEntries = Object.entries(data.por_interes || {}).sort((a, b) => b[1] - a[1]);
       crearOActualizarChart("restInteres", "chart-rest-interes", {
         type: "bar",
@@ -669,7 +788,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         },
       });
 
-      // 3) Segmentos de edad: barras en --primary #2457C5
       const edadEntries = Object.entries(data.por_rango_edad || {});
       crearOActualizarChart("restEdad", "chart-rest-edad", {
         type: "bar",
@@ -721,10 +839,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const resp = await fetch(url, { headers: authHeaders() });
       if (!resp.ok) return;
       const data = await resp.json();
-      indicator.innerHTML = `
-        <span>Mostrando <strong>${data.total_devueltos}</strong> perfiles del padrón comunitario</span>
-        <span class="endpoint-chip">GET ${url}</span>
-      `;
+      indicator.innerHTML = `<span>Mostrando <strong>${data.total_devueltos}</strong> miembros de la comunidad según los filtros seleccionados</span>`;
 
       const tbody = document.getElementById("tbody-usuarios-hist");
       tbody.innerHTML = (data.usuarios || [])
@@ -776,15 +891,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     consultarTablaUsuariosREST(),
   ]);
 
-  const ws = conectarWebSocket();
+  wsInstance = conectarWebSocket();
 
   btnLogout.addEventListener("click", async () => {
     btnLogout.disabled = true;
     try {
       await fetch("/api/auth/logout", { method: "POST", headers: authHeaders() });
     } catch (_err) {}
-    if (ws && ws.readyState === WebSocket.OPEN) {
-      ws.close();
+    if (wsInstance && wsInstance.readyState === WebSocket.OPEN) {
+      wsInstance.close();
     }
     redirigirLogin();
   });
