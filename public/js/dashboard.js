@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const btnLogout = document.getElementById("btn-logout");
 
   const charts = {};
+  const chartConfigs = {};
   const kpiPrevios = {};
   let ultimoIdModificado = null;
   let wsInstance = null;
@@ -106,11 +107,22 @@ document.addEventListener("DOMContentLoaded", async () => {
       document.getElementById("topbar-view-subtitle").textContent = meta.subtitulo;
     }
     window.scrollTo({ top: 0, behavior: "smooth" });
-    setTimeout(() => {
-      Object.values(charts).forEach((c) => {
-        if (c && typeof c.resize === "function") c.resize();
+    const refrescarGraficas = () => {
+      Object.entries(chartConfigs).forEach(([key, item]) => {
+        const canvasEl = document.getElementById(item.canvasId);
+        if (!canvasEl || canvasEl.offsetParent === null) return;
+        const inst = charts[key];
+        if (!inst || inst.width < 100) {
+          if (inst) inst.destroy();
+          charts[key] = new Chart(canvasEl, item.config);
+        } else {
+          inst.resize();
+          inst.update("none");
+        }
       });
-    }, 50);
+    };
+    setTimeout(refrescarGraficas, 30);
+    setTimeout(refrescarGraficas, 180);
   }
 
   document.querySelectorAll("[data-view]").forEach((btn) => {
@@ -448,13 +460,24 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   function crearOActualizarChart(key, canvasId, config) {
-    if (charts[key]) {
+    chartConfigs[key] = { canvasId, config };
+    const ctx = document.getElementById(canvasId);
+    if (!ctx) return;
+    // Si el contenedor esta oculto (display:none), diferir la creacion hasta que la vista sea activa
+    if (ctx.offsetParent === null) {
+      if (charts[key]) {
+        charts[key].data = config.data;
+      }
+      return;
+    }
+    if (charts[key] && charts[key].width >= 100) {
       charts[key].data = config.data;
       charts[key].update();
       return;
     }
-    const ctx = document.getElementById(canvasId);
-    if (!ctx) return;
+    if (charts[key]) {
+      charts[key].destroy();
+    }
     charts[key] = new Chart(ctx, config);
   }
 

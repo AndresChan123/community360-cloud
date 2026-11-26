@@ -1172,7 +1172,16 @@
       );
       nodosEnPantalla = [];
 
-      Object.values(datosPorEstado).forEach((loc) => {
+      const etiquetasDibujadas = [];
+
+      // Ordenar para que la ciudad enfocada se procese y etiquete con prioridad
+      const listaOrdenada = Object.values(datosPorEstado).sort((a, b) => {
+        if (a.estado === estadoSeleccionado) return 1;
+        if (b.estado === estadoSeleccionado) return -1;
+        return (a.interacciones || 0) - (b.interacciones || 0);
+      });
+
+      listaOrdenada.forEach((loc) => {
         const pBase = rotarPunto(latLonToXYZ(loc.lat, loc.lon, radius), yaw, pitch);
         if (pBase.z < 0) return;
 
@@ -1193,7 +1202,12 @@
         nodosEnPantalla.push({
           estado: loc.estado,
           sx: bx,
-          sy: by
+          sy: by,
+          tx,
+          ty,
+          z: pBase.z,
+          loc,
+          esActivo
         });
 
         ctx.fillStyle = "rgba(148, 163, 184, 0.45)";
@@ -1227,29 +1241,47 @@
           ctx.lineWidth = 2;
           ctx.stroke();
         }
+      });
 
-        // Mostrar etiquetas de ciudades de forma limpia (y al hacer mas zoom, mostrar todas las visibles)
-        if (esActivo || zoom >= 1.55 || (pBase.z > radius * 0.55 && loc.interacciones >= 10)) {
-          ctx.font = esActivo
-            ? "700 12.5px 'Inter', sans-serif"
-            : "600 11px 'Inter', sans-serif";
-          const labelTxt =
-            esActivo && usuarioEnfocado
-              ? `📍 @${usuarioEnfocado.alias} · ${loc.ciudad}`
-              : `${loc.ciudad} (${loc.interacciones})`;
+      // Dibujar etiquetas sin superposicion (priorizando la ciudad seleccionada y las de mayor actividad)
+      const candidatosEtiqueta = [...nodosEnPantalla].sort((a, b) => {
+        if (a.esActivo) return -1;
+        if (b.esActivo) return 1;
+        return (b.loc.interacciones || 0) - (a.loc.interacciones || 0);
+      });
 
-          const textW = ctx.measureText(labelTxt).width;
-          ctx.fillStyle = esActivo ? "rgba(6, 78, 59, 0.90)" : "rgba(15, 23, 42, 0.80)";
-          ctx.beginPath();
-          ctx.roundRect(tx + 7, ty - 11, textW + 12, 20, 6);
-          ctx.fill();
-          ctx.strokeStyle = esActivo ? "#34D399" : "rgba(56, 189, 248, 0.4)";
-          ctx.lineWidth = 1;
-          ctx.stroke();
+      candidatosEtiqueta.forEach((n) => {
+        const { loc, tx, ty, z, esActivo } = n;
+        if (!esActivo && z < radius * 0.42 && zoom < 2.2) return;
+        if (!esActivo && loc.interacciones < 10 && zoom < 1.9) return;
 
-          ctx.fillStyle = esActivo ? "#A7F3D0" : "#F8FAFC";
-          ctx.fillText(labelTxt, tx + 13, ty + 3);
-        }
+        // Verificar que no choque con otra etiqueta ya dibujada
+        const choca = !esActivo && etiquetasDibujadas.some(
+          (prev) => Math.abs(prev.x - tx) < 88 && Math.abs(prev.y - ty) < 24
+        );
+        if (choca) return;
+
+        etiquetasDibujadas.push({ x: tx, y: ty });
+
+        ctx.font = esActivo
+          ? "700 12.5px 'Inter', sans-serif"
+          : "600 11px 'Inter', sans-serif";
+        const labelTxt =
+          esActivo && usuarioEnfocado
+            ? `📍 @${usuarioEnfocado.alias} · ${loc.ciudad}`
+            : `${loc.ciudad} (${loc.interacciones})`;
+
+        const textW = ctx.measureText(labelTxt).width;
+        ctx.fillStyle = esActivo ? "rgba(6, 78, 59, 0.92)" : "rgba(15, 23, 42, 0.84)";
+        ctx.beginPath();
+        ctx.roundRect(tx + 7, ty - 11, textW + 12, 20, 6);
+        ctx.fill();
+        ctx.strokeStyle = esActivo ? "#34D399" : "rgba(56, 189, 248, 0.4)";
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        ctx.fillStyle = esActivo ? "#A7F3D0" : "#F8FAFC";
+        ctx.fillText(labelTxt, tx + 13, ty + 3);
       });
 
       ctx.restore();
