@@ -270,39 +270,39 @@ document.addEventListener("DOMContentLoaded", async () => {
     requestAnimationFrame(frame);
   }
 
-  // Paleta Pastel Armoniosa reactiva al tema claro / oscuro (Lavanda, Menta, Durazno, Rosa Pastel)
-  const PRIMARY = "#9D84D2";
-  const PRIMARY_HOVER = "#8B72BE";
+  // Sistema de color Obsidian / Slate neutro de alto contraste (Linear / Vercel / Mapbox)
+  const PRIMARY = "#38BDF8";
+  const PRIMARY_HOVER = "#0EA5E9";
   function esTemaOscuro() {
-    return document.documentElement.getAttribute("data-theme") === "dark";
+    return document.documentElement.getAttribute("data-theme") !== "light";
   }
   function obtenerColoresTema() {
     const dark = esTemaOscuro();
     return {
-      grid: dark ? "rgba(203, 189, 240, 0.12)" : "#E6DFD5",
-      axis: dark ? "#B8B0CC" : "#6E6A7C",
-      text: dark ? "#F7F4FC" : "#2D2A32",
-      borderDona: dark ? "#242132" : "#FFFFFF",
+      grid: dark ? "rgba(255, 255, 255, 0.06)" : "rgba(9, 9, 11, 0.06)",
+      axis: dark ? "#A1A1AA" : "#52525B",
+      text: dark ? "#FAFAFA" : "#09090B",
+      borderDona: dark ? "#111114" : "#FFFFFF",
     };
   }
   let GRID_COLOR = obtenerColoresTema().grid;
   let AXIS_TEXT = obtenerColoresTema().axis;
   let DARK_TEXT = obtenerColoresTema().text;
 
-  // Paleta Pastel agradable para la vista (Lavanda, Menta Salvia, Durazno, Rosa Coral, Periwinkle, Malva)
+  // Paleta tecnica sobria (Cian Tecnico, Azul Acero, Esmeralda, Slate, Zinc, Gris Neutro — Cero Morado)
   const PALETA_CANALES = [
-    "#A78BFA",
-    "#76C893",
-    "#F4A261",
-    "#E58C9E",
-    "#8ECAE6",
-    "#B59DA4",
+    "#38BDF8",
+    "#0284C7",
+    "#10B981",
+    "#64748B",
+    "#0D9488",
+    "#52525B",
   ];
 
   const COLORES_ESTATUS = {
-    activo: "#6BB5A2",
-    en_riesgo: "#F4A261",
-    inactivo: "#E58C9E",
+    activo: "#10B981",
+    en_riesgo: "#F59E0B",
+    inactivo: "#F43F5E",
   };
 
   Chart.defaults.color = AXIS_TEXT;
@@ -489,26 +489,25 @@ document.addEventListener("DOMContentLoaded", async () => {
     const dark = esTemaOscuro();
 
     if (dark) {
-      // Escala Pastel Nocturna: Ciruela Suave (#262235) -> Lavanda Pastel (#6D599E)
-      const r = Math.round(38 + (109 - 38) * t);
-      const g = Math.round(34 + (89 - 34) * t);
-      const b = Math.round(53 + (158 - 53) * t);
+      // Escala Obsidian / Slate -> Cian Tecnico sutil (sin morado ni neon)
+      const r = Math.round(17 + (14 - 17) * t);
+      const g = Math.round(18 + (74 - 18) * t);
+      const b = Math.round(22 + (110 - 22) * t);
       return {
         bg: `rgb(${r}, ${g}, ${b})`,
-        textColor: "#F7F4FC",
-        subColor: t >= 0.45 ? "#A7F3D0" : "#D8B4FE",
+        textColor: "#FAFAFA",
+        subColor: t >= 0.4 ? "#38BDF8" : "#A1A1AA",
       };
     }
 
-    // Escala Pastel Diurna: Crema Menta (#F3EFEA) -> Lavanda Menta Pastel (#9B84CE)
-    const r = Math.round(243 + (155 - 243) * t);
-    const g = Math.round(239 + (132 - 239) * t);
-    const b = Math.round(234 + (206 - 234) * t);
+    const r = Math.round(244 + (14 - 244) * t);
+    const g = Math.round(244 + (116 - 244) * t);
+    const b = Math.round(245 + (144 - 245) * t);
     const esOscuro = t >= 0.55;
     return {
       bg: `rgb(${r}, ${g}, ${b})`,
-      textColor: esOscuro ? "#FFFFFF" : "#2D2A32",
-      subColor: esOscuro ? "rgba(255, 255, 255, 0.94)" : "#7359A8",
+      textColor: esOscuro ? "#FAFAFA" : "#09090B",
+      subColor: esOscuro ? "#E0F2FE" : "#0284C7",
     };
   }
 
@@ -667,7 +666,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         datasets: [
           {
             data: [distSent.positivas || 0, distSent.neutras || 0, distSent.negativas || 0],
-            backgroundColor: ["#76C893", "#B59DA4", "#E58C9E"],
+            backgroundColor: ["#10B981", "#52525B", "#F43F5E"],
             borderWidth: 2,
             borderColor: obtenerColoresTema().borderDona,
           },
@@ -982,9 +981,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             ? `<span class="tag-ok">Autorizada</span>`
             : `<span class="tag-priv">${ICONO_CANDADO}<span>Sin consentimiento</span></span>`;
 
+          const ICONO_PIN = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>`;
           const ubicacionTxt =
             u.consentimiento_datos && u.ciudad
-              ? `<span style="color:var(--primary);font-weight:600;text-decoration:underline;text-underline-offset:3px;">🌍 ${u.ciudad}, ${u.estado} (${u.pais})</span>`
+              ? `<span style="color:var(--primary);font-weight:500;">${ICONO_PIN}${u.ciudad}, ${u.estado} (${u.pais})</span>`
               : `<span class="coord-protected">${ICONO_CANDADO}<span>Protegido</span></span>`;
 
           const coordsTxt =

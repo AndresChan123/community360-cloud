@@ -61,10 +61,10 @@ app.get("/dashboard", protegerRutaDashboard, (req, res) => {
   res.sendFile(path.join(__dirname, "public", "dashboard.html"));
 });
 
-// Archivos estaticos (CSS, JS e imagenes satelitales 3D de la Tierra)
+// Archivos estaticos (CSS, JS y texturas 3D de alta resolucion)
 app.use("/css", express.static(path.join(__dirname, "public", "css")));
 app.use("/js", express.static(path.join(__dirname, "public", "js")));
-app.use("/img", express.static(path.join(__dirname, "public", "img"), { maxAge: "1d" }));
+app.use("/textures", express.static(path.join(__dirname, "public", "textures"), { maxAge: "7d" }));
 
 // Servidor WebSocket con validacion de token Firebase Admin SDK + coleccion administradores (Fase 5)
 const wss = new WebSocketServer({ noServer: true });

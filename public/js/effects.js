@@ -8,7 +8,9 @@
   const THEME_KEY = "c360_theme";
 
   function obtenerTemaInicial() {
-    return localStorage.getItem(THEME_KEY) || "dark";
+    const guardado = localStorage.getItem(THEME_KEY);
+    if (guardado === "dark" || guardado === "light") return guardado;
+    return "dark";
   }
 
   function aplicarTema(tema) {
@@ -106,70 +108,58 @@
 
     function animar() {
       ctx.clearRect(0, 0, width, height);
-      const esOscuro = document.documentElement.getAttribute("data-theme") === "dark";
-      const rgbNodo = esOscuro ? "99, 140, 255" : "36, 87, 197";
-      const rgbCursor = esOscuro ? "52, 211, 153" : "36, 87, 197";
+      const esOscuro = document.documentElement.getAttribute("data-theme") !== "light";
+      const rgbNodo = esOscuro ? "161, 161, 170" : "113, 113, 122";
+      const rgbCursor = esOscuro ? "56, 189, 248" : "2, 132, 199";
 
       for (let i = 0; i < particulas.length; i++) {
         const p = particulas[i];
-        p.x += p.vx;
-        p.y += p.vy;
+        p.x += p.vx * 0.6;
+        p.y += p.vy * 0.6;
 
         if (p.x < 0 || p.x > width) p.vx *= -1;
         if (p.y < 0 || p.y > height) p.vy *= -1;
 
-        // Dibujar estrella/nodo de la constelacion
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${rgbNodo}, ${esOscuro ? 0.65 : 0.45})`;
+        ctx.arc(p.x, p.y, p.size * 0.75, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${rgbNodo}, ${esOscuro ? 0.25 : 0.20})`;
         ctx.fill();
 
-        // Conectar con el cursor cuando se acerca
         if (mouse.x !== null && mouse.y !== null) {
           const dxMouse = mouse.x - p.x;
           const dyMouse = mouse.y - p.y;
           const distMouse = Math.hypot(dxMouse, dyMouse);
 
           if (distMouse < mouse.radius) {
-            const alpha = (1 - distMouse / mouse.radius) * (esOscuro ? 0.75 : 0.55);
+            const alpha = (1 - distMouse / mouse.radius) * (esOscuro ? 0.32 : 0.24);
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(mouse.x, mouse.y);
             ctx.strokeStyle = `rgba(${rgbCursor}, ${alpha.toFixed(3)})`;
-            ctx.lineWidth = 1.25;
+            ctx.lineWidth = 1;
             ctx.stroke();
 
-            // Ligera atraccion magnetica hacia el cursor
-            p.x += dxMouse * 0.008;
-            p.y += dyMouse * 0.008;
+            p.x += dxMouse * 0.005;
+            p.y += dyMouse * 0.005;
           }
         }
 
-        // Conectar nodos cercanos entre si
         for (let j = i + 1; j < particulas.length; j++) {
           const p2 = particulas[j];
           const dx = p.x - p2.x;
           const dy = p.y - p2.y;
           const dist = Math.hypot(dx, dy);
 
-          if (dist < 130) {
-            const alpha = (1 - dist / 130) * (esOscuro ? 0.26 : 0.18);
+          if (dist < 120) {
+            const alpha = (1 - dist / 120) * (esOscuro ? 0.10 : 0.08);
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.strokeStyle = `rgba(${rgbNodo}, ${alpha.toFixed(3)})`;
-            ctx.lineWidth = 0.85;
+            ctx.lineWidth = 0.75;
             ctx.stroke();
           }
         }
-      }
-
-      // Dibujar nodo luminoso en la posicion del cursor
-      if (mouse.x !== null && mouse.y !== null) {
-        ctx.beginPath();
-        ctx.arc(mouse.x, mouse.y, 3.2, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${rgbCursor}, 0.85)`;
-        ctx.fill();
       }
 
       requestAnimationFrame(animar);
