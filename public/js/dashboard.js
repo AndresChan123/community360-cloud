@@ -258,38 +258,39 @@ document.addEventListener("DOMContentLoaded", async () => {
     requestAnimationFrame(frame);
   }
 
-  // Colores reactivos al tema claro / oscuro
-  const PRIMARY = "#3B82F6";
-  const PRIMARY_HOVER = "#2563EB";
+  // Paleta ejecutiva corporativa reactiva al tema claro / oscuro
+  const PRIMARY = "#2563EB";
+  const PRIMARY_HOVER = "#1E40AF";
   function esTemaOscuro() {
     return document.documentElement.getAttribute("data-theme") === "dark";
   }
   function obtenerColoresTema() {
     const dark = esTemaOscuro();
     return {
-      grid: dark ? "rgba(148, 163, 184, 0.12)" : "#E3E8EF",
-      axis: dark ? "#94A3B8" : "#5B6778",
-      text: dark ? "#F8FAFC" : "#1B2430",
-      borderDona: dark ? "#11192C" : "#FFFFFF",
+      grid: dark ? "rgba(148, 163, 184, 0.10)" : "#E2E8F0",
+      axis: dark ? "#94A3B8" : "#475569",
+      text: dark ? "#F8FAFC" : "#0F172A",
+      borderDona: dark ? "#0F172A" : "#FFFFFF",
     };
   }
   let GRID_COLOR = obtenerColoresTema().grid;
   let AXIS_TEXT = obtenerColoresTema().axis;
   let DARK_TEXT = obtenerColoresTema().text;
 
+  // Paleta ejecutiva monocromatica/analoga (Zafiro, Cobalto, Cian Corporativo, Teal, Indigo, Pizarra)
   const PALETA_CANALES = [
-    "#2457C5",
-    "#1A9AA0",
-    "#7A5CC7",
-    "#E0A030",
-    "#C2547A",
+    "#1E40AF",
+    "#2563EB",
+    "#0284C7",
+    "#0D9488",
+    "#4F46E5",
     "#64748B",
   ];
 
   const COLORES_ESTATUS = {
-    activo: "#1E8E5A",
-    en_riesgo: "#C77700",
-    inactivo: "#C0392B",
+    activo: "#059669",
+    en_riesgo: "#D97706",
+    inactivo: "#E11D48",
   };
 
   Chart.defaults.color = AXIS_TEXT;
@@ -457,17 +458,34 @@ document.addEventListener("DOMContentLoaded", async () => {
     charts[key] = new Chart(ctx, config);
   }
 
+  let ultimasMetricasVivas = null;
+
   function calcularColorHeatmap(valor, min, max) {
     const rango = Math.max(max - min, 1);
     const t = Math.min(Math.max((valor - min) / rango, 0), 1);
-    const r = Math.round(234 + (31 - 234) * t);
-    const g = Math.round(241 + (79 - 241) * t);
-    const b = Math.round(251 + (163 - 251) * t);
+    const dark = esTemaOscuro();
+
+    if (dark) {
+      // Escala ejecutiva nocturna: Pizarra Oscuro (#131C31) -> Zafiro Corporativo (#1D4ED8)
+      const r = Math.round(19 + (29 - 19) * t);
+      const g = Math.round(28 + (78 - 28) * t);
+      const b = Math.round(49 + (216 - 49) * t);
+      return {
+        bg: `rgb(${r}, ${g}, ${b})`,
+        textColor: "#F8FAFC",
+        subColor: t >= 0.45 ? "#93C5FD" : "#60A5FA",
+      };
+    }
+
+    // Escala ejecutiva diurna: Platino (#F1F5F9) -> Azul Zafiro (#1E40AF)
+    const r = Math.round(241 + (30 - 241) * t);
+    const g = Math.round(245 + (64 - 245) * t);
+    const b = Math.round(249 + (175 - 249) * t);
     const esOscuro = t >= 0.52;
     return {
       bg: `rgb(${r}, ${g}, ${b})`,
-      textColor: esOscuro ? "#FFFFFF" : "#1B2430",
-      subColor: esOscuro ? "rgba(255, 255, 255, 0.92)" : "#2457C5",
+      textColor: esOscuro ? "#FFFFFF" : "#0F172A",
+      subColor: esOscuro ? "rgba(255, 255, 255, 0.92)" : "#1E40AF",
     };
   }
 
@@ -476,6 +494,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // =========================================================================
   function renderizarMetricasVivas(metricas, interaccionesRecientes = null, esEventoWS = false) {
     if (!metricas) return;
+    ultimasMetricasVivas = metricas;
 
     versionBadgeEl.textContent = "Actualizado al momento";
 
@@ -617,7 +636,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       },
     });
 
-    // 4) Balance de animo
+      // 4) Balance de animo
     crearOActualizarChart("wsPolaridad", "chart-ws-polaridad", {
       type: "doughnut",
       data: {
@@ -625,9 +644,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         datasets: [
           {
             data: [distSent.positivas || 0, distSent.neutras || 0, distSent.negativas || 0],
-            backgroundColor: ["#1E8E5A", "#6B7280", "#C0392B"],
+            backgroundColor: ["#059669", "#64748B", "#E11D48"],
             borderWidth: 2,
-            borderColor: "#FFFFFF",
+            borderColor: obtenerColoresTema().borderDona,
           },
         ],
       },
@@ -1027,6 +1046,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
       c.update();
     });
+    if (ultimasMetricasVivas) {
+      renderizarMetricasVivas(ultimasMetricasVivas, null, false);
+    }
   });
 
   await Promise.all([

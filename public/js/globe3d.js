@@ -873,11 +873,12 @@
 
       ctx.save();
       ctx.lineJoin = "round";
-      ctx.lineWidth = 7 * Math.min(1.6, zoom);
-      ctx.strokeStyle = "rgba(14, 165, 233, 0.26)";
+      ctx.lineWidth = 6 * Math.min(1.5, zoom);
+      ctx.strokeStyle = "rgba(14, 165, 233, 0.16)";
       ctx.stroke();
       ctx.restore();
 
+      // Paleta Satelital Ejecutiva (Azul Pizarra / Topografia Teal-Esmeralda sobria)
       const landGrad = ctx.createLinearGradient(
         cx - radius * 0.7,
         cy - radius * 0.7,
@@ -886,24 +887,23 @@
       );
 
       if (bioma === "polar") {
-        landGrad.addColorStop(0, "#E0F2FE");
-        landGrad.addColorStop(1, "#93C5FD");
+        landGrad.addColorStop(0, "#CBD5E1");
+        landGrad.addColorStop(1, "#64748B");
       } else if (bioma === "tropical") {
-        landGrad.addColorStop(0, "#15803D");
-        landGrad.addColorStop(0.55, "#166534");
-        landGrad.addColorStop(1, "#3F6212");
+        landGrad.addColorStop(0, "#1E4D5C");
+        landGrad.addColorStop(0.55, "#163B4A");
+        landGrad.addColorStop(1, "#0F2937");
       } else {
-        landGrad.addColorStop(0, "#2E8B57");
-        landGrad.addColorStop(0.45, "#1F6F43");
-        landGrad.addColorStop(0.8, "#5C7A3B");
-        landGrad.addColorStop(1, "#365314");
+        landGrad.addColorStop(0, "#235368");
+        landGrad.addColorStop(0.5, "#1B3F54");
+        landGrad.addColorStop(1, "#122B3D");
       }
 
       ctx.fillStyle = landGrad;
       ctx.fill();
 
-      ctx.lineWidth = 1.3;
-      ctx.strokeStyle = bioma === "polar" ? "rgba(224, 242, 254, 0.85)" : "rgba(74, 222, 128, 0.58)";
+      ctx.lineWidth = 1.15;
+      ctx.strokeStyle = bioma === "polar" ? "rgba(226, 232, 240, 0.65)" : "rgba(125, 211, 252, 0.42)";
       ctx.stroke();
     }
 
@@ -985,7 +985,7 @@
       ctx.arc(cx, cy, radius * 1.22, 0, Math.PI * 2);
       ctx.fill();
 
-      // Oceano terrestre
+      // Oceano terrestre ejecutivo (Zafiro profundo)
       const oceanGrad = ctx.createRadialGradient(
         cx - radius * 0.32,
         cy - radius * 0.32,
@@ -994,10 +994,10 @@
         cy,
         radius
       );
-      oceanGrad.addColorStop(0, "#1E88E5");
-      oceanGrad.addColorStop(0.32, "#0D5C9E");
-      oceanGrad.addColorStop(0.72, "#073464");
-      oceanGrad.addColorStop(1, "#031833");
+      oceanGrad.addColorStop(0, "#0F3868");
+      oceanGrad.addColorStop(0.38, "#0A2547");
+      oceanGrad.addColorStop(0.75, "#06172E");
+      oceanGrad.addColorStop(1, "#030B18");
 
       ctx.beginPath();
       ctx.arc(cx, cy, radius, 0, Math.PI * 2);
@@ -1196,26 +1196,26 @@
           sy: by
         });
 
-        ctx.fillStyle = "rgba(251, 191, 36, 0.65)";
+        ctx.fillStyle = "rgba(148, 163, 184, 0.45)";
         ctx.beginPath();
-        ctx.arc(bx + 3, by - 2, 1.3, 0, Math.PI * 2);
-        ctx.arc(bx - 3.5, by + 2, 1.1, 0, Math.PI * 2);
+        ctx.arc(bx + 3, by - 2, 1.2, 0, Math.PI * 2);
+        ctx.arc(bx - 3.5, by + 2, 1.0, 0, Math.PI * 2);
         ctx.fill();
 
         ctx.beginPath();
         ctx.moveTo(bx, by);
         ctx.lineTo(tx, ty);
-        ctx.strokeStyle = esActivo ? "#34D399" : "rgba(56, 189, 248, 0.9)";
-        ctx.lineWidth = esActivo ? 3.4 : 2;
+        ctx.strokeStyle = esActivo ? "#10B981" : "rgba(56, 189, 248, 0.85)";
+        ctx.lineWidth = esActivo ? 3.2 : 1.8;
         ctx.stroke();
 
         ctx.beginPath();
-        ctx.arc(bx, by, esActivo ? 5.5 : 3.4, 0, Math.PI * 2);
-        ctx.fillStyle = esActivo ? "#10B981" : "#FBBF24";
+        ctx.arc(bx, by, esActivo ? 5.2 : 3.2, 0, Math.PI * 2);
+        ctx.fillStyle = esActivo ? "#10B981" : "#38BDF8";
         ctx.fill();
 
         ctx.beginPath();
-        ctx.arc(tx, ty, esActivo ? 4.5 : 2.8, 0, Math.PI * 2);
+        ctx.arc(tx, ty, esActivo ? 4.2 : 2.6, 0, Math.PI * 2);
         ctx.fillStyle = esActivo ? "#A7F3D0" : "#F8FAFC";
         ctx.fill();
 
