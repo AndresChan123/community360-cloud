@@ -171,9 +171,45 @@ header, main, footer, .login-layout {
 .sidebar-brand {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
   padding: 2px 10px 16px;
   border-bottom: 1px solid var(--border);
+}
+
+.sidebar-brand-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-mobile-drawer {
+  display: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg2);
+  color: var(--text);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.sidebar-drawer-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  min-height: 0;
+}
+
+.mobile-drawer-extras {
+  display: none;
+}
+
+.mobile-drawer-backdrop {
+  display: none;
 }
 
 .brand-name {
@@ -305,8 +341,13 @@ header, main, footer, .login-layout {
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
-  gap: 16px;
-  flex-wrap: wrap;
+  gap: 20px;
+  flex-wrap: nowrap;
+}
+
+.topbar-heading {
+  min-width: 0;
+  flex: 1 1 auto;
 }
 
 .topbar-heading .eyebrow {
@@ -319,19 +360,26 @@ header, main, footer, .login-layout {
   font-size: 20px;
   font-weight: 700;
   color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .topbar-heading p {
   font-size: 13px;
   color: var(--muted);
   margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .topbar-actions {
   display: flex;
   align-items: center;
   gap: 10px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
 }
 
 .content-wrap {
@@ -1300,7 +1348,40 @@ header, main, footer, .login-layout {
   font-variant-numeric: tabular-nums;
 }
 
-/* Tablas */
+/* Tablas y Scrollbar Dark Mode Pulido */
+.table-wrapper,
+.heatmap-grid,
+.globe-hud-top-left {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+}
+
+.table-wrapper::-webkit-scrollbar,
+.heatmap-grid::-webkit-scrollbar,
+.globe-hud-top-left::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.table-wrapper::-webkit-scrollbar-track,
+.heatmap-grid::-webkit-scrollbar-track,
+.globe-hud-top-left::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb,
+.heatmap-grid::-webkit-scrollbar-thumb,
+.globe-hud-top-left::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover,
+.heatmap-grid::-webkit-scrollbar-thumb:hover,
+.globe-hud-top-left::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
 .table-wrapper {
   width: 100%;
   overflow-x: auto;
@@ -1325,10 +1406,17 @@ header, main, footer, .login-layout {
 
 .clean-table th,
 .clean-table td {
-  padding: 10px 12px;
+  padding: 10px 14px;
   text-align: left;
   border-bottom: 1px solid var(--border);
   vertical-align: middle;
+  white-space: nowrap;
+}
+
+/* Columna Ciudad / Region con ancho optimizado sin saltos bruscos */
+#tbody-usuarios-hist td:nth-child(10) {
+  min-width: 195px;
+  white-space: nowrap;
 }
 
 .clean-table th {
@@ -2143,74 +2231,227 @@ header, main, footer, .login-layout {
 }
 
 @media (max-width: 768px) {
+  /* 1. Barra superior movil compacta de una sola linea (56px) con logo C360 y boton hamburguesa */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    padding: 0 16px;
+    background: rgba(17, 17, 20, 0.92);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .sidebar-brand {
+    padding: 0;
+    margin: 0;
+    border-bottom: none;
+    height: 56px;
+    width: 100%;
+  }
+
+  .brand-sub {
+    display: none;
+  }
+
+  .btn-mobile-drawer {
+    display: inline-flex;
+  }
+
+  /* Drawer desplegable lateral con las 5 vistas, Modo claro, estado Live y perfil del administrador */
+  .sidebar-drawer-body {
+    position: fixed;
+    top: 56px;
+    right: 0;
+    width: 280px;
+    max-width: 85vw;
+    height: calc(100vh - 56px);
+    background: #111114;
+    border-left: 1px solid var(--border);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transform: translateX(105%);
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 101;
+    overflow-y: auto;
+    box-shadow: -12px 0 36px rgba(0, 0, 0, 0.65);
+  }
+
+  :root[data-theme="light"] .sidebar-drawer-body {
+    background: #FFFFFF;
+  }
+
+  .sidebar.drawer-open .sidebar-drawer-body {
+    transform: translateX(0);
+  }
+
+  .mobile-drawer-backdrop.visible {
+    display: block;
+    position: fixed;
+    inset: 56px 0 0 0;
+    background: rgba(9, 9, 11, 0.68);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    z-index: 95;
+  }
+
+  .sidebar-nav {
+    display: flex !important;
+    flex-direction: column !important;
+    overflow-x: visible;
+    white-space: normal;
+    gap: 4px;
+    padding-top: 4px;
+  }
+
+  .nav-group-label,
+  .sidebar-footer {
+    display: block !important;
+  }
+
+  .nav-link {
+    width: 100% !important;
+    padding: 10px 12px;
+    font-size: 13.5px;
+  }
+
+  .mobile-drawer-extras {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .drawer-action-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg2);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .drawer-profile-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+  }
+
+  /* Padding-top correcto para que ningun titulo ni badge quede recortado debajo del header fijo de 56px */
+  .main-area {
+    padding-top: 56px;
+  }
+
   .topbar {
+    position: static;
     flex-direction: column;
     align-items: flex-start;
-    padding: 14px 16px;
-    gap: 10px;
-  }
-  .topbar-right {
-    width: 100%;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    padding: 16px 16px 12px;
     gap: 8px;
   }
-  .sidebar {
-    padding: 10px 12px;
-    position: sticky;
-    top: 0;
-    z-index: 40;
+
+  .topbar-heading h1,
+  .topbar-heading p {
+    white-space: normal;
   }
-  .sidebar-brand {
-    margin-bottom: 8px;
+
+  .topbar-actions {
+    display: none;
   }
-  .sidebar-nav {
-    display: flex;
-    flex-direction: row;
-    overflow-x: auto;
-    white-space: nowrap;
-    gap: 6px;
-    padding-bottom: 4px;
-    -webkit-overflow-scrolling: touch;
+
+  .content-wrap {
+    padding: 12px 14px 32px;
   }
-  .nav-link {
-    padding: 8px 12px;
-    font-size: 12.5px;
-    flex-shrink: 0;
-  }
-  .dashboard-content {
-    padding: 14px;
-  }
+
   .kpi-row-5,
   .kpi-row-4,
   .nx-stats,
   .site-footer .ft-grid {
     grid-template-columns: 1fr;
   }
+
+  /* 2. En pantallas moviles (<768px), selector Elegir miembro y botones de region FUERA del canvas del globo */
   .globe-stage {
-    height: 370px;
+    height: auto;
+    min-height: 430px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
   }
-  .globe-top-badge {
-    font-size: 10px;
-    padding: 4px 9px;
-    max-width: calc(100% - 70px);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+
+  .globe-hud-top-left {
+    position: static;
+    order: -1;
+    width: 100%;
+    padding: 10px 12px;
+    background: #111114;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 8px;
   }
+
+  .globe-combobox-wrap,
+  .globe-segmented-control {
+    flex-shrink: 0;
+  }
+
+  #globe-3d-canvas {
+    height: 360px !important;
+    flex: 0 0 360px;
+  }
+
+  .globe-labels-layer {
+    top: 54px;
+  }
+
+  .globe-floating-dock {
+    top: calc(50% + 24px);
+    right: 10px;
+  }
+
   .globe-hud-card {
     left: 10px;
     bottom: 10px;
-    padding: 9px 12px;
-    min-width: 200px;
-    max-width: calc(100% - 20px);
+    padding: 10px 12px;
+    min-width: 195px;
+    max-width: calc(100% - 64px);
   }
+
   .globe-hud-city {
-    font-size: 13px;
+    font-size: 13.5px;
   }
+
   .heatmap-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
   .next-banner {
     flex-direction: column;
     align-items: flex-start;

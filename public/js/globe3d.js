@@ -490,10 +490,12 @@
 
     function actualizarMaterialesPines3D() {
       if (!webglDisponible || !THREE) return;
+      // Escala inversa al zoom para evitar que las burbujas/anillos crezcan demasiado al acercar el mapa
+      const zoomScale = Math.max(0.22, Math.min(0.95, 1.0 / Math.pow(zoom, 0.88)));
       Object.entries(pinMeshes).forEach(([est, mesh]) => {
         const activo = est === estadoSeleccionado;
         mesh.material.color.setHex(activo ? 0x10b981 : 0x38bdf8);
-        mesh.scale.setScalar(activo ? 1.35 : 1.0);
+        mesh.scale.setScalar((activo ? 1.25 : 0.85) * zoomScale);
         if (activo && pulseRingMesh) {
           pulseRingMesh.position.copy(mesh.position).multiplyScalar(1.002);
           pulseRingMesh.lookAt(new THREE.Vector3(0, 0, 0));
@@ -1012,8 +1014,15 @@
         pivotPitch.rotation.x = rotX;
         camera.position.z = 3.35 / Math.pow(zoom, 0.58);
 
+        // Mantener tamaño compacto de marcadores y anillo al hacer zoom cercano (clamp)
+        const zoomScale = Math.max(0.22, Math.min(0.95, 1.0 / Math.pow(zoom, 0.88)));
+        Object.entries(pinMeshes).forEach(([est, mesh]) => {
+          const activo = est === estadoSeleccionado;
+          mesh.scale.setScalar((activo ? 1.25 : 0.85) * zoomScale);
+        });
+
         if (pulseRingMesh) {
-          const s = 1 + (tick % 1) * 1.4;
+          const s = (0.9 + (tick % 1) * 1.15) * zoomScale;
           pulseRingMesh.scale.setScalar(s);
           pulseRingMesh.material.opacity = (1 - (tick % 1)) * 0.85;
         }
@@ -1153,8 +1162,9 @@
         const sy = cy - y2 * radius;
         const esActivo = loc.estado === estadoSeleccionado;
 
+        const rPin = Math.max(2.0, Math.min(4.2, (esActivo ? 4.2 : 2.8) / Math.pow(zoom, 0.45)));
         ctx.beginPath();
-        ctx.arc(sx, sy, esActivo ? 4.5 : 3, 0, Math.PI * 2);
+        ctx.arc(sx, sy, rPin, 0, Math.PI * 2);
         ctx.fillStyle = esActivo ? "#10B981" : "#38BDF8";
         ctx.fill();
 

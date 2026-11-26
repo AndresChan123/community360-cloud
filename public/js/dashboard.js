@@ -92,6 +92,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   function activarVista(viewId) {
     if (!viewId) return;
+    // Cerrar drawer movil si estaba abierto
+    const appSidebar = document.getElementById("app-sidebar");
+    const mobileBackdrop = document.getElementById("mobile-drawer-backdrop");
+    const iconOpen = document.getElementById("icon-drawer-open");
+    const iconClose = document.getElementById("icon-drawer-close");
+    if (appSidebar) appSidebar.classList.remove("drawer-open");
+    if (mobileBackdrop) mobileBackdrop.classList.remove("visible");
+    if (iconOpen) iconOpen.style.display = "inline-block";
+    if (iconClose) iconClose.style.display = "none";
     document.querySelectorAll(".view-section").forEach((sec) => {
       sec.classList.toggle("active", sec.id === viewId);
     });
@@ -132,6 +141,36 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   });
 
+  // Control del menu hamburguesa y drawer movil (< 768px)
+  const btnMobileDrawer = document.getElementById("btn-mobile-drawer");
+  const appSidebar = document.getElementById("app-sidebar");
+  const mobileBackdrop = document.getElementById("mobile-drawer-backdrop");
+  const btnThemeMobile = document.getElementById("btn-theme-toggle-mobile");
+
+  function toggleMobileDrawer(forzar) {
+    if (!appSidebar) return;
+    const abrir = typeof forzar === "boolean" ? forzar : !appSidebar.classList.contains("drawer-open");
+    appSidebar.classList.toggle("drawer-open", abrir);
+    if (mobileBackdrop) mobileBackdrop.classList.toggle("visible", abrir);
+    if (btnMobileDrawer) btnMobileDrawer.setAttribute("aria-expanded", String(abrir));
+    const iconOpen = document.getElementById("icon-drawer-open");
+    const iconClose = document.getElementById("icon-drawer-close");
+    if (iconOpen) iconOpen.style.display = abrir ? "none" : "inline-block";
+    if (iconClose) iconClose.style.display = abrir ? "inline-block" : "none";
+  }
+
+  if (btnMobileDrawer) {
+    btnMobileDrawer.addEventListener("click", () => toggleMobileDrawer());
+  }
+  if (mobileBackdrop) {
+    mobileBackdrop.addEventListener("click", () => toggleMobileDrawer(false));
+  }
+  if (btnThemeMobile) {
+    btnThemeMobile.addEventListener("click", () => {
+      document.getElementById("btn-theme-toggle")?.click();
+    });
+  }
+
   // =========================================================================
   // PANEL DE SESION Y CAMBIO DE CUENTA DESDE EL ENCABEZADO
   // =========================================================================
@@ -145,6 +184,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     const rolTexto = usuario.rol === "admin" ? "Administrador" : "Solo lectura";
     userEmailEl.textContent = usuario.email;
     userRolEl.textContent = rolTexto;
+    const drawerEmailEl = document.getElementById("drawer-user-email");
+    const drawerRolEl = document.getElementById("drawer-user-rol");
+    const drawerAvatarEl = document.getElementById("drawer-user-avatar");
+    if (drawerEmailEl) drawerEmailEl.textContent = usuario.email;
+    if (drawerRolEl) drawerRolEl.textContent = rolTexto;
     if (panelCurrentEmailEl) panelCurrentEmailEl.textContent = usuario.email;
     if (panelCurrentRoleEl) {
       panelCurrentRoleEl.textContent = rolTexto;
@@ -157,6 +201,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       .join("")
       .slice(0, 2);
     if (userAvatarEl && iniciales) userAvatarEl.textContent = iniciales;
+    if (drawerAvatarEl && iniciales) drawerAvatarEl.textContent = iniciales;
   }
 
   if (btnSessionToggle && sessionPanel) {
@@ -435,7 +480,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 return {
                   text: `${label} · ${pct}%`,
                   fillStyle: ds.backgroundColor[i],
-                  strokeStyle: "#FFFFFF",
+                  strokeStyle: obtenerColoresTema().borderDona,
                   fontColor: DARK_TEXT,
                   hidden: !chart.getDataVisibility(i),
                   index: i,
@@ -604,7 +649,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         plugins: { legend: { display: false } },
         scales: {
           x: { grid: { color: GRID_COLOR }, ticks: { color: AXIS_TEXT } },
-          y: { grid: { display: false }, ticks: { color: AXIS_TEXT } },
+          y: {
+            grid: { display: false },
+            ticks: {
+              color: AXIS_TEXT,
+              autoSkip: false,
+              font: { size: window.innerWidth < 768 ? 11 : 12 },
+            },
+          },
         },
       },
     });
@@ -620,7 +672,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             data: canalEntries.map(([, v]) => v),
             backgroundColor: PALETA_CANALES,
             borderWidth: 2,
-            borderColor: "#FFFFFF",
+            borderColor: obtenerColoresTema().borderDona,
           },
         ],
       },
@@ -653,7 +705,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         plugins: { legend: { display: false } },
         scales: {
           x: { grid: { color: GRID_COLOR }, ticks: { color: AXIS_TEXT } },
-          y: { grid: { display: false }, ticks: { color: AXIS_TEXT } },
+          y: {
+            grid: { display: false },
+            ticks: {
+              color: AXIS_TEXT,
+              autoSkip: false,
+              font: { size: window.innerWidth < 768 ? 11 : 12 },
+            },
+          },
         },
       },
     });
@@ -879,7 +938,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               data: ordenEstatus.map((k) => data.por_estatus[k]),
               backgroundColor: ordenEstatus.map((k) => COLORES_ESTATUS[k] || "#6B7280"),
               borderWidth: 2,
-              borderColor: "#FFFFFF",
+              borderColor: obtenerColoresTema().borderDona,
             },
           ],
         },
@@ -911,7 +970,14 @@ document.addEventListener("DOMContentLoaded", async () => {
           plugins: { legend: { display: false } },
           scales: {
             x: { grid: { color: GRID_COLOR }, ticks: { color: AXIS_TEXT } },
-            y: { grid: { display: false }, ticks: { color: AXIS_TEXT } },
+            y: {
+              grid: { display: false },
+              ticks: {
+                color: AXIS_TEXT,
+                autoSkip: false,
+                font: { size: window.innerWidth < 768 ? 11 : 12 },
+              },
+            },
           },
         },
       });
